@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Paperlogy4';
+  src: url('./fonts/Paperlogy-4Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Paperlogy5';
+  src: url('./fonts/Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Paperlogy6';
+  src: url('./fonts/Paperlogy-6SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Paperlogy7';
+  src: url('./fonts/Paperlogy-7Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
