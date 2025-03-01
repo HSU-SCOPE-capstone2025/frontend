@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import "./App.css";
+import Nav from './component/Nav';
 import ScopeMain from './ScopeMain/components/ScopeMain';
 import InfluencerRanking from './InfluencerRanking/components/InfluencerRanking';
 import ProfileDetailAnalysis from './ProfileDetailAnalysis/components/ProfileDetailAnalysis';
@@ -14,6 +15,7 @@ import Recommendation from './Recommendation/components/Recommendation';
 const App = () => {
   return (
     <Router>
+      <Nav />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<ScopeMain />} />
