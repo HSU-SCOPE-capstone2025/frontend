@@ -6,7 +6,7 @@ function Nav() {
     return (
         <div>
             <div className="navbar">
-                <div className="navbarLogo">SCOPE</div>
+                <Link className="navbarLogo" to={'/'}>SCOPE</Link>
 
                 <div>
                 <Link className="navbarMenu" to={'/'}>서비스 소개</Link>

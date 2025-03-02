@@ -27,6 +27,7 @@
 }
 
 .navbarLogo {
+    text-decoration: none;
     color: #2B2F33;
     font-family: 'Paperlogy';
     font-size: 20px;
