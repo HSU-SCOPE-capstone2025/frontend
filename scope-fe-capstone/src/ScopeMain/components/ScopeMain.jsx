@@ -38,7 +38,7 @@ const styles = {
     border: "none",
     backgroundColor: "#007bff",
     color: "white",
-    fontFamily: 'Paperlogy4',
+    fontFamily: 'Paperlogy',
   },
 };
 
