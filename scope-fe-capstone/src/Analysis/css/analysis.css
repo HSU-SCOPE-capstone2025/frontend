@@ -45,20 +45,49 @@
     justify-content: flex-start; /* 왼쪽 정렬 */
 }
 
+.advanced-filter-content{
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 31px;
+}
 .advanced-filter-settings {
-    width: 120px;
-    height: 35px;
+    width: 157px;
+    height: 33xpx;
     padding: 10px 10px;
     text-align: center;
     border: none;
-    background-color: #ddd;
+    justify-content: center;
+    background-color: #5E51FF;
     color: black;
     cursor: pointer;
     border-radius: 5px;
+    color: #FFF;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.filter-icon{
+    width: 19px;
+    height: 13px;
+    flex-shrink: 0;
 }
 
 .advanced-filter-settings:hover {
     background-color: #bbb;
+}
+
+.filter-arrow-icon{
+    width:18px;
+    height: 18px;
 }
 
 /* 필터 창 스타일 */
@@ -118,10 +147,11 @@
 .filter-button {
     padding: 10px 15px;
     border: 1px solid #ddd;
-    background-color: white;
+    background-color: #5E51FF;
     cursor: pointer;
     border-radius: 20px;
     font-size: 14px;
+    
 }
 
 .filter-button.selected {

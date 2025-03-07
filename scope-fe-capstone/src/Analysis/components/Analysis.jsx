@@ -6,6 +6,9 @@ import instagramLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png"; 
 import tiktokLogo from "../../assets/images/tiktok_logo.png"; 
 
+//고급 필터 설정 이미지 
+import filter from "../../assets/images/filter.png"; 
+import under_arrow from "../../assets/images/under_arrow.png"; 
 // 프로필 이미지 import
 import risabaeProfile from "../../assets/images/risabae_profile.png";
 
@@ -105,11 +108,17 @@ const Analysis = () => {
             </div>
             <hr />
 
+        
             {/* 고급 필터 버튼 */}
             <div className="advanced-filter-settings-container">
                 <button className="advanced-filter-settings" onClick={toggleFilter}>
+                <img src={filter} alt="filter" className="filter-icon" />
                     고급필터 설정
+                <img src={under_arrow} alt="filter-arrow" className="filter-arrow-icon" />
                 </button>
+                <div className="advanced-filter-content">
+                원하는 조건을 설정하고 맞춤 인플루언서를 찾아보세요.
+                </div>
             </div>
 
             {/* 고급 필터 창 */}
