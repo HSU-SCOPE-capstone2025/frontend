@@ -86,6 +86,7 @@ const Analysis = () => {
 
     return (
         <div className="container">
+            <div className="analysis-container">
             <div className="title-container">
                 <h2 className="title">인플루언서 찾기</h2>
             </div>
@@ -125,7 +126,11 @@ const Analysis = () => {
             {isFilterOpen && (
                 <div className="filter-container active">
                     <div className="tag-container">
-                        {/* 카테고리 필터 */}
+                        
+
+                        {/* 팔로워 수, 좋아요 수, 조회 수를 한 줄로 정렬 */}
+                        <div className="tag-group">
+                            {/* 카테고리 필터 */}
                         <div className="tag1">
                             <h4>카테고리</h4>
                             <div className="filter-category-buttons">
@@ -140,9 +145,6 @@ const Analysis = () => {
                                 ))}
                             </div>
                         </div>
-
-                        {/* 팔로워 수, 좋아요 수, 조회 수를 한 줄로 정렬 */}
-                        <div className="tag-group">
                             {/* 팔로워 수 */}
                             <div className="tag2">
                                 <h4>팔로워 수</h4>
@@ -259,6 +261,7 @@ const Analysis = () => {
                 </table>
             </div>
             
+        </div>
         </div>
 
         
