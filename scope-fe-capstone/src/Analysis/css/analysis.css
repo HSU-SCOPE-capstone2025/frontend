@@ -1,39 +1,87 @@
+#root{
+    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+    width:1920px;
+
+
+}
 .container {
    
-    width:1982px;
-    height: 100%;;
+    width:1920px;
+    height: 100%;
 }
 
 .analysis-container{
-    
     justify-content: center;
+    width: 1775px;
+    min-height: 1743px;
+    max-height: 2284px;
+    margin-left: 72px;
+    margin-top: 134px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
 }
 .title-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
+    margin-top:57px;
+    margin-left:69px;
+    margin-bottom: 24px;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+
+.analysis-title {
+    
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 hr{
-    width:1775px;
-    justify-content: start;
+    width: 1775px;
+    border: 1px solid #DFDFDF;
 }
 /* SNS 버튼 스타일 */
 .sns-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
-    gap: 10px; /* 버튼 간격 */
+    gap: 20px; /* 버튼 간격 */
+    margin-left: 69px;
 }
 
-.instagram-button, .youtube-button, .tiktok-button {
+.instagram-button {
     width: 105px;
     height: 35px;
-    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between; /* 요소들을 가로 정렬 */
+
+    padding: 7px 10px;
+    text-align: center;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+.youtube-button, .tiktok-button {
+    width: 85px;
+    height: 35px;
+    display: flex;
+    justify-content: space-between; /* 요소들을 가로 정렬 */
+
+    padding: 10px 15px;
     text-align: center;
     border: none;
     color: black;
@@ -60,9 +108,17 @@ hr{
 .advanced-filter-settings-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
+    border: 1px solid black;
+}
+
+.advanced-filter-settings-contents{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 5px;
 }
 
 .advanced-filter-content{
+    height: 15px;
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -71,10 +127,11 @@ hr{
     font-weight: 500;
     line-height: normal;
     margin-left: 31px;
+    margin-top:9px;
 }
 .advanced-filter-settings {
     width: 157px;
-    height: 33xpx;
+    height: 33px;
     padding: 10px 10px;
     text-align: center;
     border: none;
@@ -90,6 +147,9 @@ hr{
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-left: 69px;
+
+
 }
 
 .filter-icon{
@@ -133,6 +193,21 @@ hr{
     margin-top: 10px;
 }
 
+.category-title{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 10px;
+}
 /* 카테고리 컨테이너 */
 .tag1 {
    
@@ -150,6 +225,7 @@ hr{
 flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
+margin-right:110px;
 }
 
 /* 카테고리 버튼 그룹 */
@@ -157,15 +233,15 @@ flex-shrink: 0;
     display: flex;
     flex-wrap: wrap; /* 여러 줄로 배치 */
     gap: 10px;
-justify-content: center;
-flex-shrink: 0;
+    justify-content: center;
+    flex-shrink: 0;
     color: #2B2F33;
-text-align: center;
-font-family: Paperlogy;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
 }
 
@@ -173,14 +249,15 @@ line-height: normal;
 .tag-group {
     display: flex;
     justify-content: space-between; /* 요소들을 가로 정렬 */
-    gap: 40px;
     width:1775px;
 }
+
 
 /* 개별 필터 블록 (팔로워 수, 좋아요 수, 조회 수) */
 .tag2, .tag3, .tag4 {
     flex: 1; /* 동일한 크기로 정렬 */
     min-width: 250px; /* 최소 너비 설정 */
+    border:1px solid black;
 }
 
 /* 버튼 스타일 */
@@ -191,6 +268,18 @@ line-height: normal;
     cursor: pointer;
     border-radius: 20px;
     font-size: 14px;
+    display: flex;
+
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #2B2F33;
+text-align: center;
+font-family: Paperlogy;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
     
 }
 
@@ -203,13 +292,24 @@ line-height: normal;
 .range-inputs {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 163px;
+    height: 32px;
 }
 
+
 .range-inputs input {
-    width: 80px;
+    width: 112px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    color: #A3A3A3;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 
@@ -221,8 +321,17 @@ line-height: normal;
 /* 필터 버튼 스타일 */
 .filter-category-buttons, .filter-range-buttons {
     display: flex;
+    width: 500px;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 4px;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+.filter-range-buttons {
+    display: flex;
+    width: 500px;
+    flex-wrap: wrap;
+    gap: 7px;
     justify-content: flex-start; /* 왼쪽 정렬 */
 }
 
@@ -235,7 +344,20 @@ line-height: normal;
     font-size: 14px;
 }
 
+.filter-button-ver2 {
+    padding: 4px 54px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
 .filter-button.selected {
+    background-color: #F0F0F0;
+    color: #111;
+}
+
+.filter-button-ver2.selected {
     background-color: #F0F0F0;
     color: #111;
 }

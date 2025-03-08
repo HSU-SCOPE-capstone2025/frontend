@@ -88,7 +88,7 @@ const Analysis = () => {
         <div className="container">
             <div className="analysis-container">
             <div className="title-container">
-                <h2 className="title">인플루언서 찾기</h2>
+                <div className="analysis-title">인플루언서 찾기</div>
             </div>
             <hr />
 
@@ -113,14 +113,19 @@ const Analysis = () => {
             {/* 고급 필터 버튼 */}
             <div className="advanced-filter-settings-container">
                 <button className="advanced-filter-settings" onClick={toggleFilter}>
+                <div className="advanced-filter-settings-contents">
+
                 <img src={filter} alt="filter" className="filter-icon" />
                     고급필터 설정
                 <img src={under_arrow} alt="filter-arrow" className="filter-arrow-icon" />
+                </div>
+
                 </button>
                 <div className="advanced-filter-content">
                 원하는 조건을 설정하고 맞춤 인플루언서를 찾아보세요.
                 </div>
             </div>
+            <hr/>
 
             {/* 고급 필터 창 */}
             {isFilterOpen && (
@@ -132,7 +137,7 @@ const Analysis = () => {
                         <div className="tag-group">
                             {/* 카테고리 필터 */}
                         <div className="tag1">
-                            <h4>카테고리</h4>
+                            <div className="category-title">카테고리</div>
                             <div className="filter-category-buttons">
                                 {categories.map((category) => (
                                     <button
@@ -147,12 +152,12 @@ const Analysis = () => {
                         </div>
                             {/* 팔로워 수 */}
                             <div className="tag2">
-                                <h4>팔로워 수</h4>
+                                <div className="category-title">팔로워 수</div>
                                 <div className="filter-range-buttons">
                                     {followerRanges.map((range) => (
                                         <button
                                             key={range}
-                                            className={`filter-button ${selectedFollowers.includes(range) ? "selected" : ""}`}
+                                            className={`filter-button-ver2 ${selectedFollowers.includes(range) ? "selected" : ""}`}
                                             onClick={() => handleRangeSelection("followers", range)}
                                         >
                                             {range}
@@ -167,12 +172,12 @@ const Analysis = () => {
 
                             {/* 평균 좋아요 수 */}
                             <div className="tag3">
-                                <h4>평균 좋아요 수</h4>
+                                <div className="category-title">평균 좋아요 수</div>
                                 <div className="filter-range-buttons">
                                     {likesRanges.map((range) => (
                                         <button
                                             key={range}
-                                            className={`filter-button ${selectedLikes.includes(range) ? "selected" : ""}`}
+                                            className={`filter-button-ver2 ${selectedLikes.includes(range) ? "selected" : ""}`}
                                             onClick={() => handleRangeSelection("likes", range)}
                                         >
                                             {range}
@@ -187,12 +192,12 @@ const Analysis = () => {
 
                             {/* 평균 동영상 조회 수 */}
                             <div className="tag4">
-                                <h4>평균 동영상 조회 수</h4>
+                                <div className="category-title">평균 동영상 조회 수</div>
                                 <div className="filter-range-buttons">
                                     {viewsRanges.map((range) => (
                                         <button
                                             key={range}
-                                            className={`filter-button ${selectedViews.includes(range) ? "selected" : ""}`}
+                                            className={`filter-button-ver2 ${selectedViews.includes(range) ? "selected" : ""}`}
                                             onClick={() => handleRangeSelection("views", range)}
                                         >
                                             {range}
