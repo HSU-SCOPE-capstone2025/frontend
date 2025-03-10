@@ -12,7 +12,8 @@ import under_arrow from "../../assets/images/under_arrow.png";
 // 프로필 이미지 import
 import risabaeProfile from "../../assets/images/risabae_profile.png";
 
-
+//총 인플루언서 수 
+const totalNumber_influencer=12345;
 // 필터 옵션 리스트
 const categories = [
   "일상 / Vlog", "패션", "뷰티", "먹방", "엔터테인먼트", "IT / 전자기기",
@@ -40,21 +41,65 @@ const Analysis = () => {
     };
 
 
-   // 인플루언서 리스트 데이터
-   const [influencers, setInfluencers] = useState([
-    {
-      id: 1,
-      profileImage: risabaeProfile, // import한 이미지 사용
-      name: "risabae_art",
-      category: ["패션", "뷰티"],
-      tags: ["패션", "뷰티"],
-      followers: "7.9만명",
-      avgViews: "20.3만",
-      avgLikes: "15.6만",
-      avgComments: "10.1만",
-    },
+    //인플루언서 리스트 데이터
+    const [influencers, setInfluencers] = useState([
+        {
+          id: 1,
+          profileImage: risabaeProfile, 
+          name: "risabae_art",
+          category: ["패션", "뷰티"],
+          tags: ["패션", "뷰티"],
+          followers: "7.9만명",
+          avgViews: "20.3만",
+          avgLikes: "15.6만",
+          avgComments: "10.1만",
+        },
+        {
+          id: 2,
+          profileImage: instagramLogo, // 더미 이미지
+          name: "daily_foodie",
+          category: ["먹방", "요리"],
+          tags: ["먹방", "레시피", "푸드"],
+          followers: "12.5만명",
+          avgViews: "30.2만",
+          avgLikes: "18.9만",
+          avgComments: "9.5만",
+        },
+        {
+          id: 3,
+          profileImage: youtubeLogo, // 더미 이미지
+          name: "tech_guru",
+          category: ["IT / 전자기기"],
+          tags: ["리뷰", "언박싱", "전자기기"],
+          followers: "50.7만명",
+          avgViews: "70.1만",
+          avgLikes: "35.8만",
+          avgComments: "22.1만",
+        },
+        {
+          id: 4,
+          profileImage: tiktokLogo, // 더미 이미지
+          name: "travel_explorer",
+          category: ["여행"],
+          tags: ["여행", "브이로그", "트립"],
+          followers: "27.4만명",
+          avgViews: "45.6만",
+          avgLikes: "25.3만",
+          avgComments: "12.7만",
+        },
+        {
+          id: 5,
+          profileImage: instagramLogo, // 더미 이미지
+          name: "fitness_king",
+          category: ["스포츠"],
+          tags: ["헬스", "운동", "다이어트"],
+          followers: "35.9만명",
+          avgViews: "55.2만",
+          avgLikes: "29.8만",
+          avgComments: "14.3만",
+        },
+      ]);
     
-  ]);
 
     // 카테고리 필터 선택 (다중 선택)
     const toggleCategory = (category) => {
@@ -126,6 +171,9 @@ const Analysis = () => {
                 </div>
             </div>
             <hr/>
+            <div className="total-influencer-container">
+                 총 <span className="total-number">{totalNumber_influencer.toLocaleString()}</span> 명의 인플루언서를 찾았습니다.
+            </div>
 
             {/* 고급 필터 창 */}
             {isFilterOpen && (
@@ -226,7 +274,7 @@ const Analysis = () => {
                 <table className="influencer-table">
                     <thead>
                         <tr>
-                            <th>프로필</th>
+                            <th>계정</th>
                             <th>카테고리</th>
                             <th>태그</th>
                             <th>팔로워 수</th>
@@ -240,6 +288,7 @@ const Analysis = () => {
 <tbody>
   {influencers.map((influencer) => (
     <tr key={influencer.id}>
+
       <td>
         <div className="account-info-container">
           <img
@@ -253,8 +302,24 @@ const Analysis = () => {
           </div>
         </div>
       </td>
-      <td>{influencer.category.join(", ")}</td>
-      <td>{influencer.tags.join(", ")}</td>
+      <td>
+  <div className="category-container">
+    {influencer.category.map((cat, index) => (
+      <span key={index} className="category-box">{cat}</span>
+    ))}
+  </div>
+</td>
+
+<td>
+  <div className="tag-container">
+    {influencer.tags.map((tag, index) => (
+      <span key={index} className="tag-box">{tag}</span>
+    ))}
+  </div>
+</td>
+
+
+
       <td>{influencer.followers}</td>
       <td>{influencer.avgViews}</td>
       <td>{influencer.avgLikes}</td>

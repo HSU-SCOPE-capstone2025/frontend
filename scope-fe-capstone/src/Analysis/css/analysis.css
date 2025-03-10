@@ -17,17 +17,17 @@
     max-height: 2284px;
     margin-left: 72px;
     margin-top: 134px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background: #FFF;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+
 }
-.title-container {
+    .title-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
     margin-top:57px;
     margin-left:69px;
     margin-bottom: 24px;
+    padding-top:57px;
+    background-color: #ffffff;
 }
 
 
@@ -108,13 +108,12 @@ hr{
 .advanced-filter-settings-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
-    border: 1px solid black;
 }
 
 .advanced-filter-settings-contents{
     display: flex;
     justify-content: space-around;
-    padding-bottom: 5px;
+    padding-bottom: 7px;
 }
 
 .advanced-filter-content{
@@ -148,6 +147,7 @@ hr{
     font-weight: 500;
     line-height: normal;
     margin-left: 69px;
+ 
 
 
 }
@@ -181,17 +181,7 @@ hr{
 
 }
 
-/* 필터 전체 컨테이너 */
-.tag-container {
-    display: flex;
-    flex-direction: column; /* 전체적으로 세로 정렬 */
-    gap: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin-top: 10px;
-}
+
 
 .category-title{
     display: flex;
@@ -396,9 +386,31 @@ line-height: normal;
 }
 
 /* 총 인플루언서 수 */
-.total-number-container {
+.total-influencer-container {
     display: flex;
     justify-content: flex-start; /* 왼쪽 정렬 */
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 89px;
+}
+
+.total-number{
+    color: #5E51FF;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 /* 인플루언서 리스트 테이블 */
@@ -409,10 +421,9 @@ line-height: normal;
 .influencer-table {
     width: 1775px;
     border-collapse: collapse;
-    border: 1px solid #ddd;
 }
 
-.influencer-table th,
+/* .influencer-table th,
 .influencer-table td {
     border: 1px solid #ddd;
     padding: 12px;
@@ -422,10 +433,160 @@ line-height: normal;
 .influencer-table th {
     background-color: #f4f4f4;
     font-weight: bold;
+} */
+
+
+
+/* 테이블 헤더와 각 열의 너비 지정 */
+.influencer-table th:nth-child(1),
+.influencer-table td:nth-child(1) {
+    width: 320px; /* 계정 */
+    height: 40px;
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-right: 2px solid #DEDEDE;
+    text-align: start;
+padding-left: 89px;
 }
 
-.influencer-table tr:hover {
-    background-color: #f1f1f1;
+/* 카테고리와 태그를 감싸는 컨테이너 */
+.category-container, .tag-container {
+    display: flex;
+    gap: 6px; /* 박스 사이 간격 */
+    justify-content: start; /* 왼쪽 정렬 */
+    padding-left: 40px; /* 원래 있던 패딩 유지 */
+    flex-direction: row;
+
+    
+}
+
+/* 개별 카테고리 박스 스타일*/
+.category-box{
+    padding: auto;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background-color: #FBECFB;    
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 3px 9px 3px 9px; /* 상, 우 , 하, 좌 */
+
+    justify-content: center;
+}
+/* 개별 태그 박스 스타일 */
+.tag-box {
+    padding: auto;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background-color: #EFEFFE;    
+    color: #8476FF;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 3px 9px 3px 9px; /* 상, 우 , 하, 좌 */
+
+    justify-content: center;
+}
+
+.influencer-table th:nth-child(2),
+.influencer-table td:nth-child(2) {
+    width: 160px; /* 카테고리 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+}
+
+.influencer-table th:nth-child(3),
+.influencer-table td:nth-child(3) {
+    width: 160px; /* 태그 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+
+}
+
+
+.influencer-table th:nth-child(4),
+.influencer-table td:nth-child(4) {
+    width: 160px; /* 팔로워 수 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+
+}
+
+.influencer-table th:nth-child(5),
+.influencer-table td:nth-child(5) {
+    width: 160px; /* 평균 조회수 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+
+}
+
+.influencer-table th:nth-child(6),
+.influencer-table td:nth-child(6) {
+    width: 160px; /* 평균 좋아요 수 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+
+}
+
+.influencer-table th:nth-child(7),
+.influencer-table td:nth-child(7) {
+    width: 160px; /* 평균 댓글 수 */
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: start;
+
+}
+
+/* 홀수 번째 행 (회색 배경) */
+.influencer-table tbody tr:nth-child(odd) {
+    background-color: #FAFAFA; /* 연한 회색 */
+}
+
+/* 짝수 번째 행 (흰색 배경) */
+.influencer-table tbody tr:nth-child(even) {
+    background-color: #FFF;; /* 흰색 */
 }
 
 /* 프로필 스타일 */
@@ -440,22 +601,35 @@ line-height: normal;
 .account-info-container {
     display: flex;
     align-items: center;
-
     gap: 12px;
+    height: 100px;
+
 }
 
 .account-details {
     display: flex;
     flex-direction: column;
+    text-align: left;
+
 }
 
 .account-name {
-    font-weight: bold;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
     font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .account-description {
-    color: gray;
-    font-size: 14px;
+    color: #8B8B8B;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
