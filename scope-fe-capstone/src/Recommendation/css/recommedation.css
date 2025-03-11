@@ -1,0 +1,159 @@
+html, body {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F6F7FC;
+  }
+  
+  .recommendation-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 120vh;
+    align-items: center;
+    width: 100%;
+    background-color: #F6F7FC;
+
+  }
+  
+  .recommedation-box {
+    width: 1450px;
+    height: 565px;
+    margin-top: 133px;
+    border-radius: 30px;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+  
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background-color: #ffffff;
+  }
+  
+  .right-section {
+    flex: 1;
+    background: linear-gradient(180deg, #FFF 0.01%, #FDF1F7 100%);
+  }
+  
+  .big-text {
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 50px;
+    margin-bottom: 150px;
+    margin-left: 50px;
+  }
+  
+  .small-text {
+    color: #9E9E9E;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25px;
+    margin-top: -150px;
+    margin-left: 50px;
+  }
+  
+  .want-a-influencer {
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 231px;
+    margin-bottom: 66px;
+  }
+  
+  .first-box {
+    display: flex;
+    flex-direction: row;
+    width: 1450px;
+    height: 315px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 20px;
+
+  }
+  
+ 
+  .first-box-container{
+    width: 555px;
+  }
+  .first-box-title {
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 131px;
+    margin-left: 94px;
+  }
+  
+  .first-box-content {
+    color: #9E9E9E;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 94px;
+
+  }
+  
+  .category-buttons {
+    width: 1000px;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 70px;
+  }
+  
+  .category-button {
+    display: flex;
+    height: 40px;
+    border-radius: 30px;
+    border: 1px solid #D0D0D0;
+    background: #FFF;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-left: 34px;
+    padding-right: 34px;
+  }
+  
+  /* 선택된 버튼의 스타일 변경 */
+  .category-button.selected {
+    background-color: #fee2e2;
+    border-color: #ff809f;
+    color: #d62767;
+    font-weight: bold;
+  }
+  
+  .category-button:hover {
+    background-color: #fee2e2;
+  }
+  
