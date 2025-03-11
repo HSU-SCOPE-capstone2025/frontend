@@ -5,6 +5,7 @@ import '../css/ScopeMain.css';
 
 //image
 import main2 from "../../assets/images/main2.png"; 
+import main3 from "../../assets/images/main3.png";
 
 const ScopeMain = () => {
   const navigate = useNavigate();
@@ -23,8 +24,12 @@ const ScopeMain = () => {
         </div>
       </div>
 
-      <div className="mainDiv">
+      <div className="mainDiv2">
         <img src={main2} alt="main2" />
+      </div>
+
+      <div className="mainDiv3">
+        <img src={main3} alt="main3" />
       </div>
     </div>
   );

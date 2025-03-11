@@ -36,19 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* 스크롤바 커스텀 - 문제시 여기 부분 삭제 */
-body::-webkit-scrollbar {
-  width: 12px;  /* 스크롤바의 너비 */
-}
-
-body::-webkit-scrollbar-thumb {
-  height: 30%; /* 스크롤바의 길이 */
-  background: #a5a5a5; /* 스크롤바의 색상 */
-  
-  border-radius: 10px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #dadada;  /*스크롤바 뒷 배경 색상*/
-}

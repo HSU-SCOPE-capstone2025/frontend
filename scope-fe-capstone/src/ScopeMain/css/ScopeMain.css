@@ -1,12 +1,30 @@
 .maingradBackground {
-    width: 100%;
+    width: 100vw;
     height: 1000px;
     flex-shrink: 0;
     background: linear-gradient(76deg, #FCF8FF -3%, #EEF9FF 109.96%);
 }
 
-.mainDiv {
+.mainDiv2 {
+    width: 100vw;
+    background: #fff;
     text-align: center;
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로 중앙 정렬 */
+}
+
+.mainDiv3 {
+    width: 100vw;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    background: #F4F6FF;
+    text-align: center;
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로 중앙 정렬 */
 }
 
 .maingradText {
