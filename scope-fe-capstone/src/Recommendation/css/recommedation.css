@@ -74,7 +74,10 @@ html, body {
     margin-bottom: 66px;
   }
   
-  .first-box {
+  .first-box,
+  .second-box,
+  .third-box,
+  .fourth-box {
     display: flex;
     flex-direction: row;
     width: 1450px;
@@ -88,10 +91,17 @@ html, body {
   }
   
  
-  .first-box-container{
+  .first-box-container,
+  .second-box-container,
+  .third-box-container,
+  .fourth-box-container {
     width: 555px;
   }
-  .first-box-title {
+
+  .first-box-title,
+  .second-box-title, 
+  .third-box-title,
+  .fourth-box-title  {
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -103,7 +113,10 @@ html, body {
     margin-left: 94px;
   }
   
-  .first-box-content {
+  .first-box-content,
+  .second-box-content,
+  .third-box-content,
+  .fourth-box-content {
     color: #9E9E9E;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -114,6 +127,23 @@ html, body {
     margin-left: 94px;
 
   }
+
+  .recommendation-search-button{
+    width: 344px;
+    height: 81px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Medium, 12px);
+    background: #5E51FF;
+    color: #FFF;
+    font-family: Paperlogy;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top:102px;
+    border: #FFF;
+  }
+
   
   .category-buttons {
     width: 1000px;

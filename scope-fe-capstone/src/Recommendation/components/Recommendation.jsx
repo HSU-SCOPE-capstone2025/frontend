@@ -50,6 +50,7 @@ const Recommendation = () => {
       </div>
 
       {/* 마케팅 제품 카테고리 선택 박스 */}
+      {/* 첫번째 박스 */}
       <div className="first-box">
         <div className="first-box-container">
           <div className="first-box-title">마케팅 제품 카테고리</div>
@@ -71,6 +72,78 @@ const Recommendation = () => {
             ))}
         </div>
       </div>
+
+      {/* 두번째 박스 */}
+      <div className="second-box">
+        <div className="second-box-container">
+          <div className="second-box-title">팔로워 수</div>
+          <div className="second-box-content">
+          인플루언서의 팔로워 수를 정해주세요
+          </div>
+        </div>
+
+          {/* 카테고리 버튼 목록 */}
+          <div className="category-buttons">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className={`category-button ${selectedCategories.includes(category) ? "selected" : ""}`}
+                onClick={() => toggleCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+        </div>
+      </div>
+
+      {/* 세번째 박스 */}
+      <div className="third-box">
+        <div className="third-box-container">
+          <div className="third-box-title">특징 태그</div>
+          <div className="third-box-content">
+          인플루언서에게 원하는 특징을 정해주세요
+          </div>
+          </div>
+
+          {/* 카테고리 버튼 목록 */}
+          <div className="category-buttons">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className={`category-button ${selectedCategories.includes(category) ? "selected" : ""}`}
+                onClick={() => toggleCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+        </div>
+      </div>
+
+      {/* 네번째 박스 */}
+      <div className="fourth-box">
+        <div className="fourth-box-container">
+          <div className="fourth-box-title">타켓층</div>
+          <div className="fourth-box-content">
+          원하는 타겟층을 정해주세요
+          </div>
+        </div>
+
+          {/* 카테고리 버튼 목록 */}
+          <div className="category-buttons">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                className={`category-button ${selectedCategories.includes(category) ? "selected" : ""}`}
+                onClick={() => toggleCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+        </div>
+      </div>
+
+      {/* 검색 버튼 */}
+      <button className="recommendation-search-button">검색하기</button>
     </div>
   );
 };
