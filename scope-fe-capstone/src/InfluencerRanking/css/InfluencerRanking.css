@@ -1,43 +1,446 @@
 .gradBackground {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
 
-    display: flex;
-    /* Flexbox 사용 */
-    justify-content: center;
-    /* 가로 중앙 정렬 */
+  display: flex;
+  /* Flexbox 사용 */
+  justify-content: center;
+  /* 가로 중앙 정렬 */
+}
+
+.flex-div {
+  display: flex;
 }
 
 .whiteBox {
-    margin-top: 80px;
+  margin-top: 80px;
 
-    width: 80%;
-    height: 80%;
-    flex-shrink: 0;
+  width: 80%;
+  height: 80%;
+  flex-shrink: 0;
 
-    border-radius: 20px;
-    background: #FFF;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
 }
 
 .titleText {
-    padding-top: 60px;
-    padding-left: 70px;
+  padding-top: 60px;
+  padding-left: 70px;
+  margin-bottom: 20px;
 
-    color: #2B2F33;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: Paperlogy;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .grayLine {
-    margin-top: 20px;
-    width: 100%;
-    height: 1px;
-    background: #DFDFDF;
+  width: 100%;
+  height: 1px;
+  background: #DFDFDF;
 }
 
+.radio-group {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+}
+
+.radio-label {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #DFDFDF;
+  background: #FFF;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+
+  color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+  /* 텍스트가 줄 바뀌지 않도록 */
+}
+
+.radio-label input {
+  display: none;
+  /* 기본 라디오 버튼 숨김 */
+}
+
+.radio-label.selected {
+  background: #CFD4FF;
+
+  color: #4434F8;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.radio-label:hover {
+  background-color: #CFD4FF;
+}
+
+.ranking-filter-container {
+  position: relative;
+  /* 필터 팝업을 배치하기 위한 기준점 */
+  display: inline-block;
+  padding: 20px;
+  padding-left: 70px;
+}
+
+.ranking-filter-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 0;
+  background: #F0F0F0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  color: #2B2F33;
+  text-align: right;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ranking-filter-button:hover {
+  background: #DEDEDE;
+}
+
+.ranking-filter-popup {
+  position: absolute;
+  top: 20%;
+  left: 100%;
+  /* 버튼 오른쪽에 배치 */
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #BABABA;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+  width: fit-content;
+  height: fit-content;
+  padding: 50px;
+  z-index: 999;
+  /* 가장 위에 표시 */
+}
+
+.ranking-filter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.ranking-filter-apply-button-container {
+  display: flex;
+  justify-content: right;
+}
+
+.ranking-filter-apply-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  width: fit-content;
+  background: #5E51FF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  color: #FFF;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ranking-filter-apply-button:hover {
+  background: #2B2F99;
+}
+
+.ranking-filter-title {
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.filter-button:hover {
+  background: #F0F0F0;
+}
+
+.ranking-filter-audience-gender {
+  margin-left: 40px;
+}
+
+.gender-radio-group {
+  display: flex;
+  gap: 30px;
+  padding: 5px 10px;
+  margin-top: 20px;
+
+  width: fit-content;
+  border-radius: 5px;
+  border: 1px solid #D0D0D0;
+}
+
+.gender-radio-label {
+  width: 100px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background: #FFF;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+
+  color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.gender-radio-label input {
+  display: none;
+  /* 기본 라디오 버튼 숨김 */
+}
+
+.gender-radio-label:hover {
+  background: #F0F0F0;
+}
+
+.gender-radio-label.selected {
+  background: #F0F0F0;
+}
+
+.filter-category-container {
+  flex-direction: column;
+  /* 카테고리는 세로 정렬 */
+  gap: 10px;
+  width: fit-content;
+  color: #2B2F33;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/*주요 나이대*/
+.filter-follower-age-container {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 40px;
+}
+
+/* slider 관련 */
+.range-slider {
+  position: relative;
+  width: 400px;
+  height: 2px;
+  background: #D9D9D9;
+  border-radius: 5px;
+  margin-top: 20px;
+  /* 숫자와 좀 더 정렬 */
+}
+
+.slider-track {
+  position: absolute;
+  height: 2px;
+  background: #5E51FF;
+  border-radius: 5px;
+  z-index: 1;
+
+  left: 0;
+  /* 왼쪽 끝을 정확히 맞추기 */
+  right: 0;
+  /* 오른쪽도 넘치지 않도록 조정 */
+}
+
+.thumb {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+  background: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  background: #fff;
+  border: 3px solid #5E51FF;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+
+  margin-top: -6px;
+  z-index: 3;
+  position: relative;
+}
+
+.slider-values {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  color: #2B2F33;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 10px;
+}
+
+.grayLine-length {
+  width: 1px;
+  background: #DFDFDF;
+}
+
+.standard-title {
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.standard-radio-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.standard-container {
+  padding: 30px;
+  padding-left: 70px;
+  width: 18%;
+}
+
+.ranking-profile-img {
+  width: 36px;
+  height: 36px;
+}
+
+.ranking-table {
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.ranking-account-info-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+}
+
+.ranking-table th {
+  color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 10px 30px;
+}
+
+.ranking-table td {
+  color: #2B2F33;
+
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  padding: 5px 10px;
+}
+
+.ranking-sns-container {
+  display: flex;
+  gap: 3px;
+}
+
+.ranking-sns-icon {
+  width: 35px;
+  /* 아이콘 크기 조정 */
+  height: 35px;
+}
+
+.ranking-category-container,
+.ranking-tag-container {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.ranking-category-box {
+  padding: 10px 15px;
+  background: #FBECFB;
+  border-radius: 30px;
+
+  color: #2B2F33;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.ranking-tag-box {
+  padding: 10px 15px;
+  background: #EFEFFE;
+  border-radius: 30px;
+
+  color: #5555F9;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
