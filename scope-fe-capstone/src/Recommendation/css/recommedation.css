@@ -1,79 +1,78 @@
 html, body {
-    height: 100%;
-    overflow-y: auto;
-    background-color: #F6F7FC;
-  }
-  
-  .recommendation-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 120vh;
-    align-items: center;
-    width: 100%;
-    background-color: #F6F7FC;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #F6F7FC;
+}
 
-  }
-  
-  .recommedation-box {
-    width: 1450px;
-    height: 565px;
-    margin-top: 133px;
-    border-radius: 30px;
-    background-color: #FFF;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-  }
-  
-  .left-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px;
-    background-color: #ffffff;
-  }
-  
-  .right-section {
-    flex: 1;
-    background: linear-gradient(180deg, #FFF 0.01%, #FDF1F7 100%);
-  }
-  
-  .big-text {
-    color: #2B2F33;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: Paperlogy;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 50px;
-    margin-bottom: 150px;
-    margin-left: 50px;
-  }
-  
-  .small-text {
-    color: #9E9E9E;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: Paperlogy;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 25px;
-    margin-top: -150px;
-    margin-left: 50px;
-  }
-  
-  .want-a-influencer {
-    color: #2B2F33;
-    text-align: center;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: Paperlogy;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: normal;
-    margin-top: 231px;
-    margin-bottom: 66px;
-  }
-  
+.recommendation-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 120vh;
+  align-items: center;
+  width: 100%;
+  background-color: #F6F7FC;
+}
+
+.recommendation-box {
+  width: 1450px;
+  height: 565px;
+  margin-top: 133px;
+  border-radius: 30px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.right-section {
+  flex: 1;
+  background: linear-gradient(180deg, #FFF 0.01%, #FDF1F7 100%);
+}
+
+.big-text {
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 50px;
+  margin-bottom: 150px;
+  margin-left: 50px;
+}
+
+.small-text {
+  color: #9E9E9E;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  margin-top: -150px;
+  margin-left: 50px;
+}
+
+.want-a-influencer {
+  color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 231px;
+  margin-bottom: 66px;
+}
+
   .first-box,
   .second-box,
   .third-box,
@@ -111,6 +110,7 @@ html, body {
     line-height: normal;
     margin-top: 131px;
     margin-left: 94px;
+    margin-bottom: 7px;
   }
   
   .first-box-content,
@@ -146,12 +146,13 @@ html, body {
 
   
   .category-buttons {
-    width: 1000px;
-    height: 150px;
+    width: 980px;
+    height: 100px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 70px;
+    margin-top: 100px;
+
   }
   
   .category-button {
@@ -173,6 +174,8 @@ html, body {
     line-height: normal;
     padding-left: 34px;
     padding-right: 34px;
+    word-spacing: 10px;
+
   }
   
   /* 선택된 버튼의 스타일 변경 */
@@ -187,3 +190,321 @@ html, body {
     background-color: #fee2e2;
   }
   
+  
+
+  
+  
+  .second-box-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top:54px;
+    margin-left: 100px;
+    
+  }
+  
+  .second-filter-range-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 버튼씩 배치 */
+    gap: 10px; /* 버튼 간격 */
+    margin-bottom: 10px;
+  }
+  
+  .second-filter-button {
+    width: 303px;
+    height: 51px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #D0D0D0;
+    background: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .second-filter-button.selected {
+    background-color: #5E51FF;
+    color: #FFF;
+    border: 1px solid #5E51FF;
+  }
+  
+  
+  .recommendation-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .recommendation-range-inputs input {
+    width: 255px;
+    height: 57px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #D0D0D0;
+    background: #FFF;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-left:34px;
+    margin-top: 36px;
+  }
+  
+  .range-divider {
+    display: flex;
+width: 17px;
+height: 17px;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #D0D0D0;
+text-align: center;
+font-family: Paperlogy;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-top: 30px;
+  }
+  
+  .sex-target{
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  .sex-target-title{
+    display: flex;
+    width: 198px;
+    height: 32px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+
+  .sex-target-buttons{
+    display: flex;
+    flex-direction: row;
+    width: 502px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 1px solid #D0D0D0;
+    padding:15px;
+  }
+
+  .sex-target-buttons button{
+    display: flex;
+    width: 70px;
+    height: 28px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-color: #fff;
+    border:1px solid #fff;
+  }
+
+  .age-target{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .fourth-box-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 88px;
+    margin-top:66px;
+
+  }
+  
+  /* 성별 선택 버튼 */
+  .gender-selection {
+    display: flex;
+    flex-direction: row;
+
+  }
+  
+ 
+  .age-title {
+    display: flex;
+    width: 198px;
+    height: 32px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+  }
+
+.gender-title
+{
+    display: flex;
+    width: 198px;
+    height: 32px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top:13px;
+  }
+  
+  .gender-buttons {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #D0D0D0;
+    border-radius: 5px;
+    background: #fff;
+    width: 502px;
+    height: 48px;
+    flex-shrink: 0;
+    padding-top:11px;
+    justify-content: space-between;
+    padding-left: 11px;
+    padding-right:11px;
+  }
+  
+  .gender-button {
+    width: 140px;
+    height: 36px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  .gender-button.selected {
+    background-color: #F0F0F0;
+    color: #2B2F33;
+    border-radius: 8px;
+    width: 140px;
+    height: 36px;
+    text-align: center;
+  }
+  
+  /* 나이 선택 슬라이더 */
+  .age-selection {
+    display: flex;
+    flex-direction: row;
+  }
+  
+ 
+  
+  .age-slider-container {
+    position: relative;
+    width: 502px;
+    display: flex;
+    align-items: center;
+    bottom: 25px;
+  }
+  
+  /* 보라색 채운 부분 */
+  .slider-track {
+    position: absolute;
+    height: 2px;
+    background: #5E51FF;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+  
+  /* 슬라이더 기본 스타일 */
+  .age-slider {
+    background-color: #D9D9D9;
+
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    outline: none;
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  /* 도넛 모양 핸들 */
+  .age-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    background: #fff;
+    border-radius: 50%;
+    border: 3px solid #5E51FF;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  
+  .age-values {
+    display: flex;
+    width: 510px;
+    height: 32px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top:50px;
+  }
