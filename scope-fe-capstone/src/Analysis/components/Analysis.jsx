@@ -6,6 +6,7 @@ import instagramLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png"; 
 import tiktokLogo from "../../assets/images/tiktok_logo.png"; 
 
+import rotatelogo from "../../assets/images/rotate.png";
 //고급 필터 설정 이미지 
 import filter from "../../assets/images/filter.png"; 
 import under_arrow from "../../assets/images/under_arrow.png"; 
@@ -170,10 +171,8 @@ const Analysis = () => {
                 원하는 조건을 설정하고 맞춤 인플루언서를 찾아보세요.
                 </div>
             </div>
-            <hr/>
-            <div className="total-influencer-container">
-                 총 <span className="total-number">{totalNumber_influencer.toLocaleString()}</span> 명의 인플루언서를 찾았습니다.
-            </div>
+          
+            <hr />
 
             {/* 고급 필터 창 */}
             {isFilterOpen && (
@@ -185,7 +184,7 @@ const Analysis = () => {
                         <div className="tag-group">
                             {/* 카테고리 필터 */}
                         <div className="tag1">
-                            <div className="category-title">카테고리</div>
+                            <div className="tag1-category-title">카테고리</div>
                             <div className="filter-category-buttons">
                                 {categories.map((category) => (
                                     <button
@@ -201,7 +200,7 @@ const Analysis = () => {
                             {/* 팔로워 수 */}
                             <div className="tag2">
                                 <div className="category-title">팔로워 수</div>
-                                <div className="filter-range-buttons">
+                                <div className="analysis-second-filter-range-buttons">
                                     {followerRanges.map((range) => (
                                         <button
                                             key={range}
@@ -213,7 +212,7 @@ const Analysis = () => {
                                     ))}
                                 </div>
                                 <div className="range-inputs">
-                                    <input type="text" value={selectedFollowers[0]} readOnly placeholder="부터" />
+                                    <input type="text" value={selectedFollowers[0]} readOnly placeholder="부터"  />
                                     <input type="text" value={selectedFollowers[1]} readOnly placeholder="까지" />
                                 </div>
                             </div>
@@ -221,7 +220,7 @@ const Analysis = () => {
                             {/* 평균 좋아요 수 */}
                             <div className="tag3">
                                 <div className="category-title">평균 좋아요 수</div>
-                                <div className="filter-range-buttons">
+                                <div className="analysis-second-filter-range-buttons">
                                     {likesRanges.map((range) => (
                                         <button
                                             key={range}
@@ -241,7 +240,7 @@ const Analysis = () => {
                             {/* 평균 동영상 조회 수 */}
                             <div className="tag4">
                                 <div className="category-title">평균 동영상 조회 수</div>
-                                <div className="filter-range-buttons">
+                                <div className="analysis-second-filter-range-buttons">
                                     {viewsRanges.map((range) => (
                                         <button
                                             key={range}
@@ -259,16 +258,29 @@ const Analysis = () => {
                             </div>
                         </div>
 
-                        {/* 필터 초기화 및 적용 버튼 */}
-                        <div className="filter-actions">
-                            <button className="filter-reset" onClick={resetFilters}>필터 초기화</button>
-                            <button className="filter-apply">필터 적용</button>
-                        </div>
-
+                       
                         
                     </div>
+                     {/* 필터 초기화 및 적용 버튼 */}
+                     <div className="filter-actions">
+                         <button className="filter-reset" onClick={resetFilters}>
+                         <img src={rotatelogo} alt="rotateLogo" className="sns-icon" />
+                         필터 초기화
+
+                         </button>
+                     {/* <img src={instagramLogo} alt="Instagram" className="sns-icon" />
+                     인스타그램
+                            <button className="filter-reset" onClick={resetFilters}>필터 초기화</button> */}
+
+                            <button className="filter-apply-button">필터 적용</button>
+                        </div>
                 </div>
             )}
+
+            <hr/>
+            <div className="total-influencer-container">
+                 총 <span className="total-number">{totalNumber_influencer.toLocaleString()}</span> 명의 인플루언서를 찾았습니다.
+            </div>
 
 <div className="table-container">
                 <table className="influencer-table">
