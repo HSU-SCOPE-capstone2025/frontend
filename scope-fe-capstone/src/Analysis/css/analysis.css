@@ -195,6 +195,7 @@ hr{
     font-weight: 400;
     line-height: normal;
     margin-right: 10px;
+    margin-bottom: 16px;
 }
 
 .category-title{
@@ -229,6 +230,7 @@ flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
 margin-right:110px;
+margin-left: 50px;
 }
 
 /* 카테고리 버튼 그룹 */
@@ -267,12 +269,11 @@ margin-right:110px;
 .filter-button {
     padding: 10px 15px;
     border: 1px solid #ddd;
-    background-color: #5E51FF;
     cursor: pointer;
+    background-color: #fff;
     border-radius: 20px;
     font-size: 14px;
     display: flex;
-
 flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
@@ -283,6 +284,7 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+padding: 4px 10px;
     
 }
 
@@ -326,7 +328,7 @@ line-height: normal;
 /* 필터 버튼 스타일 */
 .filter-category-buttons {
     display: flex;
-    width: 500px;
+    width: 450px;
     flex-wrap: wrap;
     gap: 4px;
     justify-content: flex-start; /* 왼쪽 정렬 */
@@ -342,14 +344,6 @@ line-height: normal;
 
 
 
-.filter-button {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 20px;
-    font-size: 14px;
-}
 
 .filter-button-ver2 {
     width: 169px;
@@ -389,6 +383,7 @@ line-height: normal;
     text-align: center;
     margin-left: 45px;
     margin-right: 45px;
+    margin-top: 72px;
 }
 
 .filter-reset {
@@ -513,7 +508,6 @@ padding-left: 89px;
     display: flex;
     gap: 6px; /* 박스 사이 간격 */
     justify-content: start; /* 왼쪽 정렬 */
-    padding-left: 40px; /* 원래 있던 패딩 유지 */
     flex-direction: row;
 
     
@@ -566,6 +560,7 @@ padding-left: 89px;
     font-weight: 500;
     line-height: normal;
     text-align: start;
+    padding-left: 40px;
 }
 
 .influencer-table th:nth-child(3),
