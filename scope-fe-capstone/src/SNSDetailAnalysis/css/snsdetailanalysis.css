@@ -1,0 +1,409 @@
+/* InfluencerAnalysis.css */
+
+.container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-card {
+    width:1775px;
+    height: 2831px;
+  
+    border-radius: 20px;
+background: #FFF;
+box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    margin-top: 100px;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .profile-info-title{
+    display: flex;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 1700px;
+    margin-top: 30px;
+    margin-left: 15px;
+
+}
+  
+  .profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .profile-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .profile-tag {
+    color: gray;
+  }
+
+  
+  
+  .sns-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .sns-buttons button {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+  }
+  
+  .sns-buttons .instagram-btn {
+    background: #e1306c;
+    color: white;
+  }
+  
+  .sns-buttons .youtube-btn {
+    background: #ff0000;
+    color: white;
+  }
+  
+  .sns-buttons .tiktok-btn {
+    background: black;
+    color: white;
+  }
+  
+  .sns-buttons .icon {
+    margin-right: 6px;
+  }
+  
+  .analysis-section {
+    width: 1067px;
+    height: 644px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    margin-top:130px;
+    margin-left: 183px;
+}
+  
+  .section-title {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 89px;
+    padding-top:40px;
+  }
+  
+  .section-sub-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 89px;
+    margin-top:39px;
+
+  }
+  .tab-buttons {
+    display: flex;
+    width: 910px;
+    gap: 40px;
+    height: 100px;
+    margin-top:19px;
+    margin-left: 89px;
+
+  }
+  
+  .tab-buttons button {
+    width: 262px;
+    height: 100px;
+    flex-shrink: 0;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #fff;
+    border: none;
+    transition: 0.2s;
+    color: #A1A1A1;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+  }
+  
+  .tab-buttons .active {
+    background: #5E4DFE;
+    color: #fff;
+  }
+  
+  .chart {
+    margin-top: 15px;
+    width: 850px !important;
+    height: 240px !important;
+    margin-left: 89px;
+    margin-top:50px;
+  }
+  
+  .instagram-content {
+    margin-top: 20px;
+  }
+  
+  .image-grid-container{
+    width: 1262px;
+    height: 502px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Medium, 12px);
+    border: 1px solid #D3D3D3;
+    background: #FFF;
+    margin-top: 45px;
+    margin-left: 69px;
+    padding-left: 43px;
+
+  }
+
+  .image-grid-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 43px;
+    margin-top:57px;
+  }
+
+  .image-grid {
+    display: flex;
+   gap:10px;
+        
+  }
+  
+  .content-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .statistics {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .stat-box {
+    flex: 1;
+    background: #f0f0f0;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .stat-value {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .sns-analysis-container{
+    border: 1px solid black;
+    width: 100%;
+    height: 2391px;
+    border-radius: 20px 20px 0px 0px;
+    background: #FAFAFA;
+  }
+  
+
+  .sns-possesion{
+    border: 1px soild black;
+  }
+
+  .sns-possession-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 130px;
+    margin-left: 32px;
+    margin-bottom: 32px;
+}
+
+.middle-section{
+    display: flex;
+  
+}
+
+.instagram-box-container,
+.youtube-box-container,
+.tiktok-box-container{
+    width: 299px;
+    height: 95px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+    margin-left: 32px;
+}
+
+.sponsership-container{
+    width: 300px;
+    height: 255px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+    margin-left: 32px;
+    margin-top:25px;
+}
+
+.sponsership-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-top:38px;
+    margin-left: 26px;
+}
+
+.sponsership-more-button {
+    display: flex;
+    color: #8E8E8E;
+    justify-content: flex-end;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-color: #fff;
+    border: none;
+    width: 90%;
+    margin-bottom:34px;
+
+}
+
+.sponsership-content-container{
+    display: flex;
+    flex-direction: row;
+    width: 242px;
+    height: 41px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Medium, 12px);
+    border: 1px solid #CDCDCD;
+    background: #FFF;
+    margin-left: 26px;
+    margin-bottom: 7px;
+
+}
+
+.sponsership-sns,
+.sponsership-content-title,
+.sponsership-date
+{
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.sponsership-tag{
+    color: #2B2F33;
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 44px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Full, 1000px);
+    background: #FFE7F9;
+}
+
+.end-section{
+    width: 1398px;
+    height: 1299px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+    margin-left: 183px;
+}
+
+.contents-section-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 69px;
+    padding-top: 99px;
+}
+.contents-section-sub-title{
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 67px;
+    margin-left: 71px;
+}
+
+.sns-content-img {
+    width: 174px;
+    height: 174px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    gap: 26px;
+}
