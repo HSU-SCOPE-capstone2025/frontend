@@ -67,13 +67,13 @@ const SNSDetailAnalysis = () => {
         </div>
 
         <div className="sns-buttons">
-          <button className="instagram-btn" onClick={() => setActivePage("instagram")}> 
+          <button className="instagram-btn"> 
             <FaInstagram className="icon" /> 인스타그램
           </button>
-          <button className="youtube-btn" onClick={() => setActivePage("youtube")}> 
+          <button className="youtube-btn" > 
             <FaYoutube className="icon" /> 유튜브
           </button>
-          <button className="tiktok-btn" onClick={() => setActivePage("tiktok")}> 
+          <button className="tiktok-btn" > 
             <FaTiktok className="icon" /> 틱톡
           </button>
         </div>
