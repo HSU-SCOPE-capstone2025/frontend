@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
+import influencers from "../../data/influencers";
+import snsIcons from "../../data/snsIcons";
 
 // SNS 로고 이미지 import
 import instagramLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png";
 import tiktokLogo from "../../assets/images/tiktok_logo.png";
-// 프로필 이미지 import
-import risabaeProfile from "../../assets/images/risabae_profile.png";
-// 보유 SNS 이미지
-import SNS_instagram from "../../assets/images/SNS_instagram.png";
-import SNS_youtube from "../../assets/images/SNS_youtube.png";
-import SNS_tictok from "../../assets/images/SNS_tictok.png";
 
 // 필터 옵션 리스트
 const categories = [
@@ -34,64 +30,6 @@ function InfluencerRanking() {
   const [minValue, setMinValue] = useState(10);
   const [maxValue, setMaxValue] = useState(60);
 
-  //인플루언서 리스트 데이터
-  const [influencers, setInfluencers] = useState([
-    {
-      id: 1,
-      profileImage: risabaeProfile,
-      name: "risabae_art",
-      SNS: [SNS_instagram, SNS_tictok, SNS_youtube],
-      category: ["패션", "뷰티"],
-      tags: ["감성/힐링", "강의/설명"],
-      scopeScore: "8",
-      followers: "79124",
-      followerFeature: "10-20대 여성"
-    },
-    {
-      id: 2,
-      profileImage: instagramLogo, // 더미 이미지
-      name: "daily_foodie",
-      SNS: [SNS_instagram, SNS_tictok, SNS_youtube],
-      category: ["먹방", "요리"],
-      tags: ["감성/힐링", "레시피", "푸드"],
-      scopeScore: "10",
-      followers: "125140",
-      followerFeature: "20-30대 남성"
-    },
-    {
-      id: 3,
-      profileImage: youtubeLogo, // 더미 이미지
-      name: "tech_guru",
-      SNS: [SNS_instagram, SNS_tictok, SNS_youtube],
-      category: ["IT / 전자기기"],
-      tags: ["리뷰", "강의/설명", "전자기기"],
-      scopeScore: "9",
-      followers: "507490",
-      followerFeature: "30-40대 남성"
-    },
-    {
-      id: 4,
-      profileImage: tiktokLogo, // 더미 이미지
-      name: "travel_explorer",
-      SNS: [SNS_instagram, SNS_tictok, SNS_youtube],
-      category: ["여행"],
-      tags: ["여행", "브이로그", "트립"],
-      scopeScore: "7",
-      followers: "274670",
-      followerFeature: "30-40대 여성"
-    },
-    {
-      id: 5,
-      profileImage: instagramLogo, // 더미 이미지
-      name: "fitness_king",
-      SNS: [SNS_instagram, SNS_tictok, SNS_youtube],
-      category: ["스포츠"],
-      tags: ["헬스", "운동", "다이어트"],
-      scopeScore: "7",
-      followers: "3598577",
-      followerFeature: "20-30대 여성"
-    },
-  ]);
 
   // 카테고리 필터 선택 (다중 선택)
   const toggleCategory = (category) => {
@@ -290,8 +228,9 @@ function InfluencerRanking() {
                   </tr>
                 </thead>
                 <tbody>
-                  {influencers.map((influencer, index) => (
-                    <tr key={influencer.id}>
+                  {influencers.length > 0 ? (
+                    influencers.map((influencer, index) => (
+                    <tr key={index}>
                       <td style={{fontWeight: "600", fontSize: "14px"}}>{index + 1}</td> {/* 순위 */}
 
                       <td> {/* 채널명 (이미지+채널명) */}
@@ -303,22 +242,22 @@ function InfluencerRanking() {
                           />
                           <div className="account-details">
                             <div className="account-name" style={{marginBottom: "5px"}}>{influencer.name}</div>
-                            <div className="account-description" style={{color: "#AFAFAF"}}>메이크업아티스트 이사배</div>
+                            <div className="account-description" style={{color: "#AFAFAF"}}>{influencer.description}</div>
                           </div>
                         </div>
                       </td>
 
                       <td>
                         <div className="ranking-sns-container">
-                          {influencer.SNS.map((snsImg, i) => (
-                            <img key={i} src={snsImg} alt={`SNS ${i}`} className="ranking-sns-icon" />
+                          {influencer.sns.map((sns, idx) => (
+                            <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
                           ))}
                         </div>
                       </td>
 
                       <td>
                         <div className="ranking-category-container">
-                          {influencer.category.map((cat, index) => (
+                          {influencer.categories.map((cat, index) => (
                             <span key={index} className="ranking-category-box">{cat}</span>
                           ))}
                         </div>
@@ -339,11 +278,14 @@ function InfluencerRanking() {
                       <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
 
                       <td>
-                        {influencer.followerFeature}
+                        {influencer.followersFeature}
                       </td>
 
                     </tr>
-                  ))}
+                  ))
+                ) : (
+                  <p> 데이터를 불러오는 중 ...</p>
+                )}
                 </tbody>
               </table>
             </div>
