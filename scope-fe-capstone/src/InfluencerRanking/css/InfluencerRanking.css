@@ -47,50 +47,8 @@
 
 .radio-group {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   padding: 20px;
-}
-
-.radio-label {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: 1px solid #DFDFDF;
-  background: #FFF;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-weight: bold;
-
-  color: #2B2F33;
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  white-space: nowrap;
-  /* 텍스트가 줄 바뀌지 않도록 */
-}
-
-.radio-label input {
-  display: none;
-  /* 기본 라디오 버튼 숨김 */
-}
-
-.radio-label.selected {
-  background: #CFD4FF;
-
-  color: #4434F8;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.radio-label:hover {
-  background-color: #CFD4FF;
 }
 
 .ranking-filter-container {
@@ -333,6 +291,7 @@
   background: #DFDFDF;
 }
 
+/* 기준 관련 css */
 .standard-title {
   color: #2B2F33;
   font-feature-settings: 'liga' off, 'clig' off;
@@ -344,10 +303,40 @@
   margin-bottom: 20px;
 }
 
-.standard-radio-group {
+.standard-button-group {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.ranking-standard-button {
+  border-radius: 5px;
+  border: 1px solid #DFDFDF;
+  background: #FFF;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  color: #2B2F33;
+  text-align: right;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap; /* 텍스트 줄 바뀌지x */
+}
+
+.ranking-standard-button:hover {
+  background-color: #CFD4FF;
+  color: #4434F8;
+}
+
+.ranking-standard-button.selected {
+  background-color: #CFD4FF;
+  /* 선택된 상태 */
+  color: #4434F8;
 }
 
 .standard-container {
@@ -355,10 +344,15 @@
   padding-left: 70px;
   width: 18%;
 }
+/*기준 관련 css 끝끝*/
 
 .ranking-profile-img {
   width: 36px;
   height: 36px;
+  border-radius: 50%;
+  /* 동그랗게 만듦 */
+  object-fit: cover;
+  /* 이미지가 찌그러지지 않게 */
 }
 
 .ranking-table {
@@ -443,4 +437,42 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+/* sns 필터 관련 css */
+.ranking-sns-filter-button-container {
+  display: flex;
+  gap: 5px;
+  padding: 20px;
+}
+
+.ranking-sns-filter-button{
+  border-radius: 5px;
+  border: 1px solid #DFDFDF;
+  background: #FFF;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  color: #2B2F33;
+  text-align: right;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap; /* 텍스트 줄 바뀌지x */
+}
+
+.ranking-sns-filter-button:hover {
+  background-color: #CFD4FF;
+  color: #4434F8;
+  /* 마우스 올렸을 때 */
+}
+
+.ranking-sns-filter-button.selected {
+  background-color: #CFD4FF;
+  /* 선택된 상태 */
+  color: #4434F8;
 }

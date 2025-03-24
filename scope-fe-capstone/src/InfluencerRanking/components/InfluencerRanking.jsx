@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
 import influencers from "../../data/influencers";
@@ -12,20 +12,19 @@ const categories = [
 ];
 
 const feature = [
-  "유머 / 예능", "감성 / 힐링", "강의 / 설명", "시네마틱 / 예술", "하이텐션 / 에너지넘침"
+  "유머 / 예능", "감성 / 힐링", "강의 / 설명", "시네마틱 / 예술", "하이텐션 / 에너지넘침",
+  "카리스마 있음", "친근함", "소통 잘함", "전문가 느낌", "다양한 콘텐츠"
 ];
 
 function InfluencerRanking() {
   //const navigate = useNavigate();
-  const [selected, setSelected] = useState(null);
+  //const [selected, setSelected] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
 
   const [selectedCategories, setSelectedCategories] = useState([]); //선택한 카테고리
   const [selectedFeatures, setSelectedFeatures] = useState([]); //선택한 특징 태그
   const [selectedSNS, setSelectedSNS] = useState([]); //선택한 sns 태그
 
-  const [minValue, setMinValue] = useState(10);
-  const [maxValue, setMaxValue] = useState(60);
   const [filteredInfluencers, setFilteredInfluencers] = useState(influencers); // 필터링된 리스트
 
 
@@ -43,37 +42,34 @@ function InfluencerRanking() {
     );
   };
 
+  // SNS 필터 선택 토글 함수
+  const toggleSNSFilter = (sns) => {
+    setSelectedSNS((prev) => {
+      const newSNS = prev.includes(sns) ? prev.filter((s) => s !== sns) : [...prev, sns];
+      applyFilters(selectedCategories, selectedFeatures, newSNS); //기존 필터와 함께 적용
+      return newSNS;
+    });
+  };
+
+  const snsMapping = {
+    "인스타그램": "instagram",
+    "유튜브": "youtube",
+    "틱톡": "tiktok",
+  };
+
   // 필터 적용 함수
   const applyFilters = () => {
-    let filtered = influencers.filter((influencer) => {
-      // 카테고리 필터 (선택한 카테고리 중 하나라도 포함되면 통과)
-      const categoryMatch =
-        selectedCategories.length === 0 ||
-        selectedCategories.some((cat) => influencer.categories.includes(cat));
+    const filtered = influencers.filter((influencer) => {
+      // 배열 여부 확인 및 필터링
+      const influencerCategories = Array.isArray(influencer.categories) ? influencer.categories : [];
+      const influencerTags = Array.isArray(influencer.tags) ? influencer.tags : [];
+      const influencerSns = Array.isArray(influencer.sns) ? influencer.sns : [];
 
-      // 특징 태그 필터 (선택한 특징 중 하나라도 포함되면 통과)
-      const featureMatch =
-        selectedFeatures.length === 0 ||
-        selectedFeatures.some((feat) => influencer.tags.includes(feat));
+      // 필터 적용: 카테고리, 태그, SNS
+      const categoryMatch = selectedCategories.length === 0 || selectedCategories.some((cat) => influencerCategories.includes(cat));
+      const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some((feat) => influencerTags.includes(feat));
+      const snsMatch = selectedSNS.length === 0 || selectedSNS.some((sns) => influencerSns.includes(sns));
 
-      // SNS 필터 (선택한 SNS 중 하나라도 포함되면 통과)
-      const snsMatch =
-        selectedSNS.length === 0 || // 선택한 SNS가 없으면 모든 인플루언서 통과
-        selectedSNS.some((sns) => influencer.sns.includes(sns));
-
-      /*// 성별 필터 (선택된 성별과 일치하는 경우만 통과)
-      const genderMatch =
-        selectedGender === null || influencer.followersFeature.includes(selectedGender);
-
-      // 나이 필터 (followersFeature에서 숫자 포함된 부분을 추출하여 비교)
-      const ageMatch =
-        influencer.followersFeature.match(/\d+/g) &&
-        influencer.followersFeature.match(/\d+/g).some((age) => {
-          age = parseInt(age);
-          return age >= minAge && age <= maxAge;
-        }); */
-
-      //return categoryMatch && featureMatch && genderMatch && ageMatch;
       return categoryMatch && featureMatch && snsMatch;
     });
 
@@ -81,10 +77,27 @@ function InfluencerRanking() {
     setShowFilters(false); // 필터 창 닫기
   };
 
+  // 팔로워 순 정렬 함수
+  const sortByFollowers = () => {
+    const sorted = [...filteredInfluencers].sort((a, b) => b.followers - a.followers);
+    setFilteredInfluencers(sorted);
+  };
+
+  // SCOPE 점수 순 정렬 함수
+  const sortByScope = () => {
+    const sorted = [...filteredInfluencers].sort((a, b) => b.scopeScore - a.scopeScore);
+    setFilteredInfluencers(sorted);
+  };
+
   const formatFollowers = (num) => {
     if (num < 10000) return num.toLocaleString(); // 1만 미만이면 그대로 출력
     return (Math.floor(num / 1000) / 10) + "만명"; // 1만 이상이면 변환
   };
+
+  // 상태가 변경될 때마다 필터 적용
+  useEffect(() => {
+    applyFilters(selectedSNS);
+  }, [selectedSNS]);
 
   return (
     <div>
@@ -122,27 +135,6 @@ function InfluencerRanking() {
                         </div>
                       </div>
 
-                      {/*주요 팔로워 성별*/}
-                      <div className="ranking-filter-audience-gender">
-                        <div className="ranking-filter-title">주요 팔로워 성별</div>
-                        <div className="gender-radio-group">
-                          {["전체", "여자", "남자"].map((option, index) => (
-                            <label key={index} className={`gender-radio-label ${selected === option ? "selected" : ""}`}>
-                              <input
-                                type="radio"
-                                name="custom-radio"
-                                value={option}
-                                checked={selected === option}
-                                onChange={() => setSelected(option)}
-                              />
-                              {option}
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex-div">
                       {/* 특징 태그 필터 */}
                       <div className="filter-category-container">
                         <div className="ranking-filter-title">특징 태그</div>
@@ -156,48 +148,6 @@ function InfluencerRanking() {
                               {feature}
                             </button>
                           ))}
-                        </div>
-                      </div>
-
-                      {/* 주요 팔로워 나이대 */}
-                      <div className="filter-follower-age-container">
-                        <div className="ranking-filter-title">주요 팔로워 나이</div>
-
-                        <div className="range-slider">
-                          <input
-                            type="range"
-                            min="10"
-                            max="60"
-                            step="10"
-                            value={minValue}
-                            onChange={(e) => setMinValue(Number(e.target.value))}
-                            className="thumb thumb-left"
-                          />
-                          <input
-                            type="range"
-                            min="10"
-                            max="60"
-                            step="10"
-                            value={maxValue}
-                            onChange={(e) => setMaxValue(Number(e.target.value))}
-                            className="thumb thumb-right"
-                          />
-                          <div
-                            className="slider-track"
-                            style={{
-                              left: `${((minValue - 10) / 50) * 100}%`,
-                              right: `${100 - ((maxValue - 10) / 50) * 100}%`,
-                            }}
-                          ></div>
-                        </div>
-
-                        <div className="slider-values">
-                          <span>10</span>
-                          <span>20</span>
-                          <span>30</span>
-                          <span>40</span>
-                          <span>50</span>
-                          <span>최대</span>
                         </div>
                       </div>
                     </div>
@@ -215,27 +165,16 @@ function InfluencerRanking() {
 
             <div className="grayLine-length" style={{ height: "40px", marginTop: "20px" }}></div>
 
-            <div className="radio-group">
-              {["인스타그램", "유튜브", "틱톡", "플랫폼 별로 한눈에 보기"].map((option, index) => (
-                <label key={index} className={`radio-label ${selected === option ? "selected" : ""}`}>
-                  <input
-                    type="radio"
-                    name="custom-radio"
-                    value={option}
-                    checked={selected === option}
-                    onChange={() => {
-                      setSelected(option);
-                      //플랫폼 별로 한눈에 보기
-                      if( option === "플랫폼 별로 한눈에 보기" ) {
-                        setSelectedSNS([]);
-                        // 모든 sns 선택
-                      } else {
-                        setSelectedSNS([option.toLowerCase()]); //선택한 sns만
-                      }
-                    }}
-                  />
+            {/* SNS 필터 */}
+            <div className="ranking-sns-filter-button-container">
+              {["인스타그램", "유튜브", "틱톡"].map((option, index) => (
+                <button
+                  key={index}
+                  className={`ranking-sns-filter-button ${selectedSNS.includes(snsMapping[option]) ? "selected" : ""}`}
+                  onClick={() => toggleSNSFilter(snsMapping[option])}
+                >
                   {option}
-                </label>
+                </button>
               ))}
             </div>
           </div>
@@ -245,23 +184,14 @@ function InfluencerRanking() {
           <div className="flex-div" style={{ height: "80%" }}>
             <div className="standard-container">
               <div className="standard-title" >기준</div>
-              <div className="standard-radio-group">
-                {["팔로워 순", "좋아요 순", "조회수 순", "SCOPE 점수 순", "팔로워 증가 순", "조회수 증가순"].map((option, index) => (
-                  <label key={index} className={`radio-label ${selected === option ? "selected" : ""}`}>
-                    <input
-                      type="radio"
-                      name="custom-radio"
-                      value={option}
-                      checked={selected === option}
-                      onChange={() => setSelected(option)}
-                    />
-                    {option}
-                  </label>
-                ))}
+              <div className="standard-button-group">
+                <button onClick={sortByFollowers} className="ranking-standard-button">팔로워 순</button>
+                <button onClick={sortByScope} className="ranking-standard-button">SCOPE 점수 순</button>
               </div>
             </div>
+            {/*selected 관련해서 나중에 추적 경로를 해야함*/}
 
-            <div className="grayLine-length" style={{ height: "100%" }}></div>
+            <div className="grayLine-length" style={{ height: "auto" }}></div>
 
             <div className="ranking-table-div">
               <table className="ranking-table">
