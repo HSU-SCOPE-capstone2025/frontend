@@ -12,20 +12,25 @@
   .profile-card {
     width:1775px;
     height: 2831px;
-  
     border-radius: 20px;
-background: #FFF;
-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
-    padding: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     margin-top: 100px;
   }
   
   .profile-info {
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    border-bottom: 15px solid #eee;
+    padding-bottom: 108px;
     flex-direction: column;
+  }
+
+  .influencer-container{
+    display: flex;
+    flex-direction: row;
+    margin-right: 1000px;
+    margin-top: 65px;
   }
 
   .profile-info-title{
@@ -43,28 +48,112 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
 
 }
   
-  .profile-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
+  .snsdetail-profile-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .detail-profile-container{
+    display: flex;
+    flex-direction: row;
   }
   
-  .profile-name {
-    font-size: 20px;
-    font-weight: bold;
+  .detail-profile-name {
+    display: flex;
+    width: 108px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
   
+  .detail-korea-name{
+    color: #767676;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
   .profile-tag {
     color: gray;
   }
 
+  .detail-profile-information{
+    display: flex;
+    width: 176px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #767676;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .detail-profile-numbers{
+    display: flex;
+    flex-direction: row;
+  }
+  .instagram-link{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+  }
   
+  .detail-profile-numbers{
+    margin-top:20px;
+  }
+  .post-container,
+  .follower-container,
+  .comment-container{
+    display: flex;
+    flex-direction: row;
+    height: 18px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+  }
   
+  .post-title,
+  .follower-title,
+  .comment-title{
+    margin-right: 22px;
+    color: #767676;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 7px;
+  }
   .sns-buttons {
     display: flex;
     gap: 10px;
     margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 190px;
   }
   
   .sns-buttons button {
@@ -78,23 +167,22 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     transition: 0.2s;
   }
   
-  .sns-buttons .instagram-btn {
-    background: #e1306c;
-    color: white;
+  .sns-buttons .instagram-btn,
+  .sns-buttons .youtube-btn,
+  .sns-buttons .tiktok-btn
+   {
+    background-color: #fff;
+    color: #AAA;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
-  
-  .sns-buttons .youtube-btn {
-    background: #ff0000;
-    color: white;
-  }
-  
-  .sns-buttons .tiktok-btn {
-    background: black;
-    color: white;
-  }
-  
-  .sns-buttons .icon {
-    margin-right: 6px;
+  .sns-buttons .active {
+    background-color: #fff; 
+    color: #5E4DFE;
   }
   
   .analysis-section {
@@ -161,11 +249,13 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     border: 1px solid #D9D9D9;
     background: #FFF;
-  }
+    
+      }
   
   .tab-buttons .active {
     background: #5E4DFE;
     color: #fff;
+
   }
   
   .chart {
@@ -178,6 +268,7 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
   
   .instagram-content {
     margin-top: 20px;
+    height: 1300px;
   }
   
   .image-grid-container{
@@ -200,7 +291,7 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-left: 43px;
+    margin-left: 10px;
     margin-top:57px;
   }
 
@@ -221,19 +312,30 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     display: flex;
     gap: 10px;
     margin-top: 20px;
+
+    justify-content: center;
+
   }
   
   .stat-box {
-    flex: 1;
-    background: #f0f0f0;
-    padding: 12px;
-    border-radius: 6px;
-    text-align: center;
+    width: 620px;
+  height: 159px;
+  flex-shrink: 0;
+  border-radius: var(--Corner-Medium, 12px);
+  border: 1px solid #D3D3D3;
+  background: #FFF;
+  
   }
   
   .stat-label {
-    font-size: 14px;
-    color: gray;
+    color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   }
   
   .stat-value {
@@ -242,10 +344,8 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
   }
 
   .sns-analysis-container{
-    border: 1px solid black;
-    width: 100%;
+    width: 1775px;
     height: 2391px;
-    border-radius: 20px 20px 0px 0px;
     background: #FAFAFA;
   }
   
@@ -348,6 +448,8 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-left: 20px;
+    margin-top: 14px;
 }
 
 .sponsership-tag{
@@ -363,8 +465,20 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     height: 22px;
     flex-shrink: 0;
     border-radius: var(--Corner-Full, 1000px);
-    background: #FFE7F9;
-}
+    margin-top:8px;
+    align-items: center;
+    margin-left: 15px;
+    padding-top: 5px;
+  }
+
+  .pink-tag {
+    background: #FFE7F9; 
+  }
+  
+  .orange-tag {
+    background: #FFE5DC; /* 음식용 주황, 원하는 색상으로 변경 가능 */
+  }
+  
 
 .end-section{
     width: 1398px;
@@ -386,6 +500,12 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     margin-left: 69px;
     padding-top: 99px;
 }
+
+.contents-section-sub-title-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 71px;
+}
 .contents-section-sub-title{
     color: #2B2F33;
     font-family: Paperlogy;
@@ -394,9 +514,16 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     font-weight: 600;
     line-height: normal;
     margin-top: 67px;
-    margin-left: 71px;
+    margin-left: 10px;
+
 }
 
+.insta-reels-icon{
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top:65px;
+}
 .sns-content-img {
     width: 174px;
     height: 174px;
@@ -406,4 +533,166 @@ box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     background-position: center;
     background-repeat: no-repeat;
     gap: 26px;
+}
+
+
+.instagram-box-container,
+.youtube-box-container,
+.tiktok-box-container{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.insta-box-title,
+.youtube-box-title,
+.tiktok-box-title{
+  color: #2B2F33;
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top:23px;
+  margin-left: 31px;
+}
+
+.insta-people,
+.youtube-people,
+.tiktok-people{
+  color: #A7A7A7;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top:12px;
+  margin-left: 31px;
+
+}
+
+.detail-information{
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+.box-content-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.sns-detail-icon{
+  width: 40px;
+  height: 40px;
+  margin-left: 94px;
+  margin-top:27px;
+}
+
+.total-people-number,
+.average-likes-number,
+.average-comment-number{
+  color: #FFF;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.detail-numbering{
+  color: #FFF;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.detail-unit{
+  color: #FFF;
+  font-family: Paperlogy;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.detail-tab-button-container{
+  display: flex;
+  flex-direction:row;
+  align-items: baseline;
+}
+
+.more-shorts-image{
+  width: 1174px;
+  height: 122px;
+  flex-shrink: 0;
+  border-radius: var(--Corner-Medium, 12px);
+  border: 1px solid #D3D3D3;
+  background: #FFF;
+  color: #2B2F33;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.stat-box-tag{
+  display: block;
+  width: 1261px;
+  height: 159px;
+  flex-shrink: 0;
+
+  border-radius: var(--Corner-Medium, 12px);
+  border: 1px solid #D3D3D3;
+  background: #FFF;
+  margin-left: 69px;
+  margin-top:45px;
+}
+
+.stat-box-titles{
+  display: flex;
+  flex-direction: row;
+  margin-top:40px;
+  margin-left: 40px;
+  gap:23px;
+}
+
+.stat-box-tag-title{
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.stat-box-tag-subtitle{
+  display: flex;
+  color: #989898;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 7px;
+}
+
+.stat-box-tags{
+  width: 279px;
+  height: 27px;
+  flex-shrink: 0;
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 21px;
+  margin-left: 43px;
 }
