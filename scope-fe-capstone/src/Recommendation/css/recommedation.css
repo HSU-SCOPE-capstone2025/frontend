@@ -1,23 +1,25 @@
 html, body {
-  height: 100%;
   overflow-y: auto;
   background-color: #F6F7FC;
 }
 
 .recommendation-container {
+  width: 100vw;
+  height: 100%; 
+
   display: flex;
   justify-content: center;
   flex-direction: column;
-  min-height: 120vh;
+
   align-items: center;
-  width: 100%;
   background-color: #F6F7FC;
 }
 
 .recommendation-box {
-  width: 1450px;
-  height: 565px;
-  margin-top: 133px;
+  width: 1440px;
+  height: 450px;
+
+  margin-top: 130px;
   border-radius: 30px;
   background-color: #FFF;
   display: flex;
@@ -29,36 +31,36 @@ html, body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 40px;
   background-color: #ffffff;
 }
 
 .right-section {
   flex: 1;
-  background: linear-gradient(180deg, #FFF 0.01%, #FDF1F7 100%);
+  background: #FDF1F7;
 }
 
 .big-text {
+  padding-left: 80px;
+  padding-top: 100px;
+  margin: 0px;
+
   color: #2B2F33;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 600;
-  line-height: 50px;
-  margin-bottom: 150px;
-  margin-left: 50px;
+  line-height: 48px;
 }
 
 .small-text {
+  padding-left: 80px;
+  
   color: #9E9E9E;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 25px;
-  margin-top: -150px;
-  margin-left: 50px;
 }
 
 .want-a-influencer {
@@ -66,11 +68,11 @@ html, body {
   text-align: center;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
-  font-size: 32px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 600;
   line-height: normal;
   margin-top: 231px;
-  margin-bottom: 66px;
+  margin-bottom: 30px;
 }
 
   .first-box,
@@ -79,7 +81,7 @@ html, body {
   .fourth-box {
     display: flex;
     flex-direction: row;
-    width: 1450px;
+    width: 1440px;
     height: 315px;
     flex-shrink: 0;
     border-radius: 20px;
