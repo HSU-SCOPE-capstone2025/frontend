@@ -35,9 +35,9 @@ const SNSDetailAnalysis = () => {
   const instaPost=[1042];
   // 더미 데이터
   const data = {
-    followers: [150, 300, 450, 700, 1100, 1600, 2100,3000,3000,4000,2100,3000,3000,4000,4500,4005,3000,4000,4500,4005,3000,4000,4500,4005],
-    likes: [80, 150, 250, 350, 500, 700, 900,80, 150, 250, 350, 500, 700, 900,80, 150, 250, 350, 500, 700, 900,80, 150, 250, 350, 500, 700, 900],
-    comments: [10, 25, 50, 80, 100, 130, 160, 100, 130, 160, 100, 130, 160, 100, 130, 160, 100, 130, 160, 100, 130, 160, 100, 130, 160],
+    followers: [15000, 30000, 45000, 70000, 110000, 100600, 210000,300000,300000,400000,200100,300000,300000,400000,400500,400005,300000,400000,450000,400005,300000],
+    likes: [8000, 10050, 20050, 35000, 50000, 70000, 90000,80000, 15000, 25000, 3500, 5000, 7000, 9000,800, 1500, 2500, 35000, 5000, 7000, 9000],
+    comments: [10, 25, 50, 80, 1000, 1030, 160, 1000, 130, 1060, 1000, 1300, 160, 1000, 1300, 160, 100, 130, 160, 100, 130],
   };
 
   const graphData = {
@@ -45,17 +45,86 @@ const SNSDetailAnalysis = () => {
       "3/19","3/20","3/21"
     ],
 
+   
     
     datasets: [
       {
         label: activeTab,
         data: data[activeTab],
-        borderColor: "#FF6384",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        tension: 0.5,
+        borderColor: "#9757FE",           // ✅ 선 색상
+        pointBackgroundColor: "#9757FE",  // ✅ 점 색상
+        pointBorderColor: "#9757FE",
+        tension: 0,
+        borderWidth: 4,
       },
     ],
   };
+
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 800 / 245, 
+    plugins: {
+      legend: {
+        display: false
+      },
+      title: {
+        display: false,
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false,
+        backgroundColor: '#333',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#999',
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#000",
+          font: {
+            size: 9,
+            family: 'Paperlogy',
+            weight:600
+          }
+        }
+      },
+      y: {
+        grid: {
+          color: "#CECECE",
+        },
+        ticks: {
+          color: "#000",
+          font: {
+            size: 9,
+            family: 'Paperlogy',
+            weight:600
+          },
+          maxTicksLimit: 6 // ✅ 최대 5개 눈금선만 보이게
+
+        }
+      }
+    },
+    elements: {
+      point: {
+        radius: 3,
+        backgroundColor: '#9757FE',
+      },
+      line: {
+        borderWidth: 4,
+        borderColor: '#9757FE', // ✅ 선 색상 추가
+      },
+    }
+    
+  };
+  
 
   useEffect(() => {
     return () => {
@@ -200,8 +269,8 @@ const SNSDetailAnalysis = () => {
 
               </button>
             </div>
-            <Line data={graphData} className="chart" />
-          </div>
+            <Line data={graphData} options={options} className="chart" />
+            </div>
 
           <div className="sns-possession">
             <div className="sns-possession-title">보유 SNS</div>

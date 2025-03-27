@@ -257,12 +257,13 @@
 
   }
   
+  
   .chart {
     margin-top: 15px;
-    width: 850px !important;
+    width: 870px !important;    
     height: 240px !important;
-    margin-left: 89px;
     margin-top:50px;
+    margin-left: 90px;
   }
   
   .instagram-content {
