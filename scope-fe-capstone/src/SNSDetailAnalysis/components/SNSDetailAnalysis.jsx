@@ -75,7 +75,12 @@ const SNSDetailAnalysis = () => {
           <div className="influencer-container">
           <img src={influencer} alt="influencer" className="snsdetail-profile-img" />
           <div className="detail-information">
+            <div className="sponsership-category-tags">
+          <div className="sponsership-tag category-tag">패션</div>
+            <div className="sponsership-tag category-tag">뷰티</div>
+            </div>
             <div className="detail-profile-container">
+           
             <div className="detail-profile-name">risabae_art</div>
             <div className="detail-korea-name">이사배</div>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
@@ -109,13 +114,28 @@ const SNSDetailAnalysis = () => {
         </div>
 
         </div>
-
-
-       </div>
+        </div>
+       
+       
 
           </div>
           
+          
           </div>
+          <div className="category-button-container">
+        <button
+          className={`snsdetail-sns-button ${activeTab === "sns" ? "active" : ""}`}
+          onClick={() => setActiveTab("sns")}
+        >
+          SNS
+        </button>
+        <button
+          className={`snsdetail-accountanalysis-button ${activeTab === "analysis" ? "active" : ""}`}
+          onClick={() => setActiveTab("analysis")}
+        >
+          계정 분석
+        </button>
+        </div>
           
         </div>
 

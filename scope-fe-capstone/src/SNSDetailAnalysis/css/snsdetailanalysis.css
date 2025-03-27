@@ -21,8 +21,7 @@
   .profile-info {
     display: flex;
     align-items: center;
-    border-bottom: 15px solid #eee;
-    padding-bottom: 108px;
+    border-bottom: 15px solid #FAFAFA;;
     flex-direction: column;
   }
 
@@ -153,7 +152,7 @@
     gap: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
-    margin-left: 190px;
+    margin-left: 140px;
   }
   
   .sns-buttons button {
@@ -572,7 +571,7 @@
 }
 
 .detail-information{
-  margin-top: 20px;
+  margin-top: -10px;
   margin-left: 60px;
 }
 
@@ -695,4 +694,71 @@
   line-height: normal;
   margin-top: 21px;
   margin-left: 43px;
+}
+
+
+.category-button-container{
+  display: flex;
+  margin-left: -1250px;
+}
+.snsdetail-sns-button,
+.snsdetail-accountanalysis-button{
+  height: 37px;
+  margin-top: 84px;
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  background-color: #fff;
+  margin-right: 57px;
+  
+  
+}
+
+
+.snsdetail-sns-button.active,
+.snsdetail-accountanalysis-button.active {
+  border-bottom: 2px solid #5E4DFE; /* 원하는 밑줄 색상 */
+  color: #5E4DFE;
+}
+
+.snsdetail-sns-button:hover,
+.snsdetail-accountanalysis-button:hover{
+  color: #5E4DFE;
+
+
+}
+
+.sponsership-category-tags{
+  display: flex;
+  width: 85px;
+  flex-direction: row;
+  margin-left: -20px;
+  margin-bottom: 15px;
+}
+
+.category-tag{
+  width: 41px;
+  height: 25px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #FBECFB;
+  color: #2B2F33;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  width: 38px;
+  height: 17px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  padding-bottom: 7px;
 }
