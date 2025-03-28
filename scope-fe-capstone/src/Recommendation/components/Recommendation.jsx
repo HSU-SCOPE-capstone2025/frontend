@@ -25,7 +25,7 @@ const followerRanges = [
 const Recommendation = () => {
   // 필터 선택
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedRanges, setSelectedRanges] = useState([]);
+  const [selectedRange, setSelectedRange] = useState(null); // 범위는 하나만 선택
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredInfluencers, setFilteredInfluencers] = useState([]);
 
@@ -46,20 +46,17 @@ const Recommendation = () => {
   };
 
   const handleRangeSelection = (range) => {
-    setSelectedRanges((prev) => {
-      // 이미 선택된 경우 제거
-      if (prev.includes(range)) {
-        return prev.filter((r) => r !== range);
-      }
-      // 최대 2개까지 선택 가능
-      return prev.length < 2 ? [...prev, range] : prev;
-    });
+    // 선택한 범위가 이미 선택된 범위라면 해제 (토글 기능 추가)
+    if (selectedRange === range) {
+      setSelectedRange(null);
+    } else {
+      setSelectedRange(range);
+    }
   };
 
   // 선택된 범위를 정렬하여 인풋창에 반영
-  const sortedRanges = selectedRanges.sort((a, b) => parseInt(a.min) - parseInt(b.min));
-  const minValue = sortedRanges[0]?.min || "";
-  const maxValue = sortedRanges[1]?.max || "";
+  const minValue = selectedRange?.min || "";
+  const maxValue = selectedRange?.max || "";
 
   //팔로워 특징 관련 함수
   const genderOptions = ["전체", "여성", "남성"];
@@ -82,12 +79,21 @@ const Recommendation = () => {
   };
   //const [selectedRange, setSelectedRange] = useState({ min: "", max: "" });
 
-  //검색 함수
+  // 검색 함수
   const handleSearch = () => {
-    const minFollowers = selectedRanges[0]?.min ? parseInt(selectedRanges[0].min) : 0;
-    const maxFollowers = selectedRanges[1]?.max ? parseInt(selectedRanges[1].max) : Infinity;
+    const minFollowers = selectedRange ? Number(selectedRange.min.toString().replace(/,/g, "")) : 0;
+    const maxFollowers = selectedRange
+      ? selectedRange.max === "∞"
+        ? Infinity
+        : Number(selectedRange.max.toString().replace(/,/g, ""))
+      : Infinity;
 
-    // 카테고리 또는 태그 필터링
+    // 팔로워 범위를 변경하면 기존 필터를 초기화
+    if (!selectedRange) {
+      setFilteredInfluencers(influencers);
+      return;
+    }
+
     const filteredByCategoryAndTag = influencers.filter((influencer) => {
       const hasCategory =
         selectedCategories.length === 0 ||
@@ -97,26 +103,23 @@ const Recommendation = () => {
         selectedTags.length === 0 ||
         influencer.tags.some((tag) => selectedTags.includes(tag));
 
-      // 카테고리 & 태그가 모두 선택된 경우 → 둘 다 하나씩 포함해야 함
+      // 카테고리 & 태그 필터는 그대로 유지
       if (selectedCategories.length > 0 && selectedTags.length > 0) {
         return hasCategory && hasTag;
       }
 
-      // 카테고리만 선택한 경우 → 해당 카테고리만 포함
       if (selectedCategories.length > 0) {
         return hasCategory;
       }
 
-      // 태그만 선택한 경우 → 해당 태그만 포함
       if (selectedTags.length > 0) {
         return hasTag;
       }
 
-      return false;
+      // 카테고리 & 태그가 선택되지 않아도 필터를 통과하도록 수정
+      return true;
     });
 
-
-    // 필터링된 리스트에서 팔로워 수 기준 추가 적용
     const finalFilteredList = filteredByCategoryAndTag.filter((influencer) => {
       const followerCount = influencer.followers;
       return followerCount >= minFollowers && followerCount <= maxFollowers;
@@ -187,7 +190,7 @@ const Recommendation = () => {
             {followerRanges.map((range, index) => (
               <button
                 key={range.label}
-                className={`second-filter-button ${selectedRanges.includes(range) ? "selected" : ""}`}
+                className={`second-filter-button ${selectedRange === range ? "selected" : ""}`}
                 onClick={() => handleRangeSelection(range)}
               >
                 {range.label}
@@ -216,8 +219,8 @@ const Recommendation = () => {
           {featureTag.map((tag, index) => (
             <button
               key={index}
-              className={`category-button ${selectedCategories.includes(tag) ? "selected" : ""}`}
-              onClick={() => toggleCategory(tag)}
+              className={`category-button ${selectedTags.includes(tag) ? "selected" : ""}`}
+              onClick={() => toggleTag(tag)}
             >
               {tag}
             </button>
