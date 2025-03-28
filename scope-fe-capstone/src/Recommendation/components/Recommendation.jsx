@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/recommedation.css";
 import influencers from "../../data/influencers";
+import snsIcons from "../../data/snsIcons";
 
 const categories = [
   "뷰티", "패션", "일상 / Vlog", "먹방", "엔터테인먼트", "IT / 전자기기",
@@ -86,20 +87,48 @@ const Recommendation = () => {
     const minFollowers = selectedRanges[0]?.min ? parseInt(selectedRanges[0].min) : 0;
     const maxFollowers = selectedRanges[1]?.max ? parseInt(selectedRanges[1].max) : Infinity;
 
-    const result = influencers.filter((influencer) => {
-      const followerCount = influencer.followers;
-      const categoryMatch = selectedCategories.length
-        ? influencer.categories.some((cat) => selectedCategories.includes(cat))
-        : true;
-      const tagMatch = selectedTags.length
-        ? influencer.tags.some((tag) => selectedTags.includes(tag))
-        : true;
-      const followerMatch = followerCount >= minFollowers && followerCount <= maxFollowers;
+    // 카테고리 또는 태그 필터링
+    const filteredByCategoryAndTag = influencers.filter((influencer) => {
+      const hasCategory =
+        selectedCategories.length === 0 ||
+        influencer.categories.some((cat) => selectedCategories.includes(cat));
 
-      return categoryMatch && tagMatch && followerMatch;
+      const hasTag =
+        selectedTags.length === 0 ||
+        influencer.tags.some((tag) => selectedTags.includes(tag));
+
+      // 카테고리 & 태그가 모두 선택된 경우 → 둘 다 하나씩 포함해야 함
+      if (selectedCategories.length > 0 && selectedTags.length > 0) {
+        return hasCategory && hasTag;
+      }
+
+      // 카테고리만 선택한 경우 → 해당 카테고리만 포함
+      if (selectedCategories.length > 0) {
+        return hasCategory;
+      }
+
+      // 태그만 선택한 경우 → 해당 태그만 포함
+      if (selectedTags.length > 0) {
+        return hasTag;
+      }
+
+      return false;
     });
 
-    setFilteredInfluencers(result);
+
+    // 필터링된 리스트에서 팔로워 수 기준 추가 적용
+    const finalFilteredList = filteredByCategoryAndTag.filter((influencer) => {
+      const followerCount = influencer.followers;
+      return followerCount >= minFollowers && followerCount <= maxFollowers;
+    });
+
+    setFilteredInfluencers(finalFilteredList);
+  };
+
+
+  const formatFollowers = (num) => {
+    if (num < 10000) return num.toLocaleString(); // 1만 미만이면 그대로 출력
+    return (Math.floor(num / 1000) / 10) + "만명"; // 1만 이상이면 변환
   };
 
   return (
@@ -266,7 +295,89 @@ const Recommendation = () => {
         </div>
       </div>
       {/* 검색 버튼 */}
-      <button className="recommendation-search-button">검색하기</button>
+      <button className="recommendation-search-button" onClick={handleSearch}>검색하기</button>
+
+
+      <div className="recommend-result-box">
+
+        {/* 검색 결과 표시 */}
+        <div className="ranking-table-div">
+          <table className="ranking-table">
+            <thead>
+              <tr>
+                <th>순위</th>
+                <th style={{ textAlign: "left", paddingLeft: "10px" }}>채널명</th>
+                <th>보유 SNS</th>
+                <th>카테고리</th>
+                <th>태그</th>
+                <th>SCOPE 점수</th>
+                <th>팔로워</th>
+                <th>팔로워 특징</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredInfluencers.length > 0 ? (
+                filteredInfluencers.map((influencer, index) => (
+                  <tr key={index}>
+                    <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
+
+                    <td> {/* 채널명 (이미지+채널명) */}
+                      <div className="ranking-account-info-container">
+                        <img
+                          src={influencer.profileImage}
+                          alt={influencer.name}
+                          className="ranking-profile-img"
+                        />
+                        <div className="account-details">
+                          <div className="account-name" style={{ marginBottom: "5px" }}>{influencer.name}</div>
+                          <div className="account-description" style={{ color: "#AFAFAF" }}>{influencer.description}</div>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="ranking-sns-container">
+                        {influencer.sns.map((sns, idx) => (
+                          <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
+                        ))}
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="ranking-category-container">
+                        {influencer.categories.map((cat, index) => (
+                          <span key={index} className="ranking-category-box">{cat}</span>
+                        ))}
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="ranking-tag-container">
+                        {influencer.tags.map((tag, index) => (
+                          <span key={index} className="ranking-tag-box">{tag}</span>
+                        ))}
+                      </div>
+                    </td>
+
+                    <td>
+                      {influencer.scopeScore}
+                    </td>
+
+                    <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
+
+                    <td>
+                      {influencer.followersFeature}
+                    </td>
+
+                  </tr>
+                ))
+              ) : (
+                <p>선택한 필터에 맞는 인플루언서가 없습니다.</p>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
