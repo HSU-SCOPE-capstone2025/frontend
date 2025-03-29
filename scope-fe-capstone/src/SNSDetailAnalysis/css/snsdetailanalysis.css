@@ -217,44 +217,97 @@
     margin-top:39px;
 
   }
+ 
+  
+
   .tab-buttons {
     display: flex;
-    width: 910px;
     gap: 40px;
-    height: 100px;
-    margin-top:19px;
+    margin-top: 20px;
     margin-left: 89px;
-
   }
   
-  .tab-buttons button {
+  .tab-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tab-button {
     width: 262px;
     height: 100px;
-    flex-shrink: 0;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #fff;
-    border: none;
-    transition: 0.2s;
+    background-color: #fff;
     color: #A1A1A1;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding:24px 40px;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    gap:50px;
+  
+  }
+  
+  .tab-button .tab-title,
+  .tab-button .tab-number,
+  .tab-button .tab-unit {
+    color: inherit;
+
+  }
+  .tab-title{
+    color: #FFF;
     text-align: center;
     font-family: Paperlogy;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    border-radius: 10px;
-    border: 1px solid #D9D9D9;
-    background: #FFF;
-    
-      }
-  
-  .tab-buttons .active {
-    background: #5E4DFE;
-    color: #fff;
+    margin-bottom: 6px;
+  }
 
+  .tab-icon {
+    color: #D9D9D9;
+    fill: #fff;
+  }
+  
+  .tab-button.active .tab-icon {
+    color: #fff;
+  }
+  
+  .tab-value{
+  }
+
+  .tab-number{
+    color: #FFF;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 6px;
+  }
+
+  .person-icon{
+
+  }
+
+  .tab-unit{
+    color: #FFF;
+    font-family: Paperlogy;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  
+  .tab-button.active {
+    background-color: #5E4DFE;
+    color: #fff;
   }
   
   
@@ -272,8 +325,8 @@
   }
   
   .image-grid-container{
-    width: 1262px;
-    height: 502px;
+    width: 1210px;
+    height: 350px;
     flex-shrink: 0;
     border-radius: var(--Corner-Medium, 12px);
     border: 1px solid #D3D3D3;
@@ -297,7 +350,7 @@
 
   .image-grid {
     display: flex;
-   gap:10px;
+    gap:10px;
         
   }
   
@@ -319,30 +372,61 @@
   
   .stat-box {
     width: 620px;
-  height: 159px;
-  flex-shrink: 0;
-  border-radius: var(--Corner-Medium, 12px);
-  border: 1px solid #D3D3D3;
-  background: #FFF;
-  
+    height: 159px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Medium, 12px);
+    border: 1px solid #D3D3D3;
+    background: #FFF;
+    
   }
+
+  .stat-value-container{
+    display: flex;
+    flex-direction: row;
+    width: 36%;
+    justify-content: space-around;
+    align-items: center;
+    height: 28px;
+    margin-left: 43px;
+  }
+
   
   .stat-label {
-    color: #2B2F33;
-  text-align: center;
+  color: #2B2F33;
+  text-align: start;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-left: 43px;
+  padding-top: 15px;
   }
   
   .stat-value {
-    font-size: 18px;
-    font-weight: bold;
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
 
+  .stat-containers{
+    display: flex;
+    flex-direction: row;
+  }
+  .stat-good-value,
+  .stat-comment-value
+  {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
   .sns-analysis-container{
     width: 1775px;
     height: 2391px;
@@ -525,8 +609,8 @@
   margin-top:65px;
 }
 .sns-content-img {
-    width: 174px;
-    height: 174px;
+    width: 220px;
+    height: 220px;
     flex-shrink: 0;
     border-radius: 10px;
     background-size: cover;
@@ -763,3 +847,40 @@
   flex-shrink: 0;
   padding-bottom: 7px;
 }
+
+
+.data-heart-icon,
+.data-commnet-icon{
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+}
+
+/* snsdetailanalysis.css 가장 아래에 추가 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  .pagination button {
+    margin: 0 4px;
+    padding: 5px 10px;
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background-color: #fff;
+    border: none;
+  }
+
+  .pagination button.active
+  {
+    border-radius: 10px;
+    background-color: #5E4DFE;
+    color: #fff;
+  }
