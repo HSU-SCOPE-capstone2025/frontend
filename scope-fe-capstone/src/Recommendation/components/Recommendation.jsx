@@ -29,6 +29,13 @@ const Recommendation = () => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [filteredInfluencers, setFilteredInfluencers] = useState([]);
 
+  //선택된 필터
+  const [selectedFilters, setSelectedFilters] = useState({
+    categories: [],
+    tags: [],
+    followers: "",
+  });
+
   const [selectedGender, setSelectedGender] = useState("전체");
   const [ageRange, setAgeRange] = useState([10, 20]); // 기본값: 10세 ~ 20세
 
@@ -87,6 +94,13 @@ const Recommendation = () => {
         ? Infinity
         : Number(selectedRange.max.toString().replace(/,/g, ""))
       : Infinity;
+
+    // 선택된 필터 저장
+    setSelectedFilters({
+      categories: selectedCategories,
+      tags: selectedTags,
+      followers: selectedRange ? `${selectedRange.min} ~ ${selectedRange.max}` : "",
+    });
 
     // 팔로워 범위를 변경하면 기존 필터를 초기화
     if (!selectedRange) {
@@ -303,12 +317,39 @@ const Recommendation = () => {
 
       <div className="recommend-result-box">
 
+        <div className="recommend-text">사용자님이 선택하신 조건은 다음과 같아요</div>
+
+        <div className="selected-filters-container">
+          <div className="selected-filters-box">
+            카테고리:
+            {selectedFilters.categories.length > 0 ? (
+              selectedFilters.categories.map((category, index) => (
+                <div key={index} className="selected-filter">{category}</div>
+              ))
+            ) : (
+              <div className="selected-filter">없음</div>
+            )}
+          </div>
+          <div className="selected-filters-box">
+            팔로워: <span className="selected-filter">{selectedFilters.followers || "설정 안됨"}</span>
+          </div>
+          <div className="selected-filters-box">
+            태그:
+            {selectedFilters.tags.length > 0 ? (
+              selectedFilters.tags.map((tag, index) => (
+                <div key={index} className="selected-filter">{tag}</div>
+              ))
+            ) : (
+              <div className="selected-filter">없음</div>
+            )}
+          </div>
+        </div>
+
         {/* 검색 결과 표시 */}
-        <div className="ranking-table-div">
+        <div className="recommend-table-div">
           <table className="ranking-table">
             <thead>
               <tr>
-                <th>순위</th>
                 <th style={{ textAlign: "left", paddingLeft: "10px" }}>채널명</th>
                 <th>보유 SNS</th>
                 <th>카테고리</th>
@@ -322,7 +363,6 @@ const Recommendation = () => {
               {filteredInfluencers.length > 0 ? (
                 filteredInfluencers.map((influencer, index) => (
                   <tr key={index}>
-                    <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
 
                     <td> {/* 채널명 (이미지+채널명) */}
                       <div className="ranking-account-info-container">
