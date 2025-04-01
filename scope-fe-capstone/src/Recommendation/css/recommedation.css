@@ -573,3 +573,16 @@ body {
   font-weight: 400;
 }
 
+
+
+.exception-content{
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 50px;
+  margin-left: 50px;
+}

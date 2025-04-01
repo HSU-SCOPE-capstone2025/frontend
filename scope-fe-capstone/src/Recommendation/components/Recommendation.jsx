@@ -415,7 +415,7 @@ const Recommendation = () => {
                   </tr>
                 ))
               ) : (
-                <p>선택한 필터에 맞는 인플루언서가 없습니다.</p>
+                <div className="exception-content">선택한 필터에 맞는 인플루언서가 없습니다.</div>
               )}
             </tbody>
           </table>
