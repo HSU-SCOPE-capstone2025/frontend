@@ -280,6 +280,9 @@
   }
   
   .tab-value{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
   }
 
   .tab-number{

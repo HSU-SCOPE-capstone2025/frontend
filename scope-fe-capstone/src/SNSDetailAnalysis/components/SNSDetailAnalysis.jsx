@@ -1,11 +1,19 @@
+// 전체 코드는 유지하면서 기능만 수정함
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
-import "../css/snsdetailanalysis.css"; // CSS 파일 추가
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import "../css/snsdetailanalysis.css";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-
-//img파일 import 
 import img1 from "../../assets/images/main2.png";
 import img2 from "../../assets/images/main2.png";
 import img3 from "../../assets/images/main2.png";
@@ -18,51 +26,94 @@ import person from "../../assets/images/person.png";
 import good from "../../assets/images/good.png";
 import comment from "../../assets/images/comment.png";
 import dataComment from "../../assets/images/data_comment.png";
-
-// SNS 로고 이미지 import
 import instagramLogo from "../../assets/images/instagram_logo.png";
-import youtubeLogo from "../../assets/images/youtube_logo.png"; 
-import tiktokLogo from "../../assets/images/tiktok_logo.png"; 
-
-
+import youtubeLogo from "../../assets/images/youtube_logo.png";
+import tiktokLogo from "../../assets/images/tiktok_logo.png";
 import instagramlink from "../../assets/images/link.png";
-import InstaReels from "../../assets/images/insta_reels.png"; 
-// 차트 모듈 등록
+import InstaReels from "../../assets/images/insta_reels.png";
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const SNSDetailAnalysis = () => {
   const [activeTab, setActiveTab] = useState("followers");
   const [activePage, setActivePage] = useState("analysis");
-  const images = [img1, img2, img3, img4, img5, img6];
-  const instaFollower=[2.4];
-  const youtubeFollower=[2.4];
-  const tiktokFollower=[2.4];
-  const analysisTags=["#다정한  #귀여운  #부드러운"]
-  const [activeSNS, setActiveSNS] = useState(null);
-  const instaPost=[1042];
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const imagesPerPage = 5; // 한 페이지당 보여줄 이미지 개수
+  const [activeSNS, setActiveSNS] = useState("instagram");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // 더미 데이터
-  const data = {
-    followers: [15000, 30000, 45000, 70000, 110000, 100600, 210000,300000,300000,400000,200100,300000,300000,400000,400500,400005,300000,400000,450000,400005,300000],
-    likes: [8000, 10050, 20050, 35000, 50000, 70000, 90000,80000, 15000, 25000, 3500, 5000, 7000, 9000,800, 1500, 2500, 35000, 5000, 7000, 9000],
-    comments: [10, 25, 50, 80, 1000, 1030, 160, 1000, 130, 1060, 1000, 1300, 160, 1000, 1300, 160, 100, 130, 160, 100, 130],
+  const images = [img1, img2, img3, img4, img5, img6];
+  const imagesPerPage = 5;
+  const indexOfLastImage = currentPage * imagesPerPage;
+  const indexOfFirstImage = indexOfLastImage - imagesPerPage;
+  const currentImages = images.slice(indexOfFirstImage, indexOfLastImage);
+  const totalPages = Math.ceil(images.length / imagesPerPage);
+
+  const instaFollower = [2.4];
+  const youtubeFollower = [2.4];
+  const tiktokFollower = [2.4];
+  const analysisTags = ["#다정한  #귀여운  #부드러운"];
+  const instaPost = [1042];
+
+  const summaryData = {
+    instagram: {
+      posts:"10002",
+      followers: "105.8",
+      likes: "1.2만",
+      comments: "450개",
+      avgLikes:"10000",
+      avgComments:"100"
+    },
+    youtube: {
+      posts:"20002",
+      followers: "57.3",
+      likes: "2.4만",
+      comments: "1200개",
+      avgLikes:"23000",
+      avgComments:"200"
+
+    },
+    tiktok: {
+      posts:"30002",
+      followers: "16",
+      likes: "8000개",
+      comments: "300개",
+      avgLikes:"33000",
+      avgComments:"500"
+
+    }
+  };
+  
+  const graphDataSet = {
+    instagram: {
+
+      followers: [15000, 30000, 45000, 70000, 110000, 100600, 210000, 300000, 300000, 400000, 200100, 300000, 300000, 400000, 400500, 400005, 300000, 400000, 450000, 400005, 300000],
+      likes: [8000, 10050, 20050, 35000, 50000, 70000, 90000, 80000, 15000, 25000, 3500, 5000, 7000, 9000, 800, 1500, 2500, 35000, 5000, 7000, 9000],
+      comments: [10, 25, 50, 80, 1000, 1030, 160, 1000, 130, 1060, 1000, 1300, 160, 1000, 1300, 160, 100, 130, 160, 100, 130],
+    },
+    youtube: {
+      followers: [20000, 50000, 80000, 120000, 160000, 180000, 200000, 220000, 240000, 260000, 280000, 300000, 320000, 340000, 360000, 380000, 400000, 420000, 440000, 460000, 480000],
+      likes: [5000, 6000, 8000, 12000, 15000, 17000, 19000, 21000, 23000, 25000, 27000, 29000, 31000, 33000, 35000, 37000, 39000, 41000, 43000, 45000, 47000],
+      comments: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100],
+    },
+    tiktok: {
+      followers: [10000, 20000, 25000, 30000, 35000, 40000, 45000, 47000, 49000, 51000, 53000, 55000, 57000, 59000, 61000, 63000, 65000, 67000, 69000, 71000, 73000],
+      likes: [2000, 3000, 4000, 5000, 6000, 6500, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800],
+      comments: [50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250, 270, 290, 310, 330, 350, 370, 390, 410, 430, 450],
+    }
   };
 
   const graphData = {
-    labels: ["3/1", "3/2", "3/3", "3/4", "3/5", "3/6", "3/7","3/8","3/9","3/10","3/11","3/12","3/13","3/14","3/15","3/16","3/17","3/18",
-      "3/19","3/20","3/21"
+    labels: [
+      "3/1", "3/2", "3/3", "3/4", "3/5", "3/6", "3/7",
+      "3/8", "3/9", "3/10", "3/11", "3/12", "3/13",
+      "3/14", "3/15", "3/16", "3/17", "3/18", "3/19",
+      "3/20", "3/21"
     ],
-
-   
-    
     datasets: [
       {
         label: activeTab,
-        data: data[activeTab],
-        borderColor: "#9757FE",           // ✅ 선 색상
-        pointBackgroundColor: "#9757FE",  // ✅ 점 색상
+        data: graphDataSet[activeSNS][activeTab],
+        borderColor: "#9757FE",
+        pointBackgroundColor: "#9757FE",
         pointBorderColor: "#9757FE",
         tension: 0,
         borderWidth: 4,
@@ -70,87 +121,76 @@ const SNSDetailAnalysis = () => {
     ],
   };
 
-  const indexOfLastImage = currentPage * imagesPerPage;
-  const indexOfFirstImage = indexOfLastImage - imagesPerPage;
-  const currentImages = images.slice(indexOfFirstImage, indexOfLastImage);
-  const totalPages = Math.ceil(images.length / imagesPerPage);
+
+  const getContentTitle = () => {
+    if (activeSNS === "instagram") return "인스타그램";
+    if (activeSNS === "youtube") return "유튜브";
+    if (activeSNS === "tiktok") return "틱톡";
+    return "컨텐츠";
+  };
+  const getContentSubTitle = () => {
+    if (activeSNS === "instagram") return "릴스";
+    if (activeSNS === "youtube") return "쇼츠";
+    if (activeSNS === "tiktok") return "틱톡";
+    return "컨텐츠";
+  };
 
   const options = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: 800 / 245, 
+    aspectRatio: 800 / 245,
     plugins: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: false,
-      },
+      legend: { display: false },
+      title: { display: false },
       tooltip: {
-        mode: 'index',
+        mode: "index",
         intersect: false,
-        backgroundColor: '#333',
-        titleColor: '#fff',
-        bodyColor: '#fff',
+        backgroundColor: "#333",
+        titleColor: "#fff",
+        bodyColor: "#fff",
         borderWidth: 1,
-        borderColor: '#999',
+        borderColor: "#999",
       },
     },
     scales: {
       x: {
-        grid: {
-          display: false,
-
-        },
+        grid: { display: false },
         ticks: {
           color: "#000",
-          font: {
-            size: 9,
-            family: 'Paperlogy',
-            weight:600
-          }
-        }
+          font: { size: 9, family: "Paperlogy", weight: 600 },
+        },
       },
       y: {
         grid: {
           drawBorder: false,
-          drawOnChartArea: true,     // ✅ 차트 영역 안에도 선을 그림
-          color: '#CECECE',          // ✅ 선 색상
-          borderDash: [4, 4],        // ✅ 점선: [선 길이, 간격]
-
+          drawOnChartArea: true,
+          color: "#CECECE",
+          borderDash: [4, 4],
         },
         ticks: {
           color: "#000",
-          font: {
-            size: 9,
-            family: 'Paperlogy',
-            weight:600
-          },
-          maxTicksLimit: 6 // ✅ 최대 5개 눈금선만 보이게
-
-        }
-      }
+          font: { size: 9, family: "Paperlogy", weight: 600 },
+          maxTicksLimit: 6,
+        },
+      },
     },
     elements: {
       point: {
         radius: 3,
-        backgroundColor: '#9757FE',
+        backgroundColor: "#9757FE",
       },
       line: {
         borderWidth: 4,
-        borderColor: '#9757FE', // ✅ 선 색상 추가
+        borderColor: "#9757FE",
       },
-    }
-    
+    },
   };
-  
 
   useEffect(() => {
     return () => {
-      Object.values(ChartJS.instances).forEach(chart => chart.destroy());
+      Object.values(ChartJS.instances).forEach((chart) => chart.destroy());
     };
   }, []);
-
   return (
     <div className="container">
       <div className="profile-card">
@@ -182,21 +222,21 @@ const SNSDetailAnalysis = () => {
             </div>
         <div className="detail-profile-numbers">
         <div className="post-container">
-        {instaPost}
+        {summaryData[activeSNS].posts}
         <div className="post-title">
           게시물 
         </div>
         
         </div>
         <div className="follower-container">
-        {instaPost}
+        {summaryData[activeSNS].followers}
         <div className="follower-title">
           팔로워  
         </div>
         
         </div>
         <div className="comment-container">
-        {instaPost}
+        {summaryData[activeSNS].comments}
         <div className="comment-title">
           댓글 
         </div>
@@ -273,7 +313,8 @@ const SNSDetailAnalysis = () => {
    <div className="tab-content">
     <div className="tab-title">팔로워</div>
     <div className="tab-value">
-      <span className="tab-number">32.4</span>
+      <span className="tab-number">  {summaryData[activeSNS].followers}
+</span>
       <span className="tab-unit">만</span>
       </div>
 
@@ -293,8 +334,7 @@ const SNSDetailAnalysis = () => {
 
     <div className="tab-title">평균 좋아요</div>
     <div className="tab-value">
-      <span className="tab-number">32.4</span>
-      <span className="tab-unit">만</span>
+      <span className="tab-number">{summaryData[activeSNS].avgLikes}</span>
       </div>
     </div>
     <img src={good} alt="good" className="person-icon" />
@@ -309,8 +349,7 @@ const SNSDetailAnalysis = () => {
 
     <div className="tab-title">평균 댓글</div>
     <div className="tab-value">
-      <span className="tab-number">32.4</span>
-      <span className="tab-unit">만</span>
+      <span className="tab-number">{summaryData[activeSNS].avgComments}</span>
     </div>
     </div>
     <img src={comment} alt="" className="person-icon" />
@@ -326,7 +365,9 @@ const SNSDetailAnalysis = () => {
             <div className="instagram-box-container">
               <div className="box-content-container">
               <div className="insta-box-title">인스타그램</div>
-              <div className="insta-people">팔로워 {instaFollower}만</div>
+              <div className="insta-people">팔로워   
+                {summaryData.instagram.followers}
+              만</div>
               </div>
 
               <img src={instagramLogo} alt="Instagram" className="sns-detail-icon" />
@@ -338,14 +379,19 @@ const SNSDetailAnalysis = () => {
             <div className="youtube-box-container">
               <div className="box-content-container">
             <div className="youtube-box-title">유튜브</div>
-              <div className="youtube-people">구독자 {instaFollower}만</div>
+              <div className="youtube-people">구독자   
+              {summaryData.youtube.followers}
+              만</div>
               </div>
               <img src={youtubeLogo} alt="YouTube" className="sns-detail-icon" />
             </div>
             <div className="tiktok-box-container">
               <div className="box-content-container">
             <div className="tiktok-box-title">틱톡</div>
-              <div className="tiktok-people">팔로워 {instaFollower}만</div>
+              <div className="tiktok-people">팔로워   
+              {summaryData.tiktok.followers}
+
+              만</div>
               </div>
               <img src={tiktokLogo} alt="TikTok" className="sns-detail-icon" />
 
@@ -367,27 +413,27 @@ const SNSDetailAnalysis = () => {
               <div className="sponsership-content-title">꼬북칩</div>
               <div className="sponsership-date">2025.01</div>
               <div className={`sponsership-tag ${"음식" === "식품" ? "pink-tag" : "음식" === "음식" ? "orange-tag" : ""}`}>
-  음식
-</div>
+              음식
+            </div>
               </div>
 
             </div>
             </div>
-</div>
+          </div>
 
           <div className="end-section">
           <div className="instagram-content">
 
-          <div className="contents-section-title">인스타그램 컨텐츠</div>
+          <div className="contents-section-title">{getContentTitle()} 컨텐츠</div>
           <div className="contents-section-sub-title-container">
           <img src={InstaReels} alt="InstaReels" className="insta-reels-icon" />
-          <div className="contents-section-sub-title">릴스</div>
+          <div className="contents-section-sub-title">{getContentSubTitle()}</div>
 
           </div>
           <div className="image-grid-container">
 
 
-          <div className="image-grid-title">릴스 이미지</div>
+          <div className="image-grid-title">{getContentSubTitle()} 이미지</div>
           {/* <div className="image-grid">
       {images.map((image, index) => (
         <div 
@@ -432,14 +478,16 @@ const SNSDetailAnalysis = () => {
             <img src={heart} alt="heart" className="data-heart-icon" />
 
             <p className="stat-value">좋아요</p>
-            <p className="stat-good-value">12345 개</p>
+            <p className="stat-good-value">  {summaryData[activeSNS].likes}
+            </p>
             </div>
             <div className="stat-value-container">
 
             <img src={dataComment} alt="dataComment" className="data-comment-icon" />
 
               <p className="stat-value">댓글</p>
-              <p className="stat-comment-value">12345 개
+              <p className="stat-comment-value">
+              {summaryData[activeSNS].comments}
               </p>
             </div>
             </div>
@@ -452,14 +500,14 @@ const SNSDetailAnalysis = () => {
             <img src={heart} alt="heart" className="data-heart-icon" />
 
             <p className="stat-value">좋아요</p>
-            <p className="stat-good-value">12345 개</p>
+            <p className="stat-good-value"> {summaryData[activeSNS].avgLikes}개</p>
             </div>
             <div className="stat-value-container">
 
             <img src={dataComment} alt="dataComment" className="data-comment-icon" />
 
               <p className="stat-value">댓글</p>
-              <p className="stat-comment-value">12345 개
+              <p className="stat-comment-value">{summaryData[activeSNS].avgComments}개
               </p>
             </div>
             </div>
