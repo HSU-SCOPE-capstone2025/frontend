@@ -34,30 +34,126 @@
 }
 
 .profile-analysis-box {
-    width: 440px;
-    height: 440px;
+    width: 420px;
+    height: 420px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    justify-content: center;
+    /* 가로 중앙 정렬 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
+.inline-block-div {
+    display: inline;
 }
 
 .profile-analysis-sub-title {
-    color: #AAA;
+    color: #AAAAAA;
     font-family: Paperlogy;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
-    padding-left: 30px;
 }
 
 .profile-analysis-text {
-    color: #000;
+    color: #3D3D3D;
     font-family: Paperlogy;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.profile-percent-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-weight: 600;
+    color: #AAAAAA;
+}
+
+.follower-chart-wrapper {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    /* 세로 정렬 */
+    align-items: center;
+    /* 중앙 정렬 */
+}
+
+.profile-analysis-box-array {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-bottom: 35px;
+}
+
+/* 차트 컨테이너 */
+.relative-chart-container {
+    position: relative;
+}
+
+/* 평균선 텍스트 스타일 */
+.average-line-text {
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    white-space: nowrap;
+    color: #3D3D3D;
+}
+
+.average-line-big-text {
+    font-family: Paperlogy;
+    font-size: 36px;
+    font-weight: 700;
+    font-style: normal;
+    white-space: nowrap;
+    color: #3D3D3D;
+}
+
+.profile-analysis-title2 {
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    white-space: nowrap;
+    color: #2B2F33;
+
+    padding-left: 220px;
+}
+
+.profile-analysis-title3 {
+    font-family: Paperlogy;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    white-space: nowrap;
+    color: #AAAAAA;
+
+    padding-left: 220px;
+    padding-bottom: 25px;
+}
+
+.sub-growth-rate-text {
+    font-size: 24px;
+    font-family: Paperlogy;
+    font-weight: 700;
+    color: #7C7CFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding-left: 150px;
 }
