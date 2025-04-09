@@ -1,5 +1,16 @@
 /* InfluencerAnalysis.css */
 
+.detail-analysis-container {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로 중앙 정렬 */
+}
+
 .container {
     padding: 20px;
     background-color: #f8f9fa;
@@ -7,32 +18,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .profile-card {
-    width:1775px;
+}
+
+.ivory-box {
+    margin-top: 80px;
+
+    width: 1700px;
+    height: max-content;
+    flex-shrink: 0;
+
+    padding-bottom: 150px;
+
+    border-radius: 20px;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card {
+    width: 1775px;
     height: 2831px;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
     margin-top: 100px;
-  }
-  
-  .profile-info {
+}
+
+.profile-info {
     display: flex;
     align-items: center;
-    border-bottom: 15px solid #FAFAFA;;
+    border-bottom: 15px solid #FAFAFA;
+    ;
     flex-direction: column;
-  }
+}
 
-  .influencer-container{
+.influencer-container {
     display: flex;
     flex-direction: row;
-    margin-right: 1000px;
-    margin-top: 65px;
-  }
 
-  .profile-info-title{
+    padding-top: 60px;
+    padding-left: 180px;
+}
+
+.profile-info-title {
     display: flex;
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -46,18 +73,18 @@
     margin-left: 15px;
 
 }
-  
-  .snsdetail-profile-img {
+
+.snsdetail-profile-img {
     width: 120px;
     height: 120px;
-  }
+}
 
-  .detail-profile-container{
+.detail-profile-container {
     display: flex;
     flex-direction: row;
-  }
-  
-  .detail-profile-name {
+}
+
+.detail-profile-name {
     display: flex;
     width: 108px;
     height: 18px;
@@ -71,9 +98,9 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-  }
-  
-  .detail-korea-name{
+}
+
+.detail-korea-name {
     color: #767676;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -81,12 +108,13 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
-  .profile-tag {
-    color: gray;
-  }
+}
 
-  .detail-profile-information{
+.profile-tag {
+    color: gray;
+}
+
+.detail-profile-information {
     display: flex;
     width: 176px;
     height: 18px;
@@ -100,24 +128,26 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
+}
 
-  .detail-profile-numbers{
+.detail-profile-numbers {
     display: flex;
     flex-direction: row;
-  }
-  .instagram-link{
+}
+
+.instagram-link {
     width: 20px;
     height: 20px;
     margin-left: 15px;
-  }
-  
-  .detail-profile-numbers{
-    margin-top:20px;
-  }
-  .post-container,
-  .follower-container,
-  .comment-container{
+}
+
+.detail-profile-numbers {
+    margin-top: 20px;
+}
+
+.post-container,
+.follower-container,
+.comment-container {
     display: flex;
     flex-direction: row;
     height: 18px;
@@ -132,11 +162,11 @@
     font-weight: 600;
     line-height: normal;
 
-  }
-  
-  .post-title,
-  .follower-title,
-  .comment-title{
+}
+
+.post-title,
+.follower-title,
+.comment-title {
     margin-right: 22px;
     color: #767676;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -146,16 +176,20 @@
     font-weight: 500;
     line-height: normal;
     margin-left: 7px;
-  }
-  .sns-buttons {
+}
+
+.sns-buttons {
     display: flex;
     gap: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 140px;
-  }
-  
-  .sns-buttons button {
+    background-color: #FFF;
+    height: 45px;
+
+    margin-top: 10px;
+    padding-left: 170px;
+    
+}
+
+.sns-buttons button {
     display: flex;
     align-items: center;
     padding: 8px 14px;
@@ -164,12 +198,11 @@
     cursor: pointer;
     border: none;
     transition: 0.2s;
-  }
-  
-  .sns-buttons .instagram-btn,
-  .sns-buttons .youtube-btn,
-  .sns-buttons .tiktok-btn
-   {
+}
+
+.sns-buttons .instagram-btn,
+.sns-buttons .youtube-btn,
+.sns-buttons .tiktok-btn {
     background-color: #fff;
     color: #AAA;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -178,24 +211,26 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
-  .sns-buttons .active {
-    background-color: #fff; 
+    
+}
+
+.sns-buttons .active {
+    background-color: #fff;
     color: #5E4DFE;
-  }
-  
-  .analysis-section {
+}
+
+.analysis-section {
     width: 1067px;
     height: 644px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
-    margin-top:130px;
+    margin-top: 130px;
     margin-left: 183px;
 }
-  
-  .section-title {
+
+.section-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 24px;
@@ -203,10 +238,10 @@
     font-weight: 600;
     line-height: normal;
     margin-left: 89px;
-    padding-top:40px;
-  }
-  
-  .section-sub-title{
+    padding-top: 40px;
+}
+
+.section-sub-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -214,25 +249,26 @@
     font-weight: 500;
     line-height: normal;
     margin-left: 89px;
-    margin-top:39px;
+    margin-top: 39px;
 
-  }
- 
-  
+}
 
-  .tab-buttons {
+
+
+.tab-buttons {
     display: flex;
     gap: 40px;
     margin-top: 20px;
     margin-left: 89px;
-  }
-  
-  .tab-content{
+}
+
+.tab-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  .tab-button {
+}
+
+.tab-button {
     width: 262px;
     height: 100px;
     background-color: #fff;
@@ -243,23 +279,24 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    padding:24px 40px;
+    padding: 24px 40px;
     transition: background-color 0.2s, color 0.2s;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: start;
-    gap:50px;
-  
-  }
-  
-  .tab-button .tab-title,
-  .tab-button .tab-number,
-  .tab-button .tab-unit {
+    gap: 50px;
+
+}
+
+.tab-button .tab-title,
+.tab-button .tab-number,
+.tab-button .tab-unit {
     color: inherit;
 
-  }
-  .tab-title{
+}
+
+.tab-title {
     color: #FFF;
     text-align: center;
     font-family: Paperlogy;
@@ -268,24 +305,24 @@
     font-weight: 600;
     line-height: normal;
     margin-bottom: 6px;
-  }
+}
 
-  .tab-icon {
+.tab-icon {
     color: #D9D9D9;
     fill: #fff;
-  }
-  
-  .tab-button.active .tab-icon {
+}
+
+.tab-button.active .tab-icon {
     color: #fff;
-  }
-  
-  .tab-value{
+}
+
+.tab-value {
     display: flex;
     align-items: baseline;
     justify-content: center;
-  }
+}
 
-  .tab-number{
+.tab-number {
     color: #FFF;
     font-family: Paperlogy;
     font-size: 24px;
@@ -293,41 +330,39 @@
     font-weight: 700;
     line-height: normal;
     margin-right: 6px;
-  }
+}
 
-  .person-icon{
+.person-icon {}
 
-  }
-
-  .tab-unit{
+.tab-unit {
     color: #FFF;
     font-family: Paperlogy;
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-  }
-  
-  .tab-button.active {
+}
+
+.tab-button.active {
     background-color: #5E4DFE;
     color: #fff;
-  }
-  
-  
-  .chart {
+}
+
+
+.chart {
     margin-top: 15px;
-    width: 870px !important;    
+    width: 870px !important;
     height: 240px !important;
-    margin-top:50px;
+    margin-top: 50px;
     margin-left: 90px;
-  }
-  
-  .instagram-content {
+}
+
+.instagram-content {
     margin-top: 20px;
     height: 1300px;
-  }
-  
-  .image-grid-container{
+}
+
+.image-grid-container {
     width: 1210px;
     height: 350px;
     flex-shrink: 0;
@@ -338,9 +373,9 @@
     margin-left: 69px;
     padding-left: 43px;
 
-  }
+}
 
-  .image-grid-title{
+.image-grid-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 20px;
@@ -348,42 +383,42 @@
     font-weight: 600;
     line-height: normal;
     margin-left: 10px;
-    margin-top:57px;
-  }
+    margin-top: 57px;
+}
 
-  .image-grid {
+.image-grid {
     display: flex;
-    gap:10px;
-        
-  }
-  
-  .content-img {
+    gap: 10px;
+
+}
+
+.content-img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 6px;
-  }
-  
-  .statistics {
+}
+
+.statistics {
     display: flex;
     gap: 10px;
     margin-top: 20px;
 
     justify-content: center;
 
-  }
-  
-  .stat-box {
+}
+
+.stat-box {
     width: 620px;
     height: 159px;
     flex-shrink: 0;
     border-radius: var(--Corner-Medium, 12px);
     border: 1px solid #D3D3D3;
     background: #FFF;
-    
-  }
 
-  .stat-value-container{
+}
+
+.stat-value-container {
     display: flex;
     flex-direction: row;
     width: 36%;
@@ -391,57 +426,55 @@
     align-items: center;
     height: 28px;
     margin-left: 43px;
-  }
+}
 
-  
-  .stat-label {
-  color: #2B2F33;
-  text-align: start;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-left: 43px;
-  padding-top: 15px;
-  }
-  
-  .stat-value {
+
+.stat-label {
+    color: #2B2F33;
+    text-align: start;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 43px;
+    padding-top: 15px;
+}
+
+.stat-value {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
+}
 
-  .stat-containers{
+.stat-containers {
     display: flex;
     flex-direction: row;
-  }
-  .stat-good-value,
-  .stat-comment-value
-  {
+}
+
+.stat-good-value,
+.stat-comment-value {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-  }
-  .sns-analysis-container{
-    width: 1775px;
-    height: 2391px;
-    background: #FAFAFA;
-  }
-  
+}
 
-  .sns-possesion{
+.sns-analysis-container {
+}
+
+
+.sns-possesion {
     border: 1px soild black;
-  }
+}
 
-  .sns-possession-title{
+.sns-possession-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 20px;
@@ -453,14 +486,14 @@
     margin-bottom: 32px;
 }
 
-.middle-section{
+.middle-section {
     display: flex;
-  
+
 }
 
 .instagram-box-container,
 .youtube-box-container,
-.tiktok-box-container{
+.tiktok-box-container {
     width: 299px;
     height: 95px;
     flex-shrink: 0;
@@ -471,7 +504,7 @@
     margin-left: 32px;
 }
 
-.sponsership-container{
+.sponsership-container {
     width: 300px;
     height: 255px;
     flex-shrink: 0;
@@ -480,17 +513,17 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
     margin-bottom: 12px;
     margin-left: 32px;
-    margin-top:25px;
+    margin-top: 25px;
 }
 
-.sponsership-title{
+.sponsership-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding-top:38px;
+    padding-top: 38px;
     margin-left: 26px;
 }
 
@@ -506,11 +539,11 @@
     background-color: #fff;
     border: none;
     width: 90%;
-    margin-bottom:34px;
+    margin-bottom: 34px;
 
 }
 
-.sponsership-content-container{
+.sponsership-content-container {
     display: flex;
     flex-direction: row;
     width: 242px;
@@ -526,8 +559,7 @@
 
 .sponsership-sns,
 .sponsership-content-title,
-.sponsership-date
-{
+.sponsership-date {
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -539,7 +571,7 @@
     margin-top: 14px;
 }
 
-.sponsership-tag{
+.sponsership-tag {
     color: #2B2F33;
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -552,22 +584,23 @@
     height: 22px;
     flex-shrink: 0;
     border-radius: var(--Corner-Full, 1000px);
-    margin-top:8px;
+    margin-top: 8px;
     align-items: center;
     margin-left: 15px;
     padding-top: 5px;
-  }
+}
 
-  .pink-tag {
-    background: #FFE7F9; 
-  }
-  
-  .orange-tag {
-    background: #FFE5DC; /* 음식용 주황, 원하는 색상으로 변경 가능 */
-  }
-  
+.pink-tag {
+    background: #FFE7F9;
+}
 
-.end-section{
+.orange-tag {
+    background: #FFE5DC;
+    /* 음식용 주황, 원하는 색상으로 변경 가능 */
+}
+
+
+.end-section {
     width: 1398px;
     height: 1299px;
     flex-shrink: 0;
@@ -577,7 +610,7 @@
     margin-left: 183px;
 }
 
-.contents-section-title{
+.contents-section-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 24px;
@@ -588,12 +621,13 @@
     padding-top: 99px;
 }
 
-.contents-section-sub-title-container{
-  display: flex;
-  flex-direction: row;
-  margin-left: 71px;
+.contents-section-sub-title-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 71px;
 }
-.contents-section-sub-title{
+
+.contents-section-sub-title {
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 20px;
@@ -605,12 +639,13 @@
 
 }
 
-.insta-reels-icon{
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  margin-top:65px;
+.insta-reels-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 65px;
 }
+
 .sns-content-img {
     width: 220px;
     height: 220px;
@@ -625,249 +660,252 @@
 
 .instagram-box-container,
 .youtube-box-container,
-.tiktok-box-container{
-  display: flex;
-  flex-direction: row;
+.tiktok-box-container {
+    display: flex;
+    flex-direction: row;
 }
 
 
 .insta-box-title,
 .youtube-box-title,
-.tiktok-box-title{
-  color: #2B2F33;
-  font-family: Paperlogy;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-top:23px;
-  margin-left: 31px;
+.tiktok-box-title {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 23px;
+    margin-left: 31px;
 }
 
 .insta-people,
 .youtube-people,
-.tiktok-people{
-  color: #A7A7A7;
-  font-family: Paperlogy;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-top:12px;
-  margin-left: 31px;
+.tiktok-people {
+    color: #A7A7A7;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 12px;
+    margin-left: 31px;
 
 }
 
-.detail-information{
-  margin-top: -10px;
-  margin-left: 60px;
+.detail-information {
+    margin-top: -10px;
+    margin-left: 60px;
 }
 
-.box-content-container{
-  display: flex;
-  flex-direction: column;
+.box-content-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.sns-detail-icon{
-  width: 40px;
-  height: 40px;
-  margin-left: 94px;
-  margin-top:27px;
+.sns-detail-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 94px;
+    margin-top: 27px;
 }
 
 .total-people-number,
 .average-likes-number,
-.average-comment-number{
-  color: #FFF;
-  text-align: center;
-  font-family: Paperlogy;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-.detail-numbering{
-  color: #FFF;
-  font-family: Paperlogy;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.average-comment-number {
+    color: #FFF;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
-.detail-unit{
-  color: #FFF;
-  font-family: Paperlogy;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+.detail-numbering {
+    color: #FFF;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
-.detail-tab-button-container{
-  display: flex;
-  flex-direction:row;
-  align-items: baseline;
+.detail-unit {
+    color: #FFF;
+    font-family: Paperlogy;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
-.more-shorts-image{
-  width: 1174px;
-  height: 122px;
-  flex-shrink: 0;
-  border-radius: var(--Corner-Medium, 12px);
-  border: 1px solid #D3D3D3;
-  background: #FFF;
-  color: #2B2F33;
-  text-align: center;
-  font-family: Paperlogy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+.detail-tab-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 }
 
-.stat-box-tag{
-  display: block;
-  width: 1261px;
-  height: 159px;
-  flex-shrink: 0;
-
-  border-radius: var(--Corner-Medium, 12px);
-  border: 1px solid #D3D3D3;
-  background: #FFF;
-  margin-left: 69px;
-  margin-top:45px;
+.more-shorts-image {
+    width: 1174px;
+    height: 122px;
+    flex-shrink: 0;
+    border-radius: var(--Corner-Medium, 12px);
+    border: 1px solid #D3D3D3;
+    background: #FFF;
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
-.stat-box-titles{
-  display: flex;
-  flex-direction: row;
-  margin-top:40px;
-  margin-left: 40px;
-  gap:23px;
+.stat-box-tag {
+    display: block;
+    width: 1261px;
+    height: 159px;
+    flex-shrink: 0;
+
+    border-radius: var(--Corner-Medium, 12px);
+    border: 1px solid #D3D3D3;
+    background: #FFF;
+    margin-left: 69px;
+    margin-top: 45px;
 }
 
-.stat-box-tag-title{
-  color: #2B2F33;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+.stat-box-titles {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    margin-left: 40px;
+    gap: 23px;
 }
 
-.stat-box-tag-subtitle{
-  display: flex;
-  color: #989898;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-top: 7px;
+.stat-box-tag-title {
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
-.stat-box-tags{
-  width: 279px;
-  height: 27px;
-  flex-shrink: 0;
-  color: #2B2F33;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  margin-top: 21px;
-  margin-left: 43px;
+.stat-box-tag-subtitle {
+    display: flex;
+    color: #989898;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 7px;
+}
+
+.stat-box-tags {
+    width: 279px;
+    height: 27px;
+    flex-shrink: 0;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 21px;
+    margin-left: 43px;
 }
 
 
-.category-button-container{
-  display: flex;
-  margin-left: -1250px;
+.category-button-container {
+    display: flex;
+    padding-left: 180px;
 }
+
 .snsdetail-sns-button,
-.snsdetail-accountanalysis-button{
-  height: 37px;
-  margin-top: 84px;
-  color: #2B2F33;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: Paperlogy;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  border: none;
-  background-color: #fff;
-  margin-right: 57px;
-  
-  
+.snsdetail-accountanalysis-button {
+    height: 37px;
+    margin-top: 84px;
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    background-color: #fff;
+    margin-right: 57px;
+
+
 }
 
 
 .snsdetail-sns-button.active,
 .snsdetail-accountanalysis-button.active {
-  border-bottom: 2px solid #5E4DFE; /* 원하는 밑줄 색상 */
-  color: #5E4DFE;
+    border-bottom: 2px solid #5E4DFE;
+    /* 원하는 밑줄 색상 */
+    color: #5E4DFE;
 }
 
 .snsdetail-sns-button:hover,
-.snsdetail-accountanalysis-button:hover{
-  color: #5E4DFE;
+.snsdetail-accountanalysis-button:hover {
+    color: #5E4DFE;
 
 
 }
 
-.sponsership-category-tags{
-  display: flex;
-  width: 85px;
-  flex-direction: row;
-  margin-left: -20px;
-  margin-bottom: 15px;
+.sponsership-category-tags {
+    display: flex;
+    width: 85px;
+    flex-direction: row;
+    margin-left: -20px;
+    margin-bottom: 15px;
 }
 
-.category-tag{
-  width: 41px;
-  height: 25px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  background: #FBECFB;
-  color: #2B2F33;
-  text-align: center;
-  font-family: Paperlogy;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  display: flex;
-  width: 38px;
-  height: 17px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  padding-bottom: 7px;
+.category-tag {
+    width: 41px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #FBECFB;
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    width: 38px;
+    height: 17px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    padding-bottom: 7px;
 }
 
 
 .data-heart-icon,
-.data-commnet-icon{
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  aspect-ratio: 1/1;
+.data-commnet-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
 }
 
 /* snsdetailanalysis.css 가장 아래에 추가 */
-  .pagination {
+.pagination {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-  }
+}
 
-  .pagination button {
+.pagination button {
     margin: 0 4px;
     padding: 5px 10px;
     color: #2B2F33;
@@ -879,11 +917,10 @@
     line-height: normal;
     background-color: #fff;
     border: none;
-  }
+}
 
-  .pagination button.active
-  {
+.pagination button.active {
     border-radius: 10px;
     background-color: #5E4DFE;
     color: #fff;
-  }
+}

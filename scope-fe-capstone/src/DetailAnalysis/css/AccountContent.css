@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .profile-detail-root-container {
     width: 100vw;
     height: 100vh;
@@ -10,14 +14,35 @@
 }
 
 .profile-detail-container {
-    width: 1775px;
+    width: 1700px;
     height: fit-content;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #FAFAFA;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+}
 
-    margin-top: 130px;
+.account-section-nav {
+    display: flex;
+    gap: 50px;
+    background-color: #FFF;
+    height: 45px;
+    align-items: center;
+
+    margin-top: 10px;
+    padding-left: 180px;
+}
+
+.account-section-link {
+    text-decoration: none; /* 밑줄 제거 */
+    background-color: #fff;
+    color: #AAA;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.account-section-link:hover {
+    color: #5E4DFE;
 }
 
 .profile-analysis-title {
@@ -130,7 +155,8 @@
     white-space: nowrap;
     color: #2B2F33;
 
-    padding-left: 220px;
+    margin-left: 180px;
+    margin-top: 120px;
 }
 
 .profile-analysis-title3 {
@@ -141,7 +167,7 @@
     white-space: nowrap;
     color: #AAAAAA;
 
-    padding-left: 220px;
+    padding-left: 180px;
     padding-bottom: 25px;
 }
 

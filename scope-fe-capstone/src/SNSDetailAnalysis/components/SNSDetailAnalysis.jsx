@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
-import "../css/snsdetailanalysis.css";
+//import "../css/snsdetailanalysis.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -55,33 +55,33 @@ const SNSDetailAnalysis = () => {
 
   const summaryData = {
     instagram: {
-      posts:"10002",
+      posts: "10002",
       followers: "105.8",
       likes: "1.2만",
       comments: "450개",
-      avgLikes:"10000",
-      avgComments:"100"
+      avgLikes: "10000",
+      avgComments: "100"
     },
     youtube: {
-      posts:"20002",
+      posts: "20002",
       followers: "57.3",
       likes: "2.4만",
       comments: "1200개",
-      avgLikes:"23000",
-      avgComments:"200"
+      avgLikes: "23000",
+      avgComments: "200"
 
     },
     tiktok: {
-      posts:"30002",
+      posts: "30002",
       followers: "16",
       likes: "8000개",
       comments: "300개",
-      avgLikes:"33000",
-      avgComments:"500"
+      avgLikes: "33000",
+      avgComments: "500"
 
     }
   };
-  
+
   const graphDataSet = {
     instagram: {
 
@@ -198,73 +198,73 @@ const SNSDetailAnalysis = () => {
           <div className="profile-info-title">
             인플루언서 분석
           </div>
-          <hr/>
-          
+          <hr />
+
           <div className="influencer-container">
-          <img src={influencer} alt="influencer" className="snsdetail-profile-img" />
-          <div className="detail-information">
-            <div className="sponsership-category-tags">
-          <div className="sponsership-tag category-tag">패션</div>
-            <div className="sponsership-tag category-tag">뷰티</div>
-            </div>
-            <div className="detail-profile-container">
-           
-            <div className="detail-profile-name">risabae_art</div>
-            <div className="detail-korea-name">이사배</div>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={instagramlink} alt="instagramlink" className="instagram-link" />
-          </a>
+            <img src={influencer} alt="influencer" className="snsdetail-profile-img" />
+            <div className="detail-information">
+              <div className="sponsership-category-tags">
+                <div className="sponsership-tag category-tag">패션</div>
+                <div className="sponsership-tag category-tag">뷰티</div>
+              </div>
+              <div className="detail-profile-container">
+
+                <div className="detail-profile-name">risabae_art</div>
+                <div className="detail-korea-name">이사배</div>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <img src={instagramlink} alt="instagramlink" className="instagram-link" />
+                </a>
+
+              </div>
+
+              <div className="detail-profile-information">
+                메이크업 아티스트 이사배
+              </div>
+              <div className="detail-profile-numbers">
+                <div className="post-container">
+                  {summaryData[activeSNS].posts}
+                  <div className="post-title">
+                    게시물
+                  </div>
+
+                </div>
+                <div className="follower-container">
+                  {summaryData[activeSNS].followers}
+                  <div className="follower-title">
+                    팔로워
+                  </div>
+
+                </div>
+                <div className="comment-container">
+                  {summaryData[activeSNS].comments}
+                  <div className="comment-title">
+                    댓글
+                  </div>
+
+                </div>
+              </div>
+
+
 
             </div>
 
-            <div className="detail-profile-information">
-              메이크업 아티스트 이사배
-            </div>
-        <div className="detail-profile-numbers">
-        <div className="post-container">
-        {summaryData[activeSNS].posts}
-        <div className="post-title">
-          게시물 
-        </div>
-        
-        </div>
-        <div className="follower-container">
-        {summaryData[activeSNS].followers}
-        <div className="follower-title">
-          팔로워  
-        </div>
-        
-        </div>
-        <div className="comment-container">
-        {summaryData[activeSNS].comments}
-        <div className="comment-title">
-          댓글 
-        </div>
 
-        </div>
-        </div>
-       
-       
-
-          </div>
-          
-          
           </div>
           <div className="category-button-container">
-        <button
-          className={`snsdetail-sns-button ${activeTab === "sns" ? "active" : ""}`}
-          onClick={() => setActiveTab("sns")}
-        >
-          SNS
-        </button>
-        <button
-          className={`snsdetail-accountanalysis-button ${activeTab === "analysis" ? "active" : ""}`}
-          onClick={() => setActiveTab("analysis")}
-        >
-          계정 분석
-        </button>
-        </div>
-          
+            <button
+              className={`snsdetail-sns-button ${activeTab === "sns" ? "active" : ""}`}
+              onClick={() => setActiveTab("sns")}
+            >
+              SNS
+            </button>
+            <button
+              className={`snsdetail-accountanalysis-button ${activeTab === "analysis" ? "active" : ""}`}
+              onClick={() => setActiveTab("analysis")}
+            >
+              계정 분석
+            </button>
+          </div>
+
         </div>
 
         <div className="sns-buttons">
@@ -282,7 +282,7 @@ const SNSDetailAnalysis = () => {
               setActiveSNS(activeSNS === "youtube" ? null : "youtube")
             }
           >
-            유튜브 
+            유튜브
           </button>
           <button
             className={`tiktok-btn ${activeSNS === "tiktok" ? "active" : ""}`}
@@ -290,151 +290,151 @@ const SNSDetailAnalysis = () => {
               setActiveSNS(activeSNS === "tiktok" ? null : "tiktok")
             }
           >
-            틱톡  
+            틱톡
           </button>
 
-  
-      
+
+
         </div>
 
         {activePage === "analysis" && (
           <div className="sns-analysis-container">
-          <div className="middle-section">
+            <div className="middle-section">
 
-          <div className="analysis-section">
-            
-            <div className="section-title">분석 리포트</div>
-            <div className="section-sub-title">최근 활동 추이</div>
-            <div className="tab-buttons">
-  <button
-    className={`tab-button ${activeTab === "followers" ? "active" : ""}`}
-    onClick={() => setActiveTab("followers")}
-  >
-   <div className="tab-content">
-    <div className="tab-title">팔로워</div>
-    <div className="tab-value">
-      <span className="tab-number">  {summaryData[activeSNS].followers}
-</span>
-      <span className="tab-unit">만</span>
-      </div>
+              <div className="analysis-section">
 
-    </div>
-    <img src={person} alt="person" className="person-icon" />
+                <div className="section-title">분석 리포트</div>
+                <div className="section-sub-title">최근 활동 추이</div>
+                <div className="tab-buttons">
+                  <button
+                    className={`tab-button ${activeTab === "followers" ? "active" : ""}`}
+                    onClick={() => setActiveTab("followers")}
+                  >
+                    <div className="tab-content">
+                      <div className="tab-title">팔로워</div>
+                      <div className="tab-value">
+                        <span className="tab-number">  {summaryData[activeSNS].followers}
+                        </span>
+                        <span className="tab-unit">만</span>
+                      </div>
 
-
+                    </div>
+                    <img src={person} alt="person" className="person-icon" />
 
 
-  </button>
 
-  <button
-    className={`tab-button ${activeTab === "likes" ? "active" : ""}`}
-    onClick={() => setActiveTab("likes")}
-  >
-       <div className="tab-content">
 
-    <div className="tab-title">평균 좋아요</div>
-    <div className="tab-value">
-      <span className="tab-number">{summaryData[activeSNS].avgLikes}</span>
-      </div>
-    </div>
-    <img src={good} alt="good" className="person-icon" />
+                  </button>
 
-  </button>
+                  <button
+                    className={`tab-button ${activeTab === "likes" ? "active" : ""}`}
+                    onClick={() => setActiveTab("likes")}
+                  >
+                    <div className="tab-content">
 
-  <button
-    className={`tab-button ${activeTab === "comments" ? "active" : ""}`}
-    onClick={() => setActiveTab("comments")}
-  >
-       <div className="tab-content">
+                      <div className="tab-title">평균 좋아요</div>
+                      <div className="tab-value">
+                        <span className="tab-number">{summaryData[activeSNS].avgLikes}</span>
+                      </div>
+                    </div>
+                    <img src={good} alt="good" className="person-icon" />
 
-    <div className="tab-title">평균 댓글</div>
-    <div className="tab-value">
-      <span className="tab-number">{summaryData[activeSNS].avgComments}</span>
-    </div>
-    </div>
-    <img src={comment} alt="" className="person-icon" />
+                  </button>
 
-  </button>
-</div>
+                  <button
+                    className={`tab-button ${activeTab === "comments" ? "active" : ""}`}
+                    onClick={() => setActiveTab("comments")}
+                  >
+                    <div className="tab-content">
 
-            <Line data={graphData} options={options} className="chart" />
-            </div>
+                      <div className="tab-title">평균 댓글</div>
+                      <div className="tab-value">
+                        <span className="tab-number">{summaryData[activeSNS].avgComments}</span>
+                      </div>
+                    </div>
+                    <img src={comment} alt="" className="person-icon" />
 
-          <div className="sns-possession">
-            <div className="sns-possession-title">보유 SNS</div>
-            <div className="instagram-box-container">
-              <div className="box-content-container">
-              <div className="insta-box-title">인스타그램</div>
-              <div className="insta-people">팔로워   
-                {summaryData.instagram.followers}
-              만</div>
+                  </button>
+                </div>
+
+                <Line data={graphData} options={options} className="chart" />
               </div>
 
-              <img src={instagramLogo} alt="Instagram" className="sns-detail-icon" />
+              <div className="sns-possession">
+                <div className="sns-possession-title">보유 SNS</div>
+                <div className="instagram-box-container">
+                  <div className="box-content-container">
+                    <div className="insta-box-title">인스타그램</div>
+                    <div className="insta-people">팔로워
+                      {summaryData.instagram.followers}
+                      만</div>
+                  </div>
+
+                  <img src={instagramLogo} alt="Instagram" className="sns-detail-icon" />
 
 
-            </div>
+                </div>
 
 
-            <div className="youtube-box-container">
-              <div className="box-content-container">
-            <div className="youtube-box-title">유튜브</div>
-              <div className="youtube-people">구독자   
-              {summaryData.youtube.followers}
-              만</div>
+                <div className="youtube-box-container">
+                  <div className="box-content-container">
+                    <div className="youtube-box-title">유튜브</div>
+                    <div className="youtube-people">구독자
+                      {summaryData.youtube.followers}
+                      만</div>
+                  </div>
+                  <img src={youtubeLogo} alt="YouTube" className="sns-detail-icon" />
+                </div>
+                <div className="tiktok-box-container">
+                  <div className="box-content-container">
+                    <div className="tiktok-box-title">틱톡</div>
+                    <div className="tiktok-people">팔로워
+                      {summaryData.tiktok.followers}
+
+                      만</div>
+                  </div>
+                  <img src={tiktokLogo} alt="TikTok" className="sns-detail-icon" />
+
+                </div>
+                <div className="sponsership-container">
+                  <div className="sponsership-title">SCOPE 협찬 경력</div>
+                  <button className="sponsership-more-button">더보기</button>
+                  <div className="sponsership-content-container">
+                    <div className="sponsership-sns">[릴스]</div>
+                    <div className="sponsership-content-title">꼬북칩</div>
+                    <div className="sponsership-date">2025.01</div>
+                    <div className={`sponsership-tag ${"식품" === "식품" ? "pink-tag" : "식품" === "음식" ? "orange-tag" : ""}`}>
+                      식품
+                    </div>
+                  </div>
+                  <div className="sponsership-content-container">
+
+                    <div className="sponsership-sns">[릴스]</div>
+                    <div className="sponsership-content-title">꼬북칩</div>
+                    <div className="sponsership-date">2025.01</div>
+                    <div className={`sponsership-tag ${"음식" === "식품" ? "pink-tag" : "음식" === "음식" ? "orange-tag" : ""}`}>
+                      음식
+                    </div>
+                  </div>
+
+                </div>
               </div>
-              <img src={youtubeLogo} alt="YouTube" className="sns-detail-icon" />
             </div>
-            <div className="tiktok-box-container">
-              <div className="box-content-container">
-            <div className="tiktok-box-title">틱톡</div>
-              <div className="tiktok-people">팔로워   
-              {summaryData.tiktok.followers}
 
-              만</div>
-              </div>
-              <img src={tiktokLogo} alt="TikTok" className="sns-detail-icon" />
+            <div className="end-section">
+              <div className="instagram-content">
 
-            </div>
-            <div className="sponsership-container">
-              <div className="sponsership-title">SCOPE 협찬 경력</div>
-              <button className="sponsership-more-button">더보기</button>
-              <div className="sponsership-content-container">
-                <div className="sponsership-sns">[릴스]</div>
-                <div className="sponsership-content-title">꼬북칩</div>
-                <div className="sponsership-date">2025.01</div>
-                <div className={`sponsership-tag ${"식품" === "식품" ? "pink-tag" : "식품" === "음식" ? "orange-tag" : ""}`}>
-                식품
-              </div>
-             </div>
-              <div className="sponsership-content-container">
-                
-              <div className="sponsership-sns">[릴스]</div>
-              <div className="sponsership-content-title">꼬북칩</div>
-              <div className="sponsership-date">2025.01</div>
-              <div className={`sponsership-tag ${"음식" === "식품" ? "pink-tag" : "음식" === "음식" ? "orange-tag" : ""}`}>
-              음식
-            </div>
-              </div>
+                <div className="contents-section-title">{getContentTitle()} 컨텐츠</div>
+                <div className="contents-section-sub-title-container">
+                  <img src={InstaReels} alt="InstaReels" className="insta-reels-icon" />
+                  <div className="contents-section-sub-title">{getContentSubTitle()}</div>
 
-            </div>
-            </div>
-          </div>
-
-          <div className="end-section">
-          <div className="instagram-content">
-
-          <div className="contents-section-title">{getContentTitle()} 컨텐츠</div>
-          <div className="contents-section-sub-title-container">
-          <img src={InstaReels} alt="InstaReels" className="insta-reels-icon" />
-          <div className="contents-section-sub-title">{getContentSubTitle()}</div>
-
-          </div>
-          <div className="image-grid-container">
+                </div>
+                <div className="image-grid-container">
 
 
-          <div className="image-grid-title">{getContentSubTitle()} 이미지</div>
-          {/* <div className="image-grid">
+                  <div className="image-grid-title">{getContentSubTitle()} 이미지</div>
+                  {/* <div className="image-grid">
       {images.map((image, index) => (
         <div 
           key={index} 
@@ -444,94 +444,94 @@ const SNSDetailAnalysis = () => {
       ))}
          </div> */}
 
-        <div className="image-grid">
-          {currentImages.map((image, index) => ( // 기존 images.map → currentImages.map
-            <div 
-              key={index} 
-              className="sns-content-img" 
-              style={{ backgroundImage: `url(${image})` }} 
-            />
-          ))}
-        </div>
-          <div className="pagination">
-            <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>&lt;</button>
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index}
-                className={currentPage === index + 1 ? "active" : ""}
-                onClick={() => setCurrentPage(index + 1)}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>&gt;</button>
-          </div>
-          </div>
+                  <div className="image-grid">
+                    {currentImages.map((image, index) => ( // 기존 images.map → currentImages.map
+                      <div
+                        key={index}
+                        className="sns-content-img"
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                    ))}
+                  </div>
+                  <div className="pagination">
+                    <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>&lt;</button>
+                    {[...Array(totalPages)].map((_, index) => (
+                      <button
+                        key={index}
+                        className={currentPage === index + 1 ? "active" : ""}
+                        onClick={() => setCurrentPage(index + 1)}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
+                    <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>&gt;</button>
+                  </div>
+                </div>
 
-       
 
-          <div className="statistics">
-          <div className="stat-box">
-            <p className="stat-label">총합 데이터</p>
-            <div className="stat-containers">
-            <div className="stat-value-container">
-            <img src={heart} alt="heart" className="data-heart-icon" />
 
-            <p className="stat-value">좋아요</p>
-            <p className="stat-good-value">  {summaryData[activeSNS].likes}
-            </p>
+                <div className="statistics">
+                  <div className="stat-box">
+                    <p className="stat-label">총합 데이터</p>
+                    <div className="stat-containers">
+                      <div className="stat-value-container">
+                        <img src={heart} alt="heart" className="data-heart-icon" />
+
+                        <p className="stat-value">좋아요</p>
+                        <p className="stat-good-value">  {summaryData[activeSNS].likes}
+                        </p>
+                      </div>
+                      <div className="stat-value-container">
+
+                        <img src={dataComment} alt="dataComment" className="data-comment-icon" />
+
+                        <p className="stat-value">댓글</p>
+                        <p className="stat-comment-value">
+                          {summaryData[activeSNS].comments}
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="stat-box">
+                    <p className="stat-label">평균 데이터</p>
+                    <div className="stat-containers">
+                      <div className="stat-value-container">
+                        <img src={heart} alt="heart" className="data-heart-icon" />
+
+                        <p className="stat-value">좋아요</p>
+                        <p className="stat-good-value"> {summaryData[activeSNS].avgLikes}개</p>
+                      </div>
+                      <div className="stat-value-container">
+
+                        <img src={dataComment} alt="dataComment" className="data-comment-icon" />
+
+                        <p className="stat-value">댓글</p>
+                        <p className="stat-comment-value">{summaryData[activeSNS].avgComments}개
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div className="stat-box-tag">
+                  <div className="stat-box-titles">
+                    <div className="stat-box-tag-title">태그</div>
+                    <div className="stat-box-tag-subtitle">인플루언서 분석 기반 태그</div>
+                  </div>
+                  <div className="stat-box-tags">{analysisTags}</div>
+
+                </div>
+
+              </div>
+
+
             </div>
-            <div className="stat-value-container">
 
-            <img src={dataComment} alt="dataComment" className="data-comment-icon" />
-
-              <p className="stat-value">댓글</p>
-              <p className="stat-comment-value">
-              {summaryData[activeSNS].comments}
-              </p>
-            </div>
-            </div>
-
-          </div>
-          <div className="stat-box">
-          <p className="stat-label">평균 데이터</p>
-          <div className="stat-containers">
-            <div className="stat-value-container">
-            <img src={heart} alt="heart" className="data-heart-icon" />
-
-            <p className="stat-value">좋아요</p>
-            <p className="stat-good-value"> {summaryData[activeSNS].avgLikes}개</p>
-            </div>
-            <div className="stat-value-container">
-
-            <img src={dataComment} alt="dataComment" className="data-comment-icon" />
-
-              <p className="stat-value">댓글</p>
-              <p className="stat-comment-value">{summaryData[activeSNS].avgComments}개
-              </p>
-            </div>
-            </div>
-
-          </div>
-          </div>
-          <div className="stat-box-tag">
-            <div className="stat-box-titles">
-          <div className="stat-box-tag-title">태그</div>
-          <div className="stat-box-tag-subtitle">인플루언서 분석 기반 태그</div>
-          </div>
-          <div className="stat-box-tags">{analysisTags}</div>
-
-        </div>
-       
-        </div>
-
-       
-        </div>
-        
           </div>
         )}
 
-       
+
       </div>
     </div>
   );

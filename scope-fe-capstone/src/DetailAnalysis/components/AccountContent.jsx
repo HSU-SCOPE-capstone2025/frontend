@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-//import "../css/ProfileDetailAnalysis.css";
+import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Rectangle, ReferenceLine, LineChart } from "recharts";
 
-function ProfileDetailAnalysis() {
+const AccountContent = () => {
   //const navigate = useNavigate();
   // 팔로워 서포트 비율 데이터
 
@@ -44,16 +44,17 @@ function ProfileDetailAnalysis() {
   const viewGrowthRate = 32.5; // 조회 성장률
   const groupAverageGrowthRate = 27.2; // 유사 그룹 평균 성장률
 
-
   return (
-    <div className="profile-detail-root-container">
+    <div>
       <div className="profile-detail-container">
-        <div className="profile-analysis-title">
-          인플루언서 분석
-        </div>
-        <div className="grayLine" style={{ marginTop: "20px", marginBottom: "20px" }}></div>
 
-        <p className="profile-analysis-title2">팔로워 서포트</p>
+        <div className="account-section-nav">
+          <a href="#followerSupport" className="account-section-link">팔로워 서포트</a>
+          <a href="#engagement" className="account-section-link">인게이지먼트</a>
+          <a href="#audience" className="account-section-link">오디언스</a>
+        </div>
+
+        <p id="followerSupport" className="profile-analysis-title2">팔로워 서포트</p>
         <p className="profile-analysis-title3">계정의 팔로워 수와 질을 심층적으로 이해하고, 영향력을 측정합니다. 또한 장기적 관점에서의 성장 잠재력과 시장 내 위치를 평가할 수 있습니다.</p>
 
         <div className="profile-analysis-box-array">
@@ -339,7 +340,7 @@ function ProfileDetailAnalysis() {
           </div>
         </div>
 
-        <p className="profile-analysis-title2">인게이지먼트</p>
+        <p id="engagement" className="profile-analysis-title2">인게이지먼트</p>
         <p className="profile-analysis-title3">전체 콘텐츠 상호작용 분석으로 인플루언서의 콘텐츠가 얼마나 효과적으로 오디언스와 상호작용하는지를 평가합니다.</p>
 
         <div className="profile-analysis-box-array">
@@ -488,13 +489,11 @@ function ProfileDetailAnalysis() {
           </div>
         </div>
 
-        <p className="profile-analysis-title2">오디언스</p>
+        <p id="audience" className="profile-analysis-title2">오디언스</p>
         <p className="profile-analysis-title3">해당 인플루언서가 어떤 오디언스와 가장 잘 소통하며, 인플루언서의 메시지가 어떤 범위로 퍼질 수 있는 지 이해하는데 도움을 줍니다.</p>
-
-
       </div>
     </div>
   );
 }
 
-export default ProfileDetailAnalysis;
+export default AccountContent;

@@ -11,6 +11,12 @@ import SNSDetailAnalysis from './SNSDetailAnalysis/components/SNSDetailAnalysis'
 import Analysis from './Analysis/components/Analysis';
 import Recommendation from './Recommendation/components/Recommendation';
 
+//임시 추가
+import DetailAnalysis from './DetailAnalysis/components/DetailAnalysis';
+import SNSContent from './DetailAnalysis/components/SNSContent';
+import AccountContent from './DetailAnalysis/components/AccountContent';
+
+
 // 전체 App 컴포넌트
 const App = () => {
   return (
@@ -26,6 +32,7 @@ const App = () => {
         <Route path="/ProfileDetailAnalysis" element={<ProfileDetailAnalysis />} />
         <Route path="/SNSDetailAnalysis" element={<SNSDetailAnalysis />} />
         <Route path="/Recommendation" element={<Recommendation />} />
+        <Route path="/DetailAnalysis" element={<DetailAnalysis />} />
       </Routes>
     </Router>
   );
