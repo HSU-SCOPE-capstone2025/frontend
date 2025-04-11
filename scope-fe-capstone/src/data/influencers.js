@@ -12,7 +12,7 @@ const influencers = [
         followers: 1058000,
         scopeScore: 7,
         followersFeature: "10-20대 여자",
-        averageViews: 100000,
+        averageViews: 70000,
         averageComments: 500,
         averageLikes: 10000
     },
@@ -26,9 +26,9 @@ const influencers = [
         followers: 573000,
         scopeScore: 8,
         followersFeature: "20-30대 여자",
-        averageViews: 100000,
+        averageViews: 80000,
         averageComments: 500,
-        averageLikes: 10000
+        averageLikes: 9000
     },
     {
         profileImage: ralral,
@@ -38,11 +38,11 @@ const influencers = [
         categories: ["인테리어", "펫 / 동물"],
         tags: ["유머 / 예능", "감성 / 힐링"],
         followers: 160000,
-        scopeScore: 8,
+        scopeScore: 9,
         followersFeature: "20-30대 여자",
-        averageViews: 100000,
+        averageViews: 90000,
         averageComments: 500,
-        averageLikes: 10000
+        averageLikes: 8000
     },
     {
         profileImage: hxxax,
@@ -51,12 +51,12 @@ const influencers = [
         sns: ["instagram", "youtube"],
         categories: ["먹방", "엔터테인먼트"],
         tags: ["시네마틱 / 예술", "하이텐션 / 에너지넘침"],
-        followers: 573000,
-        scopeScore: 8,
+        followers: 700900,
+        scopeScore: 2,
         followersFeature: "20-30대 여자",
-        averageViews: 100000,
+        averageViews: 20000,
         averageComments: 500,
-        averageLikes: 10000
+        averageLikes: 70000
     },
     {
         profileImage: hxxax,
@@ -65,12 +65,12 @@ const influencers = [
         sns: ["youtube", "tiktok"],
         categories: ["여행", "게임"],
         tags: ["감성 / 힐링", "강의 / 설명"],
-        followers: 573000,
-        scopeScore: 8,
+        followers: 50000,
+        scopeScore: 3,
         followersFeature: "20-30대 여자",
-        averageViews: 100000,
+        averageViews: 30000,
         averageComments: 500,
-        averageLikes: 10000
+        averageLikes: 60000
     }
 ];
 

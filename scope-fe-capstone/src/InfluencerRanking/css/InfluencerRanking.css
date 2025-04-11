@@ -476,3 +476,26 @@
   /* 선택된 상태 */
   color: #4434F8;
 }
+
+.platform-section-header {
+
+}
+
+.platform-title-container {
+  font-family: Paperlogy;
+  text-align: left;
+  color: #2B2F33;
+  font-weight: 500;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 5px 10px;
+}
+
+.platform-icon {
+  width: 30px;
+  height: 30px;
+}

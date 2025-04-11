@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import '../css/InfluencerRanking.css';
 import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
+//import { fetchInfluencerRanking } from '../../api/influencersApi';
 
 // 필터 옵션 리스트
 const categories = [
@@ -17,9 +18,14 @@ const feature = [
 ];
 
 function InfluencerRanking() {
+  //const [influencers, setInfluencers] = useState([]);
+  //const [totCnt, setTotCnt] = useState(0);
+  //const [loading, setLoading] = useState(true);
+
   //const navigate = useNavigate();
   //const [selected, setSelected] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [platformViewMode, setPlatformViewMode] = useState(false);
 
   const [selectedCategories, setSelectedCategories] = useState([]); //선택한 카테고리
   const [selectedFeatures, setSelectedFeatures] = useState([]); //선택한 특징 태그
@@ -77,16 +83,34 @@ function InfluencerRanking() {
     setShowFilters(false); // 필터 창 닫기
   };
 
+  const [selectedSort, setSelectedSort] = useState(""); // 정렬 기본선택
+
   // 팔로워 순 정렬 함수
   const sortByFollowers = () => {
     const sorted = [...filteredInfluencers].sort((a, b) => b.followers - a.followers);
     setFilteredInfluencers(sorted);
+    setSelectedSort('followers');
   };
 
   // SCOPE 점수 순 정렬 함수
   const sortByScope = () => {
     const sorted = [...filteredInfluencers].sort((a, b) => b.scopeScore - a.scopeScore);
     setFilteredInfluencers(sorted);
+    setSelectedSort('scope');
+  };
+
+  // 좋아요 순 정렬 함수
+  const sortByLikes = () => {
+    const sorted = [...filteredInfluencers].sort((a, b) => b.averageLikes - a.averageLikes);
+    setFilteredInfluencers(sorted);
+    setSelectedSort('likes');
+  };
+
+  // 조회수 순 정렬 함수
+  const sortByViews = () => {
+    const sorted = [...filteredInfluencers].sort((a, b) => b.averageViews - a.averageViews);
+    setFilteredInfluencers(sorted);
+    setSelectedSort('views');
   };
 
   const formatFollowers = (num) => {
@@ -98,6 +122,20 @@ function InfluencerRanking() {
   useEffect(() => {
     applyFilters(selectedSNS);
   }, [selectedSNS]);
+
+  // useEffect(() => {
+  //   fetchInfluencerRanking(1, 10)
+  //     .then((data) => {
+  //       if (data.is_succese) {
+  //         setInfluencers(data.result || []); // 실제 응답 구조에 따라 key 이름 확인
+  //         setTotCnt(data.totCnt);
+  //       } else {
+  //         console.error('API 응답 실패:', data.requestlog);
+  //       }
+  //     })
+  //     .catch(console.error)
+  //     .finally(() => setLoading(false));
+  // }, []);
 
   return (
     <div>
@@ -171,11 +209,26 @@ function InfluencerRanking() {
                 <button
                   key={index}
                   className={`ranking-sns-filter-button ${selectedSNS.includes(snsMapping[option]) ? "selected" : ""}`}
-                  onClick={() => toggleSNSFilter(snsMapping[option])}
+                  onClick={() => {
+                    setPlatformViewMode(false); //플랫폼 버튼 해제
+                    toggleSNSFilter(snsMapping[option]);
+                  }}
                 >
                   {option}
                 </button>
               ))}
+
+              <div className="grayLine-length" style={{ marginLeft: "10px", marginRight: "10px", height: "40px" }}></div>
+
+              <button
+                className={`ranking-sns-filter-button ${platformViewMode ? "selected" : ""}`}
+                onClick={() => {
+                  setPlatformViewMode(true);         // 플랫폼 모드 ON
+                  setSelectedSNS([]);                // 기존 SNS 필터 해제
+                }}
+              >
+                플랫폼 별로 보기
+              </button>
             </div>
           </div>
 
@@ -185,89 +238,197 @@ function InfluencerRanking() {
             <div className="standard-container">
               <div className="standard-title" >기준</div>
               <div className="standard-button-group">
-                <button onClick={sortByFollowers} className="ranking-standard-button">팔로워 순</button>
-                <button onClick={sortByScope} className="ranking-standard-button">SCOPE 점수 순</button>
+                <button
+                  onClick={sortByFollowers}
+                  className={`ranking-standard-button ${selectedSort === 'followers' ? 'selected' : ''}`}
+                >
+                  팔로워 순
+                </button>
+                <button
+                  onClick={sortByScope}
+                  className={`ranking-standard-button ${selectedSort === 'scope' ? 'selected' : ''}`}
+                >
+                  SCOPE 점수 순
+                </button>
+                <button
+                  onClick={sortByLikes}
+                  className={`ranking-standard-button ${selectedSort === 'likes' ? 'selected' : ''}`}
+                >
+                  좋아요 순
+                </button>
+                <button
+                  onClick={sortByViews}
+                  className={`ranking-standard-button ${selectedSort === 'views' ? 'selected' : ''}`}
+                >
+                  조회수 순
+                </button>
               </div>
             </div>
             {/*selected 관련해서 나중에 추적 경로를 해야함*/}
 
             <div className="grayLine-length" style={{ height: "auto" }}></div>
-
             <div className="ranking-table-div">
-              <table className="ranking-table">
-                <thead>
-                  <tr>
-                    <th>순위</th>
-                    <th style={{ textAlign: "left", paddingLeft: "10px" }}>채널명</th>
-                    <th>보유 SNS</th>
-                    <th>카테고리</th>
-                    <th>태그</th>
-                    <th>SCOPE 점수</th>
-                    <th>팔로워</th>
-                    <th>팔로워 특징</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredInfluencers.length > 0 ? (
-                    filteredInfluencers.map((influencer, index) => (
-                      <tr key={index}>
-                        <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
 
-                        <td> {/* 채널명 (이미지+채널명) */}
-                          <div className="ranking-account-info-container">
-                            <img
-                              src={influencer.profileImage}
-                              alt={influencer.name}
-                              className="ranking-profile-img"
-                            />
-                            <div className="account-details">
-                              <div className="account-name" style={{ marginBottom: "5px" }}>{influencer.name}</div>
-                              <div className="account-description" style={{ color: "#AFAFAF" }}>{influencer.description}</div>
-                            </div>
-                          </div>
-                        </td>
-
-                        <td>
-                          <div className="ranking-sns-container">
-                            {influencer.sns.map((sns, idx) => (
-                              <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
-                            ))}
-                          </div>
-                        </td>
-
-                        <td>
-                          <div className="ranking-category-container">
-                            {influencer.categories.map((cat, index) => (
-                              <span key={index} className="ranking-category-box">{cat}</span>
-                            ))}
-                          </div>
-                        </td>
-
-                        <td>
-                          <div className="ranking-tag-container">
-                            {influencer.tags.map((tag, index) => (
-                              <span key={index} className="ranking-tag-box">{tag}</span>
-                            ))}
-                          </div>
-                        </td>
-
-                        <td>
-                          {influencer.scopeScore}
-                        </td>
-
-                        <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
-
-                        <td>
-                          {influencer.followersFeature}
-                        </td>
-
+              {platformViewMode ? (
+                <div>
+                  <table className="ranking-table">
+                    <thead>
+                      <tr>
+                        <th>순위</th>
+                        <th style={{ textAlign: "left", paddingLeft: "10px" }}>채널명</th>
+                        <th>보유 SNS</th>
+                        <th>카테고리</th>
+                        <th>태그</th>
+                        <th>SCOPE 점수</th>
+                        <th>팔로워</th>
+                        <th>평균 좋아요</th>
                       </tr>
-                    ))
-                  ) : (
-                    <p>선택한 필터에 맞는 인플루언서가 없습니다.</p>
-                  )}
-                </tbody>
-              </table>
+                    </thead>
+                    <tbody>
+                      {["instagram", "youtube", "tiktok"].map((platform) => {
+                        // 필터 + 정렬 + 상위 3명 추출
+                        const top3 = filteredInfluencers
+                          .filter((inf) => inf.sns.includes(platform))
+                          .sort((a, b) => {
+                            if (selectedSort === "followers") return b.followers - a.followers;
+                            if (selectedSort === "likes") return b.averageLikes - a.averageLikes;
+                            if (selectedSort === "scope") return b.scopeScore - a.scopeScore;
+                            return 0;
+                          })
+                          .slice(0, 3);
+
+                        return (
+                          <React.Fragment key={platform}>
+                            <tr className={`platform-section-header ${platform}`} key={platform}>
+                              <td colSpan="8">
+                                <div className="platform-title-container">
+                                  <img
+                                    src={snsIcons[platform]} // 아이콘경로
+                                    alt={`${platform} 아이콘`}
+                                    className="platform-icon"
+                                  />
+                                  {platform === "instagram" && "인스타그램"}
+                                  {platform === "youtube" && "유튜브"}
+                                  {platform === "tiktok" && "틱톡"}
+                                </div>
+                              </td>
+                            </tr>
+                            {top3.map((influencer, index) => (
+                              <tr key={influencer.name + platform}>
+                                <td>{index + 1}</td>
+                                <td>
+                                  <div className="ranking-account-info-container">
+                                    <img src={influencer.profileImage} alt={influencer.name} className="ranking-profile-img" />
+                                    <div className="account-details">
+                                      <div className="account-name" style={{ marginBottom: "5px" }}>{influencer.name}</div>
+                                      <div className="account-description" style={{ color: "#AFAFAF" }}>{influencer.description}</div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div className="ranking-sns-container">
+                                    {influencer.sns.map((sns, idx) => (
+                                      <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
+                                    ))}
+                                  </div>
+                                </td>
+                                <td>
+                                  {influencer.categories.map((cat, i) => (
+                                    <span key={i} className="ranking-category-box">{cat}</span>
+                                  ))}
+                                </td>
+                                <td>
+                                  {influencer.tags.map((tag, i) => (
+                                    <span key={i} className="ranking-tag-box">{tag}</span>
+                                  ))}
+                                </td>
+                                <td>{influencer.scopeScore}</td>
+                                <td>{formatFollowers(influencer.followers)}</td>
+                                <td>{influencer.averageLikes}</td>
+                              </tr>
+                            ))}
+                          </React.Fragment>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : filteredInfluencers.length > 0 ? (
+                <table className="ranking-table">
+                  <thead>
+                    <tr>
+                      <th>순위</th>
+                      <th style={{ textAlign: "left", paddingLeft: "10px" }}>채널명</th>
+                      <th>보유 SNS</th>
+                      <th>카테고리</th>
+                      <th>태그</th>
+                      <th>SCOPE 점수</th>
+                      <th>팔로워</th>
+                      <th>평균 좋아요</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      filteredInfluencers.map((influencer, index) => (
+                        <tr key={index}>
+                          <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
+
+                          <td> {/* 채널명 (이미지+채널명) */}
+                            <div className="ranking-account-info-container">
+                              <img
+                                src={influencer.profileImage}
+                                alt={influencer.name}
+                                className="ranking-profile-img"
+                              />
+                              <div className="account-details">
+                                <div className="account-name" style={{ marginBottom: "5px" }}>{influencer.name}</div>
+                                <div className="account-description" style={{ color: "#AFAFAF" }}>{influencer.description}</div>
+                              </div>
+                            </div>
+                          </td>
+
+                          <td>
+                            <div className="ranking-sns-container">
+                              {influencer.sns.map((sns, idx) => (
+                                <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
+                              ))}
+                            </div>
+                          </td>
+
+                          <td>
+                            <div className="ranking-category-container">
+                              {influencer.categories.map((cat, index) => (
+                                <span key={index} className="ranking-category-box">{cat}</span>
+                              ))}
+                            </div>
+                          </td>
+
+                          <td>
+                            <div className="ranking-tag-container">
+                              {influencer.tags.map((tag, index) => (
+                                <span key={index} className="ranking-tag-box">{tag}</span>
+                              ))}
+                            </div>
+                          </td>
+
+                          <td>
+                            {influencer.scopeScore}
+                          </td>
+
+                          <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
+
+                          <td>
+                            {influencer.averageLikes}
+                          </td>
+
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>선택한 필터에 맞는 인플루언서가 없습니다.</p>
+              )}
+
             </div>
 
           </div> {/* flex-div */}
