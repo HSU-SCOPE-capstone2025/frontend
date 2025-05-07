@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 //import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
-import influencers from "../../data/influencers";
+//import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
-//import { fetchInfluencerRanking } from '../../api/influencersApi';
+import { fetchInfluencerData } from "../../api/influencersApi";
+import { getProfileImage } from "../../utils/getProfileImage";
 
 // 필터 옵션 리스트
 const categories = [
@@ -18,9 +19,43 @@ const feature = [
 ];
 
 function InfluencerRanking() {
-  //const [influencers, setInfluencers] = useState([]);
-  //const [totCnt, setTotCnt] = useState(0);
-  //const [loading, setLoading] = useState(true);
+
+  const [influencers, setInfluencers] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await fetchInfluencerData(); // 백엔드에서 가져온 데이터
+  
+        // 기존 더미데이터와 동일한 구조로 변환
+        const transformed = result.map((item) => ({
+          name: item.name,
+          followers: item.followers,
+          ffs: item.ffs,
+          followersFeature: item.followersFeature,
+          averageViews: item.averageViews,
+          averageComments: item.averageComments,
+          averageLikes: item.averageLikes,
+  
+          // 아직 데베에 추가가 안되었음. 데베에 추가하면 바로 처리할 예정정
+          profileImage: getProfileImage(item.name),
+          description: '-',                     // 백엔드에서 없으면 기본값
+          sns: [],                              // 
+          categories: [],
+          tags: [],
+          scopeScore: item.ffs || 0,
+        }));
+  
+        setInfluencers(transformed);
+        setFilteredInfluencers(transformed);
+      } catch (error) {
+        console.error('API 호출 실패:', error);
+      }
+    };
+  
+    getData();
+  }, []);
+
 
   //const navigate = useNavigate();
   //const [selected, setSelected] = useState(null);
@@ -31,7 +66,7 @@ function InfluencerRanking() {
   const [selectedFeatures, setSelectedFeatures] = useState([]); //선택한 특징 태그
   const [selectedSNS, setSelectedSNS] = useState([]); //선택한 sns 태그
 
-  const [filteredInfluencers, setFilteredInfluencers] = useState(influencers); // 필터링된 리스트
+  const [filteredInfluencers, setFilteredInfluencers] = useState([]); // 필터링된 리스트
 
 
   // 카테고리 선택 토글
@@ -122,20 +157,6 @@ function InfluencerRanking() {
   useEffect(() => {
     applyFilters(selectedSNS);
   }, [selectedSNS]);
-
-  // useEffect(() => {
-  //   fetchInfluencerRanking(1, 10)
-  //     .then((data) => {
-  //       if (data.is_succese) {
-  //         setInfluencers(data.result || []); // 실제 응답 구조에 따라 key 이름 확인
-  //         setTotCnt(data.totCnt);
-  //       } else {
-  //         console.error('API 응답 실패:', data.requestlog);
-  //       }
-  //     })
-  //     .catch(console.error)
-  //     .finally(() => setLoading(false));
-  // }, []);
 
   return (
     <div>
