@@ -1,13 +1,12 @@
-// Analysis.jsx 개선 버전 - SNS + 상세 분석 필터 + 고급 필터 UI 포함
 import React, { useState, useEffect } from "react";
 import "../css/analysis.css";
-
 import instagramLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png";
 import tiktokLogo from "../../assets/images/tiktok_logo.png";
 import rotatelogo from "../../assets/images/rotate.png";
 import filter from "../../assets/images/filter.png";
 import under_arrow from "../../assets/images/under_arrow.png";
+import { fetchAnalysisData } from "../../api/analysisApi";
 
 const snsOptions = [
   { name: "인스타그램", key: "instagram", logo: instagramLogo },
@@ -25,68 +24,13 @@ const followerRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만
 const likesRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
 const viewsRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
 
-const dummyInfluencers = [
-  {
-    id: 1,
-    name: "랄랄",
-    sns: ["youtube", "instagram", "tiktok"],
-    profileImage: instagramLogo,
-    category: ["먹방", "예능"],
-    tags: ["하이텐션", "친근함"],
-    followers: "52.3만명",
-    avgViews: "35만",
-    avgLikes: "25만",
-    avgComments: "1.2만",
-  },
-  {
-    id: 2,
-    name: "이사배",
-    sns: ["instagram", "youtube"],
-    profileImage: instagramLogo,
-    category: ["뷰티"],
-    tags: ["전문가 느낌"],
-    followers: "120만명",
-    avgViews: "50만",
-    avgLikes: "30만",
-    avgComments: "2만",
-  },
-  {
-    id: 3,
-    name: "룩북요정",
-    sns: ["instagram"],
-    profileImage: instagramLogo,
-    category: ["패션"],
-    tags: ["감성", "힐링"],
-    followers: "20만명",
-    avgViews: "10만",
-    avgLikes: "8만",
-    avgComments: "0.5만",
-  },
-  {
-    id: 4,
-    name: "여행수첩",
-    sns: ["youtube"],
-    profileImage: youtubeLogo,
-    category: ["여행"],
-    tags: ["시네마틱", "브이로그"],
-    followers: "70.1만명",
-    avgViews: "45만",
-    avgLikes: "20만",
-    avgComments: "1.8만",
-  },
-  {
-    id: 5,
-    name: "댄스짱",
-    sns: ["tiktok"],
-    profileImage: tiktokLogo,
-    category: ["음악", "댄스"],
-    tags: ["에너지넘침"],
-    followers: "33만명",
-    avgViews: "60만",
-    avgLikes: "40만",
-    avgComments: "3만",
-  },
-];
+const parseRange = (rangeStr) => {
+  if (!rangeStr || rangeStr === "") return [0, Infinity];
+  if (rangeStr === "100만 이상") return [1000000, Infinity];
+  const unit = rangeStr.includes("만") ? 10000 : 1000;
+  const [start, end] = rangeStr.replace("만", "").replace("개", "").split(" ~ ").map(v => parseFloat(v) * unit);
+  return [start, end];
+};
 
 const Analysis = () => {
   const [selectedSNS, setSelectedSNS] = useState([]);
@@ -95,11 +39,33 @@ const Analysis = () => {
   const [selectedFollowers, setSelectedFollowers] = useState(["", ""]);
   const [selectedLikes, setSelectedLikes] = useState(["", ""]);
   const [selectedViews, setSelectedViews] = useState(["", ""]);
-  const [filteredList, setFilteredList] = useState(dummyInfluencers);
+  const [originalList, setOriginalList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
-    handleDetailedAnalysis();
-  }, [selectedSNS, selectedCategories, selectedFollowers, selectedLikes, selectedViews]);
+    const getData = async () => {
+      try {
+        const apiData = await fetchAnalysisData();
+        const formatted = apiData.map((item, index) => ({
+          id: index + 1,
+          name: item.name,
+          followers: item.followers || 0,
+          avgViews: item.averageViews || 0,
+          avgLikes: item.averageLikes || 0,
+          avgComments: item.averageComments || 0,
+          sns: ["instagram", "youtube", "tiktok"].filter((_, i) => index % (i + 2) === 0),
+          category: [["먹방"], ["뷰티"], ["패션"], ["여행"]][index % 4],
+          tags: [["하이텐션"], ["감성"], ["정보"], ["전문가"]][index % 4],
+          profileImage: ""
+        }));
+        setOriginalList(formatted);
+        setFilteredList(formatted);
+      } catch (err) {
+        console.error("API 호출 실패:", err);
+      }
+    };
+    getData();
+  }, []);
 
   const toggleSNS = (snsKey) => {
     setSelectedSNS((prev) =>
@@ -128,25 +94,33 @@ const Analysis = () => {
   };
 
   const resetFilters = () => {
+    setSelectedSNS([]);
     setSelectedCategories([]);
     setSelectedFollowers(["", ""]);
     setSelectedLikes(["", ""]);
     setSelectedViews(["", ""]);
-    setFilteredList(dummyInfluencers);
+    setFilteredList(originalList);
   };
 
   const handleDetailedAnalysis = () => {
-    const result = dummyInfluencers.filter((inf) => {
+    const [followerMin, followerMax] = parseRange(selectedFollowers.join(" ~ "));
+    const [likesMin, likesMax] = parseRange(selectedLikes.join(" ~ "));
+    const [viewsMin, viewsMax] = parseRange(selectedViews.join(" ~ "));
+
+    const result = originalList.filter((inf) => {
       const snsMatch = selectedSNS.length === 0 || selectedSNS.some((sns) => inf.sns.includes(sns));
       const categoryMatch = selectedCategories.length === 0 || selectedCategories.some((cat) => inf.category.includes(cat));
-      return snsMatch && categoryMatch;
+      const followersMatch = inf.followers >= followerMin && inf.followers <= followerMax;
+      const likesMatch = inf.avgLikes >= likesMin && inf.avgLikes <= likesMax;
+      const viewsMatch = inf.avgViews >= viewsMin && inf.avgViews <= viewsMax;
+      return snsMatch && categoryMatch && followersMatch && likesMatch && viewsMatch;
     });
     setFilteredList(result);
   };
 
   return (
     <div className="container">
-      <div className="analysis-container">
+       <div className="analysis-container">
         <div className="title-container">
           <div className="analysis-title">인플루언서 찾기</div>
         </div>
@@ -288,6 +262,7 @@ const Analysis = () => {
           </table>
         </div>
       </div>
+
     </div>
   );
 };
