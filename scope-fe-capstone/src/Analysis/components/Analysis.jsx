@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/analysis.css";
+import { getProfileImage } from "../../utils/getProfileImage";
 import instagramLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png";
 import tiktokLogo from "../../assets/images/tiktok_logo.png";
@@ -56,7 +57,7 @@ const Analysis = () => {
           sns: ["instagram", "youtube", "tiktok"].filter((_, i) => index % (i + 2) === 0),
           category: [["먹방"], ["뷰티"], ["패션"], ["여행"]][index % 4],
           tags: [["하이텐션"], ["감성"], ["정보"], ["전문가"]][index % 4],
-          profileImage: ""
+          profileImage: getProfileImage(item.name)
         }));
         setOriginalList(formatted);
         setFilteredList(formatted);
