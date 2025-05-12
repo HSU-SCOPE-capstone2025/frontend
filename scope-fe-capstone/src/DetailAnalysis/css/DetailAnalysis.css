@@ -3,7 +3,7 @@
 .detail-analysis-container {
     width: 100vw;
     min-height: 100vh;
-    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+    background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
 
     display: flex;
     /* Flexbox 사용 */
@@ -216,7 +216,7 @@
 
 .sns-buttons .active {
     background-color: #fff;
-    color: #5E4DFE;
+    color: #0071E3;
 }
 
 .analysis-section {
@@ -344,7 +344,7 @@
 }
 
 .tab-button.active {
-    background-color: #5E4DFE;
+    background-color: #0071E3;
     color: #fff;
 }
 
@@ -847,14 +847,14 @@
 
 .snsdetail-sns-button.active,
 .snsdetail-accountanalysis-button.active {
-    border-bottom: 2px solid #5E4DFE;
+    border-bottom: 2px solid #0071E3;
     /* 원하는 밑줄 색상 */
-    color: #5E4DFE;
+    color: #0071E3;
 }
 
 .snsdetail-sns-button:hover,
 .snsdetail-accountanalysis-button:hover {
-    color: #5E4DFE;
+    color: #0071E3;
 
 
 }
@@ -872,7 +872,7 @@
     height: 25px;
     flex-shrink: 0;
     border-radius: 5px;
-    background: #FBECFB;
+    background: #E2F8FF;
     color: #2B2F33;
     text-align: center;
     font-family: Paperlogy;
@@ -921,6 +921,6 @@
 
 .pagination button.active {
     border-radius: 10px;
-    background-color: #5E4DFE;
+    background-color: #0071E3;
     color: #fff;
 }

@@ -13,7 +13,7 @@ const AccountContent = () => {
 
   // 차트 데이터
   const data = [
-    { name: "유효 팔로워", value: validSupporters, color: "#744AFF" },
+    { name: "유효 팔로워", value: validSupporters, color: "#0071E3" },
     { name: "기타 팔로워", value: totalFollowers - validSupporters, color: "#D9D9D9" },
   ];
 
@@ -68,7 +68,7 @@ const AccountContent = () => {
               {/* 설명 */}
               <div>
                 <div>
-                  <span style={{ width: "12px", height: "12px", background: "#744AFF", borderRadius: "50%", display: "inline-block" }}></span>
+                  <span style={{ width: "12px", height: "12px", background: "#0071E3", borderRadius: "50%", display: "inline-block" }}></span>
                   <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>예상 유효 팔로워 서포트 수</span>
                   <span className="profile-analysis-text" style={{ marginLeft: "40px" }}>3.2만 명</span>
                 </div>
@@ -88,7 +88,7 @@ const AccountContent = () => {
                     cy="50%"
                     innerRadius={53} // 도넛 형태
                     outerRadius={80}
-                    fill="#744AFF"
+                    fill="#0071E3"
                     dataKey="value"
                   >
                     {data.map((entry, index) => (
@@ -114,14 +114,14 @@ const AccountContent = () => {
             <div className="inline-block-div">
               <p className="profile-analysis-sub-title">예상 팔로워 서포트 비교</p>
               <p className="average-line-text">
-                팔로워 서포트의 수가 <span style={{ color: "#744AFF" }}>{influencerSupport.toLocaleString()}명</span>
+                팔로워 서포트의 수가 <span style={{ color: "#0071E3" }}>{influencerSupport.toLocaleString()}명</span>
                 으로<br />
-                유사 그룹 평균과 <span style={{ color: "#744AFF" }}>비슷합니다</span>
+                유사 그룹 평균과 <span style={{ color: "#0071E3" }}>비슷합니다</span>
               </p>
 
               {/* 막대 + 텍스트를 중앙 정렬 */}
               <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", width: "100%" }}>
-                {[{ name: influencerName, value: influencerSupport, color: "#744AFF" }, { name: "유사 그룹 평균", value: averageGroupSupport, color: "#D9D9D9" }].map((item, index) => (
+                {[{ name: influencerName, value: influencerSupport, color: "#0071E3" }, { name: "유사 그룹 평균", value: averageGroupSupport, color: "#D9D9D9" }].map((item, index) => (
                   <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     {/* 개별 막대 그래프 */}
                     <ResponsiveContainer width={180} height={150}>
@@ -140,7 +140,7 @@ const AccountContent = () => {
                       fontWeight: "500",
                       marginTop: "10px",
                       fontFamily: "Paperlogy",
-                      color: index === 0 ? "#744AFF" : "#333" // 왼쪽만 보라색 적용
+                      color: index === 0 ? "#0071E3" : "#333" // 왼쪽만 보라색 적용
                     }}>
                       {(item.value / 10000).toFixed(1)}만명
                     </p>
@@ -149,7 +149,7 @@ const AccountContent = () => {
                       fontSize: "14px",
                       fontFamily: "Paperlogy",
                       fontWeight: "500",
-                      color: index === 0 ? "#744AFF" : "#666" // 왼쪽만 보라색 적용
+                      color: index === 0 ? "#0071E3" : "#666" // 왼쪽만 보라색 적용
                     }}>
                       {item.name}
                     </p>
@@ -198,7 +198,7 @@ const AccountContent = () => {
                     {/* 평균선 */}
                     <ReferenceLine
                       y={averageSupport}
-                      stroke="#9757FE"
+                      stroke="#0071E3"
                       strokeWidth={12} // 선 굵기 증가
                     />
                   </BarChart>
@@ -231,7 +231,7 @@ const AccountContent = () => {
                     <YAxis tick={{ fontSize: 14 }} domain={["dataMin", "dataMax"]} />
                     <Tooltip formatter={(value) => `${(value / 10000).toFixed(1)}만`} />
                     <Line
-                      type="liner" dataKey="subscribers" stroke="#7C7CFF" strokeWidth={3} dot={{ fill: "#7C7CFF", r: 5 }} />
+                      type="liner" dataKey="subscribers" stroke="#0071E3" strokeWidth={3} dot={{ fill: "#7C7CFF", r: 5 }} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -243,15 +243,15 @@ const AccountContent = () => {
             <div className="inline-block-div">
               <p className="profile-analysis-sub-title">조회 성장률</p>
               <p className="average-line-text">
-                조회 성장률이 <span style={{ color: "#744AFF" }}>{viewGrowthRate.toFixed(1)}%</span>
+                조회 성장률이 <span style={{ color: "#0071E3" }}>{viewGrowthRate.toFixed(1)}%</span>
                 으로<br />
-                유사 그룹 평균과 <span style={{ color: "#744AFF" }}>비슷합니다</span>
+                유사 그룹 평균과 <span style={{ color: "#0071E3" }}>비슷합니다</span>
               </p>
 
               {/* 성장률 막대 + 텍스트 중앙 정렬 */}
               <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", width: "100%" }}>
                 {[
-                  { name: influencerName, value: viewGrowthRate, color: "#744AFF" },
+                  { name: influencerName, value: viewGrowthRate, color: "#0071E3" },
                   { name: "유사 그룹 평균", value: groupAverageGrowthRate, color: "#D9D9D9" }
                 ].map((item, index) => (
                   <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -272,7 +272,7 @@ const AccountContent = () => {
                       fontWeight: "500",
                       marginTop: "10px",
                       fontFamily: "Paperlogy",
-                      color: index === 0 ? "#744AFF" : "#333" // 왼쪽만 보라색 적용
+                      color: index === 0 ? "#0071E3" : "#333" // 왼쪽만 보라색 적용
                     }}>
                       {item.value.toFixed(1)}%
                     </p>
@@ -281,7 +281,7 @@ const AccountContent = () => {
                       fontSize: "14px",
                       fontFamily: "Paperlogy",
                       fontWeight: "500",
-                      color: index === 0 ? "#744AFF" : "#666" // 왼쪽만 보라색 적용
+                      color: index === 0 ? "#0071E3" : "#666" // 왼쪽만 보라색 적용
                     }}>
                       {item.name}
                     </p>
@@ -330,7 +330,7 @@ const AccountContent = () => {
                     {/* 평균선 */}
                     <ReferenceLine
                       y={averageSupport}
-                      stroke="#9757FE"
+                      stroke="#0071E3"
                       strokeWidth={12} // 선 굵기 증가
                     />
                   </BarChart>
@@ -383,7 +383,7 @@ const AccountContent = () => {
                     {/* 평균선 */}
                     <ReferenceLine
                       y={averageSupport}
-                      stroke="#9757FE"
+                      stroke="#0071E3"
                       strokeWidth={12} // 선 굵기 증가
                     />
                   </BarChart>
@@ -431,7 +431,7 @@ const AccountContent = () => {
                     {/* 평균선 */}
                     <ReferenceLine
                       y={averageSupport}
-                      stroke="#9757FE"
+                      stroke="#0071E3"
                       strokeWidth={12} // 선 굵기 증가
                     />
                   </BarChart>
@@ -479,7 +479,7 @@ const AccountContent = () => {
                     {/* 평균선 */}
                     <ReferenceLine
                       y={averageSupport}
-                      stroke="#9757FE"
+                      stroke="#0071E3"
                       strokeWidth={12} // 선 굵기 증가
                     />
                   </BarChart>

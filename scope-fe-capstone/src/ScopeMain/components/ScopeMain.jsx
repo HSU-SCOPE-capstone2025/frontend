@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../css/ScopeMain.css';
 
 //image
-import main2 from "../../assets/images/main2.png"; 
-import main3 from "../../assets/images/main3.png";
+import mainpage from "../../assets/images/mainpage/mainpage_image.png";
 
 const ScopeMain = () => {
   const navigate = useNavigate();
@@ -22,15 +21,12 @@ const ScopeMain = () => {
         <div className="grayText1">
           인플루언서 검색부터 맞춤 추천까지, 효과적인 인플루언서 마케팅을 경험하세요.
         </div>
+
+        <div className="mainpage-image">
+          <img src={mainpage} alt="mainpage" />
+        </div>
       </div>
 
-      <div className="mainDiv2">
-        <img src={main2} alt="main2" />
-      </div>
-
-      <div className="mainDiv3">
-        <img src={main3} alt="main3" />
-      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 #root{
     width:100%;
-    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+    background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
 
 
 
@@ -9,7 +9,7 @@
    
     width:1920px;
     height: 100%;
-    background: linear-gradient(180deg, #F6F7FC 0%, #FFF 100%);
+    background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
 }
 
 .analysis-container{
@@ -155,7 +155,7 @@ hr{
     text-align: center;
     border: none;
     justify-content: center;
-    background-color: #5E51FF;
+    background-color: #0071E3;
     color: black;
     cursor: pointer;
     border-radius: 5px;
@@ -179,7 +179,7 @@ hr{
 }
 
 .advanced-filter-settings:hover {
-    background-color: #bbb;
+    background-color: #004a95;
 }
 
 .filter-arrow-icon{
@@ -428,7 +428,7 @@ padding: 4px 10px;
     height: 33px;
     flex-shrink: 0;
     border-radius: 5px;
-    background: #5E51FF;
+    background: #0071E3;
     color: #FFF;
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -452,7 +452,11 @@ padding: 4px 10px;
 }
 
 .filter-apply:hover {
-    background-color: #0056b3;
+    background-color: #004a95;
+}
+
+.filter-apply-button:hover {
+    background-color: #004a95;
 }
 
 /* 총 인플루언서 수 */
@@ -472,7 +476,7 @@ padding: 4px 10px;
 }
 
 .total-number{
-    color: #5E51FF;
+    color: #0071E3;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
     font-size: 16px;
@@ -539,7 +543,7 @@ padding-left: 89px;
     height: 18px;
     flex-shrink: 0;
     border-radius: 5px;
-    background-color: #FBECFB;    
+    background-color: #E2F8FF;    
     color: #2B2F33;
     text-align: center;
     font-family: Paperlogy;
@@ -557,8 +561,8 @@ padding-left: 89px;
     height: 18px;
     flex-shrink: 0;
     border-radius: 5px;
-    background-color: #EFEFFE;    
-    color: #8476FF;
+    background-color: #DCEEFF;    
+    color: #0071E3;
     text-align: center;
     font-family: Paperlogy;
     font-size: 13px;

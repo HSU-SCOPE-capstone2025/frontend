@@ -42,7 +42,7 @@ html {
 }
 
 .account-section-link:hover {
-    color: #5E4DFE;
+    color: #0071E3;
 }
 
 .profile-analysis-title {
@@ -175,7 +175,7 @@ html {
     font-size: 24px;
     font-family: Paperlogy;
     font-weight: 700;
-    color: #7C7CFF;
+    color: #0071E3;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,18 +1,8 @@
 .maingradBackground {
     width: 100vw;
-    height: 1000px;
+    height: 1500px;
     flex-shrink: 0;
-    background: linear-gradient(76deg, #FCF8FF -3%, #EEF9FF 109.96%);
-}
-
-.mainDiv2 {
-    width: 100vw;
-    background: #fff;
-    text-align: center;
-    display: flex;
-    /* Flexbox 사용 */
-    justify-content: center;
-    /* 가로 중앙 정렬 */
+    background: linear-gradient(180deg, #C3EBF9 0%, #FFF 104.03%);
 }
 
 .mainDiv3 {
@@ -32,13 +22,13 @@
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
-    font-size: 54px;
+    font-size: 86px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 75px;
+    font-weight: 700;
+    line-height: normal;
     /* 138.889% */
 
-    background: linear-gradient(90deg, #2A11D0 7.53%, #504CFF 47%, #8A87FF 93.61%);
+    background: linear-gradient(180deg, #004C94 0%, #014D95 47%, #2172BB 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -51,9 +41,16 @@
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 
+.mainpage-image {
+    margin-top: 60px;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}

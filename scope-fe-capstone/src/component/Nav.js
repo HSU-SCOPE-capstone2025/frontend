@@ -20,7 +20,7 @@ function Nav() {
 
                 <div className="navbarButtons">
                     <button className="loginButton">로그인</button>
-                    <button className="contactButton">문의하기</button>
+                    <button className="contactButton">회원가입</button>
                 </div>
             </div>
         </div>

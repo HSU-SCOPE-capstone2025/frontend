@@ -1,7 +1,7 @@
 html,
 body {
   overflow-y: auto;
-  background-color: #F6F7FC;
+  background: #EDFBFF;
 }
 
 .recommendation-container {
@@ -13,7 +13,7 @@ body {
   flex-direction: column;
 
   align-items: center;
-  background-color: #F6F7FC;
+  background: #EDFBFF;
 
   margin-bottom: 100px;
 }
@@ -39,7 +39,25 @@ body {
 
 .right-section {
   flex: 1;
-  background: #FDF1F7;
+  background: #0071E3;
+}
+
+.right-section-text {
+  padding-top: 80px;
+
+  color: #FFF;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 50px;
+  /* 138.889% */
+}
+
+.right-section-image {
+  margin-top: 20px;
 }
 
 .big-text {
@@ -138,7 +156,7 @@ body {
   height: 81px;
   flex-shrink: 0;
   border-radius: var(--Corner-Medium, 12px);
-  background: #5E51FF;
+  background: #0071E3;
   color: #FFF;
   font-family: Paperlogy;
   font-size: 32px;
@@ -492,7 +510,7 @@ body {
   height: 17px;
   background: #fff;
   border-radius: 50%;
-  border: 3px solid #5E51FF;
+  border: 3px solid #0071E3;
   cursor: pointer;
   pointer-events: auto;
 }
@@ -550,7 +568,8 @@ body {
 .selected-filters-box {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px; /* 각 카테고리 사이 간격 */
+  gap: 5px;
+  /* 각 카테고리 사이 간격 */
   align-items: center;
 
   color: #2B2F33;
@@ -575,7 +594,7 @@ body {
 
 
 
-.exception-content{
+.exception-content {
   color: #2B2F33;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;

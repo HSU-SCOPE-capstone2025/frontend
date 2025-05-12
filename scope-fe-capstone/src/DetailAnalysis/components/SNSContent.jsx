@@ -111,9 +111,9 @@ const SNSContent = () => {
             {
                 label: activeTab,
                 data: graphDataSet[activeSNS][activeTab],
-                borderColor: "#9757FE",
-                pointBackgroundColor: "#9757FE",
-                pointBorderColor: "#9757FE",
+                borderColor: "#0071E3",
+                pointBackgroundColor: "#0071E3",
+                pointBorderColor: "#0071E3",
                 tension: 0,
                 borderWidth: 4,
             },
@@ -176,11 +176,11 @@ const SNSContent = () => {
         elements: {
             point: {
                 radius: 3,
-                backgroundColor: "#9757FE",
+                backgroundColor: "#0071E3",
             },
             line: {
                 borderWidth: 4,
-                borderColor: "#9757FE",
+                borderColor: "#0071E3",
             },
         },
     };

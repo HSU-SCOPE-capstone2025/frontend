@@ -24,7 +24,7 @@
 }
 
 .navbarMenu:hover {
-    color: #5E51FF;
+    color: #0071E3;
 }
 
 .navbarLogo {
@@ -71,7 +71,7 @@
     height: 40px;
     flex-shrink: 0;
     border-radius: 4px;
-    background: #5E51FF;
+    background: #0071E3;
     border: 0;
 
     color: #FFF;
@@ -85,5 +85,5 @@
 }
 
 .contactButton:hover {
-    background: #4339cd;
+    background: #004a95;
 }

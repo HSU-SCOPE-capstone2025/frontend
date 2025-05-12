@@ -4,6 +4,9 @@ import "../css/recommedation.css";
 import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
 
+//image
+import rightSectionImage from "../../assets/images/recommand_right_section.png";
+
 const categories = [
   "뷰티", "패션", "일상 / Vlog", "먹방", "엔터테인먼트", "IT / 전자기기",
   "스포츠", "교육", "키즈", "음악", "펫 / 동물", "인테리어",
@@ -162,7 +165,14 @@ const Recommendation = () => {
           </p>
         </div>
         {/* 오른쪽 컬러 배경 */}
-        <div className="right-section"></div>
+        <div className="right-section">
+          <div className="right-section-text">
+            2025
+            <br></br>
+            원하는 인플루언서 추천 받기
+            <img src={rightSectionImage} alt="image" className="right-section-image"/>
+          </div>
+        </div>
       </div>
 
       {/* 추천 문구 */}
@@ -245,70 +255,13 @@ const Recommendation = () => {
 
       <div className="fourth-box">
         <div className="fourth-box-container">
-          <div className="fourth-box-title">타겟층</div>
-          <div className="fourth-box-content">원하는 타겟층을 정해주세요</div>
+          <div className="fourth-box-title">타켓 오디언스 성향</div>
+          <div className="fourth-box-content">인플루언서의 주요 오디언스 성향을 정해주세요</div>
         </div>
 
         <div className="fourth-box-right">
-          {/* 성별 선택 버튼 */}
-          <div className="gender-selection">
-            <span className="gender-title">주요 타겟층 성별</span>
-            <div className="gender-buttons">
-              {genderOptions.map((gender) => (
-                <button
-                  key={gender}
-                  className={`gender-button ${selectedGender === gender ? "selected" : ""}`}
-                  onClick={() => handleGenderSelection(gender)}
-                >
-                  {gender}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* 여기에 성향 선택 표 넣기 */}
 
-          {/* 나이 선택 슬라이더 */}
-          <div className="age-selection">
-            <span className="age-title">주요 타겟층 나이</span>
-            <div className="age-slider-container">
-              {/* 나이 눈금 표시 */}
-              <div className="age-values">
-                {[10, 20, 30, 40, 50].map((age) => (
-                  <span key={age}>{age}</span>
-                ))}
-                <span>최대</span>
-              </div>
-              {/* 보라색 채워진 범위 */}
-              <div
-                className="slider-track"
-                style={{
-                  left: `${((ageRange[0] - 10) / 50) * 100}%`,
-                  width: `${((ageRange[1] - ageRange[0]) / 50) * 100}%`
-                }}
-              ></div>
-
-              {/* 슬라이더 2개 */}
-              <input
-                type="range"
-                min="10"
-                max="60"
-                step="10"
-                value={ageRange[0]}
-                onChange={(e) => handleAgeChange(e, 0)}
-                className="age-slider"
-              />
-              <input
-                type="range"
-                min="10"
-                max="60"
-                step="10"
-                value={ageRange[1]}
-                onChange={(e) => handleAgeChange(e, 1)}
-                className="age-slider"
-              />
-            </div>
-
-
-          </div>
         </div>
       </div>
       {/* 검색 버튼 */}
