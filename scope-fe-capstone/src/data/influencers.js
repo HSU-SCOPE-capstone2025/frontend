@@ -14,7 +14,9 @@ const influencers = [
         followersFeature: "10-20대 여자",
         averageViews: 70000,
         averageComments: 500,
-        averageLikes: 10000
+        averageLikes: 10000,
+        audienceTone: "Cheerful",
+        estimatedAdCost:"1천 300만원 - 1천 500만원"
     },
     {
         profileImage: hxxax,
@@ -28,7 +30,10 @@ const influencers = [
         followersFeature: "20-30대 여자",
         averageViews: 80000,
         averageComments: 500,
-        averageLikes: 9000
+        averageLikes: 9000,
+        audienceTone: "Analytical",
+        estimatedAdCost:"700만원 - 1천만원"
+
     },
     {
         profileImage: ralral,
@@ -42,7 +47,10 @@ const influencers = [
         followersFeature: "20-30대 여자",
         averageViews: 90000,
         averageComments: 500,
-        averageLikes: 8000
+        averageLikes: 8000,
+        audienceTone: "Supportive",
+        estimatedAdCost:"1천만원 - 1천 500만원"
+
     },
     {
         profileImage: hxxax,
@@ -56,7 +64,10 @@ const influencers = [
         followersFeature: "20-30대 여자",
         averageViews: 20000,
         averageComments: 500,
-        averageLikes: 70000
+        averageLikes: 70000,
+        audienceTone: "Aggressive", 
+        estimatedAdCost:"500만원 - 1천만원"
+
     },
     {
         profileImage: hxxax,
@@ -70,7 +81,10 @@ const influencers = [
         followersFeature: "20-30대 여자",
         averageViews: 30000,
         averageComments: 500,
-        averageLikes: 60000
+        averageLikes: 60000,
+        audienceTone: "Informative",
+        estimatedAdCost:"500만원 - 1천만원"
+
     }
 ];
 
