@@ -30,7 +30,8 @@ html {
 }
 
 .account-section-link {
-    text-decoration: none; /* 밑줄 제거 */
+    text-decoration: none;
+    /* 밑줄 제거 */
     background-color: #fff;
     color: #AAA;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -61,6 +62,21 @@ html {
 .profile-analysis-box {
     width: 420px;
     height: 420px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    justify-content: center;
+    /* 가로 중앙 정렬 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
+.profile-analysis-box-big {
+    width: 950px;
+    height: 700px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
@@ -182,4 +198,41 @@ html {
     gap: 8px;
 
     padding-left: 150px;
+}
+
+.normal-text {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.pie-label-text {
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.account-text-bold {
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.account-text-normal {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
 }

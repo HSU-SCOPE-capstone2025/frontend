@@ -3,7 +3,94 @@ import { useNavigate } from "react-router-dom";
 import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Rectangle, ReferenceLine, LineChart } from "recharts";
 
+const EMOTION_DATA = [
+  { name: "지지하는", value: 30, emoji: "🥰", color: "#E2FFD1" },
+  { name: "정보제공형", value: 20, emoji: "🧑‍🏫", color: "#CFE7FF" },
+  { name: "공격적인", value: 5, emoji: "😠", color: "#FFD7D7" },
+  { name: "유쾌함", value: 15, emoji: "😄", color: "#FFFCC7" },
+  { name: "분석적", value: 10, emoji: "🧐", color: "#D9DEFF" },
+  { name: "스팸", value: 10, emoji: "🚫", color: "#EED1FF" },
+  { name: "중립적", value: 10, emoji: "😐", color: "#E3E3E3" },
+];
+
+// 언어 비율 변수
+const languageData = [
+  { language: "한국어", percent: 68 },
+  { language: "영어", percent: 20 },
+];
+const totalPercent = languageData.reduce((sum, lang) => sum + lang.percent, 0);
+const etcPercent = 100 - totalPercent;
+
+const renderCustomLine = (props) => {
+  const { points, index } = props;
+
+  // 선의 시작점과 끝점 좌표
+  const [start, end] = points;
+
+  return (
+    <path
+      d={`M${start.x},${start.y}L${end.x},${end.y}`}
+      stroke="#2B2F33"        // 원하는 색상
+      strokeWidth={2}         // 굵기
+      fill="none"
+    />
+  );
+};
+
+const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
+  const displayPercent = (percent * 100).toFixed(0);
+  if (percent < 0.03) return null;
+
+  // 파이 중심으로부터 어느 쪽에 있는지 계산해서 정렬 방향을 조정
+  const isLeft = x < cx;
+
+  return (
+    <text
+      x={x + (isLeft ? -10 : 10)} // 왼쪽이면 왼쪽으로, 오른쪽이면 오른쪽으로 밀어줌
+      y={y}
+      textAnchor={isLeft ? "end" : "start"} // 정렬 방향
+      dominantBaseline="central"
+      className="pie-label-text"
+    >
+      {name} ({displayPercent}%)
+    </text>
+  );
+};
+
+// 언어 바바
 const AccountContent = () => {
+  const LanguageBar = ({ language, percent, color = "#0071E3" }) => (
+  <div style={{ marginBottom: "40px" }}>
+    <div style={{ marginBottom: "4px", fontSize: "16px", fontWeight: "500" }}>
+      {language}
+    </div>
+    <div
+      style={{
+        backgroundColor: "#e0e0e0",
+        borderRadius: "20px",
+        height: "10px",
+        width: "100%",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: color,
+          borderRadius: "20px",
+          height: "100%",
+          width: `${percent}%`,
+          transition: "width 0.5s",
+        }}
+      ></div>
+    </div>
+  </div>
+);
+
+  const sortedEmotionData = [...EMOTION_DATA].sort((a, b) => b.value - a.value);
+
+  const top3 = [...EMOTION_DATA]
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 3);
+
   //const navigate = useNavigate();
   // 팔로워 서포트 비율 데이터
 
@@ -440,11 +527,11 @@ const AccountContent = () => {
             </div>
           </div>
 
-          {/* 9. 공유유 수 */}
+          {/* 9. 공유 수 */}
           <div className="profile-analysis-box">
             <div className="inline-block-div">
               <p className="profile-analysis-sub-title">
-                공유 수수
+                공유 수
               </p>
 
               <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
@@ -491,6 +578,95 @@ const AccountContent = () => {
 
         <p id="audience" className="profile-analysis-title2">오디언스</p>
         <p className="profile-analysis-title3">해당 인플루언서가 어떤 오디언스와 가장 잘 소통하며, 인플루언서의 메시지가 어떤 범위로 퍼질 수 있는 지 이해하는데 도움을 줍니다.</p>
+        <div className="profile-analysis-box-array">
+          <div className="profile-analysis-box-big">
+            <div className="inline-block-div">
+              <p className="profile-analysis-sub-title">
+                오디언스 주요 성향
+              </p>
+              <span className="normal-text">
+                해당 인플루언서 계정의 주요 오디언스는 댓글에서 주로
+                <span style={{ color: "#0071E3" }}> 지지적, 정보 제공형</span> 성향을 보이는 것으로 분석됩니다.
+              </span>
+
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <PieChart width={600} height={500}>
+                  <Pie
+                    data={EMOTION_DATA}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={160}
+                    dataKey="value"
+                    paddingAngle={0}
+                    label={renderOutsideLabel}
+                    labelLine={renderCustomLine}
+                  >
+                    {EMOTION_DATA.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+
+                <div style={{ marginLeft: "50px" }}>
+                  <p className="account-text-bold">오디언스 주요 성향 정리</p>
+                  <ul className="account-text-normal" style={{ listStyle: 'none', paddingLeft: 0 }}>
+                    {sortedEmotionData.map((item, index) => {
+                      const isTop3 = index < 3;
+
+                      return (
+                        <li
+                          key={index}
+                          style={{
+                            marginBottom: '8px',
+                            fontWeight: isTop3 ? '600' : '500',
+                            // color: isTop3 ? '#0071E3' : '#2B2F33', // 1~3위는 파란색 계열 강조
+                            color: '#2B2F33',
+                            fontSize: '16px',
+                          }}
+                        >
+                          {index + 1}. {item.emoji} {item.name} - {item.value}%
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="profile-analysis-box" style={{ width: "350px", height: "700px" }}>
+            <div className="inline-block-div" style={{paddingBottom: "150px"}}>
+              <div className="normal-text" style={{width: "280px"}}>
+                <p className="profile-analysis-sub-title" style={{marginBottom: "50px"}}>오디언스 언어 비율</p>
+                {/* <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
+                최근 게시물 7개 기준
+              </p> */}
+                <p>
+                  계정의 주요 오디언스는 주로{" "} <br></br>
+                  <span style={{ color: "#0071E3" }}>
+                    {languageData[0].language} ({languageData[0].percent}%)
+                  </span>{" "}
+                  를 사용합니다.
+                </p> <br /><br />
+
+                {languageData.map((lang, index) => (
+                  <LanguageBar
+                    key={index}
+                    language={lang.language}
+                    percent={lang.percent}
+                  />
+                ))}
+
+                {etcPercent > 0 && (
+                  <LanguageBar language="기타" percent={etcPercent} color="#6C6C6C" />
+                )}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
