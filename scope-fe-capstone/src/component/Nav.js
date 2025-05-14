@@ -1,8 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import './Nav.css';
 
 function Nav() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        navigate('/Login');
+    };
+
+    const handleRegisterClick = () => {
+        navigate('/Register');
+    };
+
     return (
         <div>
             <div className="navbar">
@@ -19,8 +29,8 @@ function Nav() {
                 </div>
 
                 <div className="navbarButtons">
-                    <button className="loginButton">로그인</button>
-                    <button className="contactButton">회원가입</button>
+                    <button className="loginButton" onClick={handleLoginClick}>로그인</button>
+                    <button className="contactButton" onClick={handleRegisterClick}>회원가입</button>
                 </div>
             </div>
         </div>
