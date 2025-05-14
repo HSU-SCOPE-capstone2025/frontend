@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Rectangle, ReferenceLine, LineChart } from "recharts";
 
-const EMOTION_DATA = [
+const TENDENCY_DATA = [
   { name: "지지하는", value: 30, emoji: "🥰", color: "#E2FFD1" },
   { name: "정보제공형", value: 20, emoji: "🧑‍🏫", color: "#CFE7FF" },
   { name: "공격적인", value: 5, emoji: "😠", color: "#FFD7D7" },
@@ -12,6 +12,21 @@ const EMOTION_DATA = [
   { name: "스팸", value: 10, emoji: "🚫", color: "#EED1FF" },
   { name: "중립적", value: 10, emoji: "😐", color: "#E3E3E3" },
 ];
+
+const TOPIC_DATA = [
+  { name: "사건/논란", value: 10, color: "#E2FFD1" },
+  { name: "콘텐츠 평가", value: 15, color: "#CFE7FF" },
+  { name: "유튜버 개인", value: 20, color: "#FFD7D7" },
+  { name: "제품/아이템 리뷰", value: 10, color: "#FFFCC7" },
+  { name: "사회/시사 이슈", value: 10, color: "#D9DEFF" },
+  { name: "공감/감정 공유", value: 5, color: "#EED1FF" },
+  { name: "정보/꿀팁", value: 10, color: "#E3E3E3" },
+  { name: "유머/드립", value: 5, color: "#E3E3E3" },
+  { name: "질문/피드백", value: 10, color: "#E3E3E3" },
+  { name: "기타/미분류", value: 5, color: "#E3E3E3" },
+];
+
+
 
 // 언어 비율 변수
 const languageData = [
@@ -57,37 +72,137 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
   );
 };
 
-// 언어 바바
+
 const AccountContent = () => {
+  // 버블 차트 변수
+  const totalValue = TOPIC_DATA.reduce((acc, curr) => acc + curr.value, 0);
+
+  const getPercentage = (value) => {
+    return ((value / totalValue) * 100).toFixed(1);
+  };
+
+  const [positions, setPositions] = useState([]);
+
+  useEffect(() => {
+    const newPositions = [];
+    const minDiameter = 100; // 5% 원의 최소 크기 (100x100)
+    const scale = 8; // value * scale 로 크기 계산
+
+    // 가장 큰 값 찾기
+    const largestValue = Math.max(...TOPIC_DATA.map((data) => data.value));
+    const centerData = TOPIC_DATA.find((data) => data.value === largestValue);
+
+    const centerX = 300; // 600px의 절반
+    const centerY = 250; // 700px의 절반
+    const centerDiameter = calculateDiameter(centerData.value);
+
+    // 중심 원 위치
+    newPositions.push({
+      x: centerX - centerDiameter / 2,
+      y: centerY - centerDiameter / 2,
+      diameter: centerDiameter,
+      value: centerData.value,
+      name: centerData.name,
+      color: centerData.color,
+    });
+
+    // 중심 원 제외한 나머지
+    const restData = TOPIC_DATA.filter((data) => data.name !== centerData.name);
+    const angleStep = (2 * Math.PI) / restData.length;
+    const radius = centerDiameter / 2 + 80;
+
+    for (let i = 0; i < restData.length; i++) {
+      const data = restData[i];
+      const diameter = calculateDiameter(data.value);
+      const angle = i * angleStep;
+      const x = centerX + radius * Math.cos(angle) - diameter / 2;
+      const y = centerY + radius * Math.sin(angle) - diameter / 2;
+
+      newPositions.push({
+        x,
+        y,
+        diameter,
+        value: data.value,
+        name: data.name,
+        color: data.color,
+      });
+    }
+
+    const adjustedPositions = adjustPositions(newPositions);
+    setPositions(adjustedPositions);
+  }, []);
+
+  const adjustPositions = (positions) => {
+    let adjustedPositions = [...positions];
+    const minDistance = 15; // 최소 간격
+
+    for (let i = 0; i < adjustedPositions.length; i++) {
+      for (let j = i + 1; j < adjustedPositions.length; j++) {
+        const pos1 = adjustedPositions[i];
+        const pos2 = adjustedPositions[j];
+
+        const dx = pos2.x - pos1.x;
+        const dy = pos2.y - pos1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const minRequiredDistance = (pos1.diameter + pos2.diameter) / 2 + minDistance;
+
+        if (distance < minRequiredDistance) {
+          const angle = Math.atan2(dy, dx);
+          const offset = minRequiredDistance - distance;
+
+          adjustedPositions[j].x += Math.cos(angle) * offset;
+          adjustedPositions[j].y += Math.sin(angle) * offset;
+        }
+      }
+    }
+    return adjustedPositions;
+  };
+
+  const calculateDiameter = (value) => {
+    const minDiameter = 100;
+    const scale = 6; // 예: 5% = 100, 10% = 160, 20% = 220...
+    return Math.max(minDiameter, value * scale);
+  };
+
+  if (positions.length === 0) {
+    return null; // positions가 아직 채워지지 않으면 렌더링하지 않음
+  }
+
+
+  //버블 차트 변수 끝
+
+
+  // 언어 바바
   const LanguageBar = ({ language, percent, color = "#0071E3" }) => (
-  <div style={{ marginBottom: "40px" }}>
-    <div style={{ marginBottom: "4px", fontSize: "16px", fontWeight: "500" }}>
-      {language}
-    </div>
-    <div
-      style={{
-        backgroundColor: "#e0e0e0",
-        borderRadius: "20px",
-        height: "10px",
-        width: "100%",
-      }}
-    >
+    <div style={{ marginBottom: "40px" }}>
+      <div style={{ marginBottom: "4px", fontSize: "16px", fontWeight: "500" }}>
+        {language}
+      </div>
       <div
         style={{
-          backgroundColor: color,
+          backgroundColor: "#e0e0e0",
           borderRadius: "20px",
-          height: "100%",
-          width: `${percent}%`,
-          transition: "width 0.5s",
+          height: "10px",
+          width: "100%",
         }}
-      ></div>
+      >
+        <div
+          style={{
+            backgroundColor: color,
+            borderRadius: "20px",
+            height: "100%",
+            width: `${percent}%`,
+            transition: "width 0.5s",
+          }}
+        ></div>
+      </div>
     </div>
-  </div>
-);
+  );
 
-  const sortedEmotionData = [...EMOTION_DATA].sort((a, b) => b.value - a.value);
+  const sortedEmotionData = [...TENDENCY_DATA].sort((a, b) => b.value - a.value);
 
-  const top3 = [...EMOTION_DATA]
+  const top3 = [...TENDENCY_DATA]
     .sort((a, b) => b.value - a.value)
     .slice(0, 3);
 
@@ -576,6 +691,7 @@ const AccountContent = () => {
           </div>
         </div>
 
+        {/* 10. 오디언스 주요 성향향 */}
         <p id="audience" className="profile-analysis-title2">오디언스</p>
         <p className="profile-analysis-title3">해당 인플루언서가 어떤 오디언스와 가장 잘 소통하며, 인플루언서의 메시지가 어떤 범위로 퍼질 수 있는 지 이해하는데 도움을 줍니다.</p>
         <div className="profile-analysis-box-array">
@@ -590,18 +706,19 @@ const AccountContent = () => {
               </span>
 
               <div style={{ display: "flex", alignItems: "center" }}>
-                <PieChart width={600} height={500}>
+                <PieChart width={600} height={450}>
                   <Pie
-                    data={EMOTION_DATA}
+                    data={TENDENCY_DATA}
                     cx="50%"
                     cy="50%"
+                    innerRadius={80}
                     outerRadius={160}
                     dataKey="value"
                     paddingAngle={0}
                     label={renderOutsideLabel}
                     labelLine={renderCustomLine}
                   >
-                    {EMOTION_DATA.map((entry, index) => (
+                    {TENDENCY_DATA.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
@@ -617,7 +734,7 @@ const AccountContent = () => {
                         <li
                           key={index}
                           style={{
-                            marginBottom: '8px',
+                            marginBottom: '15px',
                             fontWeight: isTop3 ? '600' : '500',
                             // color: isTop3 ? '#0071E3' : '#2B2F33', // 1~3위는 파란색 계열 강조
                             color: '#2B2F33',
@@ -635,10 +752,10 @@ const AccountContent = () => {
 
           </div>
 
-          <div className="profile-analysis-box" style={{ width: "350px", height: "700px" }}>
-            <div className="inline-block-div" style={{paddingBottom: "150px"}}>
-              <div className="normal-text" style={{width: "280px"}}>
-                <p className="profile-analysis-sub-title" style={{marginBottom: "50px"}}>오디언스 언어 비율</p>
+          <div className="profile-analysis-box" style={{ width: "350px", height: "600px" }}>
+            <div className="inline-block-div" style={{ paddingBottom: "150px" }}>
+              <div className="normal-text" style={{ width: "280px" }}>
+                <p className="profile-analysis-sub-title" style={{ marginBottom: "50px" }}>오디언스 언어 비율</p>
                 {/* <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
                 최근 게시물 7개 기준
               </p> */}
@@ -667,6 +784,77 @@ const AccountContent = () => {
           </div>
 
         </div>
+
+        <div className="profile-analysis-box-array">
+          <div className="profile-analysis-box" style={{ width: "650px", height: "750px" }}>
+            <div className="inline-block-div">
+              <p className="profile-analysis-sub-title">오디언스 주요 주제</p>
+              <span className="normal-text">
+                해당 인플루언서 계정의 주요 오디언스는<br />다음과 같은 주제가 많이 언급되고 있습니다.
+              </span>
+
+              <div
+                style={{
+                  width: '600px',
+                  height: '500px',
+                  position: 'relative',
+                  margin: '0 auto',
+                  backgroundColor: '#FFFFFF', // 배경색을 흰색으로 설정
+                }}
+              >
+                {TOPIC_DATA.map((data, index) => {
+                  const percentage = getPercentage(data.value);
+                  const position = positions[index];
+
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        position: 'absolute',
+                        top: `${position.y}px`,
+                        left: `${position.x}px`,
+                        width: `${position.diameter}px`,
+                        height: `${position.diameter}px`,
+                        backgroundColor: data.color,
+                        borderRadius: '50%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        padding: '5px',
+                        boxSizing: 'border-box',
+                      }}
+                    >
+                      <div style={{ color: "#000000" }}>
+                        <div>{data.name}</div>
+                        <div>{percentage}%</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+
+            </div>
+          </div>
+
+          <div className="profile-analysis-box" style={{ width: "650px", height: "750px" }}>
+            <div className="inline-block-div">
+              <p className="profile-analysis-sub-title">오디언스 주요 감정</p>
+              <span className="normal-text">
+                해당 인플루언서 계정의 주요 오디언스는<br />주로 을 느끼는 것으로 분석됩니다.
+              </span>
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
       </div>
     </div>
   );
