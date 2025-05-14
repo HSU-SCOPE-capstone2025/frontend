@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/AccountContent.css";
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Rectangle, ReferenceLine, LineChart } from "recharts";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart } from "recharts";
 
 const TENDENCY_DATA = [
   { name: "지지하는", value: 30, emoji: "🥰", color: "#E2FFD1" },
@@ -846,6 +846,26 @@ const AccountContent = () => {
               <span className="normal-text">
                 해당 인플루언서 계정의 주요 오디언스는<br />주로 을 느끼는 것으로 분석됩니다.
               </span>
+
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <PieChart width={600} height={450}>
+                  <Pie
+                    data={TENDENCY_DATA}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={80}
+                    outerRadius={160}
+                    dataKey="value"
+                    paddingAngle={0}
+                    label={renderOutsideLabel}
+                    labelLine={renderCustomLine}
+                  >
+                    {TENDENCY_DATA.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </div>
             </div>
           </div>
 
