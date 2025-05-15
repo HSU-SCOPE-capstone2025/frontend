@@ -133,9 +133,11 @@ function InfluencerRanking() {
 
   // 팔로워 순 정렬 함수
   const sortByFollowers = () => {
-    const sorted = [...filteredInfluencers].sort((a, b) => b.followers - a.followers);
+    const sorted = [...filteredInfluencers].sort(
+      (a, b) => getSNSValue(b, "followers") - getSNSValue(a, "followers")
+    );
     setFilteredInfluencers(sorted);
-    setSelectedSort('followers');
+    setSelectedSort("followers");
   };
 
   // SCOPE 점수 순 정렬 함수

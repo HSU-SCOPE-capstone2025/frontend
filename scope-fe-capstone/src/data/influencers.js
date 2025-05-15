@@ -19,11 +19,11 @@ const influencers = [
         insta_averageViews: 500000,
         insta_averageLikes: 7600,
         tik_followers: 34500,
-        tik_averageViews: 3400,
-        tik_averageLikes: 20,
-        you_followers: 3333000,
-        you_averageViews: 33000,
-        you_averageLikes: 30300
+        tik_averageViews: 4324200,
+        tik_averageLikes: 123123,
+        you_followers: 1003000,
+        you_averageViews: 5435000,
+        you_averageLikes: 332113400
     },
     {
         profileImage: hxxax,
@@ -42,10 +42,10 @@ const influencers = [
         insta_averageViews: 234000,
         insta_averageLikes: 1222000,
         tik_followers: 22000,
-        tik_averageViews: 210,
-        tik_averageLikes: 20,
-        you_followers: 3331000,
-        you_averageViews: 12300,
+        tik_averageViews: 454340,
+        tik_averageLikes: 232340,
+        you_followers: 3901000,
+        you_averageViews: 15345300,
         you_averageLikes: 30300
 
 
@@ -66,10 +66,10 @@ const influencers = [
         insta_followers: 60000,
         insta_averageViews: 90000,
         insta_averageLikes: 9000,
-        tik_followers: 2000,
-        tik_averageViews: 2000,
-        tik_averageLikes: 9000,
-        you_followers: 33000,
+        tik_followers: 564540,
+        tik_averageViews: 6545400,
+        tik_averageLikes: 4554500,
+        you_followers: 833800,
         you_averageViews: 32000,
         you_averageLikes: 30300
 
@@ -90,10 +90,10 @@ const influencers = [
         insta_followers: 39900,
         insta_averageViews: 10000,
         insta_averageLikes: 10000,
-        tik_followers: 22000,
-        tik_averageViews: 50000,
-        tik_averageLikes: 56000,
-        you_followers: 33000,
+        tik_followers: 24000,
+        tik_averageViews: 3000,
+        tik_averageLikes: 66000,
+        you_followers: 333000,
         you_averageViews: 33000,
         you_averageLikes: 30300
 
@@ -115,11 +115,11 @@ const influencers = [
         insta_averageViews: 10000,
         insta_averageLikes: 10000,
         tik_followers: 22000,
-        tik_averageViews: 20000,
-        tik_averageLikes: 20000,
-        you_followers: 33000,
-        you_averageViews: 33000,
-        you_averageLikes: 30300
+        tik_averageViews: 30000,
+        tik_averageLikes: 50000,
+        you_followers: 5343000,
+        you_averageViews: 54000,
+        you_averageLikes: 660300
 
     }
 ];
