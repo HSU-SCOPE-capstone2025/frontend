@@ -200,7 +200,7 @@ const Analysis = () => {
             </div>
             <div className="filter-actions">
               <button className="filter-reset" onClick={resetFilters}>
-                <img src={rotatelogo} alt="rotateLogo" className="sns-icon" /> 필터 초기화
+                <img src={rotatelogo} alt="rotateLogo" className="filter-analysis-sns-icon" /> 필터 초기화
               </button>
               <button className="filter-apply-button" onClick={handleDetailedAnalysis}>필터 적용</button>
             </div>
