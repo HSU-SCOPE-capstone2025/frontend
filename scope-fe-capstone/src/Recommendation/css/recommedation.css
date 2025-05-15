@@ -96,10 +96,12 @@ body {
   margin-bottom: 30px;
 }
 
+.zero-box,
 .first-box,
 .second-box,
 .third-box,
-.fourth-box {
+.fourth-box,
+.fifth-box {
   display: flex;
   flex-direction: row;
   width: 1450px;
@@ -112,18 +114,24 @@ body {
 
 }
 
-
+.zero-box-container,
 .first-box-container,
 .second-box-container,
 .third-box-container,
-.fourth-box-container {
+.fourth-box-container,
+.fifth-box-container
+ {
   width: 555px;
 }
 
+.zero-box-title,
 .first-box-title,
 .second-box-title,
 .third-box-title,
-.fourth-box-title {
+.fourth-box-title, 
+.fifth-box-title 
+{
+
   color: #2B2F33;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
@@ -136,10 +144,13 @@ body {
   margin-bottom: 7px;
 }
 
+.zero-box-content,
 .first-box-content,
 .second-box-content,
 .third-box-content,
-.fourth-box-content {
+.fourth-box-content,
+.fifth-box-content
+ {
   color: #9E9E9E;
   font-feature-settings: 'liga' off, 'clig' off;
   font-family: Paperlogy;
@@ -150,6 +161,55 @@ body {
   margin-left: 94px;
 
 }
+
+
+.zero-sns-container{
+  height: 174px;
+  margin-top: 70px;
+  margin-left: 180px;
+  display: flex;
+  flex-direction: row;
+}
+
+.zero-sns-box{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 142px;
+  height: 174px;
+  margin-right: 40px;
+  border-radius: 10px;
+  border: 1px solid #D0D0D0;
+  background-color: #fff;
+  gap:30px;
+}
+
+.zero-sns-box.selected {
+  background-color: #F0F0F0;
+}
+
+
+.zero-sns-icon{
+  width: 62px;
+  height: 62px;
+  object-fit: contain; /* 이미지 비율 유지하면서 크기에 맞춤 */
+ 
+}
+
+.zero-sns-title{
+  color: #2B2F33;
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: -20px;
+}
+
 
 .recommendation-search-button {
   width: 344px;
@@ -215,7 +275,10 @@ body {
 
 
 
-.second-box-right {
+.second-box-right,
+.fifth-box-right
+
+ {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -224,7 +287,10 @@ body {
 
 }
 
-.second-filter-range-buttons {
+.second-filter-range-buttons,
+.fifth-filter-range-buttons
+
+ {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* 2개의 버튼씩 배치 */
@@ -233,7 +299,10 @@ body {
   margin-bottom: 10px;
 }
 
-.second-filter-button {
+.second-filter-button,
+.fifth-filter-button
+
+ {
   width: 303px;
   height: 51px;
   flex-shrink: 0;
@@ -607,6 +676,7 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-bottom: 40px;
 }
 
 .recommend-table-div {
@@ -653,6 +723,7 @@ body {
 
 .selected-filters-container {
   display: flex;
+  flex-direction: column; /* 줄바꿈 가능하게 */
   flex-wrap: nowrap;         /*  줄바꿈 방지 */
   overflow-x: auto;          /*  가로 스크롤 허용 */
   gap: 30px;                 /* 필터 박스 사이 여백 */
@@ -663,6 +734,10 @@ body {
   scrollbar-width: thin;     /* Firefox */
 }
 
+.selected-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+}
 /*  선택된 필터 그룹 박스도 한 줄로 고정되도록 변경 */
 .selected-filters-box {
   display: flex;
@@ -674,6 +749,12 @@ body {
   font-size: 18px;
   font-weight: 500;
   color: #2B2F33;
+  margin-right: 30px;
+}
+
+.selected-sns-icon{
+  object-fit: contain; /* 이미지 비율 유지하면서 크기에 맞춤 */
+
 }
 
 
