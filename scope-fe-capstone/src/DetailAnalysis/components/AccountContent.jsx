@@ -26,6 +26,15 @@ const TOPIC_DATA = [
   { name: "기타/미분류", value: 5, color: "#E3E3E3" },
 ];
 
+const EMOTION_DATA = [
+  { name: "행복", value: 30, color: "#FFD9EC" },
+  { name: "슬픔", value: 15, color: "#D1E9FF" },
+  { name: "중립", value: 20, color: "#DADADA" },
+  { name: "혐오", value: 10, color: "#C0E188" },
+  { name: "분노", value: 10, color: "#FFCDBB" },
+  { name: "놀람", value: 5, color: "#FFF4B6" },
+  { name: "공포", value: 10, color: "#C999ED" },
+];
 
 
 // 언어 비율 변수
@@ -844,13 +853,13 @@ const AccountContent = () => {
             <div className="inline-block-div">
               <p className="profile-analysis-sub-title">오디언스 주요 감정</p>
               <span className="normal-text">
-                해당 인플루언서 계정의 주요 오디언스는<br />주로 을 느끼는 것으로 분석됩니다.
+                해당 인플루언서 계정의 주요 오디언스는<br />행복과 중립을 주로 을 느끼는 것으로 분석됩니다.
               </span>
 
               <div style={{ display: "flex", alignItems: "center" }}>
                 <PieChart width={600} height={450}>
                   <Pie
-                    data={TENDENCY_DATA}
+                    data={EMOTION_DATA}
                     cx="50%"
                     cy="50%"
                     innerRadius={80}
@@ -860,7 +869,7 @@ const AccountContent = () => {
                     label={renderOutsideLabel}
                     labelLine={renderCustomLine}
                   >
-                    {TENDENCY_DATA.map((entry, index) => (
+                    {EMOTION_DATA.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>

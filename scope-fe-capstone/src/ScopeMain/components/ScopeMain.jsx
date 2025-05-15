@@ -23,7 +23,7 @@ const ScopeMain = () => {
         </div>
 
         <div className="mainpage-image">
-          <img src={mainpage} alt="mainpage" />
+          <img src={mainpage} alt="mainpage" style={{width: "1260px", height: "717px"}}/>
         </div>
       </div>
 
