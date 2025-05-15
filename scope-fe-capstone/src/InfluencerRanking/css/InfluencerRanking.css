@@ -17,7 +17,7 @@
   margin-top: 80px;
 
   width: 1600px;
-  height: 900px;
+  height: 1000px;
   flex-shrink: 0;
 
   border-radius: 20px;
@@ -343,7 +343,7 @@
 .standard-container {
   padding: 30px;
   padding-left: 70px;
-  width: 18%;
+  width: 250px;
 }
 
 /*기준 관련 css 끝끝*/

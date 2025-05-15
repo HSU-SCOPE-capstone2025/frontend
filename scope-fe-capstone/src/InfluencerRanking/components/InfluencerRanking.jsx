@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
-//import influencers from "../../data/influencers";
+import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
-import { fetchInfluencerData } from "../../api/influencersApi";
+//import { fetchInfluencerData } from "../../api/influencersApi";
 import { getProfileImage } from "../../utils/getProfileImage";
 
 // 필터 옵션 리스트
@@ -20,41 +20,41 @@ const feature = [
 
 function InfluencerRanking() {
 
-  const [influencers, setInfluencers] = useState([]);
+  // const [influencers, setInfluencers] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const result = await fetchInfluencerData(); // 백엔드에서 가져온 데이터
-  
-        // 기존 더미데이터와 동일한 구조로 변환
-        const transformed = result.map((item) => ({
-          name: item.name,
-          followers: item.followers,
-          ffs: item.ffs,
-          followersFeature: item.followersFeature,
-          averageViews: item.averageViews,
-          averageComments: item.averageComments,
-          averageLikes: item.averageLikes,
-  
-          // 아직 데베에 추가가 안되었음. 데베에 추가하면 바로 처리할 예정정
-          profileImage: getProfileImage(item.name),
-          description: '-',                     // 백엔드에서 없으면 기본값
-          sns: [],                              // 
-          categories: [],
-          tags: [],
-          scopeScore: item.ffs || 0,
-        }));
-  
-        setInfluencers(transformed);
-        setFilteredInfluencers(transformed);
-      } catch (error) {
-        console.error('API 호출 실패:', error);
-      }
-    };
-  
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const result = await fetchInfluencerData(); // 백엔드에서 가져온 데이터
+
+  //       // 기존 더미데이터와 동일한 구조로 변환
+  //       const transformed = result.map((item) => ({
+  //         name: item.name,
+  //         followers: item.followers,
+  //         ffs: item.ffs,
+  //         followersFeature: item.followersFeature,
+  //         averageViews: item.averageViews,
+  //         averageComments: item.averageComments,
+  //         averageLikes: item.averageLikes,
+
+  //         // 아직 데베에 추가가 안되었음. 데베에 추가하면 바로 처리할 예정정
+  //         profileImage: getProfileImage(item.name),
+  //         description: '-',                     // 백엔드에서 없으면 기본값
+  //         sns: ["instagram", "youtube", "tiktok"],                              // 
+  //         categories: [],
+  //         tags: [],
+  //         scopeScore: item.ffs || 0,
+  //       }));
+
+  //       setInfluencers(transformed);
+  //       setFilteredInfluencers(transformed);
+  //     } catch (error) {
+  //       console.error('API 호출 실패:', error);
+  //     }
+  //   };
+
+  //   getData();
+  // }, []);
 
 
   //const navigate = useNavigate();
@@ -64,7 +64,7 @@ function InfluencerRanking() {
 
   const [selectedCategories, setSelectedCategories] = useState([]); //선택한 카테고리
   const [selectedFeatures, setSelectedFeatures] = useState([]); //선택한 특징 태그
-  const [selectedSNS, setSelectedSNS] = useState([]); //선택한 sns 태그
+  const [selectedSNS, setSelectedSNS] = useState("instagram"); //선택한 sns 태그
 
   const [filteredInfluencers, setFilteredInfluencers] = useState([]); // 필터링된 리스트
 
@@ -83,13 +83,10 @@ function InfluencerRanking() {
     );
   };
 
-  // SNS 필터 선택 토글 함수
-  const toggleSNSFilter = (sns) => {
-    setSelectedSNS((prev) => {
-      const newSNS = prev.includes(sns) ? prev.filter((s) => s !== sns) : [...prev, sns];
-      applyFilters(selectedCategories, selectedFeatures, newSNS); //기존 필터와 함께 적용
-      return newSNS;
-    });
+  // SNS 필터 선택 (단일 선택)
+  const handleSNSFilterChange = (snsKor) => {
+    const sns = snsMapping[snsKor];
+    setSelectedSNS(sns);
   };
 
   const snsMapping = {
@@ -101,21 +98,19 @@ function InfluencerRanking() {
   // 필터 적용 함수
   const applyFilters = () => {
     const filtered = influencers.filter((influencer) => {
-      // 배열 여부 확인 및 필터링
       const influencerCategories = Array.isArray(influencer.categories) ? influencer.categories : [];
       const influencerTags = Array.isArray(influencer.tags) ? influencer.tags : [];
-      const influencerSns = Array.isArray(influencer.sns) ? influencer.sns : [];
 
-      // 필터 적용: 카테고리, 태그, SNS
-      const categoryMatch = selectedCategories.length === 0 || selectedCategories.some((cat) => influencerCategories.includes(cat));
-      const featureMatch = selectedFeatures.length === 0 || selectedFeatures.some((feat) => influencerTags.includes(feat));
-      const snsMatch = selectedSNS.length === 0 || selectedSNS.some((sns) => influencerSns.includes(sns));
+      const categoryMatch =
+        selectedCategories.length === 0 || selectedCategories.some((cat) => influencerCategories.includes(cat));
+      const featureMatch =
+        selectedFeatures.length === 0 || selectedFeatures.some((feat) => influencerTags.includes(feat));
 
-      return categoryMatch && featureMatch && snsMatch;
+      return categoryMatch && featureMatch;
     });
 
     setFilteredInfluencers(filtered);
-    setShowFilters(false); // 필터 창 닫기
+    setShowFilters(false);
   };
 
   const [selectedSort, setSelectedSort] = useState(""); // 정렬 기본선택
@@ -229,10 +224,10 @@ function InfluencerRanking() {
               {["인스타그램", "유튜브", "틱톡"].map((option, index) => (
                 <button
                   key={index}
-                  className={`ranking-sns-filter-button ${selectedSNS.includes(snsMapping[option]) ? "selected" : ""}`}
+                  className={`ranking-sns-filter-button ${selectedSNS === snsMapping[option] && !platformViewMode ? "selected" : ""}`}
                   onClick={() => {
-                    setPlatformViewMode(false); //플랫폼 버튼 해제
-                    toggleSNSFilter(snsMapping[option]);
+                    setPlatformViewMode(false); // 플랫폼 모드 해제
+                    setSelectedSNS(snsMapping[option]); // 선택한 SNS로 설정
                   }}
                 >
                   {option}
@@ -244,8 +239,8 @@ function InfluencerRanking() {
               <button
                 className={`ranking-sns-filter-button ${platformViewMode ? "selected" : ""}`}
                 onClick={() => {
-                  setPlatformViewMode(true);         // 플랫폼 모드 ON
-                  setSelectedSNS([]);                // 기존 SNS 필터 해제
+                  setPlatformViewMode(true);     // 플랫폼 보기 모드 ON
+                  setSelectedSNS("");            // SNS 필터 해제
                 }}
               >
                 플랫폼 별로 보기
@@ -348,8 +343,8 @@ function InfluencerRanking() {
                                 </td>
                                 <td>
                                   <div className="ranking-sns-container">
-                                    {influencer.sns.map((sns, idx) => (
-                                      <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
+                                    {['instagram', 'youtube', 'tiktok'].map((platform) => (
+                                      <img src={snsIcons[platform]} alt={platform} key={platform} className="ranking-sns-icon" />
                                     ))}
                                   </div>
                                 </td>
@@ -410,8 +405,8 @@ function InfluencerRanking() {
 
                           <td>
                             <div className="ranking-sns-container">
-                              {influencer.sns.map((sns, idx) => (
-                                <img key={idx} src={snsIcons[sns]} alt={sns} className="ranking-sns-icon" />
+                              {['instagram', 'youtube', 'tiktok'].map((platform) => (
+                                <img src={snsIcons[platform]} alt={platform} key={platform} className="ranking-sns-icon" />
                               ))}
                             </div>
                           </td>
@@ -433,7 +428,16 @@ function InfluencerRanking() {
                           </td>
 
                           <td>
-                            {influencer.scopeScore}
+                            <div style={{ width: '130px', height: '10px', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
+                              <div
+                                style={{
+                                  width: `${(influencer.scopeScore / 10) * 130}px`,
+                                  height: '10px',
+                                  backgroundColor: '#007bff',
+                                  borderRadius: '5px',
+                                }}
+                              ></div>
+                            </div>
                           </td>
 
                           <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
