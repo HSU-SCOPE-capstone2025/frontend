@@ -6,6 +6,12 @@ import snsIcons from "../../data/snsIcons";
 //import { fetchInfluencerData } from "../../api/influencersApi";
 import { getProfileImage } from "../../utils/getProfileImage";
 
+const snsPrefixMapping = {
+  instagram: "insta",
+  youtube: "you",
+  tiktok: "tik",
+};
+
 // 필터 옵션 리스트
 const categories = [
   "일상 / Vlog", "패션", "뷰티", "먹방", "엔터테인먼트", "IT / 전자기기",
@@ -68,6 +74,14 @@ function InfluencerRanking() {
 
   const [filteredInfluencers, setFilteredInfluencers] = useState([]); // 필터링된 리스트
 
+  const prefix = snsPrefixMapping[selectedSNS];
+
+  // 이후 getSNSValue 함수나 사용 코드가 여기에 와야 함
+  const getSNSValue = (influencer, field) => {
+    const prefix = snsPrefixMapping[selectedSNS];
+    return influencer[`${prefix}_${field}`];
+  };
+
 
   // 카테고리 선택 토글
   const toggleCategory = (category) => {
@@ -94,6 +108,8 @@ function InfluencerRanking() {
     "유튜브": "youtube",
     "틱톡": "tiktok",
   };
+
+
 
   // 필터 적용 함수
   const applyFilters = () => {
@@ -131,9 +147,11 @@ function InfluencerRanking() {
 
   // 좋아요 순 정렬 함수
   const sortByLikes = () => {
-    const sorted = [...filteredInfluencers].sort((a, b) => b.averageLikes - a.averageLikes);
+    const sorted = [...filteredInfluencers].sort(
+      (a, b) => getSNSValue(b, "averageLikes") - getSNSValue(a, "averageLikes")
+    );
     setFilteredInfluencers(sorted);
-    setSelectedSort('likes');
+    setSelectedSort("likes");
   };
 
   // 조회수 순 정렬 함수
@@ -440,10 +458,10 @@ function InfluencerRanking() {
                             </div>
                           </td>
 
-                          <td>{formatFollowers(influencer.followers)}</td> {/* 변환된 값 출력 */}
+                          <td>{formatFollowers(getSNSValue(influencer, "followers"))}</td> {/* 변환된 값 출력 */}
 
                           <td>
-                            {influencer.averageLikes}
+                            {formatFollowers(getSNSValue(influencer, "averageLikes"))}
                           </td>
 
                         </tr>
