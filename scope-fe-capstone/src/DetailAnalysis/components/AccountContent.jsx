@@ -14,11 +14,23 @@ const TENDENCY_DATA = [
 ];
 
 const TOPIC_DATA = [
-  { name: "사건/논란", value: 10, color: "#E2FFD1" },
-  { name: "콘텐츠 평가", value: 15, color: "#CFE7FF" },
-  { name: "유튜버 개인", value: 20, color: "#FFD7D7" },
-  { name: "제품/아이템 리뷰", value: 10, color: "#FFFCC7" },
-  { name: "사회/시사 이슈", value: 10, color: "#D9DEFF" },
+  {
+    name: "사건/논란", value: 15, color: "#E2FFD1",
+    comments: [
+      "이런 논란이 또 생기다니...",
+      "솔직히 이번 사건은 실망이에요",
+    ],
+  },
+  {
+    name: "콘텐츠 평가", value: 10, color: "#CFE7FF",
+    comments: [
+      "이번 영상 진짜 재밌었어요!",
+      "편집이 더 깔끔해졌네요",
+    ],
+  },
+  { name: "유튜버 개인", value: 30, color: "#FFD7D7" },
+  { name: "제품/아이템 리뷰", value: 18, color: "#FFFCC7" },
+  { name: "사회/시사 이슈", value: 12, color: "#D9DEFF" },
   { name: "공감/감정 공유", value: 5, color: "#EED1FF" },
   { name: "정보/꿀팁", value: 10, color: "#E3E3E3" },
   { name: "유머/드립", value: 5, color: "#E3E3E3" },
@@ -35,6 +47,84 @@ const EMOTION_DATA = [
   { name: "놀람", value: 5, color: "#FFF4B6" },
   { name: "공포", value: 10, color: "#C999ED" },
 ];
+
+const CENTER_X = 300;
+const CENTER_Y = 250;
+const MIN_DIAMETER = 80;
+const DEFAULT_SCALE = 6;
+const MIN_DISTANCE = 5;
+
+const calculateDiameter = (value) => {
+  const minArea = 8000; // 5%에 해당하는 최소 면적
+  const maxValue = 100;  // 가장 큰 value 기준
+  const scaleFactor = Math.sqrt((value / maxValue) * minArea * Math.PI); // 면적 비례
+  return Math.max(80, scaleFactor * 2); // 지름으로 변환
+};
+
+function checkOverlap(x, y, diameter, placed) {
+  for (const item of placed) {
+    const dx = item.x - x;
+    const dy = item.y - y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const minDist = (item.diameter + diameter) / 2 + MIN_DISTANCE;
+    if (dist < minDist) return true;
+  }
+  return false;
+}
+
+function placeBubbles() {
+  const sortedData = [...TOPIC_DATA].sort((a, b) => a.value - b.value);
+  const centerData = sortedData.pop(); // 가장 큰 값 중심에
+  const centerDiameter = calculateDiameter(centerData.value);
+  const positions = [
+    {
+      ...centerData,
+      x: CENTER_X - centerDiameter / 2,
+      y: CENTER_Y - centerDiameter / 2,
+      diameter: centerDiameter,
+    },
+  ];
+
+  const angleStep = (2 * Math.PI) / sortedData.length;
+  let angle = 0;
+  const baseRadius = centerDiameter / 2 + 80;
+
+  for (let i = 0; i < sortedData.length; i++) {
+    const data = sortedData[i];
+    const diameter = calculateDiameter(data.value);
+    let radius = baseRadius;
+    let placed = false;
+
+    // 충돌 없는 위치 찾기
+    for (let j = 0; j < 100; j++) {
+      const x = CENTER_X + radius * Math.cos(angle) - diameter / 2;
+      const y = CENTER_Y + radius * Math.sin(angle) - diameter / 2;
+
+      if (!checkOverlap(x, y, diameter, positions)) {
+        positions.push({ ...data, x, y, diameter });
+        placed = true;
+        break;
+      }
+      radius += 10; // 한 바퀴 돌면서 점점 더 멀리
+    }
+    angle += angleStep;
+
+    if (!placed) {
+      // 못 놓은 경우: 가장자리에 강제로 배치
+      positions.push({
+        ...data,
+        x: CENTER_X + (baseRadius + 150) * Math.cos(angle) - diameter / 2,
+        y: CENTER_Y + (baseRadius + 150) * Math.sin(angle) - diameter / 2,
+        diameter,
+      });
+    }
+  }
+
+  return positions;
+}
+
+// 렌더링 예시 (React에서 사용)
+const positions = placeBubbles();
 
 
 // 언어 비율 변수
@@ -84,101 +174,80 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 
 const AccountContent = () => {
   // 버블 차트 변수
-  const totalValue = TOPIC_DATA.reduce((acc, curr) => acc + curr.value, 0);
+  // const [positions, setPositions] = useState([]);
 
-  const getPercentage = (value) => {
-    return ((value / totalValue) * 100).toFixed(1);
-  };
+  // const calculateDiameter = (value) => {
+  //   if (value < 5) return 80;
+  //   if (value === 5) return 100;
+  //   return 100 + (value - 5) * 6; // 예: 10 -> 130, 15 -> 160
+  // };
 
-  const [positions, setPositions] = useState([]);
+  // useEffect(() => {
+  //   const newPositions = [];
+  //   const centerX = 300;
+  //   const centerY = 250;
+  //   const minGap = 15;
 
-  useEffect(() => {
-    const newPositions = [];
-    const minDiameter = 100; // 5% 원의 최소 크기 (100x100)
-    const scale = 8; // value * scale 로 크기 계산
+  //   const largestValue = Math.max(...TOPIC_DATA.map((d) => d.value));
+  //   const centerData = TOPIC_DATA.find((d) => d.value === largestValue);
+  //   const centerDiameter = calculateDiameter(centerData.value);
 
-    // 가장 큰 값 찾기
-    const largestValue = Math.max(...TOPIC_DATA.map((data) => data.value));
-    const centerData = TOPIC_DATA.find((data) => data.value === largestValue);
+  //   newPositions.push({
+  //     ...centerData,
+  //     x: centerX - centerDiameter / 2,
+  //     y: centerY - centerDiameter / 2,
+  //     diameter: centerDiameter,
+  //   });
 
-    const centerX = 300; // 600px의 절반
-    const centerY = 250; // 700px의 절반
-    const centerDiameter = calculateDiameter(centerData.value);
+  //   const restData = TOPIC_DATA.filter((d) => d.name !== centerData.name);
+  //   const angleStep = (2 * Math.PI) / (restData.length - 1);
+  //   const radius = centerDiameter / 2 + minGap + 60;
 
-    // 중심 원 위치
-    newPositions.push({
-      x: centerX - centerDiameter / 2,
-      y: centerY - centerDiameter / 2,
-      diameter: centerDiameter,
-      value: centerData.value,
-      name: centerData.name,
-      color: centerData.color,
-    });
+  //   let skippedIndex = null;
 
-    // 중심 원 제외한 나머지
-    const restData = TOPIC_DATA.filter((data) => data.name !== centerData.name);
-    const angleStep = (2 * Math.PI) / restData.length;
-    const radius = centerDiameter / 2 + 80;
+  //   for (let i = 0; i < restData.length; i++) {
+  //     if (i === restData.length - 1) {
+  //       skippedIndex = i;
+  //       break;
+  //     }
+  //     const data = restData[i];
+  //     const angle = i * angleStep;
+  //     const diameter = calculateDiameter(data.value);
+  //     const x = centerX + radius * Math.cos(angle) - diameter / 2;
+  //     const y = centerY + radius * Math.sin(angle) - diameter / 2;
 
-    for (let i = 0; i < restData.length; i++) {
-      const data = restData[i];
-      const diameter = calculateDiameter(data.value);
-      const angle = i * angleStep;
-      const x = centerX + radius * Math.cos(angle) - diameter / 2;
-      const y = centerY + radius * Math.sin(angle) - diameter / 2;
+  //     newPositions.push({
+  //       ...data,
+  //       x,
+  //       y,
+  //       diameter,
+  //     });
+  //   }
 
-      newPositions.push({
-        x,
-        y,
-        diameter,
-        value: data.value,
-        name: data.name,
-        color: data.color,
-      });
-    }
+  //   if (skippedIndex !== null) {
+  //     const data = restData[skippedIndex];
+  //     const angle = Math.PI / 4; // 대각선 방향
+  //     const diameter = calculateDiameter(data.value);
+  //     const x = centerX + (radius + 60) * Math.cos(angle) - diameter / 2;
+  //     const y = centerY + (radius + 60) * Math.sin(angle) - diameter / 2;
 
-    const adjustedPositions = adjustPositions(newPositions);
-    setPositions(adjustedPositions);
-  }, []);
+  //     newPositions.push({
+  //       ...data,
+  //       x,
+  //       y,
+  //       diameter,
+  //     });
+  //   }
 
-  const adjustPositions = (positions) => {
-    let adjustedPositions = [...positions];
-    const minDistance = 15; // 최소 간격
+  //   setPositions(newPositions);
+  // }, []);
 
-    for (let i = 0; i < adjustedPositions.length; i++) {
-      for (let j = i + 1; j < adjustedPositions.length; j++) {
-        const pos1 = adjustedPositions[i];
-        const pos2 = adjustedPositions[j];
+  // const totalValue = TOPIC_DATA.reduce((acc, cur) => acc + cur.value, 0);
 
-        const dx = pos2.x - pos1.x;
-        const dy = pos2.y - pos1.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        const minRequiredDistance = (pos1.diameter + pos2.diameter) / 2 + minDistance;
-
-        if (distance < minRequiredDistance) {
-          const angle = Math.atan2(dy, dx);
-          const offset = minRequiredDistance - distance;
-
-          adjustedPositions[j].x += Math.cos(angle) * offset;
-          adjustedPositions[j].y += Math.sin(angle) * offset;
-        }
-      }
-    }
-    return adjustedPositions;
-  };
-
-  const calculateDiameter = (value) => {
-    const minDiameter = 100;
-    const scale = 6; // 예: 5% = 100, 10% = 160, 20% = 220...
-    return Math.max(minDiameter, value * scale);
-  };
-
-  if (positions.length === 0) {
-    return null; // positions가 아직 채워지지 않으면 렌더링하지 않음
-  }
+  // const getPercentage = (value) => ((value / totalValue) * 100).toFixed(1);
 
 
+  const [selectedTopic, setSelectedTopic] = useState(null);
   //버블 차트 변수 끝
 
 
@@ -804,46 +873,62 @@ const AccountContent = () => {
 
               <div
                 style={{
+                  marginBottom: '-50px',
                   width: '600px',
                   height: '500px',
                   position: 'relative',
-                  margin: '0 auto',
-                  backgroundColor: '#FFFFFF', // 배경색을 흰색으로 설정
+                  backgroundColor: '#FFFFFF',
                 }}
               >
-                {TOPIC_DATA.map((data, index) => {
-                  const percentage = getPercentage(data.value);
-                  const position = positions[index];
-
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        position: 'absolute',
-                        top: `${position.y}px`,
-                        left: `${position.x}px`,
-                        width: `${position.diameter}px`,
-                        height: `${position.diameter}px`,
-                        backgroundColor: data.color,
-                        borderRadius: '50%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                        textAlign: 'center',
-                        padding: '5px',
-                        boxSizing: 'border-box',
-                      }}
-                    >
-                      <div style={{ color: "#000000" }}>
-                        <div>{data.name}</div>
-                        <div>{percentage}%</div>
-                      </div>
+                {positions.map((pos, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setSelectedTopic(pos)}
+                    style={{
+                      position: 'absolute',
+                      top: `${pos.y}px`,
+                      left: `${pos.x}px`,
+                      width: `${pos.diameter}px`,
+                      height: `${pos.diameter}px`,
+                      backgroundColor: pos.color,
+                      borderRadius: '50%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                      boxSizing: 'border-box',
+                      padding: '5px',
+                      color: '#000',
+                    }}
+                  >
+                    <div>
+                      <div>{pos.name}</div>
+                      <div>{pos.value}%</div>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
+
+              {selectedTopic && (
+                <div style={{ marginTop: '20px', padding: '10px', border: '1px solid #ddd' }}>
+                  <h3 style={{ fontSize: '18px' }}>
+                    🗨️ {selectedTopic.name} 관련 댓글
+                  </h3>
+
+                  {selectedTopic.comments && selectedTopic.comments.length > 0 ? (
+                    <ul>
+                      {selectedTopic.comments.map((comment, i) => (
+                        <li key={i} style={{ margin: '5px 0', fontSize: '14px' }}>
+                          {comment}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ fontSize: '14px', color: '#888' }}>아직 수집된 댓글이 없습니다.</p>
+                  )}
+                </div>
+              )}
 
 
             </div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
-import influencers from "../../data/influencers";
+//import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
-//import { fetchInfluencerData } from "../../api/influencersApi";
+import { fetchInfluencerData } from "../../api/influencersApi";
 import { getProfileImage } from "../../utils/getProfileImage";
 
 const snsPrefixMapping = {
@@ -26,41 +26,56 @@ const feature = [
 
 function InfluencerRanking() {
 
-  // const [influencers, setInfluencers] = useState([]);
+  const [influencers, setInfluencers] = useState([]);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const result = await fetchInfluencerData(); // 백엔드에서 가져온 데이터
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await fetchInfluencerData();
 
-  //       // 기존 더미데이터와 동일한 구조로 변환
-  //       const transformed = result.map((item) => ({
-  //         name: item.name,
-  //         followers: item.followers,
-  //         ffs: item.ffs,
-  //         followersFeature: item.followersFeature,
-  //         averageViews: item.averageViews,
-  //         averageComments: item.averageComments,
-  //         averageLikes: item.averageLikes,
+        const transformed = result.map((item) => ({
+          name: item.name,
+          categories: Array.isArray(item.categories)
+            ? item.categories
+            : item.categories
+              ? [item.categories]
+              : [],
+          description: '-',
+          tags: Array.isArray(item.tags)
+            ? item.tags
+            : item.tags
+              ? [item.tags]
+              : [],
+          profileImage: getProfileImage(item.name),
 
-  //         // 아직 데베에 추가가 안되었음. 데베에 추가하면 바로 처리할 예정정
-  //         profileImage: getProfileImage(item.name),
-  //         description: '-',                     // 백엔드에서 없으면 기본값
-  //         sns: ["instagram", "youtube", "tiktok"],                              // 
-  //         categories: [],
-  //         tags: [],
-  //         scopeScore: item.ffs || 0,
-  //       }));
 
-  //       setInfluencers(transformed);
-  //       setFilteredInfluencers(transformed);
-  //     } catch (error) {
-  //       console.error('API 호출 실패:', error);
-  //     }
-  //   };
+          // SNS별 값들 - prefix를 붙여 저장
+          insta_followers: item.instaFollowers,
+          insta_averageLikes: item.instaAverageLikes,
+          insta_averageViews: item.instaAverageViews,
+          insta_scopeScore: item.instaFss,
 
-  //   getData();
-  // }, []);
+          you_followers: item.youFollowers,
+          you_averageLikes: item.youAverageLikes,
+          you_averageViews: item.youAverageViews,
+          you_scopeScore: item.youFss,
+
+          tik_followers: item.tikFollowers,
+          tik_averageLikes: item.tikAverageLikes,
+          tik_averageViews: item.tikAverageViews,
+          tik_scopeScore: item.tikFss,
+        }));
+
+        setInfluencers(transformed);
+        setFilteredInfluencers(transformed);
+      } catch (error) {
+        console.error('API 호출 실패:', error);
+      }
+    };
+
+    getData();
+  }, []);
+
 
 
   //const navigate = useNavigate();
@@ -158,7 +173,9 @@ function InfluencerRanking() {
 
   // 조회수 순 정렬 함수
   const sortByViews = () => {
-    const sorted = [...filteredInfluencers].sort((a, b) => b.averageViews - a.averageViews);
+    const sorted = [...filteredInfluencers].sort(
+      (a, b) => getSNSValue(b, "averageViews") - getSNSValue(a, "averageViews")
+    );
     setFilteredInfluencers(sorted);
     setSelectedSort('views');
   };
@@ -324,7 +341,7 @@ function InfluencerRanking() {
                       {["instagram", "youtube", "tiktok"].map((platform) => {
                         // 필터 + 정렬 + 상위 3명 추출
                         const top3 = filteredInfluencers
-                          .filter((inf) => inf.sns.includes(platform))
+                          .filter((inf) => Array.isArray(inf.sns) && inf.sns.includes(platform))
                           .sort((a, b) => {
                             if (selectedSort === "followers") return b.followers - a.followers;
                             if (selectedSort === "likes") return b.averageLikes - a.averageLikes;
@@ -401,6 +418,7 @@ function InfluencerRanking() {
                       <th>SCOPE 점수</th>
                       <th>팔로워</th>
                       <th>평균 좋아요</th>
+                      <th>평균 조회수</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -451,7 +469,7 @@ function InfluencerRanking() {
                             <div style={{ width: '130px', height: '10px', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
                               <div
                                 style={{
-                                  width: `${(influencer.scopeScore / 10) * 130}px`,
+                                  width: `${(getSNSValue(influencer, "scopeScore") / 10) * 130}px`,
                                   height: '10px',
                                   backgroundColor: '#007bff',
                                   borderRadius: '5px',
@@ -464,6 +482,10 @@ function InfluencerRanking() {
 
                           <td>
                             {formatFollowers(getSNSValue(influencer, "averageLikes"))}
+                          </td>
+
+                          <td>
+                            {formatFollowers(getSNSValue(influencer, "averageViews"))}
                           </td>
 
                         </tr>

@@ -26,7 +26,7 @@
 }
 
 .titleText {
-  padding-top: 60px;
+  padding-top: 50px;
   padding-left: 70px;
   margin-bottom: 20px;
 
@@ -355,6 +355,12 @@
   /* 동그랗게 만듦 */
   object-fit: cover;
   /* 이미지가 찌그러지지 않게 */
+}
+
+.ranking-table-div {
+  margin-top: 20px;
+  height: 800px;
+  overflow-y: auto;
 }
 
 .ranking-table {
