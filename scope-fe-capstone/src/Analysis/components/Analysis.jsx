@@ -21,20 +21,91 @@ const categories = [
   "여행", "게임", "그림", "영화 / 드라마", "요리", "자동차 / 바이크"
 ];
 
+const categoryMap = {
+  "Lifestyle_(sociology)": "일상 / Vlog",
+  "Fashion": "패션",
+  "Beauty": "뷰티",
+  "Food": "먹방",
+  "Entertainment": "엔터테인먼트",
+  "IT": "IT / 전자기기",
+  "Sports": "스포츠",
+  "Education": "교육",
+  "Kids": "키즈",
+  "Music": "음악",
+  "Interior": "인테리어",
+  "Pet": "펫 / 동물",
+  "Travel": "여행",
+  "Game": "게임",
+  "Art": "그림",
+  "Movie_Drama": "영화 / 드라마",
+  "Cooking": "요리",
+  "Vehicle": "자동차 / 바이크"
+};
+
 const followerRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
 const likesRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
 const viewsRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
 
+// const parseRange = (rangeStr) => {
+//   if (!rangeStr || rangeStr.trim() === "") return [0, Infinity]; // 🔹 whitespace 방어
+
+//   const cleaned = rangeStr.replace(/개|만/g, "").trim(); // 🔹 정규식으로 더 유연하게 처리
+
+//   if (rangeStr.includes("이상")) {
+//     const num = parseFloat(cleaned.replace("이상", ""));
+//     const unit = rangeStr.includes("만") ? 10000 : 1000;
+//     return isNaN(num) ? [0, Infinity] : [num * unit, Infinity];
+//   }
+
+//   const [startStr, endStr] = cleaned.split("~").map(str => str.trim());
+//   const unit = rangeStr.includes("만") ? 10000 : 1000;
+
+//   const start = parseFloat(startStr) * unit;
+//   const end = parseFloat(endStr) * unit;
+
+//   // 🔹 안전한 fallback
+//   if (isNaN(start) || isNaN(end)) return [0, Infinity];
+
+//   return [start, end];
+// };
+
 const parseRange = (rangeStr) => {
   if (!rangeStr || rangeStr === "") return [0, Infinity];
-  if (rangeStr === "100만 이상") return [1000000, Infinity];
-  const unit = rangeStr.includes("만") ? 10000 : 1000;
-  const [start, end] = rangeStr.replace("만", "").replace("개", "").split(" ~ ").map(v => parseFloat(v) * unit);
+
+  // "100만 이상" 처리
+  if (rangeStr.includes("이상")) {
+    const str = rangeStr.replace("개", "").replace("이상", "");
+    const num = str.includes("만")
+      ? parseFloat(str.replace("만", "")) * 10000
+      : str.includes("천")
+      ? parseFloat(str.replace("천", "")) * 1000
+      : parseFloat(str);
+    return [num, Infinity];
+  }
+
+  // "1천 ~ 1만" 처리
+  const [startRaw, endRaw] = rangeStr.replace("개", "").split(" ~ ");
+  const start =
+    startRaw.includes("만")
+      ? parseFloat(startRaw.replace("만", "")) * 10000
+      : startRaw.includes("천")
+      ? parseFloat(startRaw.replace("천", "")) * 1000
+      : parseFloat(startRaw);
+
+  const end =
+    endRaw.includes("만")
+      ? parseFloat(endRaw.replace("만", "")) * 10000
+      : endRaw.includes("천")
+      ? parseFloat(endRaw.replace("천", "")) * 1000
+      : parseFloat(endRaw);
+
   return [start, end];
 };
 
+
+
 const Analysis = () => {
-  const [selectedSNS, setSelectedSNS] = useState([]);
+  const [selectedSNS, setSelectedSNS] = useState("instagram");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFollowers, setSelectedFollowers] = useState(["", ""]);
@@ -46,19 +117,47 @@ const Analysis = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const apiData = await fetchAnalysisData();
-        const formatted = apiData.map((item, index) => ({
-          id: index + 1,
-          name: item.name,
-          followers: item.followers || 0,
-          avgViews: item.averageViews || 0,
-          avgLikes: item.averageLikes || 0,
-          avgComments: item.averageComments || 0,
-          sns: ["instagram", "youtube", "tiktok"].filter((_, i) => index % (i + 2) === 0),
-          category: [["먹방"], ["뷰티"], ["패션"], ["여행"]][index % 4],
-          tags: [["하이텐션"], ["감성"], ["정보"], ["전문가"]][index % 4],
-          profileImage: getProfileImage(item.name)
-        }));
+        const apiResponse = await fetchAnalysisData();
+        const apiData = apiResponse.influencers || [];
+
+        const formatted = apiData.map((item, index) => {
+          const sns = [];
+          if (item.instaFollowers > 0) sns.push("instagram");
+          if (item.youFollowers > 0) sns.push("youtube");
+          if (item.tikFollowers > 0) sns.push("tiktok");
+
+          const mappedCategory = categoryMap[item.categories] || "기타";
+
+          return {
+            id: index + 1,
+            name: item.name,
+            profileImage: getProfileImage(item.name),
+            category: [mappedCategory],
+            tags: item.tags ? item.tags.split(",") : [],
+            sns: sns,
+            snsData: {
+              instagram: item.instaFollowers ? {
+                followers: item.instaFollowers,
+                avgViews: item.instaAverageViews || 0,
+                avgLikes: item.instaAverageLikes || 0,
+                avgComments: 0,
+              } : null,
+              youtube: item.youFollowers ? {
+                followers: item.youFollowers,
+                avgViews: item.youAverageViews || 0,
+                avgLikes: item.youAverageLikes || 0,
+                avgComments: 0,
+              } : null,
+              tiktok: item.tikFollowers ? {
+                followers: item.tikFollowers,
+                avgViews: item.tikAverageViews || 0,
+                avgLikes: item.tikAverageLikes || 0,
+                avgComments: 0,
+              } : null,
+            }
+          };
+        });
+
         setOriginalList(formatted);
         setFilteredList(formatted);
       } catch (err) {
@@ -69,9 +168,7 @@ const Analysis = () => {
   }, []);
 
   const toggleSNS = (snsKey) => {
-    setSelectedSNS((prev) =>
-      prev.includes(snsKey) ? prev.filter((s) => s !== snsKey) : [...prev, snsKey]
-    );
+    setSelectedSNS(snsKey);
   };
 
   const toggleCategory = (category) => {
@@ -95,7 +192,6 @@ const Analysis = () => {
   };
 
   const resetFilters = () => {
-    setSelectedSNS([]);
     setSelectedCategories([]);
     setSelectedFollowers(["", ""]);
     setSelectedLikes(["", ""]);
@@ -103,21 +199,101 @@ const Analysis = () => {
     setFilteredList(originalList);
   };
 
+  // const handleDetailedAnalysis = () => {
+  //   const [followerMin, followerMax] = parseRange(selectedFollowers.join(" ~ "));
+  //   const [likesMin, likesMax] = parseRange(selectedLikes.join(" ~ "));
+  //   const [viewsMin, viewsMax] = parseRange(selectedViews.join(" ~ "));
+  //   console.log("👀 Followers Range:", followerMin, followerMax);
+
+ 
+  //   // const result = originalList.filter((inf) => {
+  //   //   const snsData = inf.snsData[selectedSNS];
+  //   //   if (!snsData) return false;
+
+  //   //   const categoryMatch = selectedCategories.length === 0 || selectedCategories.some((cat) => inf.category.includes(cat));
+  //   //   const followersMatch = selectedFollowers[0] === "" || (snsData.followers >= followerMin && snsData.followers <= followerMax);
+  //   //   const likesMatch = selectedLikes[0] === "" || (snsData.avgLikes >= likesMin && snsData.avgLikes <= likesMax);
+  //   //   const viewsMatch = selectedViews[0] === "" || (snsData.avgViews === 0 ? true : (snsData.avgViews >= viewsMin && snsData.avgViews <= viewsMax));
+
+  //   //   return categoryMatch && followersMatch && likesMatch && viewsMatch;
+  //   // });
+  //   const result = originalList.filter((inf) => {
+  //     const snsData = inf.snsData[selectedSNS];
+  //     if (!snsData) return false;
+
+  //     const hasAnyValidData = Object.values(inf.snsData).some(
+  //       (sns) => sns && (sns.followers > 0 || sns.avgLikes > 0 || sns.avgViews > 0)
+  //     );
+  //     if (!hasAnyValidData) return false;
+    
+  //     const categoryMatch =
+  //       selectedCategories.length === 0 ||
+  //       selectedCategories.some((cat) => inf.category.includes(cat));
+  //     const followersMatch =
+  //       selectedFollowers[0] === "" ||
+  //       (snsData.followers >= followerMin && snsData.followers <= followerMax);
+  //     const likesMatch =
+  //       selectedLikes[0] === "" ||
+  //       (snsData.avgLikes >= likesMin && snsData.avgLikes <= likesMax);
+  //     const viewsMatch =
+  //       selectedViews[0] === "" ||
+  //       (snsData.avgViews >= viewsMin && snsData.avgViews <= viewsMax);
+    
+  //     return categoryMatch && followersMatch && likesMatch && viewsMatch;
+  //   });
+    
+  //   setFilteredList(result);
+  // };
+
   const handleDetailedAnalysis = () => {
     const [followerMin, followerMax] = parseRange(selectedFollowers.join(" ~ "));
     const [likesMin, likesMax] = parseRange(selectedLikes.join(" ~ "));
     const [viewsMin, viewsMax] = parseRange(selectedViews.join(" ~ "));
-
+  
+    console.log("팔로워 범위:", followerMin, followerMax);
+    console.log("좋아요 범위:", likesMin, likesMax);
+    console.log("조회수 범위:", viewsMin, viewsMax);
+  
     const result = originalList.filter((inf) => {
-      const snsMatch = selectedSNS.length === 0 || selectedSNS.some((sns) => inf.sns.includes(sns));
-      const categoryMatch = selectedCategories.length === 0 || selectedCategories.some((cat) => inf.category.includes(cat));
-      const followersMatch = inf.followers >= followerMin && inf.followers <= followerMax;
-      const likesMatch = inf.avgLikes >= likesMin && inf.avgLikes <= likesMax;
-      const viewsMatch = inf.avgViews >= viewsMin && inf.avgViews <= viewsMax;
-      return snsMatch && categoryMatch && followersMatch && likesMatch && viewsMatch;
+      const snsData = inf.snsData[selectedSNS];
+      if (!snsData) return false;
+  
+      // 디버깅 로그
+      console.log(`🔍 ${inf.name} (${selectedSNS})`);
+      console.log("  팔로워:", snsData.followers);
+      console.log("  평균 좋아요:", snsData.avgLikes);
+      console.log("  평균 조회수:", snsData.avgViews);
+  
+      const categoryMatch =
+        selectedCategories.length === 0 ||
+        selectedCategories.some((cat) => inf.category.includes(cat));
+  
+      const followersMatch =
+        selectedFollowers[0] === "" ||
+        (snsData.followers >= followerMin && snsData.followers <= followerMax);
+  
+      const likesMatch =
+        selectedLikes[0] === "" ||
+        (snsData.avgLikes >= likesMin && snsData.avgLikes <= likesMax);
+  
+      const viewsMatch =
+        selectedViews[0] === "" ||
+        (snsData.avgViews === 0 ? true : (snsData.avgViews >= viewsMin && snsData.avgViews <= viewsMax));
+  
+      console.log("  ✅ 조건 일치 여부:", {
+        categoryMatch,
+        followersMatch,
+        likesMatch,
+        viewsMatch,
+      });
+  
+      return categoryMatch && followersMatch && likesMatch && viewsMatch;
     });
+  
+    console.log("📌 최종 결과 개수:", result.length);
     setFilteredList(result);
   };
+  
 
   return (
     <div className="container">
@@ -208,8 +384,62 @@ const Analysis = () => {
         )}
 
         <hr />
+
         <div className="table-container">
-          <table className="influencer-table">
+      <table className="influencer-table">
+        <thead>
+          <tr>
+            <th>계정</th>
+            <th>카테고리</th>
+            <th>태그</th>
+            <th>팔로워 수</th>
+            <th>평균 조회수</th>
+            <th>평균 좋아요 수</th>
+            <th>평균 댓글 수</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredList.length > 0 ? filteredList.map((inf) => {
+            const snsData = inf.snsData[selectedSNS];
+            if (!snsData) return null;
+            return (
+              <tr key={inf.id}>
+                <td>
+                  <div className="account-info-container">
+                    <img src={inf.profileImage} alt={inf.name} className="profile-img" />
+                    <div className="account-details">
+                      <div className="account-name">{inf.name}</div>
+                      <div className="account-description">인플루언서 설명</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div className="category-container">
+                    {inf.category.map((cat, idx) => (
+                      <span key={idx} className="category-box">{cat}</span>
+                    ))}
+                  </div>
+                </td>
+                <td>
+                  <div className="tag-container">
+                    {inf.tags.map((tag, idx) => (
+                      <span key={idx} className="tag-box">{tag}</span>
+                    ))}
+                  </div>
+                </td>
+                <td>{snsData.followers.toLocaleString()}</td>
+                <td>{snsData.avgViews.toLocaleString()}</td>
+                <td>{snsData.avgLikes.toLocaleString()}</td>
+                <td>{snsData.avgComments}</td>
+              </tr>
+            );
+          }) : (
+            <tr><td colSpan="7" className="no-result">조건에 맞는 인플루언서가 없습니다.</td></tr>
+          )}
+        </tbody>
+      </table>
+        {/* <div className="table-container"> 
+           <table className="influencer-table">
             <thead>
               <tr>
                 <th>계정</th>
@@ -260,7 +490,9 @@ const Analysis = () => {
                 </tr>
               )}
             </tbody>
-          </table>
+          </table> */}
+
+
         </div>
       </div>
 
