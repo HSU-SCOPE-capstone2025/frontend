@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SNSContent from "./SNSContent";
 import AccountContent from "./AccountContent";
 import "../css/DetailAnalysis.css";
+// import { fetchInfluencerDetail } from "../../api/DetailApi";
 
 import influencer from "../../assets/images/influencer.png";
 import instagramlink from "../../assets/images/link.png";
 
 const DetailAnalysis = () => {
+    // const { you_id } = useParams(); // URL에서 name 추출
+    // const [influencerData, setInfluencerData] = useState(null);
     const [activeTab, setActiveTab] = useState("sns");
     const [activeSNS, setActiveSNS] = useState("instagram");
+    // const [snsData, setSnsData] = useState(null);
+    // const [accountData, setAccountData] = useState(null);
+
+
+    //     useEffect(() => {
+    //     if (activeTab === "sns") {
+    //       fetchSNSData(you_id).then(data => setSnsData(data));
+    //     } else if (activeTab === "analysis") {
+    //       fetchAccountData(you_id).then(data => setAccountData(data));
+    //     }
+    //   }, [activeTab, you_id]);
+
+    // if (!influencerData) return <div>로딩 중...</div>;
 
     const summaryData = {
         instagram: {
@@ -111,6 +128,9 @@ const DetailAnalysis = () => {
                         >
                             계정 분석
                         </button>
+
+                        {/* <button onClick={() => setActiveTab("sns")}>SNS</button>
+                        <button onClick={() => setActiveTab("analysis")}>계정 분석</button> */}
                     </div>
                 </div>
 
@@ -118,6 +138,8 @@ const DetailAnalysis = () => {
                 <div>
                     {activeTab === "sns" && <SNSContent />}
                     {activeTab === "analysis" && <AccountContent />}
+                    {/* {activeTab === "sns" && snsData && <SNSContent data={snsData} />}
+                    {activeTab === "analysis" && accountData && <AccountContent data={accountData} />} */}
                 </div>
             </div>
         </div>

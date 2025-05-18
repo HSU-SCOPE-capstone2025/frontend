@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import '../css/InfluencerRanking.css';
 //import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
@@ -102,7 +102,7 @@ function InfluencerRanking() {
 
 
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   //const [selected, setSelected] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [platformViewMode, setPlatformViewMode] = useState(false);
@@ -536,7 +536,10 @@ function InfluencerRanking() {
                           <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
 
                           <td> {/* 채널명 (이미지+채널명) */}
-                            <div className="ranking-account-info-container">
+                            <div className="ranking-account-info-container"
+                              // onClick={() => navigate(`/DetailAnalysis/${influencer.you_id}`)}
+                              style={{ cursor: "pointer" }}
+                            >
                               <img
                                 src={influencer.profileImage}
                                 alt={influencer.name}
