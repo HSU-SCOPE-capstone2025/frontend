@@ -75,8 +75,8 @@ html {
 }
 
 .profile-analysis-box-big {
-    width: 950px;
-    height: 600px;
+    width: 1350px;
+    height: 630px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
@@ -93,8 +93,12 @@ html {
     display: inline;
 }
 
+.blue-text {
+    color: #0071E3;
+}
+
 .profile-analysis-sub-title {
-    color: #AAAAAA;
+    color: #2B2F33;
     font-family: Paperlogy;
     font-size: 20px;
     font-style: normal;
@@ -176,12 +180,12 @@ html {
 }
 
 .profile-analysis-title3 {
+    color: #2B2F33;
     font-family: Paperlogy;
     font-size: 18px;
-    font-weight: 500;
     font-style: normal;
-    white-space: nowrap;
-    color: #AAAAAA;
+    font-weight: 500;
+    line-height: normal;
 
     padding-left: 180px;
     padding-bottom: 25px;
@@ -235,4 +239,21 @@ html {
     font-size: 16px;
     font-style: normal;
     line-height: normal;
+}
+
+.custom-dropdown {
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 16px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    border: none;
+    /* 선 없앰 */
+    outline: none;
+    padding: 8px 12px;
+
 }

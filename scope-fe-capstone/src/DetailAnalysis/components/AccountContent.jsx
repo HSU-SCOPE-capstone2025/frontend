@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/AccountContent.css";
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart } from "recharts";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart, Legend } from "recharts";
+import influencerAccountData from "../../data/influencerAccountData.js";
+import PlatformPieChart from "./PlatformPieChart.jsx";
 
 const TENDENCY_DATA = [
   { name: "지지하는", value: 30, emoji: "🥰", color: "#E2FFD1" },
@@ -173,35 +175,15 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 
 
 const AccountContent = () => {
+  const [selectedScopePlatform, setSelectedScopePlatform] = useState("youtube");
+  const scopeScoreData = influencerAccountData.platformScores[selectedScopePlatform] || [];
+  const average =
+    scopeScoreData.length > 0
+      ? scopeScoreData.reduce((sum, d) => sum + d.scopeScore, 0) / scopeScoreData.length
+      : 0;
 
   const [selectedTopic, setSelectedTopic] = useState(null);
 
-  // 언어 바
-  const LanguageBar = ({ language, percent, color = "#0071E3" }) => (
-    <div style={{ marginBottom: "40px" }}>
-      <div style={{ marginBottom: "4px", fontSize: "16px", fontWeight: "500" }}>
-        {language}
-      </div>
-      <div
-        style={{
-          backgroundColor: "#e0e0e0",
-          borderRadius: "20px",
-          height: "10px",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: color,
-            borderRadius: "20px",
-            height: "100%",
-            width: `${percent}%`,
-            transition: "width 0.5s",
-          }}
-        ></div>
-      </div>
-    </div>
-  );
 
   const sortedEmotionData = [...TENDENCY_DATA].sort((a, b) => b.value - a.value);
 
@@ -217,10 +199,10 @@ const AccountContent = () => {
   const percentage = ((validSupporters / totalFollowers) * 100).toFixed(1); // 백분율 계산
 
   // 차트 데이터
-  const data = [
-    { name: "유효 팔로워", value: validSupporters, color: "#0071E3" },
-    { name: "기타 팔로워", value: totalFollowers - validSupporters, color: "#D9D9D9" },
-  ];
+  // const data = [
+  //   { name: "유효 팔로워", value: validSupporters, color: "#0071E3" },
+  //   { name: "기타 팔로워", value: totalFollowers - validSupporters, color: "#D9D9D9" },
+  // ];
 
   const influencerName = "이사배";
   const influencerSupport = 32000;
@@ -254,447 +236,110 @@ const AccountContent = () => {
       <div className="profile-detail-container">
 
         <div className="account-section-nav">
-          <a href="#followerSupport" className="account-section-link">팔로워 서포트</a>
+          <a href="#scopeScore" className="account-section-link">SCOPE 점수</a>
           <a href="#engagement" className="account-section-link">인게이지먼트</a>
           <a href="#audience" className="account-section-link">오디언스</a>
         </div>
 
-        <p id="followerSupport" className="profile-analysis-title2">팔로워 서포트</p>
-        <p className="profile-analysis-title3">계정의 팔로워 수와 질을 심층적으로 이해하고, 영향력을 측정합니다. 또한 장기적 관점에서의 성장 잠재력과 시장 내 위치를 평가할 수 있습니다.</p>
+        <p id="scopeScore" className="profile-analysis-title2">SCOPE 점수</p>
+        <p className="profile-analysis-title3">팔로워 댓글을 분석해 핵심 지지층의 규모를 점수로 환산하고, 인플루언서의 핵심 지지층의 영향력과 정도를 분석합니다.<br />
+          핵심 지지층이면 인플루언서에게 충성도가 높고, 해당 인플루언서를 지지하는 경향이 높게 나타납니다.<br></br><br></br>
+          SCOPE 점수에 더욱 자세히 알고싶다면 이쪽을 클릭하세요</p>
 
         <div className="profile-analysis-box-array">
-          { /*1. 예상 팔로워 서포트 비율 */}
-          <div className="profile-analysis-box">
+          <div className="profile-analysis-box-big">
             <div className="inline-block-div">
               <p className="profile-analysis-sub-title">
-                예상 팔로워 서포트 비율
+                SCOPE 점수 변화 그래프
               </p>
+              <p className="normal-text">
+                이 그래프는 해당 인플루언서 팔로워의 반응이 어떻게 달려졌는지 시각적으로 보여줍니다.<br />
+                점수가 상승하면 핵심 지지층의 <span className="blue-text">지지도가 강화</span>되었음을, 하락 시에는 <span className="blue-text">관심 이탈이나 부정적 반응</span>이 증가했음을 의미합니다.
+              </p>
+              <br />
+              <p className="normal-text">SCOPE 점수 변화 그래프</p>
 
-              {/* 설명 */}
-              <div>
-                <div>
-                  <span style={{ width: "12px", height: "12px", background: "#0071E3", borderRadius: "50%", display: "inline-block" }}></span>
-                  <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>예상 유효 팔로워 서포트 수</span>
-                  <span className="profile-analysis-text" style={{ marginLeft: "40px" }}>3.2만 명</span>
-                </div>
-                <div style={{ marginTop: "8px" }}>
-                  <span style={{ width: "12px", height: "12px", background: "#d9d9d9", borderRadius: "50%", display: "inline-block" }}></span>
-                  <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>팔로워 수</span>
-                  <span className="profile-analysis-text" style={{ marginLeft: "145px" }}>10.4만 명</span>
-                </div>
+              <div style={{ marginLeft: "1000px" }}>
+                <label htmlFor="scope-platform-select" className="normal-text" style={{ fontSize: "16px" }}>플랫폼 선택: </label>
+                <select
+                  id="scope-platform-select"
+                  value={selectedScopePlatform}
+                  onChange={(e) => setSelectedScopePlatform(e.target.value)}
+                  className="custom-dropdown"
+                >
+                  <option value="youtube">유튜브</option>
+                  <option value="instagram">인스타그램</option>
+                  <option value="tiktok">틱톡</option>
+                </select>
               </div>
 
-              {/* 도넛형 차트 */}
-              <div className="follower-chart-wrapper">
-                <PieChart width={200} height={200}>
-                  <Pie
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={53} // 도넛 형태
-                    outerRadius={80}
-                    fill="#0071E3"
-                    dataKey="value"
-                  >
-                    {data.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-
-                  {/* 중앙에 % 표시 */}
-                  <foreignObject x="50" y="50" width="100" height="100">
-                    <div className="profile-percent-text">
-                      {percentage}%
-                    </div>
-                  </foreignObject>
-                </PieChart>
-
-                <p className="profile-analysis-text" style={{ fontSize: "14px" }}>팔로워 대비 팔로워 서포트</p>
-              </div>
-            </div>
-          </div>
-
-          { /* 2. 예상 팔로워 서포트 비교 */}
-          <div className="profile-analysis-box">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">예상 팔로워 서포트 비교</p>
-              <p className="average-line-text">
-                팔로워 서포트의 수가 <span style={{ color: "#0071E3" }}>{influencerSupport.toLocaleString()}명</span>
-                으로<br />
-                유사 그룹 평균과 <span style={{ color: "#0071E3" }}>비슷합니다</span>
-              </p>
-
-              {/* 막대 + 텍스트를 중앙 정렬 */}
-              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", width: "100%" }}>
-                {[{ name: influencerName, value: influencerSupport, color: "#0071E3" }, { name: "유사 그룹 평균", value: averageGroupSupport, color: "#D9D9D9" }].map((item, index) => (
-                  <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    {/* 개별 막대 그래프 */}
-                    <ResponsiveContainer width={180} height={150}>
-                      <BarChart data={[{ name: item.name, value: item.value }]}>
-                        <XAxis hide />
-                        <YAxis hide domain={[0, maxValue]} />
-                        <Bar dataKey="value" radius={[8, 8, 8, 8]}>
-                          <Cell fill={item.color} />
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
-
-                    {/* 해당 막대에 맞는 텍스트 */}
-                    <p style={{
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      marginTop: "10px",
-                      fontFamily: "Paperlogy",
-                      color: index === 0 ? "#0071E3" : "#333" // 왼쪽만 보라색 적용
-                    }}>
-                      {(item.value / 10000).toFixed(1)}만명
-                    </p>
-                    <p style={{
-                      marginTop: "-6px",
-                      fontSize: "14px",
-                      fontFamily: "Paperlogy",
-                      fontWeight: "500",
-                      color: index === 0 ? "#0071E3" : "#666" // 왼쪽만 보라색 적용
-                    }}>
-                      {item.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 3. 평균 도달 수 */}
-          <div className="profile-analysis-box">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                예상 팔로워 서포트 평균
-              </p>
-
-              <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 24개 기준
-              </p>
-              <div className="flex-div">
-                <div className="inline-block-div">
-                  <p className="average-line-text">평균 도달 수</p>
-                  <div className="flex-div">
-                    <p className="average-line-big-text">2.1 <span className="average-line-text">만 명</span>
-                    </p>
-                  </div>
-                </div>
-                <ResponsiveContainer width={250} height={200}>
-                  <BarChart
-                    data={recentSupportData}
-                  >
-                    {/* X축 숨기기 */}
-                    <XAxis hide />
-                    <YAxis hide domain={[0, maxValue]} />
-                    <Tooltip
-                      cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} // 마우스 올릴 때 막대 크기에 딱 맞게 강조
-                    />
-
-                    {/* 막대 그래프 */}
-                    <Bar
-                      dataKey="value"
-                      fill="#D9D9D9"
-                      barSize={12} // 막대 폭 조정
-                    />
-
-                    {/* 평균선 */}
-                    <ReferenceLine
-                      y={averageSupport}
-                      stroke="#0071E3"
-                      strokeWidth={12} // 선 굵기 증가
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        { /*4. 구독자 성장률 */}
-        <div className="profile-analysis-box-array">
-          <div className="profile-analysis-box">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">구독자 성장률</p>
-              <p className="profile-analysis-text">구독자가 30일 전 대비</p>
-
-
-              <div style={{ textAlign: "center" }}>
-                {/* 상단 텍스트 및 화살표 */}
-                <div className="sub-growth-rate-text">
-                  <span>2.2만 명</span>
-
-                </div>
-
-                {/* 꺾은선 그래프 */}
-                <ResponsiveContainer width={330} height={200}>
-                  <LineChart data={subData}>
+              <div style={{ width: "1200px", height: 300, marginTop: "1rem" }}>
+                <ResponsiveContainer>
+                  <LineChart data={scopeScoreData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="week" tick={{ fontSize: 14 }} />
-                    <YAxis tick={{ fontSize: 14 }} domain={["dataMin", "dataMax"]} />
-                    <Tooltip formatter={(value) => `${(value / 10000).toFixed(1)}만`} />
+                    <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                    <YAxis domain={[0, 100]} />
+                    <Tooltip />
+                    <Legend />
                     <Line
-                      type="liner" dataKey="subscribers" stroke="#0071E3" strokeWidth={3} dot={{ fill: "#7C7CFF", r: 5 }} />
+                      type="monotone"
+                      dataKey="scopeScore"
+                      stroke="#8884d8"
+                      strokeWidth={2}
+                      dot={{ r: 2 }}
+                      name="SCOPE 점수"
+                    />
+                    <ReferenceLine
+                      y={average}
+                      label={{
+                        value: `평균 (${average.toFixed(1)})`,
+                        position: "insideRight",
+                        fill: "#333",
+                        fontSize: 12
+                      }}
+                      stroke="red"
+                      strokeDasharray="5 5"
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-            </div>
-          </div>
 
-          { /* 5. 조회 성장률 */}
-          <div className="profile-analysis-box">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">조회 성장률</p>
-              <p className="average-line-text">
-                조회 성장률이 <span style={{ color: "#0071E3" }}>{viewGrowthRate.toFixed(1)}%</span>
-                으로<br />
-                유사 그룹 평균과 <span style={{ color: "#0071E3" }}>비슷합니다</span>
-              </p>
 
-              {/* 성장률 막대 + 텍스트 중앙 정렬 */}
-              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-end", width: "100%" }}>
-                {[
-                  { name: influencerName, value: viewGrowthRate, color: "#0071E3" },
-                  { name: "유사 그룹 평균", value: groupAverageGrowthRate, color: "#D9D9D9" }
-                ].map((item, index) => (
-                  <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    {/* 개별 막대 그래프 */}
-                    <ResponsiveContainer width={180} height={150}>
-                      <BarChart data={[{ name: item.name, value: item.value }]}>
-                        <XAxis hide />
-                        <YAxis hide domain={[0, Math.max(viewGrowthRate, groupAverageGrowthRate) * 1.2]} />
-                        <Bar dataKey="value" radius={[8, 8, 8, 8]}>
-                          <Cell fill={item.color} />
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
-
-                    {/* 해당 막대에 맞는 텍스트 */}
-                    <p style={{
-                      fontSize: "16px",
-                      fontWeight: "500",
-                      marginTop: "10px",
-                      fontFamily: "Paperlogy",
-                      color: index === 0 ? "#0071E3" : "#333" // 왼쪽만 보라색 적용
-                    }}>
-                      {item.value.toFixed(1)}%
-                    </p>
-                    <p style={{
-                      marginTop: "-6px",
-                      fontSize: "14px",
-                      fontFamily: "Paperlogy",
-                      fontWeight: "500",
-                      color: index === 0 ? "#0071E3" : "#666" // 왼쪽만 보라색 적용
-                    }}>
-                      {item.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 6. 컨텐츠 업로드 빈도 */}
-          <div className="profile-analysis-box">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                컨텐츠 업로드 빈도
-              </p>
-
-              <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 24개 기준
-              </p>
-              <div className="flex-div">
-                <div className="inline-block-div">
-                  <p className="average-line-text">평균 도달 수</p>
-                  <div className="flex-div">
-                    <p className="average-line-big-text">3 <span className="average-line-text">일</span>
-                    </p>
-                  </div>
-                </div>
-                <ResponsiveContainer width={250} height={200}>
-                  <BarChart
-                    data={recentSupportData}
-                  >
-                    {/* X축 숨기기 */}
-                    <XAxis hide />
-                    <YAxis hide domain={[0, maxValue]} />
-                    <Tooltip
-                      cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} // 마우스 올릴 때 막대 크기에 딱 맞게 강조
-                    />
-
-                    {/* 막대 그래프 */}
-                    <Bar
-                      dataKey="value"
-                      fill="#D9D9D9"
-                      barSize={12} // 막대 폭 조정
-                    />
-
-                    {/* 평균선 */}
-                    <ReferenceLine
-                      y={averageSupport}
-                      stroke="#0071E3"
-                      strokeWidth={12} // 선 굵기 증가
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
             </div>
           </div>
         </div>
 
-        <p id="engagement" className="profile-analysis-title2">인게이지먼트</p>
-        <p className="profile-analysis-title3">전체 콘텐츠 상호작용 분석으로 인플루언서의 콘텐츠가 얼마나 효과적으로 오디언스와 상호작용하는지를 평가합니다.</p>
-
+        <p id="scopeScore" className="profile-analysis-title2">예상 핵심 지지층 비율</p>
+        <p className="profile-analysis-title3">게시물에서 전체 팔로워를 기반으로 하여 SCOPE 점수가 높은 팔로워들의 비율입니다.<br />단순한 팔로워 수가 아닌 ‘실제로 반응하고 지지하는 팬’의 규모를 확인할 수 있으며, 그로인해 인플루언서의 진짜 영향력을 정확히 평가할 수 있습니다.</p>
         <div className="profile-analysis-box-array">
-          {/* 7. 좋아요 수 */}
           <div className="profile-analysis-box">
             <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                좋아요 수
-              </p>
-
-              <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 7개 기준
-              </p>
-              <div className="flex-div">
-                <div className="inline-block-div">
-                  <p className="average-line-text">좋아요 수 평균</p>
-                  <div className="flex-div">
-                    <p className="average-line-big-text">3.2 <span className="average-line-text">만</span>
-                    </p>
-                  </div>
-                </div>
-                <ResponsiveContainer width={250} height={200}>
-                  <BarChart
-                    data={recentSupportData}
-                  >
-                    {/* X축 숨기기 */}
-                    <XAxis hide />
-                    <YAxis hide domain={[0, maxValue]} />
-                    <Tooltip
-                      cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} // 마우스 올릴 때 막대 크기에 딱 맞게 강조
-                    />
-
-                    {/* 막대 그래프 */}
-                    <Bar
-                      dataKey="value"
-                      fill="#D9D9D9"
-                      barSize={12} // 막대 폭 조정
-                    />
-
-                    {/* 평균선 */}
-                    <ReferenceLine
-                      y={averageSupport}
-                      stroke="#0071E3"
-                      strokeWidth={12} // 선 굵기 증가
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div style={{ display: "flex", justifyContent: "space-around" }}>
+                <PlatformPieChart platform="youtube" data={influencerAccountData} />
               </div>
             </div>
           </div>
 
-          {/* 8. 댓글글 수 */}
           <div className="profile-analysis-box">
             <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                댓글 수
-              </p>
-
-              <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 7개 기준
-              </p>
-              <div className="flex-div">
-                <div className="inline-block-div">
-                  <p className="average-line-text">댓글 수 평균</p>
-                  <div className="flex-div">
-                    <p className="average-line-big-text">3.6 <span className="average-line-text">만</span>
-                    </p>
-                  </div>
-                </div>
-                <ResponsiveContainer width={250} height={200}>
-                  <BarChart
-                    data={recentSupportData}
-                  >
-                    {/* X축 숨기기 */}
-                    <XAxis hide />
-                    <YAxis hide domain={[0, maxValue]} />
-                    <Tooltip
-                      cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} // 마우스 올릴 때 막대 크기에 딱 맞게 강조
-                    />
-
-                    {/* 막대 그래프 */}
-                    <Bar
-                      dataKey="value"
-                      fill="#D9D9D9"
-                      barSize={12} // 막대 폭 조정
-                    />
-
-                    {/* 평균선 */}
-                    <ReferenceLine
-                      y={averageSupport}
-                      stroke="#0071E3"
-                      strokeWidth={12} // 선 굵기 증가
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div style={{ display: "flex", justifyContent: "space-around" }}>
+                <PlatformPieChart platform="instagram" data={influencerAccountData} />
               </div>
             </div>
           </div>
 
-          {/* 9. 공유 수 */}
           <div className="profile-analysis-box">
             <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                공유 수
-              </p>
-
-              <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 7개 기준
-              </p>
-              <div className="flex-div">
-                <div className="inline-block-div">
-                  <p className="average-line-text">평균 도달 수</p>
-                  <div className="flex-div">
-                    <p className="average-line-big-text">5.6 <span className="average-line-text">천</span>
-                    </p>
-                  </div>
-                </div>
-                <ResponsiveContainer width={250} height={200}>
-                  <BarChart
-                    data={recentSupportData}
-                  >
-                    {/* X축 숨기기 */}
-                    <XAxis hide />
-                    <YAxis hide domain={[0, maxValue]} />
-                    <Tooltip
-                      cursor={{ fill: "rgba(0, 0, 0, 0.1)" }} // 마우스 올릴 때 막대 크기에 딱 맞게 강조
-                    />
-
-                    {/* 막대 그래프 */}
-                    <Bar
-                      dataKey="value"
-                      fill="#D9D9D9"
-                      barSize={12} // 막대 폭 조정
-                    />
-
-                    {/* 평균선 */}
-                    <ReferenceLine
-                      y={averageSupport}
-                      stroke="#0071E3"
-                      strokeWidth={12} // 선 굵기 증가
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div style={{ display: "flex", justifyContent: "space-around" }}>
+                <PlatformPieChart platform="tiktok" data={influencerAccountData} />
               </div>
             </div>
           </div>
+
+
         </div>
 
-        {/* 10. 오디언스 주요 성향향 */}
+
         <p id="audience" className="profile-analysis-title2">오디언스</p>
         <p className="profile-analysis-title3">해당 인플루언서가 어떤 오디언스와 가장 잘 소통하며, 인플루언서의 메시지가 어떤 범위로 퍼질 수 있는 지 이해하는데 도움을 줍니다.</p>
         <div className="profile-analysis-box-array">
@@ -755,36 +400,7 @@ const AccountContent = () => {
 
           </div>
 
-          <div className="profile-analysis-box" style={{ width: "350px", height: "600px" }}>
-            <div className="inline-block-div" style={{ paddingBottom: "150px" }}>
-              <div className="normal-text" style={{ width: "280px" }}>
-                <p className="profile-analysis-sub-title" style={{ marginBottom: "50px" }}>오디언스 언어 비율</p>
-                {/* <p className="profile-analysis-sub-title" style={{ fontSize: "14px", textAlign: "right" }}>
-                최근 게시물 7개 기준
-              </p> */}
-                <p>
-                  계정의 주요 오디언스는 주로{" "} <br></br>
-                  <span style={{ color: "#0071E3" }}>
-                    {languageData[0].language} ({languageData[0].percent}%)
-                  </span>{" "}
-                  를 사용합니다.
-                </p> <br /><br />
 
-                {languageData.map((lang, index) => (
-                  <LanguageBar
-                    key={index}
-                    language={lang.language}
-                    percent={lang.percent}
-                  />
-                ))}
-
-                {etcPercent > 0 && (
-                  <LanguageBar language="기타" percent={etcPercent} color="#6C6C6C" />
-                )}
-              </div>
-
-            </div>
-          </div>
 
         </div>
 
@@ -895,7 +511,7 @@ const AccountContent = () => {
 
 
       </div>
-    </div>
+    </div >
   );
 }
 
