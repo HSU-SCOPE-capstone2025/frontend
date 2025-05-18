@@ -5,20 +5,8 @@
     background: linear-gradient(180deg, #C3EBF9 0%, #FFF 104.03%);
 }
 
-.mainDiv3 {
-    width: 100vw;
-    padding-top: 140px;
-    padding-bottom: 140px;
-    background: #F4F6FF;
-    text-align: center;
-    display: flex;
-    /* Flexbox 사용 */
-    justify-content: center;
-    /* 가로 중앙 정렬 */
-}
-
 .maingradText {
-    padding-top: 80px;
+    padding-top: 140px;
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;

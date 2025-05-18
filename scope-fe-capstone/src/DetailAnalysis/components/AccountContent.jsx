@@ -173,85 +173,10 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 
 
 const AccountContent = () => {
-  // 버블 차트 변수
-  // const [positions, setPositions] = useState([]);
-
-  // const calculateDiameter = (value) => {
-  //   if (value < 5) return 80;
-  //   if (value === 5) return 100;
-  //   return 100 + (value - 5) * 6; // 예: 10 -> 130, 15 -> 160
-  // };
-
-  // useEffect(() => {
-  //   const newPositions = [];
-  //   const centerX = 300;
-  //   const centerY = 250;
-  //   const minGap = 15;
-
-  //   const largestValue = Math.max(...TOPIC_DATA.map((d) => d.value));
-  //   const centerData = TOPIC_DATA.find((d) => d.value === largestValue);
-  //   const centerDiameter = calculateDiameter(centerData.value);
-
-  //   newPositions.push({
-  //     ...centerData,
-  //     x: centerX - centerDiameter / 2,
-  //     y: centerY - centerDiameter / 2,
-  //     diameter: centerDiameter,
-  //   });
-
-  //   const restData = TOPIC_DATA.filter((d) => d.name !== centerData.name);
-  //   const angleStep = (2 * Math.PI) / (restData.length - 1);
-  //   const radius = centerDiameter / 2 + minGap + 60;
-
-  //   let skippedIndex = null;
-
-  //   for (let i = 0; i < restData.length; i++) {
-  //     if (i === restData.length - 1) {
-  //       skippedIndex = i;
-  //       break;
-  //     }
-  //     const data = restData[i];
-  //     const angle = i * angleStep;
-  //     const diameter = calculateDiameter(data.value);
-  //     const x = centerX + radius * Math.cos(angle) - diameter / 2;
-  //     const y = centerY + radius * Math.sin(angle) - diameter / 2;
-
-  //     newPositions.push({
-  //       ...data,
-  //       x,
-  //       y,
-  //       diameter,
-  //     });
-  //   }
-
-  //   if (skippedIndex !== null) {
-  //     const data = restData[skippedIndex];
-  //     const angle = Math.PI / 4; // 대각선 방향
-  //     const diameter = calculateDiameter(data.value);
-  //     const x = centerX + (radius + 60) * Math.cos(angle) - diameter / 2;
-  //     const y = centerY + (radius + 60) * Math.sin(angle) - diameter / 2;
-
-  //     newPositions.push({
-  //       ...data,
-  //       x,
-  //       y,
-  //       diameter,
-  //     });
-  //   }
-
-  //   setPositions(newPositions);
-  // }, []);
-
-  // const totalValue = TOPIC_DATA.reduce((acc, cur) => acc + cur.value, 0);
-
-  // const getPercentage = (value) => ((value / totalValue) * 100).toFixed(1);
-
 
   const [selectedTopic, setSelectedTopic] = useState(null);
-  //버블 차트 변수 끝
 
-
-  // 언어 바바
+  // 언어 바
   const LanguageBar = ({ language, percent, color = "#0071E3" }) => (
     <div style={{ marginBottom: "40px" }}>
       <div style={{ marginBottom: "4px", fontSize: "16px", fontWeight: "500" }}>
