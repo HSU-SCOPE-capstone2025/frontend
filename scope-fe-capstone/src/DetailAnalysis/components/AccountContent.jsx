@@ -4,15 +4,16 @@ import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart, Legend } from "recharts";
 import influencerAccountData from "../../data/influencerAccountData.js";
 import PlatformPieChart from "./PlatformPieChart.jsx";
+// import { fetchAccountData } from "../../api/DetailApi.js";
 
 const TENDENCY_DATA = [
-  { name: "지지하는", value: 30, emoji: "🥰", color: "#E2FFD1" },
-  { name: "정보제공형", value: 20, emoji: "🧑‍🏫", color: "#CFE7FF" },
-  { name: "공격적인", value: 5, emoji: "😠", color: "#FFD7D7" },
-  { name: "유쾌함", value: 15, emoji: "😄", color: "#FFFCC7" },
+  { name: "지지적", value: 30, emoji: "🥰", color: "#E2FFD1" },
+  { name: "중립적 정보제공형", value: 20, emoji: "🧑‍🏫", color: "#E3E3E3" },
+  { name: "공격적", value: 5, emoji: "😡", color: "#FFD7D7" },
+  { name: "쾌활함", value: 15, emoji: "😄", color: "#FFFCC7" },
   { name: "분석적", value: 10, emoji: "🧐", color: "#D9DEFF" },
   { name: "스팸", value: 10, emoji: "🚫", color: "#EED1FF" },
-  { name: "중립적", value: 10, emoji: "😐", color: "#E3E3E3" },
+  { name: "공감하는", value: 10, emoji: "🥺", color: "#FFE8C0" },
 ];
 
 const TOPIC_DATA = [
@@ -173,8 +174,19 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
   );
 };
 
-
+// 안에 { influencerId } 넣기기
 const AccountContent = () => {
+
+  // const [accountData, setAccountData] = useState(null);
+
+  // useEffect(() => {
+  //   fetchAccountData(influencerId).then(setAccountData);
+  // }, [influencerId]);
+
+  // if (!accountData) return <div>로딩 중...</div>;
+
+
+
   const [selectedScopePlatform, setSelectedScopePlatform] = useState("youtube");
   const scopeScoreData = influencerAccountData.platformScores[selectedScopePlatform] || [];
   const average =
