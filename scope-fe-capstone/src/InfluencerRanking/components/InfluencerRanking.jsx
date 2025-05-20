@@ -77,6 +77,7 @@ function InfluencerRanking() {
           insta_averageLikes: item.instaAverageLikes,
           insta_averageViews: item.instaAverageViews,
           insta_scopeScore: item.instaFss,
+          insta_id: item.instaName,
 
           you_followers: item.youFollowers,
           you_averageLikes: item.youAverageLikes,
@@ -537,7 +538,7 @@ function InfluencerRanking() {
 
                           <td> {/* 채널명 (이미지+채널명) */}
                             <div className="ranking-account-info-container"
-                              // onClick={() => navigate(`/DetailAnalysis/${influencer.you_id}`)}
+                              onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
                               style={{ cursor: "pointer" }}
                             >
                               <img

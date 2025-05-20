@@ -3,25 +3,37 @@ import { useEffect, useState } from "react";
 import SNSContent from "./SNSContent";
 import AccountContent from "./AccountContent";
 import "../css/DetailAnalysis.css";
-// import { fetchInfluencerInfo  } from "../../api/DetailApi";
+// import { fetchInfluencerInfo, fetchSNSData, fetchAccountData } from "../../api/DetailApi";
 
 import influencer from "../../assets/images/influencer.png";
 import instagramlink from "../../assets/images/link.png";
 
 const DetailAnalysis = () => {
-    // const { insta_id } = useParams(); // URL에서 name 추출
+    // const { id } = useParams(); // 이 id가 바로 insta_id임
     // const [influencerData, setInfluencerData] = useState(null);
     const [activeTab, setActiveTab] = useState("sns");
     const [activeSNS, setActiveSNS] = useState("instagram");
+    //     const [influencerData, setInfluencerData] = useState(null);
     // const [snsData, setSnsData] = useState(null);
     // const [accountData, setAccountData] = useState(null);
 
+    // useEffect(() => {
+    //   const fetchAll = async () => {
+    //     try {
+    //       const influencer = await fetchInfluencerInfo(id);      // id 사용
+    //       const sns = await fetchSNSData(id);
+    //       const account = await fetchAccountData(id);
 
-//   useEffect(() => {
-//     fetchInfluencerInfo(id).then(data => setInfluencerInfo(data));
-//   }, [id]);
+    //       setInfluencerData(influencer);
+    //       setSnsData(sns);
+    //       setAccountData(account);
+    //     } catch (err) {
+    //       console.error("데이터 불러오기 실패:", err);
+    //     }
+    //   };
 
-//   if (!influencerInfo) return <div>로딩 중...</div>;
+    //   fetchAll();
+    // }, [id]);
 
     const summaryData = {
         instagram: {
@@ -131,8 +143,8 @@ const DetailAnalysis = () => {
                 <div>
                     {activeTab === "sns" && <SNSContent />}
                     {activeTab === "analysis" && <AccountContent />}
-                    {/* {activeTab === "sns" && <SNSContent influencerId={insta_id} />}
-                    {activeTab === "analysis" && <AccountContent influencerId={insta_id} />} */}
+                    {/* {activeTab === "sns" && <SNSContent snsData={snsData} />}
+                    {activeTab === "analysis" && <AccountContent accountData={accountData} />} */}
                 </div>
             </div>
         </div>
