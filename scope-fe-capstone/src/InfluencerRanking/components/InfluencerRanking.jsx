@@ -538,7 +538,7 @@ function InfluencerRanking() {
 
                           <td> {/* 채널명 (이미지+채널명) */}
                             <div className="ranking-account-info-container"
-                              onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
+                              // onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
                               style={{ cursor: "pointer" }}
                             >
                               <img
