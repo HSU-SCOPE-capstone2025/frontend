@@ -471,6 +471,11 @@ body {
   font-weight: 500;
   line-height: normal;
   margin-top: 20px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 선택된 버튼의 스타일 변경 */
@@ -659,7 +664,7 @@ body {
 
 .recommend-result-box {
   width: 1450px;
-  height: 900px;
+  height: 100%;
   flex-shrink: 0;
   border-radius: 30px;
   background: #FFF;
@@ -777,10 +782,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 87px;
+  min-width: 87px;
   height: 96px;
   border-radius: 10px;
   border: 1px solid #D0D0D0;
+  white-space: pre-wrap; /* 줄바꿈 허용 */
   background: #FFF;
 }
 

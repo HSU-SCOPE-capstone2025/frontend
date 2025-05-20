@@ -1,8 +1,8 @@
-// component/BarGraph.jsx
+
 import React from "react";
 
 const BarGraph = ({ score, maxScore = 10, width = 130, height = 10, color = "#007bff" }) => {
-  const percentage = Math.min(score / maxScore, 1); // 1.0 이상 넘지 않도록 제한
+  const percentage = Math.min(score / maxScore, 1); // 최대 1.0 (100%)
   return (
     <div style={{
       width: `${width}px`,

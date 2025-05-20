@@ -603,7 +603,7 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(2),
 .influencer-table td:nth-child(2) {
-    width: 160px; /* 카테고리 */
+    width: 120px; /* 카테고리 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -616,7 +616,7 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(3),
 .influencer-table td:nth-child(3) {
-    width: 160px; /* 태그 */
+    width: 210px; /* 태그 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;

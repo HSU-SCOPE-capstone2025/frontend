@@ -16,6 +16,8 @@ import emotionIconImage6 from "../../assets/images/Neutral.png";
 import InstaLogo from "../../assets/images/instagram_logo.png";
 import youtubeLogo from "../../assets/images/youtube_logo.png";
 import tiktokLogo from "../../assets/images/tiktok_logo.png";
+import { fetchFilteredInfluencers } from "../../api/recommendationApi";
+import { getProfileImage } from "../../utils/getProfileImage";
 
 const categories = [
   "뷰티",
@@ -38,6 +40,28 @@ const categories = [
   "기타",
 ];
 
+
+const categoryMap = {
+  "Lifestyle_(sociology)": "일상 / Vlog",
+  "Fashion": "패션",
+  "Beauty": "뷰티",
+  "Food": "먹방",
+  "Entertainment": "엔터테인먼트",
+  "IT": "IT / 전자기기",
+  "Sports": "스포츠",
+  "Education": "교육",
+  "Kids": "키즈",
+  "Music": "음악",
+  "Interior": "인테리어",
+  "Pet": "펫 / 동물",
+  "Travel": "여행",
+  "Video_game_culture": "게임",
+  "Art": "그림",
+  "Movie_Drama": "영화 / 드라마",
+  "Cooking": "요리",
+  "Vehicle": "자동차 / 바이크"
+};
+
 const featureTag = [
   "유머 / 예능",
   "감성 / 힐링",
@@ -58,11 +82,11 @@ const followerRanges = [
 
 const audienceTones = [
   { label: "지지적", value: "Supportive", icon: emotionIconImage1 },
-  { label: "정보제공형", value: "Informative", icon: emotionIconImage2 },
-  { label: "유쾌함", value: "Cheerful", icon: emotionIconImage3 },
+  { label: (<><div>중립적</div><div>정보제공형</div></>), value: "Neutral Informative", icon: emotionIconImage2 },
+  { label: "쾌활함", value: "Cheerful", icon: emotionIconImage3 },
   { label: "공격적인", value: "Aggressive", icon: emotionIconImage4 },
   { label: "분석적", value: "Analytical", icon: emotionIconImage5 },
-  { label: "중립적", value: "Neutral", icon: emotionIconImage6 },
+  { label: "공감하는", value: "Empathetic", icon: emotionIconImage6 },
 ];
 
 const Recommendation = () => {
@@ -228,49 +252,392 @@ const Recommendation = () => {
   // };
 
 
-  const handleSearch = () => {
-    // followers 계산: 가장 큰 SNS 팔로워 수로 설정
-    influencers.forEach((inf) => {
-      inf.followers = Math.max(
-        inf.insta_followers || 0,
-        inf.you_followers || 0,
-        inf.tik_followers || 0
-      );
-    });
+  // const handleSearch = () => {
+  //   // followers 계산: 가장 큰 SNS 팔로워 수로 설정
+  //   influencers.forEach((inf) => {
+  //     inf.followers = Math.max(
+  //       inf.insta_followers || 0,
+  //       inf.you_followers || 0,
+  //       inf.tik_followers || 0
+  //     );
+  //   });
   
-    // 팔로워 범위 파싱
-    const minFollowers = selectedRange
-      ? Number(selectedRange.min.toString().replace(/,/g, ""))
-      : 0;
-    const maxFollowers = selectedRange
-      ? selectedRange.max === "∞"
-        ? Infinity
-        : Number(selectedRange.max.toString().replace(/,/g, ""))
-      : Infinity;
+  //   // 팔로워 범위 파싱
+  //   const minFollowers = selectedRange
+  //     ? Number(selectedRange.min.toString().replace(/,/g, ""))
+  //     : 0;
+  //   const maxFollowers = selectedRange
+  //     ? selectedRange.max === "∞"
+  //       ? Infinity
+  //       : Number(selectedRange.max.toString().replace(/,/g, ""))
+  //     : Infinity;
   
-    // 필터 값 저장
-    setSelectedFilters({
-      categories: selectedCategories,
-      tags: selectedTags,
-      followers: selectedRange
-        ? `${selectedRange.min} ~ ${selectedRange.max}`
-        : "",
-      audienceTone: selectedAudienceTone || "",
-      sns: selectedSns || "",
-    });
+  //   // 필터 값 저장
+  //   setSelectedFilters({
+  //     categories: selectedCategories,
+  //     tags: selectedTags,
+  //     followers: selectedRange
+  //       ? `${selectedRange.min} ~ ${selectedRange.max}`
+  //       : "",
+  //     audienceTone: selectedAudienceTone || "",
+  //     sns: selectedSns || "",
+  //   });
   
-    // 필터링 (간단한 조건)
-    const result = influencers
-      .filter((inf) => {
-        return inf.followers >= minFollowers && inf.followers <= maxFollowers;
-      })
-      .filter((inf) => {
-        if (!selectedSns) return true;
-        return inf.sns.includes(selectedSns);
+  //   // 필터링 (간단한 조건)
+  //   const result = influencers
+  //     .filter((inf) => {
+  //       return inf.followers >= minFollowers && inf.followers <= maxFollowers;
+  //     })
+  //     .filter((inf) => {
+  //       if (!selectedSns) return true;
+  //       return inf.sns.includes(selectedSns);
+  //     });
+  
+  //   setFilteredInfluencers(result);
+  // };
+
+  // const handleSearch = async () => {
+  //   try {
+  //     const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
+  //     const data = await response.json();
+  
+  //     const filtered = data
+  //       .filter((inf) => {
+  //         // 카테고리 필터 (2개 중 하나라도 포함)
+  //         if (selectedCategories.length === 0) return true;
+  //         return selectedCategories.includes(categoryMap[inf.categories] || inf.categories);
+  //       })
+  //       .filter((inf) => {
+  //         // 태그 필터 (2개 중 하나라도 포함)
+  //         if (selectedTags.length === 0) return true;
+  //         const tagArray = inf.tag?.split(",").map((t) => t.trim()) || [];
+  //         return selectedTags.some((tag) => tagArray.includes(tag));
+  //       })
+  //       .filter((inf) => {
+  //         // SNS 필터
+  //         if (!selectedSns) return true;
+  //         const followers = {
+  //           instagram: inf.instaFollowers,
+  //           youtube: inf.youFollowers,
+  //           tiktok: inf.tikFollowers,
+  //         };
+  //         return followers[selectedSns] > 0;
+  //       })
+  //       .filter((inf) => {
+  //         // 팔로워 수 필터
+  //         const maxFollowers = Math.max(
+  //           inf.instaFollowers || 0,
+  //           inf.youFollowers || 0,
+  //           inf.tikFollowers || 0
+  //         );
+  //         const min = selectedRange ? Number(selectedRange.min.replace(/,/g, "")) : 0;
+  //         const max = selectedRange
+  //           ? selectedRange.max === "∞"
+  //             ? Infinity
+  //             : Number(selectedRange.max.replace(/,/g, ""))
+  //           : Infinity;
+  //         return maxFollowers >= min && maxFollowers <= max;
+  //       })
+  //       .filter((inf) => {
+  //         // 광고 단가 필터
+  //         if (!selectedAdCostRange) return true;
+  //         const costs = [
+  //           Number(inf.instaAd || 0),
+  //           Number(inf.youAd || 0),
+  //           Number(inf.tikAd || 0),
+  //         ];
+  //         const maxCost = Math.max(...costs);
+  //         return (
+  //           maxCost >= selectedAdCostRange.min &&
+  //           (selectedAdCostRange.max === Infinity || maxCost <= selectedAdCostRange.max)
+  //         );
+  //       })
+  //       .filter((inf) => {
+  //         // 오디언스 성향 필터
+  //         if (!selectedAudienceTone) return true;
+  //         return (
+  //           inf.instagramCommentCluster === selectedAudienceTone ||
+  //           inf.youtubeCommentCluster === selectedAudienceTone ||
+  //           inf.tiktokCommentCluster === selectedAudienceTone
+  //         );
+  //       })
+  //       .map((inf) => {
+  //         const maxFollowers = Math.max(
+  //           inf.instaFollowers || 0,
+  //           inf.youFollowers || 0,
+  //           inf.tikFollowers || 0
+  //         );
+  //         const maxAdCost = Math.max(
+  //           Number(inf.instaAd || 0),
+  //           Number(inf.youAd || 0),
+  //           Number(inf.tikAd || 0)
+  //         );
+  //         return {
+  //           name: inf.influencerName,
+  //           profileImage: getProfileImage(inf.influencerName),
+  //           description: "",
+  //           categories: [categoryMap[inf.categories] || inf.categories],
+  //           tags: inf.tag?.split(",").map((t) => t.trim()) || [],
+  //           followers: maxFollowers,
+  //           sns: [
+  //             inf.instaFollowers && "instagram",
+  //             inf.youFollowers && "youtube",
+  //             inf.tikFollowers && "tiktok",
+  //           ].filter(Boolean),
+  //           scopeScore: {
+  //             instagram: inf.instaFss || 0,
+  //             youtube: inf.youFss || 0,
+  //             tiktok: inf.tikFss || 0,
+  //           },
+  //           audienceTone:
+  //             inf.instagramCommentCluster ||
+  //             inf.youtubeCommentCluster ||
+  //             inf.tiktokCommentCluster ||
+  //             "",
+  //           estimatedAdCost: maxAdCost || 0,
+  //         };
+  //       });
+  
+  //     setFilteredInfluencers(filtered);
+  //   } catch (error) {
+  //     console.error("추천 데이터 로드 실패:", error);
+  //     alert("추천 인플루언서를 불러오는 데 실패했습니다.");
+  //   }
+  // };
+
+  // const handleSearch = async () => {
+  //   setSelectedFilters({
+  //     sns: selectedSns,
+  //     categories: selectedCategories,
+  //     tags: selectedTags,
+  //     followers: selectedRange ? `${selectedRange.min} ~ ${selectedRange.max}` : "",
+  //     audienceTone: selectedAudienceTone,
+  //   });
+  //   try {
+  //     const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
+  //     const data = await response.json();
+  
+  //     const minFollowers = selectedRange
+  //       ? Number(selectedRange.min.replace(/,/g, ""))
+  //       : 0;
+  //     const maxFollowers = selectedRange
+  //       ? selectedRange.max === "∞"
+  //         ? Infinity
+  //         : Number(selectedRange.max.replace(/,/g, ""))
+  //       : Infinity;
+  
+  //     const snsKey = selectedSns; // "instagram", "youtube", or "tiktok"
+  //     const followersKey = `${snsKey}Followers`;
+  //     const fssKey = `${snsKey}Fss`;
+  //     const adCostKey = `${snsKey}Ad`;
+  //     const commentKey = `${snsKey}CommentCluster`;
+  
+  //     const filtered = data
+  //       .filter((inf) => {
+  //         // 카테고리 필터
+  //         if (selectedCategories.length > 0) {
+  //           const koreanCategory = categoryMap[inf.categories] || inf.categories;
+  //           if (!selectedCategories.includes(koreanCategory)) return false;
+  //         }
+  
+  //         // 태그 필터
+  //         if (selectedTags.length > 0) {
+  //           const tags = inf.tag?.split(",").map((t) => t.trim()) || [];
+  //           const hasMatchingTag = selectedTags.some((tag) => tags.includes(tag));
+  //           if (!hasMatchingTag) return false;
+  //         }
+  
+  //         // SNS 필터 (팔로워 수, 광고단가 등 기준으로 해당 SNS 있는 경우만)
+  //         if (!inf[followersKey]) return false;
+  
+  //         // 팔로워 범위
+  //         const followers = inf[followersKey] || 0;
+  //         if (followers < minFollowers || followers > maxFollowers) return false;
+  
+  //         // 오디언스 성향
+  //         if (selectedAudienceTone && inf[commentKey] !== selectedAudienceTone) return false;
+  
+  //         // 광고 단가
+  //         if (selectedAdCostRange) {
+  //           const adCost = Number(inf[adCostKey] || 0);
+  //           if (
+  //             adCost < selectedAdCostRange.min ||
+  //             (selectedAdCostRange.max !== Infinity && adCost > selectedAdCostRange.max)
+  //           ) return false;
+  //         }
+  
+  //         return true;
+  //       })
+  //       .map((inf) => {
+  //         const koreanCategory = categoryMap[inf.categories] || inf.categories;
+  //         return {
+  //           name: inf.influencerName,
+  //           profileImage: getProfileImage(inf.influencerName),
+  //           description: "",
+  //           categories: [koreanCategory],
+  //           tags: inf.tag?.split(",").map((t) => t.trim()) || [],
+  //           followers: inf[followersKey] || 0,
+  //           sns: snsKey,
+  //           scopeScore: {
+  //             instagram: inf.instaFss || 0,
+  //             youtube: inf.youFss || 0,
+  //             tiktok: inf.tikFss || 0,
+  //           },            audienceTone: inf[commentKey] || "",
+  //           estimatedAdCost: {
+  //             instagram: Number(inf.instaAd || 0),
+  //             youtube: Number(inf.youAd || 0),
+  //             tiktok: Number(inf.tikAd || 0),
+  //           },
+  //                     };
+  //       });
+  
+  //     setFilteredInfluencers(filtered);
+  //   } catch (err) {
+  //     console.error("추천 인플루언서 필터링 실패:", err);
+  //     alert("추천 리스트를 불러오는 데 실패했습니다.");
+  //   }
+  // };
+  
+  
+  const handleSearch = async () => {
+    if (!selectedSns) {
+      alert("SNS를 선택해주세요.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
+      const data = await response.json();
+  
+      const snsKey = selectedSns; // "instagram" | "youtube" | "tiktok"
+      // const followersKey = `${snsKey}Followers`;
+      // const fssKey = `${snsKey}Fss`;
+      // const adKey = `${snsKey}Ad`;
+      // const commentKey = `${snsKey}CommentCluster`;
+      const followersKeyMap = {
+        instagram: "instaFollowers",
+        youtube: "youFollowers",
+        tiktok: "tikFollowers",
+      };
+      
+      const fssKeyMap = {
+        instagram: "instaFss",
+        youtube: "youFss",
+        tiktok: "tikFss",
+      };
+      
+      const adKeyMap = {
+        instagram: "instaAd",
+        youtube: "youAd",
+        tiktok: "tikAd",
+      };
+      
+      const commentKeyMap = {
+        instagram: "instagramCommentCluster",
+        youtube: "youtubeCommentCluster",
+        tiktok: "tiktokCommentCluster",
+      };
+      
+      const followersKey = followersKeyMap[selectedSns];
+      const fssKey = fssKeyMap[selectedSns];
+      const adKey = adKeyMap[selectedSns];
+      const commentKey = commentKeyMap[selectedSns];
+      
+  
+      const minFollowers = selectedRange
+        ? Number(selectedRange.min.replace(/,/g, ""))
+        : 0;
+      const maxFollowers = selectedRange
+        ? selectedRange.max === "∞"
+          ? Infinity
+          : Number(selectedRange.max.replace(/,/g, ""))
+        : Infinity;
+  
+      const filtered = data
+        .filter((inf) => {
+          // SNS 필수
+          if (!inf[followersKey] || Number(inf[followersKey]) <= 0) return false;
+  
+          // 카테고리 (선택한 경우만 적용)
+          if (selectedCategories.length > 0) {
+            const koreanCategory = categoryMap[inf.categories] || inf.categories;
+            if (!selectedCategories.includes(koreanCategory)) return false;
+          }
+  
+          // 태그 (선택한 경우만 적용)
+          if (selectedTags.length > 0) {
+            const tagList = inf.tag?.split(",").map(t => t.trim()) || [];
+            const hasTag = selectedTags.some(tag => tagList.includes(tag));
+            if (!hasTag) return false;
+          }
+  
+          // 팔로워 수 (선택한 경우만 적용)
+          const followers = Number(inf[followersKey]) || 0;
+          if (selectedRange && (followers < minFollowers || followers > maxFollowers)) {
+            return false;
+          }
+  
+          // 광고 단가 (선택한 경우만 적용)
+          const adCost = Number(inf[adKey]) || 0;
+          if (selectedAdCostRange) {
+            if (
+              adCost < selectedAdCostRange.min ||
+              (selectedAdCostRange.max !== Infinity && adCost > selectedAdCostRange.max)
+            ) return false;
+          }
+  
+          // 오디언스 성향 (선택한 경우만 적용)
+          if (selectedAudienceTone && inf[commentKey] !== selectedAudienceTone) {
+            return false;
+          }
+  
+          return true;
+        })
+        .map((inf) => {
+          const koreanCategory = categoryMap[inf.categories] || inf.categories;
+  
+          return {
+            name: inf.influencerName,
+            profileImage: getProfileImage(inf.influencerName),
+            description: "",
+            categories: [koreanCategory],
+            tags: inf.tag?.split(",").map((t) => t.trim()) || [],
+            followers: Number(inf[followersKey]) || 0,
+            sns: selectedSns,
+            scopeScore: {
+              instagram: Number(inf.instaFss || 0),
+              youtube: Number(inf.youFss || 0),
+              tiktok: Number(inf.tikFss || 0),
+            },
+            
+            audienceTone: inf[commentKey] || "",
+            estimatedAdCost: Number(inf[adKey]) || 0,
+          };
+        });
+        console.log({
+          sns: selectedSns,
+          dataLength: data.length,
+          filteredCount: filtered.length,
+        });
+        
+  
+      setFilteredInfluencers(filtered);
+      setSelectedFilters({
+        categories: selectedCategories,
+        tags: selectedTags,
+        followers: selectedRange
+          ? `${selectedRange.min} ~ ${selectedRange.max}`
+          : "",
+        audienceTone: selectedAudienceTone || "",
+        sns: selectedSns,
       });
-  
-    setFilteredInfluencers(result);
+    } catch (err) {
+      console.error("추천 인플루언서 필터링 실패:", err);
+      alert("추천 리스트를 불러오는 데 실패했습니다.");
+    }
   };
+  
+  
   
   
   const formatFollowers = (num) => {
@@ -282,7 +649,7 @@ const Recommendation = () => {
     switch (tone) {
       case "Supportive":
         return emotionIconImage1;
-      case "Informative":
+      case "Neutral Informative":
         return emotionIconImage2;
       case "Cheerful":
         return emotionIconImage3;
@@ -290,7 +657,7 @@ const Recommendation = () => {
         return emotionIconImage4;
       case "Analytical":
         return emotionIconImage5;
-      case "Neutral":
+      case "Empathetic":
         return emotionIconImage6;
       default:
         return null;
@@ -301,16 +668,18 @@ const Recommendation = () => {
     switch (tone) {
       case "Supportive":
         return "지지적";
-      case "Informative":
-        return "정보제공형";
-      case "Cheerful":
-        return "유쾌함";
+      case "Playful":
+        return "쾌활함";
       case "Aggressive":
-        return "공격적인";
+        return "공격적";
       case "Analytical":
         return "분석적";
-      case "Neutral":
-        return "중립적";
+      case "Neutral Informative":
+        return "중립적 정보제공형";
+      case "Empathetic":
+      return "공감하는";
+      case "Cheerful":
+        return "쾌활함";
       default:
         return tone;
     }
@@ -321,16 +690,16 @@ const Recommendation = () => {
     switch (tone) {
       case "Supportive":
         return "지지적 🥰";
-      case "Informative":
-        return "정보제공형 💬";
-      case "Cheerful":
-        return "유쾌함 😄";
+      case "Playful":
+        return "쾌활함 😄";
       case "Aggressive":
-        return "공격적인 😡";
+        return "공격적 😡";
       case "Analytical":
         return "분석적 🧐";
-      case "Neutral":
-        return "중립적 😐";
+      case "Neutral Informative":
+        return "중립적 정보제공형 👩‍🏫";
+      case "Empathetic":
+        return "공감하는 🥹";
       default:
         return tone;
     }
@@ -370,12 +739,39 @@ const Recommendation = () => {
   ];
   const [selectedAdCostRange, setSelectedAdCostRange] = useState(null);
   const handleAdCostRangeSelection = (range) => {
-    if (selectedAdCostRange === range) {
-      setSelectedAdCostRange(null); // 토글 해제
+    if (selectedAdCostRange?.label === range.label) {
+      setSelectedAdCostRange(null); //  취소
     } else {
-      setSelectedAdCostRange(range);
+      setSelectedAdCostRange(range); //  선택
     }
   };
+  const handleAudienceToneSelection = (toneValue) => {
+    if (selectedAudienceTone === toneValue) {
+      setSelectedAudienceTone(null);
+    } else {
+      setSelectedAudienceTone(toneValue);
+    }
+  };
+  
+
+  
+
+  const buildSearchParams = () => {
+    const minFollowers = selectedRange?.min?.replace(/,/g, "");
+    const maxFollowers = selectedRange?.max === "∞" ? undefined : selectedRange?.max?.replace(/,/g, "");
+  
+    return {
+      sns: selectedSns || undefined,
+      categories: selectedCategories.slice(0, 2).join(","), // 최대 2개
+      tags: selectedTags.slice(0, 2).join(","),             // 최대 2개
+      min_followers: minFollowers || undefined,
+      max_followers: maxFollowers || undefined,
+      audience_tone: selectedAudienceTone || undefined,
+      min_cost: selectedAdCostRange?.min || undefined,
+      max_cost: selectedAdCostRange?.max !== Infinity ? selectedAdCostRange?.max : undefined,
+    };
+  };
+  
     
   
   return (
@@ -534,18 +930,18 @@ const Recommendation = () => {
         </div>
 
         <div className="fourth-box-right">
-          {audienceTones.map((tone, index) => (
-            <div
-              key={index}
-              className={`fourth-small-box ${
-                selectedAudienceTone === tone.value ? "selected" : ""
-              }`}
-              onClick={() => setSelectedAudienceTone(tone.value)}
-            >
-              <img src={tone.icon} alt={tone.label} className="emotion-icon-image" />
-              <div className="fourth-small-box-title">{tone.label}</div>
-            </div>
-          ))}
+        {audienceTones.map((tone, index) => (
+          <div
+            key={index}
+            className={`fourth-small-box ${
+              selectedAudienceTone === tone.value ? "selected" : ""
+            }`}
+            onClick={() => handleAudienceToneSelection(tone.value)}          >
+            <img src={tone.icon} alt={tone.label} className="emotion-icon-image" />
+            <div className="fourth-small-box-title">{tone.label}</div>
+          </div>
+        ))}
+
         </div>
 
 
@@ -564,29 +960,53 @@ const Recommendation = () => {
   <div className="fifth-box-right">
     {/* 버튼 선택 */}
     <div className="fifth-filter-range-buttons">
-      {adCostRanges.map((range, index) => (
-        <button
-          key={index}
-          className={`fifth-filter-button ${
-            selectedAdCostRange === range ? "selected" : ""
-          }`}
-          onClick={() => handleAdCostRangeSelection(range)}
-        >
-          {range.label}
-        </button>
-      ))}
+      {/* {adCostRanges.map((range, index) => (
+    <button
+      key={index}
+      className={`fifth-filter-button ${
+        selectedAdCostRange?.label === range.label ? "selected" : ""
+      }`}
+      onClick={() => handleAdCostRangeSelection(range)}
+    >
+      {range.label}
+    </button>
+  ))} */}
+{adCostRanges.map((range, index) => (
+  <button
+    key={index}
+    className={`fifth-filter-button ${
+      selectedAdCostRange?.label === range.label ? "selected" : ""
+    }`}
+    onClick={() => handleAdCostRangeSelection(range)}
+  >
+    {range.label}
+  </button>
+))}
+
     </div>
 
     {/* 수치 입력 */}
     <div className="recommendation-range-inputs">
-      <input
+      {/* <input
         type="text"
         value={selectedAdCostRange?.min?.toLocaleString() || ""}
         readOnly
         placeholder="부터"
-      />
-      <span className="range-divider">~</span>
+      /> */}
+
       <input
+        type="text"
+        value={
+          selectedAdCostRange
+            ? selectedAdCostRange.min.toLocaleString()
+            : ""
+        }
+        readOnly
+        placeholder="부터"
+      />
+
+      <span className="range-divider">~</span>
+      {/* <input
         type="text"
         value={
           selectedAdCostRange?.max !== Infinity
@@ -595,7 +1015,20 @@ const Recommendation = () => {
         }
         readOnly
         placeholder="까지"
+      /> */}
+      <input
+        type="text"
+        value={
+          selectedAdCostRange
+            ? selectedAdCostRange.max === Infinity
+              ? ""
+              : selectedAdCostRange.max.toLocaleString()
+            : ""
+        }
+        readOnly
+        placeholder="까지"
       />
+
     </div>
   </div>
 </div>
@@ -758,7 +1191,10 @@ const Recommendation = () => {
                     {/* SCOPE 점수 */}
 
                     <td>
-                      <BarGraph score={influencer.scopeScore} />
+                    <BarGraph
+                        score={influencer.scopeScore[selectedSns] || 0}
+                        />
+
                     </td>
                     {/* 팔로워 수 */}
                     <td>{formatFollowers(influencer.followers)}</td>
@@ -777,9 +1213,11 @@ const Recommendation = () => {
                   </tr>
                 ))
               ) : (
-                <div className="exception-content">
+                <tr>
+                <td colSpan="7" style={{ textAlign: "center", padding: "20px" }}>
                   선택한 필터에 맞는 인플루언서가 없습니다.
-                </div>
+                </td>
+              </tr>
               )}
             </tbody>
             
