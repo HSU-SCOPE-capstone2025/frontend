@@ -4,36 +4,38 @@ import SNSContent from "./SNSContent";
 import AccountContent from "./AccountContent";
 import "../css/DetailAnalysis.css";
 // import { fetchInfluencerInfo, fetchSNSData, fetchAccountData } from "../../api/DetailApi";
+import { fetchInfluencerInfo } from "../../api/DetailApi";
+
 
 import influencer from "../../assets/images/influencer.png";
 import instagramlink from "../../assets/images/link.png";
 
 const DetailAnalysis = () => {
-    // const { id } = useParams(); // 이 id가 바로 insta_id임
-    // const [influencerData, setInfluencerData] = useState(null);
+    const { id } = useParams(); // 이 id가 바로 insta_id임
     const [activeTab, setActiveTab] = useState("sns");
     const [activeSNS, setActiveSNS] = useState("instagram");
-    //     const [influencerData, setInfluencerData] = useState(null);
+
+    const [influencerData, setInfluencerData] = useState(null);
     // const [snsData, setSnsData] = useState(null);
     // const [accountData, setAccountData] = useState(null);
 
-    // useEffect(() => {
-    //   const fetchAll = async () => {
-    //     try {
-    //       const influencer = await fetchInfluencerInfo(id);      // id 사용
-    //       const sns = await fetchSNSData(id);
-    //       const account = await fetchAccountData(id);
+    useEffect(() => {
+        const fetchAll = async () => {
+            try {
+                const influencer = await fetchInfluencerInfo(id);      // id 사용
+                //const sns = await fetchSNSData(id);
+                //const account = await fetchAccountData(id);
 
-    //       setInfluencerData(influencer);
-    //       setSnsData(sns);
-    //       setAccountData(account);
-    //     } catch (err) {
-    //       console.error("데이터 불러오기 실패:", err);
-    //     }
-    //   };
+                setInfluencerData(influencer);
+                //setSnsData(sns);
+                //setAccountData(account);
+            } catch (err) {
+                console.error("데이터 불러오기 실패:", err);
+            }
+        };
 
-    //   fetchAll();
-    // }, [id]);
+        fetchAll();
+    }, [id]);
 
     const summaryData = {
         instagram: {
@@ -81,8 +83,18 @@ const DetailAnalysis = () => {
                         <img src={influencer} alt="influencer" className="snsdetail-profile-img" />
                         <div className="detail-information">
                             <div className="sponsership-category-tags">
-                                <div className="sponsership-tag category-tag">패션</div>
-                                <div className="sponsership-tag category-tag">뷰티</div>
+                                {influencerData?.category && (
+                                    <div className="sponsership-tag category-tag">
+                                        {influencerData.category.replaceAll("_", " ").replace(/\(.*?\)/g, "")}
+                                    </div>
+                                )}
+
+                                {/* {influencerData?.tags &&
+                                    influencerData.tags.split(",").map((tag, index) => (
+                                        <div key={index} className="sponsership-tag category-tag">
+                                            {tag.trim()}
+                                        </div>
+                                    ))} */}
                             </div>
                             <div className="detail-profile-container">
 
