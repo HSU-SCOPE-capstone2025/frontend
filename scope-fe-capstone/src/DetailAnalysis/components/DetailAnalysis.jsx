@@ -34,22 +34,14 @@ const categoryMap = {
 const DetailAnalysis = () => {
     const { id } = useParams(); // 이 id가 바로 insta_id임
     const [activeTab, setActiveTab] = useState("sns");
-    const [activeSNS, setActiveSNS] = useState("instagram");
-
+    //const [activeSNS, setActiveSNS] = useState("instagram");
     const [influencerData, setInfluencerData] = useState(null);
-    // const [snsData, setSnsData] = useState(null);
-    // const [accountData, setAccountData] = useState(null);
 
     useEffect(() => {
         const fetchAll = async () => {
             try {
                 const influencer = await fetchInfluencerInfo(id);      // id 사용
-                //const sns = await fetchSNSData(id);
-                //const account = await fetchAccountData(id);
-
                 setInfluencerData(influencer);
-                //setSnsData(sns);
-                //setAccountData(account);
             } catch (err) {
                 console.error("데이터 불러오기 실패:", err);
             }
@@ -126,8 +118,8 @@ const DetailAnalysis = () => {
                 <div>
                     {activeTab === "sns" && <SNSContent />}
                     {activeTab === "analysis" && <AccountContent />}
-                    {/* {activeTab === "sns" && <SNSContent snsData={snsData} />}
-                    {activeTab === "analysis" && <AccountContent accountData={accountData} />} */}
+                    {/* {activeTab === "sns" && <SNSContent id={id} />}
+                    {activeTab === "analysis" && <AccountContent id={id} />} */}
                 </div>
             </div>
         </div>

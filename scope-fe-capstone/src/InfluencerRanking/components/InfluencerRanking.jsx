@@ -56,44 +56,51 @@ function InfluencerRanking() {
       try {
         const result = await fetchInfluencerData();
 
-        const transformed = result.map((item) => ({
-          name: item.name,
-          categories: Array.isArray(item.categories)
-            ? item.categories
-            : item.categories
-              ? [item.categories]
-              : [],
-          description: '-',
-          tags: Array.isArray(item.tags)
-            ? item.tags
-            : item.tags
-              ? [item.tags]
-              : [],
-          profileImage: getProfileImage(item.name),
+        const transformed = result.map((item) => {
+          // 태그 처리: 문자열이면 ','로 나눠 배열로 만들고 trim
+          let tagList = [];
+          if (Array.isArray(item.tags)) {
+            tagList = item.tags.flatMap((tag) =>
+              tag.split(",").map((t) => t.trim())
+            );
+          } else if (typeof item.tags === "string") {
+            tagList = item.tags.split(",").map((t) => t.trim());
+          }
 
+          return {
+            name: item.name,
+            categories: Array.isArray(item.categories)
+              ? item.categories
+              : item.categories
+                ? [item.categories]
+                : [],
+            description: "-",
+            tags: tagList,
+            profileImage: getProfileImage(item.name),
 
-          // SNS별 값들 - prefix를 붙여 저장
-          insta_followers: item.instaFollowers,
-          insta_averageLikes: item.instaAverageLikes,
-          insta_averageViews: item.instaAverageViews,
-          insta_scopeScore: item.instaFss,
-          insta_id: item.instaName,
+            // SNS별 값들
+            insta_followers: item.instaFollowers,
+            insta_averageLikes: item.instaAverageLikes,
+            insta_averageViews: item.instaAverageViews,
+            insta_scopeScore: item.instaFss,
+            insta_id: item.instaName,
 
-          you_followers: item.youFollowers,
-          you_averageLikes: item.youAverageLikes,
-          you_averageViews: item.youAverageViews,
-          you_scopeScore: item.youFss,
+            you_followers: item.youFollowers,
+            you_averageLikes: item.youAverageLikes,
+            you_averageViews: item.youAverageViews,
+            you_scopeScore: item.youFss,
 
-          tik_followers: item.tikFollowers,
-          tik_averageLikes: item.tikAverageLikes,
-          tik_averageViews: item.tikAverageViews,
-          tik_scopeScore: item.tikFss,
-        }));
+            tik_followers: item.tikFollowers,
+            tik_averageLikes: item.tikAverageLikes,
+            tik_averageViews: item.tikAverageViews,
+            tik_scopeScore: item.tikFss,
+          };
+        });
 
         setInfluencers(transformed);
         setFilteredInfluencers(transformed);
       } catch (error) {
-        console.error('API 호출 실패:', error);
+        console.error("API 호출 실패:", error);
       }
     };
 
@@ -162,15 +169,26 @@ function InfluencerRanking() {
   // 필터 적용 함수
   const applyFilters = () => {
     const filtered = influencers.filter((influencer) => {
-      const rawCategories = Array.isArray(influencer.categories) ? influencer.categories : [];
-      const translatedCategories = rawCategories.map((cat) => categoryMap[cat] || cat); // 한글 변환
+      const rawCategories = Array.isArray(influencer.categories)
+        ? influencer.categories
+        : [];
+      const translatedCategories = rawCategories.map(
+        (cat) => categoryMap[cat] || cat
+      );
 
-      const influencerTags = Array.isArray(influencer.tags) ? influencer.tags : [];
+      const influencerTags = Array.isArray(influencer.tags)
+        ? influencer.tags
+        : [];
 
       const categoryMatch =
-        selectedCategories.length === 0 || selectedCategories.some((cat) => translatedCategories.includes(cat));
+        selectedCategories.length === 0 ||
+        selectedCategories.some((cat) =>
+          translatedCategories.includes(cat)
+        );
+
       const featureMatch =
-        selectedFeatures.length === 0 || selectedFeatures.some((feat) => influencerTags.includes(feat));
+        selectedFeatures.length === 0 ||
+        selectedFeatures.some((feat) => influencerTags.includes(feat));
 
       return categoryMatch && featureMatch;
     });
@@ -179,6 +197,7 @@ function InfluencerRanking() {
     setShowFilters(false);
   };
 
+  // 리셋 필터
   const resetFilters = () => {
     setSelectedCategories([]);
     setSelectedFeatures([]);
@@ -471,18 +490,22 @@ function InfluencerRanking() {
                                   </div>
                                 </td>
                                 <td>
-                                  {influencer.categories.map((cat, i) => (
-                                    <span key={i} className="ranking-category-box">
-                                      {categoryMap[cat] || cat /* 매핑 없으면 영어 그대로 표시 */}
-                                    </span>
-                                  ))}
+                                  <div className="ranking-category-container">
+                                    {influencer.categories.map((cat, i) => (
+                                      <span key={i} className="ranking-category-box">
+                                        {categoryMap[cat] || cat /* 매핑 없으면 영어 그대로 표시 */}
+                                      </span>
+                                    ))}
+                                  </div>
                                 </td>
                                 <td>
-                                  {influencer.tags.map((tag, i) => (
-                                    <span key={i} className="ranking-tag-box">
-                                      {tag}
-                                    </span>
-                                  ))}
+                                  <div className="ranking-tag-container">
+                                    {influencer.tags.map((tag, i) => (
+                                      <span key={i} className="ranking-tag-box">
+                                        {tag}
+                                      </span>
+                                    ))}
+                                  </div>
                                 </td>
                                 <td>
                                   <div

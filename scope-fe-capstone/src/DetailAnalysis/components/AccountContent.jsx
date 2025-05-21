@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart, Legend } from "recharts";
 import influencerAccountData from "../../data/influencerAccountData.js";
@@ -176,14 +176,25 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 
 // 안에 { influencerId } 넣기기
 const AccountContent = () => {
-
+  // const { id } = useParams();
   // const [accountData, setAccountData] = useState(null);
 
   // useEffect(() => {
-  //   fetchAccountData(influencerId).then(setAccountData);
-  // }, [influencerId]);
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await fetchAccountData(id);
+  //       setAccountData(data);
+  //     } catch (error) {
+  //       console.error("계정 분석 데이터 불러오기 실패:", error);
+  //     }
+  //   };
 
-  // if (!accountData) return <div>로딩 중...</div>;
+  //   fetchData();
+  // }, [id]);
+
+  // if (!accountData) {
+  //   return <div>데이터 로딩 중...</div>;
+  //}
 
 
 
