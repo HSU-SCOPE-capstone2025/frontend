@@ -22,7 +22,6 @@
 
 .ivory-box {
     margin-top: 140px;
-
     width: 1700px;
     height: max-content;
     flex-shrink: 0;
@@ -77,6 +76,10 @@
 .snsdetail-profile-img {
     width: 120px;
     height: 120px;
+    border-radius: 50%;
+    /* 동그랗게 만듦 */
+    object-fit: cover;
+    /* 이미지가 찌그러지지 않게 */
 }
 
 .detail-profile-container {
@@ -86,15 +89,13 @@
 
 .detail-profile-name {
     display: flex;
-    width: 108px;
-    height: 18px;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -136,8 +137,6 @@
 }
 
 .instagram-link {
-    width: 20px;
-    height: 20px;
     margin-left: 15px;
 }
 
@@ -186,7 +185,7 @@
 
     margin-top: 10px;
     padding-left: 170px;
-    
+
 }
 
 .sns-buttons button {
@@ -211,7 +210,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    
+
 }
 
 .sns-buttons .active {
@@ -466,8 +465,7 @@
     line-height: normal;
 }
 
-.sns-analysis-container {
-}
+.sns-analysis-container {}
 
 
 .sns-possesion {
@@ -859,12 +857,12 @@
 
 }
 
-.sponsership-category-tags {
+.detail-category-tags {
     display: flex;
-    width: 85px;
     flex-direction: row;
-    margin-left: -20px;
-    margin-bottom: 15px;
+    margin-left: -10px;
+    margin-bottom: 20px;
+    gap: 8px;
 }
 
 .category-tag {

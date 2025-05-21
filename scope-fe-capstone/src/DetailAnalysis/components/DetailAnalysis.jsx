@@ -5,10 +5,31 @@ import AccountContent from "./AccountContent";
 import "../css/DetailAnalysis.css";
 // import { fetchInfluencerInfo, fetchSNSData, fetchAccountData } from "../../api/DetailApi";
 import { fetchInfluencerInfo } from "../../api/DetailApi";
-
+import { getProfileImage } from "../../utils/getProfileImage";
 
 import influencer from "../../assets/images/influencer.png";
 import instagramlink from "../../assets/images/link.png";
+
+const categoryMap = {
+    "Lifestyle_(sociology)": "일상 / Vlog",
+    "Fashion": "패션",
+    "beauty": "뷰티",
+    "Food": "먹방",
+    "Entertainment": "엔터테인먼트",
+    "it": "IT / 전자기기",
+    "Physical_fitness": "운동 / 헬스",
+    "education": "교육",
+    "kids": "키즈",
+    "Music": "음악",
+    "interior": "인테리어",
+    "Pet": "펫 / 동물",
+    "travel": "여행",
+    "Video_game_culture": "게임",
+    "art": "그림",
+    "film": "영화 / 드라마",
+    "cooking": "요리",
+    "car": "자동차 / 바이크",
+};
 
 const DetailAnalysis = () => {
     const { id } = useParams(); // 이 id가 바로 insta_id임
@@ -37,34 +58,6 @@ const DetailAnalysis = () => {
         fetchAll();
     }, [id]);
 
-    const summaryData = {
-        instagram: {
-            posts: "10002",
-            followers: "105.8",
-            likes: "1.2만",
-            comments: "450개",
-            avgLikes: "10000",
-            avgComments: "100"
-        },
-        youtube: {
-            posts: "20002",
-            followers: "57.3",
-            likes: "2.4만",
-            comments: "1200개",
-            avgLikes: "23000",
-            avgComments: "200"
-
-        },
-        tiktok: {
-            posts: "30002",
-            followers: "16",
-            likes: "8000개",
-            comments: "300개",
-            avgLikes: "33000",
-            avgComments: "500"
-
-        }
-    };
 
     return (
         <div className="detail-analysis-container">
@@ -80,56 +73,34 @@ const DetailAnalysis = () => {
                     <div className="grayLine"></div>
 
                     <div className="influencer-container">
-                        <img src={influencer} alt="influencer" className="snsdetail-profile-img" />
+                        <img
+                            src={getProfileImage(influencerData?.name)}
+                            alt="influencer"
+                            className="snsdetail-profile-img"
+                        />
+
                         <div className="detail-information">
-                            <div className="sponsership-category-tags">
+                            <div className="detail-category-tags">
                                 {influencerData?.category && (
-                                    <div className="sponsership-tag category-tag">
-                                        {influencerData.category.replaceAll("_", " ").replace(/\(.*?\)/g, "")}
+                                    <div className="ranking-category-box" style={{ fontWeight: "500" }}>
+                                        {categoryMap[influencerData.category] || influencerData.category}
                                     </div>
                                 )}
 
-                                {/* {influencerData?.tags &&
+                                {influencerData?.tags &&
                                     influencerData.tags.split(",").map((tag, index) => (
-                                        <div key={index} className="sponsership-tag category-tag">
+                                        <div key={index} className="ranking-tag-box" style={{ fontWeight: "500" }}>
                                             {tag.trim()}
                                         </div>
-                                    ))} */}
+                                    ))}
                             </div>
-                            <div className="detail-profile-container">
 
-                                <div className="detail-profile-name">risabae_art</div>
-                                <div className="detail-korea-name">이사배</div>
+                            <div className="detail-profile-container">
+                                <div className="detail-profile-name">{influencerData?.name}</div>
                                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                                     <img src={instagramlink} alt="instagramlink" className="instagram-link" />
                                 </a>
 
-                            </div>
-
-                            <div className="detail-profile-information">
-                                메이크업 아티스트 이사배
-                            </div>
-                            <div className="detail-profile-numbers">
-                                <div className="post-container">
-                                    {summaryData[activeSNS].posts}
-                                    <div className="post-title">
-                                        게시물
-                                    </div>
-
-                                </div>
-                                <div className="follower-container">
-                                    {summaryData[activeSNS].followers}
-                                    <div className="follower-title">
-                                        팔로워
-                                    </div>
-
-                                </div>
-                                <div className="comment-container">
-                                    {summaryData[activeSNS].comments}
-                                    <div className="comment-title">
-                                        댓글
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
