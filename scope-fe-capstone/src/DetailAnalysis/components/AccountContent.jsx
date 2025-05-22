@@ -4,7 +4,7 @@ import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart, Legend } from "recharts";
 import influencerAccountData from "../../data/influencerAccountData.js";
 import PlatformPieChart from "./PlatformPieChart.jsx";
-// import { fetchAccountData } from "../../api/DetailApi.js";
+import { fetchAccountData } from "../../api/DetailApi.js";
 
 const platforms = ['youtube', 'instagram', 'tiktok'];
 
@@ -60,42 +60,7 @@ const EMOTION_COLOR_MAP = {
   공포: '#C999ED',
 };
 
-const topicData = [
-  { name: "인플루언서 개인", value: 20, color: "#BCB1FF" },
-  { name: "사건/논란", value: 10, color: "#FFC3C3" },
-  { name: "공감/감정 공유", value: 5, color: "#FFCFEE" },
-  { name: "콘텐츠 평가", value: 10, color: "#FF69B4" },
-  { name: "제품/아이템 리뷰", value: 10, color: "#BCFFE0" },
-  { name: "사회/시사이슈", value: 10, color: "#FF96AB" },
-  { name: "정보/꿀팁", value: 10, color: "#ACFEFF" },
-  { name: "유머/드립", value: 10, color: "#FFEC85" },
-  { name: "질문/피드백", value: 10, color: "#B1E1FF" },
-];
 
-const TOPIC_DATA = [
-  {
-    name: "사건/논란", value: 15, color: "#E2FFD1",
-    comments: [
-      "이런 논란이 또 생기다니...",
-      "솔직히 이번 사건은 실망이에요",
-    ],
-  },
-  {
-    name: "콘텐츠 평가", value: 10, color: "#CFE7FF",
-    comments: [
-      "이번 영상 진짜 재밌었어요!",
-      "편집이 더 깔끔해졌네요",
-    ],
-  },
-  { name: "유튜버 개인", value: 30, color: "#FFD7D7" },
-  { name: "제품/아이템 리뷰", value: 18, color: "#FFFCC7" },
-  { name: "사회/시사 이슈", value: 12, color: "#D9DEFF" },
-  { name: "공감/감정 공유", value: 5, color: "#EED1FF" },
-  { name: "정보/꿀팁", value: 10, color: "#E3E3E3" },
-  { name: "유머/드립", value: 5, color: "#FFEC85" },
-  { name: "질문/피드백", value: 10, color: "#B1E1FF" },
-  { name: "기타/미분류", value: 5, color: "#DBDBDB" },
-];
 
 const CENTER_X = 300;
 const CENTER_Y = 250;
@@ -120,61 +85,6 @@ function checkOverlap(x, y, diameter, placed) {
   }
   return false;
 }
-
-// function placeBubbles() {
-//   const sortedData = [...TOPIC_DATA].sort((a, b) => a.value - b.value);
-//   const centerData = sortedData.pop(); // 가장 큰 값 중심에
-//   const centerDiameter = calculateDiameter(centerData.value);
-//   const positions = [
-//     {
-//       ...centerData,
-//       x: CENTER_X - centerDiameter / 2,
-//       y: CENTER_Y - centerDiameter / 2,
-//       diameter: centerDiameter,
-//     },
-//   ];
-
-//   const angleStep = (2 * Math.PI) / sortedData.length;
-//   let angle = 0;
-//   const baseRadius = centerDiameter / 2 + 80;
-
-//   for (let i = 0; i < sortedData.length; i++) {
-//     const data = sortedData[i];
-//     const diameter = calculateDiameter(data.value);
-//     let radius = baseRadius;
-//     let placed = false;
-
-//     // 충돌 없는 위치 찾기
-//     for (let j = 0; j < 100; j++) {
-//       const x = CENTER_X + radius * Math.cos(angle) - diameter / 2;
-//       const y = CENTER_Y + radius * Math.sin(angle) - diameter / 2;
-
-//       if (!checkOverlap(x, y, diameter, positions)) {
-//         positions.push({ ...data, x, y, diameter });
-//         placed = true;
-//         break;
-//       }
-//       radius += 10; // 한 바퀴 돌면서 점점 더 멀리
-//     }
-//     angle += angleStep;
-
-//     if (!placed) {
-//       // 못 놓은 경우: 가장자리에 강제로 배치
-//       positions.push({
-//         ...data,
-//         x: CENTER_X + (baseRadius + 150) * Math.cos(angle) - diameter / 2,
-//         y: CENTER_Y + (baseRadius + 150) * Math.sin(angle) - diameter / 2,
-//         diameter,
-//       });
-//     }
-//   }
-
-//   return positions;
-// }
-
-// // 렌더링 예시 (React에서 사용)
-// const positions = placeBubbles();
-
 
 // 언어 비율 변수
 const languageData = [
@@ -221,34 +131,21 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 };
 
 // 안에 { influencerId } 넣기기
+// 시작시작시작작
 const AccountContent = () => {
-  // const { id } = useParams();
-  // const [accountData, setAccountData] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await fetchAccountData(id);
-  //       setAccountData(data);
-  //     } catch (error) {
-  //       console.error("계정 분석 데이터 불러오기 실패:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [id]);
-
-  // if (!accountData) {
-  //   return <div>데이터 로딩 중...</div>;
-  //}
-
+  const { id } = useParams();
+  const [accountData, setAccountData] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState('youtube');
+  const [platformScores, setPlatformScores] = useState({});
+
+
   const { tendency, emotion, topic } = influencerAccountData.platforms[selectedPlatform];
   const [selectedTopic, setSelectedTopic] = useState(null);
-
   const topicData = influencerAccountData.platforms[selectedPlatform]?.topic || [];
+  const [selectedScopePlatform, setSelectedScopePlatform] = useState("youtube");
 
-  // 위치 계산 로직 (예시: 원형 배치)
+
+
   // 꽃모양 원 위치 계산
   const positions = useMemo(() => {
     const centerX = 350;
@@ -313,10 +210,39 @@ const AccountContent = () => {
     return positions;
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchAccountData(id);
+
+        // platformScores 변환
+        const convertedScores = {};
+        if (data.platformScores) {
+          for (const platform in data.platformScores) {
+            convertedScores[platform] = data.platformScores[platform].map(({ date, fss }) => ({
+              date,
+              scopeScore: fss,
+            }));
+          }
+        }
+
+        setAccountData(data);
+        setPlatformScores(convertedScores); // 변환된 데이터 저장
+      } catch (error) {
+        console.error("계정 분석 데이터 불러오기 실패:", error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (!accountData) {
+    return <div>데이터 로딩 중...</div>;
+  }
 
 
-  const [selectedScopePlatform, setSelectedScopePlatform] = useState("youtube");
-  const scopeScoreData = influencerAccountData.platformScores[selectedScopePlatform] || [];
+  const scopeScoreData = platformScores[selectedScopePlatform] || [];
+
   const average =
     scopeScoreData.length > 0
       ? scopeScoreData.reduce((sum, d) => sum + d.scopeScore, 0) / scopeScoreData.length

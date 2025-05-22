@@ -117,9 +117,9 @@ const DetailAnalysis = () => {
                 {/* 탭에 따른 콘텐츠 */}
                 <div>
                     {activeTab === "sns" && <SNSContent />}
-                    {activeTab === "analysis" && <AccountContent />}
-                    {/* {activeTab === "sns" && <SNSContent id={id} />}
-                    {activeTab === "analysis" && <AccountContent id={id} />} */}
+                    {/* {activeTab === "analysis" && <AccountContent />}
+                    {activeTab === "sns" && <SNSContent id={id} />} */}
+                    {activeTab === "analysis" && <AccountContent id={id} />}
                 </div>
             </div>
         </div>
