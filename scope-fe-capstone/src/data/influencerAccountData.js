@@ -49,13 +49,13 @@ const influencerAccountData = {
     platforms: {
         youtube: {
             tendency: [
-                { name: "지지하는", value: 30 },
-                { name: "정보제공형", value: 20 },
-                { name: "공격적인", value: 5 },
-                { name: "유쾌함", value: 15 },
+                { name: "지지적", value: 30 },
+                { name: "중립적 정보제공형", value: 20 },
+                { name: "공격적", value: 5 },
+                { name: "쾌활함", value: 15 },
                 { name: "분석적", value: 10 },
                 { name: "스팸", value: 10 },
-                { name: "중립적", value: 10 }
+                { name: "공감하는", value: 10 }
             ],
             emotion: [
                 { name: "행복", value: 30 },
@@ -132,7 +132,15 @@ const influencerAccountData = {
             ]
         },
         instagram: {
-            tendency: [/* 유튜브 텐던시 데이터 (생략 가능) */],
+            tendency: [
+                { name: "지지적", value: 20 },
+                { name: "중립적 정보제공형", value: 30 },
+                { name: "공격적", value: 10 },
+                { name: "쾌활함", value: 10 },
+                { name: "분석적", value: 5 },
+                { name: "스팸", value: 15 },
+                { name: "공감하는", value: 10 }
+            ],
             emotion: [/* 유튜브 감정 데이터 */],
             topic: [/* 유튜브 토픽 데이터 */]
         },

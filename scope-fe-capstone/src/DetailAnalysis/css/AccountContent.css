@@ -75,8 +75,8 @@ html {
 }
 
 .profile-analysis-box-big {
-    width: 1350px;
-    height: 630px;
+    width: 1340px;
+    padding: 50px 0px;
     flex-shrink: 0;
     border-radius: 10px;
     background: #FFF;
