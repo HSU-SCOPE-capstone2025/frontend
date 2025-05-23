@@ -61,39 +61,6 @@ const EMOTION_COLOR_MAP = {
 };
 
 
-
-const CENTER_X = 300;
-const CENTER_Y = 250;
-const MIN_DIAMETER = 80;
-const DEFAULT_SCALE = 6;
-const MIN_DISTANCE = 5;
-
-const calculateDiameter = (value) => {
-  const minArea = 8000; // 5%에 해당하는 최소 면적
-  const maxValue = 100;  // 가장 큰 value 기준
-  const scaleFactor = Math.sqrt((value / maxValue) * minArea * Math.PI); // 면적 비례
-  return Math.max(80, scaleFactor * 2); // 지름으로 변환
-};
-
-function checkOverlap(x, y, diameter, placed) {
-  for (const item of placed) {
-    const dx = item.x - x;
-    const dy = item.y - y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const minDist = (item.diameter + diameter) / 2 + MIN_DISTANCE;
-    if (dist < minDist) return true;
-  }
-  return false;
-}
-
-// 언어 비율 변수
-const languageData = [
-  { language: "한국어", percent: 68 },
-  { language: "영어", percent: 20 },
-];
-const totalPercent = languageData.reduce((sum, lang) => sum + lang.percent, 0);
-const etcPercent = 100 - totalPercent;
-
 const renderCustomLine = (props) => {
   const { points, index } = props;
 
@@ -246,47 +213,6 @@ const AccountContent = () => {
     scopeScoreData.length > 0
       ? scopeScoreData.reduce((sum, d) => sum + d.scopeScore, 0) / scopeScoreData.length
       : 0;
-
-
-  //const navigate = useNavigate();
-  // 팔로워 서포트 비율 데이터
-
-  const totalFollowers = 104000; // 전체 팔로워 수 (10.4만 명)
-  const validSupporters = 32000; // 유효 팔로워 수 (3.2만 명)
-  const percentage = ((validSupporters / totalFollowers) * 100).toFixed(1); // 백분율 계산
-
-  // 차트 데이터
-  // const data = [
-  //   { name: "유효 팔로워", value: validSupporters, color: "#0071E3" },
-  //   { name: "기타 팔로워", value: totalFollowers - validSupporters, color: "#D9D9D9" },
-  // ];
-
-  const influencerName = "이사배";
-  const influencerSupport = 32000;
-  const averageGroupSupport = 21000;
-  const maxValue = Math.max(influencerSupport, averageGroupSupport);
-
-  const recentSupportData = [
-    { value: 18000 },
-    { value: 25000 },
-    { value: 20000 },
-    { value: 23000 },
-    { value: 27000 },
-    { value: 19000 },
-    { value: 21000 },
-  ];
-  const averageSupport = recentSupportData.reduce((acc, curr) => acc + curr.value, 0) / recentSupportData.length;
-
-  const subData = [
-    { week: "1/16", subscribers: 29500 },
-    { week: "1/23", subscribers: 30000 },
-    { week: "1/30", subscribers: 28700 },
-    { week: "2/6", subscribers: 33000 },
-    { week: "2/16", subscribers: 22600 },
-  ];
-
-  const viewGrowthRate = 32.5; // 조회 성장률
-  const groupAverageGrowthRate = 27.2; // 유사 그룹 평균 성장률
 
   return (
     <div>
