@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../css/DetailAnalysis.css"
 import { Line } from "react-chartjs-2";
 import { FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
@@ -12,6 +13,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import { fetchSNSData } from "../../api/DetailApi.js";
 
 import img1 from "../../assets/images/main2.png";
 import img2 from "../../assets/images/main2.png";
@@ -34,6 +36,8 @@ import InstaReels from "../../assets/images/insta_reels.png";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const SNSContent = () => {
+    const { id } = useParams(); //연동 관련 변수 추가
+    const [snsData, setSnsData] = useState(null); //연동 관련 변수 추가가
     const [activeTab, setActiveTab] = useState("followers");
     const [activePage, setActivePage] = useState("analysis");
     const [activeSNS, setActiveSNS] = useState("instagram");
@@ -51,6 +55,30 @@ const SNSContent = () => {
     const tiktokFollower = [2.4];
     const analysisTags = ["#다정한  #귀여운  #부드러운"];
     const instaPost = [1042];
+
+    useEffect(() => {
+        return () => {
+            Object.values(ChartJS.instances).forEach((chart) => chart.destroy());
+        };
+    }, []);
+
+    //여기 새로 연동 추가-useEffect
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await fetchSNSData(id);
+                setSnsData(data);
+            } catch (error) {
+                console.error("sns 분석 데이터 불러오기 실패:", error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    if (!snsData) {
+        return <div>데이터 로딩 중...</div>;
+    }
 
     const summaryData = {
         instagram: {
@@ -185,11 +213,7 @@ const SNSContent = () => {
         },
     };
 
-    useEffect(() => {
-        return () => {
-            Object.values(ChartJS.instances).forEach((chart) => chart.destroy());
-        };
-    }, []);
+
 
     return (
         <div>

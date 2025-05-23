@@ -130,7 +130,6 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
   );
 };
 
-// 안에 { influencerId } 넣기기
 // 시작시작시작작
 const AccountContent = () => {
   const { id } = useParams();
@@ -373,7 +372,7 @@ const AccountContent = () => {
           <div className="profile-analysis-box">
             <div className="inline-block-div">
               <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <PlatformPieChart platform="youtube" data={influencerAccountData} />
+                <PlatformPieChart platform="youtube" data={accountData} />
               </div>
             </div>
           </div>
@@ -381,7 +380,7 @@ const AccountContent = () => {
           <div className="profile-analysis-box">
             <div className="inline-block-div">
               <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <PlatformPieChart platform="instagram" data={influencerAccountData} />
+                <PlatformPieChart platform="instagram" data={accountData} />
               </div>
             </div>
           </div>
@@ -389,12 +388,10 @@ const AccountContent = () => {
           <div className="profile-analysis-box">
             <div className="inline-block-div">
               <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <PlatformPieChart platform="tiktok" data={influencerAccountData} />
+                <PlatformPieChart platform="tiktok" data={accountData} />
               </div>
             </div>
           </div>
-
-
         </div>
 
 
