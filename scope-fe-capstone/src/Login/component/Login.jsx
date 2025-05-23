@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import '../css/login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Email:", email);
-        console.log("Password:", password);
-        alert("로그인 시도!");
+
+        // 관리자 계정 조건
+        if (email === "hansung1234" && password === "hansung1234!") {
+            navigate("/"); // ScopeMain.jsx로 이동
+        } else {
+            const storedPassword = localStorage.getItem(email);
+            if (storedPassword === password) {
+                navigate("/user"); // 일반 사용자
+            } else {
+                alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+            }
+        }
     };
 
     return (
@@ -19,8 +30,8 @@ function Login() {
                 <p className="login-subtitle">다시 만나서 반가워요 👋</p>
                 <form onSubmit={handleSubmit} className="login-form">
                     <input
-                        type="email"
-                        placeholder="이메일"
+                        type="text"
+                        placeholder="아이디"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
