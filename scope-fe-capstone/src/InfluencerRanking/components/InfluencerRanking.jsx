@@ -461,7 +461,10 @@ function InfluencerRanking() {
                               <tr key={influencer.name + platform}>
                                 <td>{index + 1}</td>
                                 <td>
-                                  <div className="ranking-account-info-container">
+                                  <div className="ranking-account-info-container"
+                                    onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
+                                    style={{ cursor: "pointer" }}
+                                  >
                                     <img
                                       src={influencer.profileImage}
                                       alt={influencer.name}

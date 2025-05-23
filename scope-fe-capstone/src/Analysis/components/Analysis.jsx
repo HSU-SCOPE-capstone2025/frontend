@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/analysis.css";
 import { getProfileImage } from "../../utils/getProfileImage";
 import instagramLogo from "../../assets/images/instagram_logo.png";
@@ -78,8 +79,8 @@ const parseRange = (rangeStr) => {
     const num = str.includes("만")
       ? parseFloat(str.replace("만", "")) * 10000
       : str.includes("천")
-      ? parseFloat(str.replace("천", "")) * 1000
-      : parseFloat(str);
+        ? parseFloat(str.replace("천", "")) * 1000
+        : parseFloat(str);
     return [num, Infinity];
   }
 
@@ -89,15 +90,15 @@ const parseRange = (rangeStr) => {
     startRaw.includes("만")
       ? parseFloat(startRaw.replace("만", "")) * 10000
       : startRaw.includes("천")
-      ? parseFloat(startRaw.replace("천", "")) * 1000
-      : parseFloat(startRaw);
+        ? parseFloat(startRaw.replace("천", "")) * 1000
+        : parseFloat(startRaw);
 
   const end =
     endRaw.includes("만")
       ? parseFloat(endRaw.replace("만", "")) * 10000
       : endRaw.includes("천")
-      ? parseFloat(endRaw.replace("천", "")) * 1000
-      : parseFloat(endRaw);
+        ? parseFloat(endRaw.replace("천", "")) * 1000
+        : parseFloat(endRaw);
 
   return [start, end];
 };
@@ -105,6 +106,7 @@ const parseRange = (rangeStr) => {
 
 
 const Analysis = () => {
+  const navigate = useNavigate();
   const [selectedSNS, setSelectedSNS] = useState("instagram");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -131,6 +133,7 @@ const Analysis = () => {
           return {
             id: index + 1,
             name: item.name,
+            insta_id: item.instaName,
             profileImage: getProfileImage(item.name),
             category: [mappedCategory],
             tags: item.tags ? item.tags.split(",") : [],
@@ -205,7 +208,7 @@ const Analysis = () => {
   //   const [viewsMin, viewsMax] = parseRange(selectedViews.join(" ~ "));
   //   console.log("👀 Followers Range:", followerMin, followerMax);
 
- 
+
   //   // const result = originalList.filter((inf) => {
   //   //   const snsData = inf.snsData[selectedSNS];
   //   //   if (!snsData) return false;
@@ -225,7 +228,7 @@ const Analysis = () => {
   //       (sns) => sns && (sns.followers > 0 || sns.avgLikes > 0 || sns.avgViews > 0)
   //     );
   //     if (!hasAnyValidData) return false;
-    
+
   //     const categoryMatch =
   //       selectedCategories.length === 0 ||
   //       selectedCategories.some((cat) => inf.category.includes(cat));
@@ -238,10 +241,10 @@ const Analysis = () => {
   //     const viewsMatch =
   //       selectedViews[0] === "" ||
   //       (snsData.avgViews >= viewsMin && snsData.avgViews <= viewsMax);
-    
+
   //     return categoryMatch && followersMatch && likesMatch && viewsMatch;
   //   });
-    
+
   //   setFilteredList(result);
   // };
 
@@ -249,55 +252,55 @@ const Analysis = () => {
     const [followerMin, followerMax] = parseRange(selectedFollowers.join(" ~ "));
     const [likesMin, likesMax] = parseRange(selectedLikes.join(" ~ "));
     const [viewsMin, viewsMax] = parseRange(selectedViews.join(" ~ "));
-  
+
     console.log("팔로워 범위:", followerMin, followerMax);
     console.log("좋아요 범위:", likesMin, likesMax);
     console.log("조회수 범위:", viewsMin, viewsMax);
-  
+
     const result = originalList.filter((inf) => {
       const snsData = inf.snsData[selectedSNS];
       if (!snsData) return false;
-  
+
       // 디버깅 로그
       console.log(`🔍 ${inf.name} (${selectedSNS})`);
       console.log("  팔로워:", snsData.followers);
       console.log("  평균 좋아요:", snsData.avgLikes);
       console.log("  평균 조회수:", snsData.avgViews);
-  
+
       const categoryMatch =
         selectedCategories.length === 0 ||
         selectedCategories.some((cat) => inf.category.includes(cat));
-  
+
       const followersMatch =
         selectedFollowers[0] === "" ||
         (snsData.followers >= followerMin && snsData.followers <= followerMax);
-  
+
       const likesMatch =
         selectedLikes[0] === "" ||
         (snsData.avgLikes >= likesMin && snsData.avgLikes <= likesMax);
-  
+
       const viewsMatch =
         selectedViews[0] === "" ||
         (snsData.avgViews === 0 ? true : (snsData.avgViews >= viewsMin && snsData.avgViews <= viewsMax));
-  
+
       console.log("  ✅ 조건 일치 여부:", {
         categoryMatch,
         followersMatch,
         likesMatch,
         viewsMatch,
       });
-  
+
       return categoryMatch && followersMatch && likesMatch && viewsMatch;
     });
-  
+
     console.log("📌 최종 결과 개수:", result.length);
     setFilteredList(result);
   };
-  
+
 
   return (
     <div className="container">
-       <div className="analysis-container">
+      <div className="analysis-container">
         <div className="title-container">
           <div className="analysis-title">인플루언서 찾기</div>
         </div>
@@ -348,8 +351,8 @@ const Analysis = () => {
                 </div>
 
                 {[{ type: "followers", title: "팔로워 수", ranges: followerRanges, state: selectedFollowers },
-                  { type: "likes", title: "평균 좋아요 수", ranges: likesRanges, state: selectedLikes },
-                  { type: "views", title: "평균 동영상 조회 수", ranges: viewsRanges, state: selectedViews }].map(({ type, title, ranges, state }, idx) => (
+                { type: "likes", title: "평균 좋아요 수", ranges: likesRanges, state: selectedLikes },
+                { type: "views", title: "평균 동영상 조회 수", ranges: viewsRanges, state: selectedViews }].map(({ type, title, ranges, state }, idx) => (
                   <div className={`tag${idx + 2}`} key={type}>
                     <div className="category-title">{title}</div>
                     <div className="analysis-second-filter-range-buttons">
@@ -386,59 +389,62 @@ const Analysis = () => {
         <hr />
 
         <div className="table-container">
-      <table className="influencer-table">
-        <thead>
-          <tr>
-            <th>계정</th>
-            <th>카테고리</th>
-            <th>태그</th>
-            <th>팔로워 수</th>
-            <th>평균 조회수</th>
-            <th>평균 좋아요 수</th>
-            <th>평균 댓글 수</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredList.length > 0 ? filteredList.map((inf) => {
-            const snsData = inf.snsData[selectedSNS];
-            if (!snsData) return null;
-            return (
-              <tr key={inf.id}>
-                <td>
-                  <div className="account-info-container">
-                    <img src={inf.profileImage} alt={inf.name} className="profile-img" />
-                    <div className="account-details">
-                      <div className="account-name">{inf.name}</div>
-                      <div className="account-description">인플루언서 설명</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="category-container">
-                    {inf.category.map((cat, idx) => (
-                      <span key={idx} className="category-box">{cat}</span>
-                    ))}
-                  </div>
-                </td>
-                <td>
-                  <div className="tag-container">
-                    {inf.tags.map((tag, idx) => (
-                      <span key={idx} className="tag-box">{tag}</span>
-                    ))}
-                  </div>
-                </td>
-                <td>{snsData.followers.toLocaleString()}</td>
-                <td>{snsData.avgViews.toLocaleString()}</td>
-                <td>{snsData.avgLikes.toLocaleString()}</td>
-                <td>{snsData.avgComments}</td>
+          <table className="influencer-table">
+            <thead>
+              <tr>
+                <th>계정</th>
+                <th>카테고리</th>
+                <th>태그</th>
+                <th>팔로워 수</th>
+                <th>평균 조회수</th>
+                <th>평균 좋아요 수</th>
+                <th>평균 댓글 수</th>
               </tr>
-            );
-          }) : (
-            <tr><td colSpan="7" className="no-result">조건에 맞는 인플루언서가 없습니다.</td></tr>
-          )}
-        </tbody>
-      </table>
-        {/* <div className="table-container"> 
+            </thead>
+            <tbody>
+              {filteredList.length > 0 ? filteredList.map((inf) => {
+                const snsData = inf.snsData[selectedSNS];
+                if (!snsData) return null;
+                return (
+                  <tr key={inf.id}
+                    onClick={() => navigate(`/DetailAnalysis/${inf.insta_id}`)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <td>
+                      <div className="account-info-container">
+                        <img src={inf.profileImage} alt={inf.name} className="profile-img" />
+                        <div className="account-details">
+                          <div className="account-name">{inf.name}</div>
+                          <div className="account-description">인플루언서 설명</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="category-container">
+                        {inf.category.map((cat, idx) => (
+                          <span key={idx} className="category-box">{cat}</span>
+                        ))}
+                      </div>
+                    </td>
+                    <td>
+                      <div className="tag-container">
+                        {inf.tags.map((tag, idx) => (
+                          <span key={idx} className="tag-box">{tag}</span>
+                        ))}
+                      </div>
+                    </td>
+                    <td>{snsData.followers.toLocaleString()}</td>
+                    <td>{snsData.avgViews.toLocaleString()}</td>
+                    <td>{snsData.avgLikes.toLocaleString()}</td>
+                    <td>{snsData.avgComments}</td>
+                  </tr>
+                );
+              }) : (
+                <tr><td colSpan="7" className="no-result">조건에 맞는 인플루언서가 없습니다.</td></tr>
+              )}
+            </tbody>
+          </table>
+          {/* <div className="table-container"> 
            <table className="influencer-table">
             <thead>
               <tr>

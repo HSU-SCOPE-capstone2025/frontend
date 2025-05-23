@@ -90,6 +90,7 @@ const audienceTones = [
 ];
 
 const Recommendation = () => {
+  const navigate = useNavigate();
   // 필터 선택
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRange, setSelectedRange] = useState(null); // 범위는 하나만 선택
@@ -160,8 +161,8 @@ const Recommendation = () => {
   };
 
 
- 
-  
+
+
   // const [selectedRange, setSelectedRange] = useState({ min: "", max: "" });
 
   // 검색 함수
@@ -186,7 +187,7 @@ const Recommendation = () => {
   //     audienceTone: selectedAudienceTone || "",
   //     sns: selectedSns || "",
   //   });
-    
+
 
   //   // 팔로워 범위를 변경하면 기존 필터를 초기화
   //   if (!selectedRange) {
@@ -244,10 +245,10 @@ const Recommendation = () => {
   //     const cost = influencer.estimatedAdCost || 0;
   //     return cost >= selectedAdCostRange.min && cost <= selectedAdCostRange.max;
   //   }); 
-  
 
 
-    
+
+
   //   setFilteredInfluencers(finalFilteredList);
   // };
 
@@ -261,7 +262,7 @@ const Recommendation = () => {
   //       inf.tik_followers || 0
   //     );
   //   });
-  
+
   //   // 팔로워 범위 파싱
   //   const minFollowers = selectedRange
   //     ? Number(selectedRange.min.toString().replace(/,/g, ""))
@@ -271,7 +272,7 @@ const Recommendation = () => {
   //       ? Infinity
   //       : Number(selectedRange.max.toString().replace(/,/g, ""))
   //     : Infinity;
-  
+
   //   // 필터 값 저장
   //   setSelectedFilters({
   //     categories: selectedCategories,
@@ -282,7 +283,7 @@ const Recommendation = () => {
   //     audienceTone: selectedAudienceTone || "",
   //     sns: selectedSns || "",
   //   });
-  
+
   //   // 필터링 (간단한 조건)
   //   const result = influencers
   //     .filter((inf) => {
@@ -292,7 +293,7 @@ const Recommendation = () => {
   //       if (!selectedSns) return true;
   //       return inf.sns.includes(selectedSns);
   //     });
-  
+
   //   setFilteredInfluencers(result);
   // };
 
@@ -300,7 +301,7 @@ const Recommendation = () => {
   //   try {
   //     const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
   //     const data = await response.json();
-  
+
   //     const filtered = data
   //       .filter((inf) => {
   //         // 카테고리 필터 (2개 중 하나라도 포함)
@@ -397,7 +398,7 @@ const Recommendation = () => {
   //           estimatedAdCost: maxAdCost || 0,
   //         };
   //       });
-  
+
   //     setFilteredInfluencers(filtered);
   //   } catch (error) {
   //     console.error("추천 데이터 로드 실패:", error);
@@ -416,7 +417,7 @@ const Recommendation = () => {
   //   try {
   //     const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
   //     const data = await response.json();
-  
+
   //     const minFollowers = selectedRange
   //       ? Number(selectedRange.min.replace(/,/g, ""))
   //       : 0;
@@ -425,13 +426,13 @@ const Recommendation = () => {
   //         ? Infinity
   //         : Number(selectedRange.max.replace(/,/g, ""))
   //       : Infinity;
-  
+
   //     const snsKey = selectedSns; // "instagram", "youtube", or "tiktok"
   //     const followersKey = `${snsKey}Followers`;
   //     const fssKey = `${snsKey}Fss`;
   //     const adCostKey = `${snsKey}Ad`;
   //     const commentKey = `${snsKey}CommentCluster`;
-  
+
   //     const filtered = data
   //       .filter((inf) => {
   //         // 카테고리 필터
@@ -439,24 +440,24 @@ const Recommendation = () => {
   //           const koreanCategory = categoryMap[inf.categories] || inf.categories;
   //           if (!selectedCategories.includes(koreanCategory)) return false;
   //         }
-  
+
   //         // 태그 필터
   //         if (selectedTags.length > 0) {
   //           const tags = inf.tag?.split(",").map((t) => t.trim()) || [];
   //           const hasMatchingTag = selectedTags.some((tag) => tags.includes(tag));
   //           if (!hasMatchingTag) return false;
   //         }
-  
+
   //         // SNS 필터 (팔로워 수, 광고단가 등 기준으로 해당 SNS 있는 경우만)
   //         if (!inf[followersKey]) return false;
-  
+
   //         // 팔로워 범위
   //         const followers = inf[followersKey] || 0;
   //         if (followers < minFollowers || followers > maxFollowers) return false;
-  
+
   //         // 오디언스 성향
   //         if (selectedAudienceTone && inf[commentKey] !== selectedAudienceTone) return false;
-  
+
   //         // 광고 단가
   //         if (selectedAdCostRange) {
   //           const adCost = Number(inf[adCostKey] || 0);
@@ -465,7 +466,7 @@ const Recommendation = () => {
   //             (selectedAdCostRange.max !== Infinity && adCost > selectedAdCostRange.max)
   //           ) return false;
   //         }
-  
+
   //         return true;
   //       })
   //       .map((inf) => {
@@ -490,25 +491,25 @@ const Recommendation = () => {
   //           },
   //                     };
   //       });
-  
+
   //     setFilteredInfluencers(filtered);
   //   } catch (err) {
   //     console.error("추천 인플루언서 필터링 실패:", err);
   //     alert("추천 리스트를 불러오는 데 실패했습니다.");
   //   }
   // };
-  
-  
+
+
   const handleSearch = async () => {
     if (!selectedSns) {
       alert("SNS를 선택해주세요.");
       return;
     }
-  
+
     try {
       const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
       const data = await response.json();
-  
+
       const snsKey = selectedSns; // "instagram" | "youtube" | "tiktok"
       // const followersKey = `${snsKey}Followers`;
       // const fssKey = `${snsKey}Fss`;
@@ -519,31 +520,31 @@ const Recommendation = () => {
         youtube: "youFollowers",
         tiktok: "tikFollowers",
       };
-      
+
       const fssKeyMap = {
         instagram: "instaFss",
         youtube: "youFss",
         tiktok: "tikFss",
       };
-      
+
       const adKeyMap = {
         instagram: "instaAd",
         youtube: "youAd",
         tiktok: "tikAd",
       };
-      
+
       const commentKeyMap = {
         instagram: "instagramCommentCluster",
         youtube: "youtubeCommentCluster",
         tiktok: "tiktokCommentCluster",
       };
-      
+
       const followersKey = followersKeyMap[selectedSns];
       const fssKey = fssKeyMap[selectedSns];
       const adKey = adKeyMap[selectedSns];
       const commentKey = commentKeyMap[selectedSns];
-      
-  
+
+
       const minFollowers = selectedRange
         ? Number(selectedRange.min.replace(/,/g, ""))
         : 0;
@@ -552,31 +553,31 @@ const Recommendation = () => {
           ? Infinity
           : Number(selectedRange.max.replace(/,/g, ""))
         : Infinity;
-  
+
       const filtered = data
         .filter((inf) => {
           // SNS 필수
           if (!inf[followersKey] || Number(inf[followersKey]) <= 0) return false;
-  
+
           // 카테고리 (선택한 경우만 적용)
           if (selectedCategories.length > 0) {
             const koreanCategory = categoryMap[inf.categories] || inf.categories;
             if (!selectedCategories.includes(koreanCategory)) return false;
           }
-  
+
           // 태그 (선택한 경우만 적용)
           if (selectedTags.length > 0) {
             const tagList = inf.tag?.split(",").map(t => t.trim()) || [];
             const hasTag = selectedTags.some(tag => tagList.includes(tag));
             if (!hasTag) return false;
           }
-  
+
           // 팔로워 수 (선택한 경우만 적용)
           const followers = Number(inf[followersKey]) || 0;
           if (selectedRange && (followers < minFollowers || followers > maxFollowers)) {
             return false;
           }
-  
+
           // 광고 단가 (선택한 경우만 적용)
           const adCost = Number(inf[adKey]) || 0;
           if (selectedAdCostRange) {
@@ -585,21 +586,22 @@ const Recommendation = () => {
               (selectedAdCostRange.max !== Infinity && adCost > selectedAdCostRange.max)
             ) return false;
           }
-  
+
           // 오디언스 성향 (선택한 경우만 적용)
           if (selectedAudienceTone && inf[commentKey] !== selectedAudienceTone) {
             return false;
           }
-  
+
           return true;
         })
         .map((inf) => {
           const koreanCategory = categoryMap[inf.categories] || inf.categories;
-  
+
           return {
             name: inf.influencerName,
             profileImage: getProfileImage(inf.influencerName),
             description: "",
+            insta_id: inf.instaName,
             categories: [koreanCategory],
             tags: inf.tag?.split(",").map((t) => t.trim()) || [],
             followers: Number(inf[followersKey]) || 0,
@@ -609,18 +611,18 @@ const Recommendation = () => {
               youtube: Number(inf.youFss || 0),
               tiktok: Number(inf.tikFss || 0),
             },
-            
+
             audienceTone: inf[commentKey] || "",
             estimatedAdCost: Number(inf[adKey]) || 0,
           };
         });
-        console.log({
-          sns: selectedSns,
-          dataLength: data.length,
-          filteredCount: filtered.length,
-        });
-        
-  
+      console.log({
+        sns: selectedSns,
+        dataLength: data.length,
+        filteredCount: filtered.length,
+      });
+
+
       setFilteredInfluencers(filtered);
       setSelectedFilters({
         categories: selectedCategories,
@@ -636,10 +638,10 @@ const Recommendation = () => {
       alert("추천 리스트를 불러오는 데 실패했습니다.");
     }
   };
-  
-  
-  
-  
+
+
+
+
   const formatFollowers = (num) => {
     if (num < 10000) return num.toLocaleString(); // 1만 미만이면 그대로 출력
     return Math.floor(num / 1000) / 10 + "만명"; // 1만 이상이면 변환
@@ -677,14 +679,14 @@ const Recommendation = () => {
       case "Neutral Informative":
         return "중립적 정보제공형";
       case "Empathetic":
-      return "공감하는";
+        return "공감하는";
       case "Cheerful":
         return "쾌활함";
       default:
         return tone;
     }
   };
-  
+
 
   const getKoreanLabel = (tone) => {
     switch (tone) {
@@ -718,19 +720,19 @@ const Recommendation = () => {
 
   const MAX_TAGS_DISPLAY = 2;
   const [showAllTags, setShowAllTags] = useState(false);
-  
+
   const visibleTags = showAllTags
     ? selectedFilters.tags
     : selectedFilters.tags.slice(0, MAX_TAGS_DISPLAY);
-  
+
   const hiddenTagCount = selectedFilters.tags.length - MAX_TAGS_DISPLAY;
-    
+
   const [selectedSns, setSelectedSns] = useState(""); // 하나만 선택
 
   const handleSnsSelection = (snsKey) => {
     setSelectedSns((prev) => (prev === snsKey ? "" : snsKey)); // 이미 선택된 항목 다시 누르면 해제
   };
-  
+
   const adCostRanges = [
     { label: "~ 50만", min: 0, max: 500000 },
     { label: "50만 ~ 100만", min: 500000, max: 1000000 },
@@ -752,14 +754,14 @@ const Recommendation = () => {
       setSelectedAudienceTone(toneValue);
     }
   };
-  
 
-  
+
+
 
   const buildSearchParams = () => {
     const minFollowers = selectedRange?.min?.replace(/,/g, "");
     const maxFollowers = selectedRange?.max === "∞" ? undefined : selectedRange?.max?.replace(/,/g, "");
-  
+
     return {
       sns: selectedSns || undefined,
       categories: selectedCategories.slice(0, 2).join(","), // 최대 2개
@@ -771,9 +773,9 @@ const Recommendation = () => {
       max_cost: selectedAdCostRange?.max !== Infinity ? selectedAdCostRange?.max : undefined,
     };
   };
-  
-    
-  
+
+
+
   return (
     <div className="recommendation-container">
       {/* 메인 컨텐츠 박스 */}
@@ -811,15 +813,15 @@ const Recommendation = () => {
         원하는 분위기의 인플루언서를 추천받아 보세요
       </div>
 
-     {/* sns 선택 */}
+      {/* sns 선택 */}
       <div className="zero-box">
         <div className="zero-box-container">
           <div className="zero-box-title">SNS 선택</div>
           <div className="zero-box-content">
-          원하시는 SNS를 선택해 주세요
-           </div>
+            원하시는 SNS를 선택해 주세요
+          </div>
         </div>
-    
+
 
         <div className="zero-sns-container">
           {[
@@ -839,7 +841,7 @@ const Recommendation = () => {
         </div>
 
 
-      
+
       </div>
 
       {/* ✅ 첫 번째 박스 (마케팅 제품 카테고리 선택) */}
@@ -856,9 +858,8 @@ const Recommendation = () => {
           {categories.map((category, index) => (
             <button
               key={index}
-              className={`category-button ${
-                selectedCategories.includes(category) ? "selected" : ""
-              }`}
+              className={`category-button ${selectedCategories.includes(category) ? "selected" : ""
+                }`}
               onClick={() => toggleCategory(category)}
             >
               {category}
@@ -880,9 +881,8 @@ const Recommendation = () => {
             {followerRanges.map((range, index) => (
               <button
                 key={range.label}
-                className={`second-filter-button ${
-                  selectedRange === range ? "selected" : ""
-                }`}
+                className={`second-filter-button ${selectedRange === range ? "selected" : ""
+                  }`}
                 onClick={() => handleRangeSelection(range)}
               >
                 {range.label}
@@ -910,9 +910,8 @@ const Recommendation = () => {
           {featureTag.map((tag, index) => (
             <button
               key={index}
-              className={`category-button ${
-                selectedTags.includes(tag) ? "selected" : ""
-              }`}
+              className={`category-button ${selectedTags.includes(tag) ? "selected" : ""
+                }`}
               onClick={() => toggleTag(tag)}
             >
               {tag}
@@ -930,17 +929,16 @@ const Recommendation = () => {
         </div>
 
         <div className="fourth-box-right">
-        {audienceTones.map((tone, index) => (
-          <div
-            key={index}
-            className={`fourth-small-box ${
-              selectedAudienceTone === tone.value ? "selected" : ""
-            }`}
-            onClick={() => handleAudienceToneSelection(tone.value)}          >
-            <img src={tone.icon} alt={tone.label} className="emotion-icon-image" />
-            <div className="fourth-small-box-title">{tone.label}</div>
-          </div>
-        ))}
+          {audienceTones.map((tone, index) => (
+            <div
+              key={index}
+              className={`fourth-small-box ${selectedAudienceTone === tone.value ? "selected" : ""
+                }`}
+              onClick={() => handleAudienceToneSelection(tone.value)}          >
+              <img src={tone.icon} alt={tone.label} className="emotion-icon-image" />
+              <div className="fourth-small-box-title">{tone.label}</div>
+            </div>
+          ))}
 
         </div>
 
@@ -948,19 +946,19 @@ const Recommendation = () => {
 
       </div>
 
-{/* 예상 광고 단가  */}
-    {/* ✅ 5번째 박스 - 예상 광고 단가 */}
-<div className="fifth-box">
-  <div className="fifth-box-container">
-    <div className="fifth-box-title">예상 광고 단가</div>
-    <div className="fifth-box-content">
-      인플루언서의 예상 광고 단가를 정해주세요
-    </div>
-  </div>
-  <div className="fifth-box-right">
-    {/* 버튼 선택 */}
-    <div className="fifth-filter-range-buttons">
-      {/* {adCostRanges.map((range, index) => (
+      {/* 예상 광고 단가  */}
+      {/* ✅ 5번째 박스 - 예상 광고 단가 */}
+      <div className="fifth-box">
+        <div className="fifth-box-container">
+          <div className="fifth-box-title">예상 광고 단가</div>
+          <div className="fifth-box-content">
+            인플루언서의 예상 광고 단가를 정해주세요
+          </div>
+        </div>
+        <div className="fifth-box-right">
+          {/* 버튼 선택 */}
+          <div className="fifth-filter-range-buttons">
+            {/* {adCostRanges.map((range, index) => (
     <button
       key={index}
       className={`fifth-filter-button ${
@@ -971,42 +969,41 @@ const Recommendation = () => {
       {range.label}
     </button>
   ))} */}
-{adCostRanges.map((range, index) => (
-  <button
-    key={index}
-    className={`fifth-filter-button ${
-      selectedAdCostRange?.label === range.label ? "selected" : ""
-    }`}
-    onClick={() => handleAdCostRangeSelection(range)}
-  >
-    {range.label}
-  </button>
-))}
+            {adCostRanges.map((range, index) => (
+              <button
+                key={index}
+                className={`fifth-filter-button ${selectedAdCostRange?.label === range.label ? "selected" : ""
+                  }`}
+                onClick={() => handleAdCostRangeSelection(range)}
+              >
+                {range.label}
+              </button>
+            ))}
 
-    </div>
+          </div>
 
-    {/* 수치 입력 */}
-    <div className="recommendation-range-inputs">
-      {/* <input
+          {/* 수치 입력 */}
+          <div className="recommendation-range-inputs">
+            {/* <input
         type="text"
         value={selectedAdCostRange?.min?.toLocaleString() || ""}
         readOnly
         placeholder="부터"
       /> */}
 
-      <input
-        type="text"
-        value={
-          selectedAdCostRange
-            ? selectedAdCostRange.min.toLocaleString()
-            : ""
-        }
-        readOnly
-        placeholder="부터"
-      />
+            <input
+              type="text"
+              value={
+                selectedAdCostRange
+                  ? selectedAdCostRange.min.toLocaleString()
+                  : ""
+              }
+              readOnly
+              placeholder="부터"
+            />
 
-      <span className="range-divider">~</span>
-      {/* <input
+            <span className="range-divider">~</span>
+            {/* <input
         type="text"
         value={
           selectedAdCostRange?.max !== Infinity
@@ -1016,22 +1013,22 @@ const Recommendation = () => {
         readOnly
         placeholder="까지"
       /> */}
-      <input
-        type="text"
-        value={
-          selectedAdCostRange
-            ? selectedAdCostRange.max === Infinity
-              ? ""
-              : selectedAdCostRange.max.toLocaleString()
-            : ""
-        }
-        readOnly
-        placeholder="까지"
-      />
+            <input
+              type="text"
+              value={
+                selectedAdCostRange
+                  ? selectedAdCostRange.max === Infinity
+                    ? ""
+                    : selectedAdCostRange.max.toLocaleString()
+                  : ""
+              }
+              readOnly
+              placeholder="까지"
+            />
 
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>
 
       {/* 검색 버튼 */}
       <button className="recommendation-search-button" onClick={handleSearch}>
@@ -1045,77 +1042,77 @@ const Recommendation = () => {
 
         <div className="selected-filters-container">
 
-        <div className="selected-filters-row">
-
-        <div className="selected-filters-box" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-  SNS:
-  {selectedFilters.sns ? (
-    <img
-      src={
-        selectedFilters.sns === "instagram"
-          ? InstaLogo
-          : selectedFilters.sns === "youtube"
-          ? youtubeLogo
-          : tiktokLogo
-      }
-      alt={selectedFilters.sns}
-      className="selected-sns-icon"
-      style={{ width: "30px", height: "30px" }}
-    />
-  ) : (
-    <span className="selected-filter">설정 안됨</span>
-  )}
-</div>
-
-
-          <div className="selected-filters-box">
-            카테고리:
-            {selectedFilters.categories.map((category, index) => (
-              <div key={index} className="selected-filter">{category}</div>
-            ))}
-          </div>
-
-          <div className="selected-filters-box">
-            팔로워 수:{" "}
-            <span className="selected-filter">
-              {selectedFilters.followers || "설정 안됨"}
-            </span>
-          </div>
-
-          </div>
-    
           <div className="selected-filters-row">
 
-          <div className="selected-filters-box">
-            태그:
-            {selectedFilters.tags.map((tag, index) => (
-              <div key={index} className="selected-filter">{tag}</div>
-            ))}
-          </div>
-
-
-          <div className="selected-filters-box" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>주요 오디언스 성향:</span>
-            {selectedFilters.audienceTone ? (
-              <div style={{ display: "flex",flexDirection: "column", alignItems: "center", gap: "6px" }}>
-                        <span className="selected-audience-filter">
-
+            <div className="selected-filters-box" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              SNS:
+              {selectedFilters.sns ? (
                 <img
-                  src={getEmotionIcon(selectedFilters.audienceTone)}
-                  alt={selectedFilters.audienceTone}
-                  style={{ width: "40px", height: "40px" ,marginBottom:"6px"}}
+                  src={
+                    selectedFilters.sns === "instagram"
+                      ? InstaLogo
+                      : selectedFilters.sns === "youtube"
+                        ? youtubeLogo
+                        : tiktokLogo
+                  }
+                  alt={selectedFilters.sns}
+                  className="selected-sns-icon"
+                  style={{ width: "30px", height: "30px" }}
                 />
-                  {getPlainKoreanLabel(selectedFilters.audienceTone)}
-                </span>
-              </div>
-            ) : (
-              <span className="selected-audience-filter">설정 안됨</span>
-            )}
+              ) : (
+                <span className="selected-filter">설정 안됨</span>
+              )}
+            </div>
+
+
+            <div className="selected-filters-box">
+              카테고리:
+              {selectedFilters.categories.map((category, index) => (
+                <div key={index} className="selected-filter">{category}</div>
+              ))}
+            </div>
+
+            <div className="selected-filters-box">
+              팔로워 수:{" "}
+              <span className="selected-filter">
+                {selectedFilters.followers || "설정 안됨"}
+              </span>
+            </div>
+
           </div>
 
+          <div className="selected-filters-row">
 
+            <div className="selected-filters-box">
+              태그:
+              {selectedFilters.tags.map((tag, index) => (
+                <div key={index} className="selected-filter">{tag}</div>
+              ))}
+            </div>
+
+
+            <div className="selected-filters-box" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span>주요 오디언스 성향:</span>
+              {selectedFilters.audienceTone ? (
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+                  <span className="selected-audience-filter">
+
+                    <img
+                      src={getEmotionIcon(selectedFilters.audienceTone)}
+                      alt={selectedFilters.audienceTone}
+                      style={{ width: "40px", height: "40px", marginBottom: "6px" }}
+                    />
+                    {getPlainKoreanLabel(selectedFilters.audienceTone)}
+                  </span>
+                </div>
+              ) : (
+                <span className="selected-audience-filter">설정 안됨</span>
+              )}
+            </div>
+
+
+          </div>
         </div>
-</div>
         {/* 검색 결과 표시 */}
         <div className="recommend-table-div">
           <div className="recommend-table-title">
@@ -1123,24 +1120,27 @@ const Recommendation = () => {
           </div>
           <div className="divider" />
           <table className="recommend-ranking-table">
-          <thead>
-            <tr>
-              <th style={{ width: "10%" }}>채널명</th>
-              <th style={{ width: "10%" }}>카테고리</th>
-              <th style={{ width: "22%" }}>태그</th>
-              <th style={{ width: "11%" }}>SCOPE 점수</th>
-              <th style={{ width: "7%" }}>팔로워</th>
-              <th style={{ width: "10%" }}>주요 오디언스 성향</th>
-              <th style={{ width: "15%" }}>예상 광고 단가</th>
+            <thead>
+              <tr>
+                <th style={{ width: "10%" }}>채널명</th>
+                <th style={{ width: "10%" }}>카테고리</th>
+                <th style={{ width: "22%" }}>태그</th>
+                <th style={{ width: "11%" }}>SCOPE 점수</th>
+                <th style={{ width: "7%" }}>팔로워</th>
+                <th style={{ width: "10%" }}>주요 오디언스 성향</th>
+                <th style={{ width: "15%" }}>예상 광고 단가</th>
 
-            </tr>
-          </thead>
+              </tr>
+            </thead>
 
 
             <tbody>
               {filteredInfluencers.length > 0 ? (
                 filteredInfluencers.map((influencer, index) => (
-                  <tr key={index}>
+                  <tr key={index}
+                    onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <td>
                       {" "}
                       {/* 채널명 (이미지+채널명) */}
@@ -1166,7 +1166,7 @@ const Recommendation = () => {
                         </div>
                       </div>
                     </td>
-                  
+
                     <td>
                       {/* 카테고리 */}
                       <div className="ranking-category-container">
@@ -1191,38 +1191,38 @@ const Recommendation = () => {
                     {/* SCOPE 점수 */}
 
                     <td>
-                    <BarGraph
+                      <BarGraph
                         score={influencer.scopeScore[selectedSns] || 0}
-                        />
+                      />
 
                     </td>
                     {/* 팔로워 수 */}
                     <td>{formatFollowers(influencer.followers)}</td>
 
 
-  {/* ✅ 주요 오디언스 성향 */}
-  <td>{influencer.audienceTone ? getKoreanLabel(influencer.audienceTone) : "정보 없음"}</td>
+                    {/* ✅ 주요 오디언스 성향 */}
+                    <td>{influencer.audienceTone ? getKoreanLabel(influencer.audienceTone) : "정보 없음"}</td>
 
-  {/* ✅ 예상 광고 단가 */}
-  <td>
-    {influencer.estimatedAdCost
-      ? `${influencer.estimatedAdCost.toLocaleString()}`
-      : "비공개"}
-  </td>
+                    {/* ✅ 예상 광고 단가 */}
+                    <td>
+                      {influencer.estimatedAdCost
+                        ? `${influencer.estimatedAdCost.toLocaleString()}`
+                        : "비공개"}
+                    </td>
                     {/* 변환된 값 출력 */}
                   </tr>
                 ))
               ) : (
                 <tr>
-                <td colSpan="7" style={{ textAlign: "center", padding: "20px" }}>
-                  선택한 필터에 맞는 인플루언서가 없습니다.
-                </td>
-              </tr>
+                  <td colSpan="7" style={{ textAlign: "center", padding: "20px" }}>
+                    선택한 필터에 맞는 인플루언서가 없습니다.
+                  </td>
+                </tr>
               )}
             </tbody>
-            
+
           </table>
-          
+
         </div>
       </div>
     </div>
