@@ -74,3 +74,9 @@
     font-weight: 600;
     line-height: normal;
 }
+
+.bubble-comments-scroll {
+  max-height: 500px; /* 필요 시 조정 가능 */
+  overflow-y: auto;
+  padding-right: 8px;
+}

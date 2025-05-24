@@ -8,6 +8,17 @@ import { fetchAccountData } from "../../api/DetailApi.js";
 import PieChartSection from "./PieChartSection";
 import BubbleChartSection from "./BubbleChartSection.jsx";
 
+// 인플루언서 감정 변화 그래프 데이터
+import dwaekki_youtube from "../../data/influencerEmotion/dwaekki_youtube.js";
+import dwaekki_instagram from "../../data/influencerEmotion/dwaekki_instagram.js";
+import dwaekki_tiktok from "../../data/influencerEmotion/dwaekki_tiktok.js";
+import ralral_youtube from "../../data/influencerEmotion/ralral_youtube.js";
+import ralral_instagram from "../../data/influencerEmotion/ralral_instagram.js";
+import ralral_tiktok from "../../data/influencerEmotion/ralral_tiktok.js";
+
+//비교할 이름
+const specialNames = ["돼끼", "랄랄", "말왕", "은수저", "젼언니"];
+
 const TENDENCY_COLOR_MAP = {
   '지지하는': '#E2FFD1',
   '정보제공형': '#E3E3E3',
@@ -115,6 +126,9 @@ const AccountContent = () => {
   //스코프점수 변화량 드롭다운
   const [selectedScopePlatform, setSelectedScopePlatform] = useState('youtube');
 
+  //인플루언서 감정 변화
+  const [selectedEmotionPlatform, setSelectedEmotionPlatform] = useState("youtube");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -144,6 +158,48 @@ const AccountContent = () => {
   if (!accountData) {
     return <div>데이터 로딩 중...</div>;
   }
+
+
+
+  const emotionDataMap = {
+    돼끼: {
+      youtube: dwaekki_youtube,
+      instagram: dwaekki_instagram,
+      tiktok: dwaekki_tiktok
+    },
+    랄랄: {
+      youtube: ralral_youtube,
+      instagram: ralral_instagram,
+      tiktok: ralral_tiktok
+    },
+    // 나머지 3명도 똑같이 구성
+  };
+
+  //인플루언서 감정 한글 매핑
+  const emotionLabelMap = {
+    neutral: "중립",
+    calm: "차분함",
+    happy: "행복",
+    sad: "슬픔",
+    angry: "분노",
+    fearful: "공포",
+    disgust: "혐오",
+  };
+
+  const raw = emotionDataMap[accountData.name]?.[selectedEmotionPlatform] || [];
+
+  const chartData = raw.map((item) => {
+    const time = `${item.start_sec.toFixed(1)}s`;
+    return {
+      time,
+      ...Object.entries(item.softmax).reduce((acc, [key, value]) => {
+        acc[emotionLabelMap[key] || key] = +(value * 100).toFixed(1);
+        return acc;
+      }, {}),
+    };
+  });
+
+
 
   //감정 코멘트 관련 변수
   const emotionData = accountData[selectedPlatform]?.emotion || [];
@@ -206,9 +262,9 @@ const AccountContent = () => {
         </div>
 
         <p id="scopeScore" className="profile-analysis-title2">SCOPE 점수</p>
-        <p className="profile-analysis-title3">팔로워 댓글을 분석해 <span style={{color: "#0071E3"}}>핵심 지지층의 규모를 점수로 환산</span>하고, 인플루언서의 <span style={{color: "#0071E3"}}>핵심 지지층의 영향력과 정도를 분석</span>합니다.<br />
-          <span style={{color: "#0071E3"}}>핵심 지지층이면 인플루언서에게 충성도가 높고, 해당 인플루언서를 지지하는 경향이 높게 나타납</span>니다.<br></br><br></br>
-          SCOPE 점수에 더욱 자세히 알고싶다면<br /><br /><span style={{color: "#0071E3"}}>이쪽을 클릭하세요</span></p>
+        <p className="profile-analysis-title3">팔로워 댓글을 분석해 <span style={{ color: "#0071E3" }}>핵심 지지층의 규모를 점수로 환산</span>하고, 인플루언서의 <span style={{ color: "#0071E3" }}>핵심 지지층의 영향력과 정도를 분석</span>합니다.<br />
+          <span style={{ color: "#0071E3" }}>핵심 지지층이면 인플루언서에게 충성도가 높고, 해당 인플루언서를 지지하는 경향이 높게 나타납</span>니다.<br></br><br></br>
+          SCOPE 점수에 더욱 자세히 알고싶다면<br /><br /><span style={{ color: "#0071E3" }}>이쪽을 클릭하세요</span></p>
 
         <div className="profile-analysis-box-array">
           <div className="profile-analysis-box-big">
@@ -279,7 +335,7 @@ const AccountContent = () => {
         </div>
 
         <p id="scopeSCoreRatio" className="profile-analysis-title2">예상 핵심 지지층 비율</p>
-        <p className="profile-analysis-title3"><span style={{color: "#0071E3"}}>전체 댓글</span>을 전체 팔로워를 기반으로 하여 SCOPE 점수가 높은 팔로워들의 비율입니다.<br />단순한 팔로워 수가 아닌 <span style={{color: "#0071E3"}}>‘실제로 반응하고 지지하는 팬’의 규모를 확인</span>할 수 있으며, 그로인해 인플루언서의 <span style={{color: "#0071E3"}}>진짜 영향력을 정확히 평가</span>할 수 있습니다.</p>
+        <p className="profile-analysis-title3"><span style={{ color: "#0071E3" }}>전체 댓글</span>을 전체 팔로워를 기반으로 하여 SCOPE 점수가 높은 팔로워들의 비율입니다.<br />단순한 팔로워 수가 아닌 <span style={{ color: "#0071E3" }}>‘실제로 반응하고 지지하는 팬’의 규모를 확인</span>할 수 있으며, 그로인해 인플루언서의 <span style={{ color: "#0071E3" }}>진짜 영향력을 정확히 평가</span>할 수 있습니다.</p>
         <div className="profile-analysis-box-array">
           <div className="profile-analysis-box">
             <div className="inline-block-div">
@@ -321,7 +377,7 @@ const AccountContent = () => {
 
         <p id="follower" className="profile-analysis-title2">팔로워 분석</p>
 
-        <div div style={{ marginLeft: "1400px", marginBottom: "20px" }}>
+        <div style={{ marginLeft: "1400px", marginBottom: "20px" }}>
           {/* 플랫폼 선택 드롭다운 */}
           <select
             value={selectedPlatform}
@@ -377,7 +433,7 @@ const AccountContent = () => {
           <div className="profile-analysis-box-big">
             <div>
               <div>
-                <p className="profile-analysis-sub-title" style={{ fontSize: "22px", marginRight: "1000px"}}>팔로워 주요 관심사</p>
+                <p className="profile-analysis-sub-title" style={{ fontSize: "22px", marginRight: "1000px" }}>팔로워 주요 관심사</p>
                 <p className="profile-analysis-sub-title" style={{ fontSize: "18px" }}>
                   해당 인플루언서의 댓글을 분석하여 많이 언급하는 주제와 키워드를 파악해 관심사를 분석한 그래프입니다.<br></br>주제 원을 클릭하면 해당 주제를 분석했던 댓글 데이터를 보실 수 있습니다.
                 </p> <br></br><br></br>
@@ -393,7 +449,57 @@ const AccountContent = () => {
           </div>
         </div>
 
-        <p id="influencerEmotion" className="profile-analysis-title2">인플루언서 콘텐츠 감정 변화</p>
+        {["돼끼", "랄랄", "말왕", "은수저", "젼언니"].includes(accountData.name) && (
+          <div>
+            <p id="influencerEmotion" className="profile-analysis-title2">인플루언서 콘텐츠 감정 변화 그래프</p>
+            <div className="profile-analysis-box-array">
+              <div className="profile-analysis-box-big">
+                <div>
+                  <p className="profile-analysis-sub-title" style={{ fontSize: "22px", marginRight: "900px" }}>
+                    인플루언서 콘텐츠 감정 변화 그래프
+                  </p>
+                  <p className="profile-analysis-sub-title" style={{ fontSize: "18px" }}>
+                    인플루언서의 영상을 분석하여 시간대별로 인플루언서의 감정 변화를 나타낸 그래프입니다.<br></br>
+                    해당 인플루언서가 콘텐츠에서 나타내는 주요 감정을 알 수 있습니다.
+                  </p>
+
+                  <div style={{ marginLeft: "1100px", marginBottom: "20px" }}>
+                    <select
+                      value={selectedEmotionPlatform}
+                      onChange={(e) => setSelectedEmotionPlatform(e.target.value)}
+                      className="custom-dropdown"
+                    >
+                      <option value="youtube">유튜브</option>
+                      <option value="instagram">인스타그램</option>
+                      <option value="tiktok">틱톡</option>
+                    </select>
+                  </div>
+
+                  <ResponsiveContainer width={1200} height={400} style={{fontFamily: "Paperlogy", fontSize: "16px", fontWeight: "500"}}>
+                    <LineChart data={chartData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="time" />
+                      <YAxis domain={[0, 100]} />
+                      <Tooltip />
+                      <Legend />
+                      {["중립", "차분함", "행복", "슬픔", "분노", "공포", "혐오"].map((label, i) => (
+                        <Line
+                          key={label}
+                          type="monotone"
+                          dataKey={label}
+                          strokeWidth={2}
+                          stroke={["#A3A3A3", "#6BA368", "#FF7BBD", "#9BCDFF", "#FFA786", "#C999ED", "#C0E188"][i]}
+                          dot={false}
+                        />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </div >

@@ -73,18 +73,19 @@ const BubbleChartSection = ({ title, data = [], colorMap = {} }) => {
                 <div className="bubble-comments">
                     <p className="bubble-comments-title">🗨️ {selectedTopic.name}에 대한 댓글</p>
                     <hr></hr>
-                    <ul>
-                        {selectedTopic.comments.slice(0, 5).map((comment, i) => (
-                            <li
-                                key={i}
-                                style={{ marginBottom: "20px" }}
-                                dangerouslySetInnerHTML={{
-                                    __html: DOMPurify.sanitize(comment),
-                                }}
-                            />
-                        ))}
-                    </ul>
-
+                    <div className="bubble-comments-scroll">
+                        <ul>
+                            {selectedTopic.comments.slice(0, 5).map((comment, i) => (
+                                <li
+                                    key={i}
+                                    style={{ marginBottom: "20px" }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: DOMPurify.sanitize(comment),
+                                    }}
+                                />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             )}
         </div>
