@@ -88,12 +88,31 @@ const DetailAnalysis = () => {
                             </div>
 
                             <div className="detail-profile-container">
-                                <div className="detail-profile-name">{influencerData?.name}</div>
-                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                                    <img src={instagramlink} alt="instagramlink" className="instagram-link" />
-                                </a>
+                                <div className="detail-profile-name">
+                                    {influencerData?.name}
+                                </div>
+                                <div className="detail-profile-description">{influencerData?.youtubeDescription}</div>
+                                <div className="detail-profile-link">
+                                    <div className="platform-link">
+                                        유튜브 <a href={influencerData?.youUrl} target="_blank" rel="noopener noreferrer">
+                                            <img src={instagramlink} alt="instagramlink" />
+                                        </a>
+                                    </div>
 
+                                    <div className="platform-link">
+                                        인스타그램 <a href={influencerData?.instaUrl} target="_blank" rel="noopener noreferrer">
+                                            <img src={instagramlink} alt="instagramlink" />
+                                        </a>
+                                    </div>
+
+                                    <div className="platform-link">
+                                        틱톡 <a href={influencerData?.tikUrl} target="_blank" rel="noopener noreferrer">
+                                            <img src={instagramlink} alt="instagramlink" />
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -118,7 +137,7 @@ const DetailAnalysis = () => {
                 <div>
                     {/* {activeTab === "sns" && <SNSContent />} */}
                     {/* {activeTab === "analysis" && <AccountContent />} */}
-                    {activeTab === "sns" && <SNSContent id={id} />} 
+                    {activeTab === "sns" && <SNSContent id={id} />}
                     {activeTab === "analysis" && <AccountContent id={id} />}
                 </div>
             </div>

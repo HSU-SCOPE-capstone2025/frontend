@@ -30,13 +30,9 @@ const PlatformPieChart = ({ platform, data }) => {
     const formatToMan = (num) => (num / 10000).toFixed(1) + "만 명";
 
     return (
-        <div style={{ textAlign: "center" }}>
-            <p className="profile-analysis-sub-title">
-                {platform} 예상 팔로워 서포트 비율
-            </p>
-
+        <div style={{ textAlign: "center", fontFamily: "Paperlogy", fontWeight: "500" }}>
             {/* 여기에 범례 블록 추가 */}
-            <div style={{ marginTop: "1rem", textAlign: "left", display: "inline-block" }}>
+            <div style={{ marginRight: "230px", textAlign: "left", display: "inline-block" }}>
                 <div>
                     <span style={{ width: "12px", height: "12px", background: "#0071E3", borderRadius: "50%", display: "inline-block" }}></span>
                     <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>핵심 지지층</span>
@@ -47,17 +43,17 @@ const PlatformPieChart = ({ platform, data }) => {
                 </div>
             </div>
 
-            <PieChart width={300} height={300}>
+            <PieChart width={400} height={200}>
                 <Pie
                     data={chartData}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
-                    outerRadius={100}
+                    outerRadius={95}
                     fill="#8884d8"
                     paddingAngle={5}
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                // label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                 >
                     {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index]} />
@@ -66,12 +62,15 @@ const PlatformPieChart = ({ platform, data }) => {
                         value={`${percentage}%`}
                         position="center"
                         fill="#0071E3"
-                        style={{ fontSize: "20px", fontWeight: "bold" }}
+                        style={{ fontSize: "20px", fontWeight: "700" }}
                     />
                 </Pie>
-                <Tooltip formatter={(value) => value.toLocaleString()} />
-                <Legend verticalAlign="bottom" height={36} />
+                <Tooltip
+                    formatter={(value, name) => [`${(value * 100).toFixed(1)}%`, name]}
+                />
+                {/* <Legend verticalAlign="bottom" height={36} /> */}
             </PieChart>
+            <p>전체 댓글 대비 핵심 지지층 비율</p>
         </div>
     );
 };

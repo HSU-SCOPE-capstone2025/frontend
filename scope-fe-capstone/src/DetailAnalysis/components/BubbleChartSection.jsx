@@ -33,7 +33,7 @@ const BubbleChartSection = ({ title, data = [], colorMap = {} }) => {
                     }}
                     onClick={() => setSelectedTopic(centerTopic)}
                 >
-                    <div className="bubble-content">
+                    <div className="bubble-content" style={{ fontSize: "24px" }}>
                         <div>{centerTopic.name}</div>
                         <div>{centerTopic.value}%</div>
                     </div>
@@ -71,11 +71,13 @@ const BubbleChartSection = ({ title, data = [], colorMap = {} }) => {
 
             {selectedTopic && (
                 <div className="bubble-comments">
-                    <h4>댓글 미리보기 ({selectedTopic.name})</h4>
+                    <p className="bubble-comments-title">🗨️ {selectedTopic.name}에 대한 댓글</p>
+                    <hr></hr>
                     <ul>
                         {selectedTopic.comments.slice(0, 5).map((comment, i) => (
                             <li
                                 key={i}
+                                style={{ marginBottom: "20px" }}
                                 dangerouslySetInnerHTML={{
                                     __html: DOMPurify.sanitize(comment),
                                 }}

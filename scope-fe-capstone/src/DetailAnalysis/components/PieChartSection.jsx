@@ -7,6 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import "../css/AccountContent.css";
 
 const renderTendencyLabel = (props) => {
   const { cx, cy, outerRadius, midAngle, name, percent, labelMap } = props;
@@ -45,7 +46,7 @@ const renderTendencyLabel = (props) => {
 
 const PieChartSection = ({ title, data, colorMap, labelMap }) => {
   return (
-    <div style={{ width: "100%", maxWidth: 600, margin: "1rem auto" }}>
+    <div style={{ width: "600px", maxWidth: 600, margin: "1rem auto" }} >
       <ResponsiveContainer width="100%" height={500}>
         <PieChart>
           <Pie
