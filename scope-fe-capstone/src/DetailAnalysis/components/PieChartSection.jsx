@@ -12,7 +12,7 @@ import "../css/AccountContent.css";
 const renderTendencyLabel = (props) => {
   const { cx, cy, outerRadius, midAngle, name, percent, labelMap } = props;
 
-  if (percent * 100 < 1) return null; // 1% 미만 숨기기
+  if (percent * 100 <= 0) return null; // 1% 미만 숨기기
 
   const RADIAN = Math.PI / 180;
   const radius = outerRadius + 40; // line과 label의 간격격
@@ -57,10 +57,11 @@ const PieChartSection = ({ title, data, colorMap, labelMap }) => {
             cy="50%"
             innerRadius={80}
             outerRadius={160}
+            // 2퍼센트 이하는 라벨이랑 선이 안나옴
             label={(props) =>
-              props.percent * 100 < 1 ? null : renderTendencyLabel({ ...props, labelMap })
+              props.percent * 100 <= 2 ? null : renderTendencyLabel({ ...props, labelMap })
             }
-            labelLine={(props) => (props.percent * 100 < 1 ? null : (
+            labelLine={(props) => (props.percent * 100 <= 2 ? null : (
               <path
                 d={`M${props.points[0].x},${props.points[0].y} L${props.points[1].x},${props.points[1].y}`}
                 stroke="#2B2F33"
