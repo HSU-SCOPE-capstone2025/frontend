@@ -2,20 +2,45 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/AccountContent.css";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, ReferenceLine, LineChart, Legend } from "recharts";
-import influencerAccountData from "../../data/influencerAccountData.js";
+//import influencerAccountData from "../../data/influencerAccountData.js";
 import PlatformPieChart from "./PlatformPieChart.jsx";
 import { fetchAccountData } from "../../api/DetailApi.js";
-
-const platforms = ['youtube', 'instagram', 'tiktok'];
+import PieChartSection from "./PieChartSection";
+import BubbleChartSection from "./BubbleChartSection.jsx";
 
 const TENDENCY_COLOR_MAP = {
-  '지지적': '#E2FFD1',
-  '중립적 정보제공형': '#E3E3E3',
-  '공격적': '#FFD7D7',
+  '지지하는': '#E2FFD1',
+  '정보제공형': '#E3E3E3',
+  '공격적인': '#FFD7D7',
   '쾌활함': '#FFFBB5',
   '분석적': '#D9DEFF',
   '스팸': '#EED1FF',
   '공감하는': '#FFE8C0',
+};
+
+const tendencyLabelMap = {
+  정보제공형: "중립적 정보제공형",
+  분석적: "분석적",
+  공격적인: "공격적",
+  공감하는: "공감하는",
+  스팸: "스팸",
+  쾌활함: "쾌활함",
+  지지하는: "지지적",
+};
+
+const TOPIC_COLOR_MAP = {
+  "콘텐츠 평가": "#FFB6C1",
+  "제품 / 아이템 리뷰": "#FFD700",
+  "사회 / 시사 이슈": "#87CEEB",
+  "유튜버 개인": "#90EE90",
+  "사건 / 논란": "#FF7F50",
+  "기타 / 미분류": "#FFB6C1",
+  "질문 / 피드백": "#FFD700",
+  "정보 / 꿀팁": "#87CEEB",
+  "유머 / 드립": "#90EE90",
+  "공감 / 감정 공유": "#FF7F50",
+  // 기본 색상
+  default: "#D3D3D3",
 };
 
 // 유틸: 보여줄 이름 포맷
@@ -60,23 +85,6 @@ const EMOTION_COLOR_MAP = {
   공포: '#C999ED',
 };
 
-
-const renderCustomLine = (props) => {
-  const { points, index } = props;
-
-  // 선의 시작점과 끝점 좌표
-  const [start, end] = points;
-
-  return (
-    <path
-      d={`M${start.x},${start.y}L${end.x},${end.y}`}
-      stroke="#2B2F33"        // 원하는 색상
-      strokeWidth={2}         // 굵기
-      fill="none"
-    />
-  );
-};
-
 const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
   const displayPercent = (percent * 100).toFixed(0);
   if (percent < 0.03) return null;
@@ -101,80 +109,11 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 const AccountContent = () => {
   const { id } = useParams();
   const [accountData, setAccountData] = useState(null);
-  const [selectedPlatform, setSelectedPlatform] = useState('youtube');
+  const [selectedPlatform, setSelectedPlatform] = useState("youtube");
   const [platformScores, setPlatformScores] = useState({});
 
-
-  const { tendency, emotion, topic } = influencerAccountData.platforms[selectedPlatform];
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const topicData = influencerAccountData.platforms[selectedPlatform]?.topic || [];
-  const [selectedScopePlatform, setSelectedScopePlatform] = useState("youtube");
-
-
-
-  // 꽃모양 원 위치 계산
-  const positions = useMemo(() => {
-    const centerX = 350;
-    const centerY = 300;
-
-    // 유튜브 토픽 데이터 가져오기
-    const topicData = influencerAccountData.platforms.youtube.topic;
-
-    const sorted = [...topicData].sort((a, b) => b.value - a.value);
-    const total = topicData.reduce((sum, t) => sum + t.value, 0);
-
-    const positions = [];
-
-    // 중앙 원 (가장 큰 value)
-    const centerTopic = sorted[0];
-    const centerDiameter = 70 + (centerTopic.value / total) * 160;
-    positions.push({
-      ...centerTopic,
-      x: centerX - centerDiameter / 2,
-      y: centerY - centerDiameter / 2,
-      diameter: centerDiameter,
-    });
-
-    // 주변 원들
-    const angleStep = (2 * Math.PI) / (sorted.length - 1);
-    let angle = 0;
-    const baseRadius = centerDiameter / 2 + 90;
-
-    for (let i = 1; i < sorted.length; i++) {
-      const topic = sorted[i];
-      const diameter = 50 + (topic.value / total) * 120;
-
-      let placed = false;
-
-      for (let r = baseRadius; r < 600; r += 12) {
-        const x = centerX + r * Math.cos(angle) - diameter / 2;
-        const y = centerY + r * Math.sin(angle) - diameter / 2;
-
-        const overlaps = positions.some((p) => {
-          const dx = p.x + p.diameter / 2 - (x + diameter / 2);
-          const dy = p.y + p.diameter / 2 - (y + diameter / 2);
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          return dist < (p.diameter + diameter) / 2 + 10;
-        });
-
-        if (!overlaps) {
-          positions.push({ ...topic, x, y, diameter });
-          placed = true;
-          break;
-        }
-      }
-
-      if (!placed) {
-        const fallbackX = centerX + (baseRadius + 200) * Math.cos(angle) - diameter / 2;
-        const fallbackY = centerY + (baseRadius + 200) * Math.sin(angle) - diameter / 2;
-        positions.push({ ...topic, x: fallbackX, y: fallbackY, diameter });
-      }
-
-      angle += angleStep;
-    }
-
-    return positions;
-  }, []);
+  //스코프점수 변화량 드롭다운
+  const [selectedScopePlatform, setSelectedScopePlatform] = useState('youtube');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -206,6 +145,23 @@ const AccountContent = () => {
     return <div>데이터 로딩 중...</div>;
   }
 
+  //감정 코멘트 관련 변수
+  const emotionData = accountData[selectedPlatform]?.emotion || [];
+  const sortedEmotions = [...emotionData].sort((a, b) => b.value - a.value);
+  const topEmotion = sortedEmotions[0];
+
+  const emotionComment = topEmotion
+    ? `인플루언서의 댓글을 분석하여 팔로워가 느끼는 감정을 시각화한 그래프입니다. 해당 인플루언서의 팔로워들은 "${topEmotion.name}" 감정을 ${topEmotion.value}%로 가장 많이 느끼고 있습니다.`
+    : "감정 분석 데이터를 찾을 수 없습니다.";
+
+  //성향 코멘트 관련 변수
+  const tendencyData = accountData[selectedPlatform]?.tendency || [];
+  const sortedTendencies = [...tendencyData].sort((a, b) => b.value - a.value);
+  const topTendency = sortedTendencies[0];
+
+  const tendencyComment = topEmotion
+    ? `인플루언서의 댓글을 분석하여 팔로워가 느끼는 감정을 시각화한 그래프입니다. 해당 인플루언서의 팔로워들은 "${tendencyLabelMap[topTendency.name] || topTendency.name}" 감정을 ${topTendency.value}%로 가장 많이 느끼고 있습니다.`
+    : "감정 분석 데이터를 찾을 수 없습니다.";
 
   const scopeScoreData = platformScores[selectedScopePlatform] || [];
 
@@ -319,173 +275,67 @@ const AccountContent = () => {
             </div>
           </div>
         </div>
-
-
         <p id="audience" className="profile-analysis-title2">팔로워 분석</p>
 
-        {/* 드롭다운 UI */}
-        <div style={{ marginLeft: '100px' }}>
-          <label htmlFor="platformSelect" style={{ marginRight: '10px', fontWeight: 'bold' }}>플랫폼 선택:</label>
+        <div div style={{ marginLeft: "1400px", marginBottom: "20px" }}>
+          {/* 플랫폼 선택 드롭다운 */}
           <select
-            id="platformSelect"
             value={selectedPlatform}
-            onChange={(e) => {
-              setSelectedPlatform(e.target.value);
-              setSelectedTopic(null); // 토픽 초기화
-            }}
+            onChange={(e) => setSelectedPlatform(e.target.value)}
+            className="custom-dropdown"
+            style={{ backgroundColor: "#FAFAFA" }}
           >
-            {platforms.map((platform) => (
-              <option key={platform} value={platform}>
-                {platform.charAt(0).toUpperCase() + platform.slice(1)}
-              </option>
-            ))}
+            <option value="youtube">유튜브</option>
+            <option value="instagram">인스타그램</option>
+            <option value="tiktok">틱톡</option>
           </select>
-        </div>
-
-        <div className="profile-analysis-box-array">
-          <div className="profile-analysis-box" style={{ width: "650px", height: "750px" }}>
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">
-                팔로워 주요 성향 군집화
-              </p>
-              <span className="normal-text">
-                인플루언서의 댓글을 분석하여 팔로워를 군집화한 그래프입니다.<br />
-              </span>
-
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <PieChart width={600} height={450}>
-                  <Pie
-                    data={influencerAccountData.platforms[selectedPlatform]?.tendency || []}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={80}
-                    outerRadius={160}
-                    dataKey="value"
-                    paddingAngle={0}
-                    label={renderTendencyLabel}
-                    labelLine={renderCustomLine}
-                  >
-                    {(influencerAccountData.platforms[selectedPlatform]?.tendency || []).map((entry, index) => (
-                      <Cell
-                        key={`cell-tendency-${index}`}
-                        fill={TENDENCY_COLOR_MAP[formatTendencyName(entry.name)] || '#ccc'}
-                      />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </div>
-            </div>
-          </div>
-
-          <div className="profile-analysis-box" style={{ width: "650px", height: "750px" }}>
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">오디언스 주요 감정</p>
-              <span className="normal-text">
-                해당 인플루언서 계정의 주요 오디언스는<br />행복과 중립을 주로 을 느끼는 것으로 분석됩니다.
-              </span>
-
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <PieChart width={600} height={450}>
-                  <Pie
-                    data={emotion}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={80}
-                    outerRadius={160}
-                    dataKey="value"
-                    paddingAngle={0}
-                    label={renderOutsideLabel}
-                    labelLine={renderCustomLine}
-                  >
-                    {emotion.map((entry, index) => (
-                      <Cell
-                        key={`cell-emotion-${index}`}
-                        fill={EMOTION_COLOR_MAP[entry.name] || '#ccc'}
-                      />
-                    ))}
-                  </Pie>
-                </PieChart>
-
-              </div>
-            </div>
-          </div>
-
-
 
         </div>
 
         <div className="profile-analysis-box-array">
+          <div className="profile-analysis-box-middle">
+            <div>
+              <h4 style={{ marginBottom: '0.5rem' }}>팔로워 주요 감정</h4>
+              <p style={{ fontSize: '0.95rem', marginBottom: '1rem' }}>{emotionComment}</p>
+              <PieChartSection
+                title="팔로워 주요 감정"
+                data={accountData[selectedPlatform]?.emotion || {}}
+                colorMap={EMOTION_COLOR_MAP}
+                labelRenderer={renderOutsideLabel}
+              />
+            </div>
+          </div>
 
-          <div className="profile-analysis-box-big">
-            <div className="inline-block-div">
-              <p className="profile-analysis-sub-title">오디언스 주요 주제</p>
-              <span className="normal-text">
-                해당 인플루언서 계정의 주요 오디언스는<br />
-                다음과 같은 주제가 많이 언급되고 있습니다.
-              </span>
-
-              <div
-                style={{
-                  marginBottom: '-50px',
-                  width: '600px',
-                  height: '500px',
-                  position: 'relative',
-                  backgroundColor: '#FFFFFF',
+          <div className="profile-analysis-box-middle">
+            <div>
+              <p style={{ fontSize: '0.95rem', marginBottom: '1rem' }}>{tendencyComment}</p>
+              <PieChartSection
+                title="팔로워 주요 성향 군집화"
+                data={accountData[selectedPlatform]?.tendency || {}}
+                colorMap={TENDENCY_COLOR_MAP}
+                labelMap={{
+                  정보제공형: "중립적\n정보제공형",
+                  분석적: "분석적",
+                  공격적인: "공격적",
+                  공감하는: "공감하는",
+                  스팸: "스팸",
+                  쾌활함: "쾌활함",
+                  지지하는: "지지적"
                 }}
-              >
-                {positions.map((pos, index) => (
-                  <div
-                    key={index}
-                    onClick={() => setSelectedTopic(pos)}
-                    style={{
-                      position: 'absolute',
-                      top: `${pos.y}px`,
-                      left: `${pos.x}px`,
-                      width: `${pos.diameter}px`,
-                      height: `${pos.diameter}px`,
-                      backgroundColor: "#90caf9",
-                      borderRadius: '50%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      fontWeight: 'bold',
-                      boxSizing: 'border-box',
-                      padding: '5px',
-                      color: '#000',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <div>
-                      <div>{pos.name}</div>
-                      <div>{pos.value}%</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {selectedTopic && (
-                <div style={{ marginTop: '20px', padding: '10px', border: '1px solid #ddd' }}>
-                  <h3 style={{ fontSize: '18px' }}>🗨️ {selectedTopic.name} 관련 댓글</h3>
-                  {selectedTopic.comments && selectedTopic.comments.length > 0 ? (
-                    <ul>
-                      {selectedTopic.comments.map((comment, i) => (
-                        <li key={i} style={{ margin: '5px 0', fontSize: '14px' }}>{comment}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p style={{ fontSize: '14px', color: '#888' }}>아직 수집된 댓글이 없습니다.</p>
-                  )}
-                </div>
-              )}
+                labelRenderer={renderTendencyLabel}
+              />
             </div>
           </div>
+        </div>
 
-
-
-
-
-
+        <div className="profile-analysis-box-array">
+          <div className="profile-analysis-box-big">
+            <BubbleChartSection
+              title="토픽 기반 분석"
+              data={accountData[selectedPlatform]?.topic || []}
+              colorMap={TOPIC_COLOR_MAP}
+            />
+          </div>
         </div>
 
 

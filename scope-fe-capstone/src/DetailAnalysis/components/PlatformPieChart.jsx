@@ -22,7 +22,7 @@ const PlatformPieChart = ({ platform, data }) => {
 
     const chartData = [
         { name: "핵심 지지층", value: highFssRatio },
-        { name: "핵심 지지층이 아닌 댓글", value: 1 - highFssRatio },
+        { name: "비핵심 지지층", value: 1 - highFssRatio },
     ];
 
     const percentage = ((highFssRatio) * 100).toFixed(1);
@@ -39,11 +39,11 @@ const PlatformPieChart = ({ platform, data }) => {
             <div style={{ marginTop: "1rem", textAlign: "left", display: "inline-block" }}>
                 <div>
                     <span style={{ width: "12px", height: "12px", background: "#0071E3", borderRadius: "50%", display: "inline-block" }}></span>
-                    <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>예상 유효 팔로워 서포트 수</span>
+                    <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>핵심 지지층</span>
                 </div>
                 <div style={{ marginTop: "8px" }}>
                     <span style={{ width: "12px", height: "12px", background: "#d9d9d9", borderRadius: "50%", display: "inline-block" }}></span>
-                    <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>기타 댓글</span>
+                    <span className="profile-analysis-text" style={{ marginLeft: "15px" }}>비핵심 지지층</span>
                 </div>
             </div>
 

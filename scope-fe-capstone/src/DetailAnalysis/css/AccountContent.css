@@ -74,8 +74,24 @@ html {
     /* 세로 중앙 정렬 */
 }
 
+.profile-analysis-box-middle {
+    width: 650px;
+    height: 700px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    justify-content: center;
+    /* 가로 중앙 정렬 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+}
+
 .profile-analysis-box-big {
     width: 1340px;
+    height: 700px;
     padding: 50px 0px;
     flex-shrink: 0;
     border-radius: 10px;
