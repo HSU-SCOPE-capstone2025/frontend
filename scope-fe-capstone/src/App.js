@@ -12,6 +12,7 @@ import Analysis from './Analysis/components/Analysis';
 import Recommendation from './Recommendation/components/Recommendation';
 import Register from './Register/components/Register';
 import Login from './Login/component/Login';
+import SponsorshipPage from './SponsorshipPage/components/SponsorshipPage';
 //임시 추가
 import DetailAnalysis from './DetailAnalysis/components/DetailAnalysis';
 import SNSContent from './DetailAnalysis/components/SNSContent';
@@ -37,6 +38,8 @@ const App = () => {
         <Route path="/DetailAnalysis/:id" element={<DetailAnalysis />} />
         <Route path="/Register" element={<Register />} />  
         <Route path="/Login" element={<Login />} />  
+        <Route path="/sponsorships/:id" element={<SponsorshipPage />} />
+        <Route path="/influencer/:id" element={<SNSContent />} />
 
       </Routes>
     </Router>

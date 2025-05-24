@@ -371,7 +371,7 @@
     margin-top: 45px;
     margin-left: 69px;
     padding-left: 43px;
-
+    padding-top: 40px;
 }
 
 .image-grid-title {
@@ -503,7 +503,6 @@
 }
 
 .sponsership-container {
-    width: 300px;
     height: 255px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -538,26 +537,42 @@
     border: none;
     width: 90%;
     margin-bottom: 34px;
+    cursor: pointer;
+    margin-left: 20px;
+
 
 }
 
 .sponsership-content-container {
     display: flex;
     flex-direction: row;
-    width: 242px;
     height: 41px;
+    
     flex-shrink: 0;
     border-radius: var(--Corner-Medium, 12px);
     border: 1px solid #CDCDCD;
     background: #FFF;
-    margin-left: 26px;
     margin-bottom: 7px;
+
+    margin-left: 10px;
+    margin-right: 10px;
 
 }
 
-.sponsership-sns,
-.sponsership-content-title,
-.sponsership-date {
+.sponsership-sns
+{
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 8px;
+    margin-top: 14px;
+}
+
+.sponsership-content-title{
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -568,6 +583,18 @@
     margin-left: 20px;
     margin-top: 14px;
 }
+.sponsership-date{
+    color: #2B2F33;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 20px;
+    margin-top: 14px;
+}
+
 
 .sponsership-tag {
     color: #2B2F33;
@@ -680,6 +707,7 @@
 .insta-people,
 .youtube-people,
 .tiktok-people {
+    display: flex;
     color: #A7A7A7;
     font-family: Paperlogy;
     font-size: 14px;
@@ -781,6 +809,16 @@
     gap: 23px;
 }
 
+.tag-item {
+    display: inline-block;     /* span을 block처럼 너비 조절 가능하게 */
+    padding: 4px 4px;         /* 글자 주변 여백 */
+    border-radius: 16px;       /* pill 형태 */
+    font-size: 20px;
+    white-space: nowrap;       /* 줄바꿈 방지 */
+    line-height: 1;
+  }
+  
+  
 .stat-box-tag-title {
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -804,6 +842,7 @@
 }
 
 .stat-box-tags {
+    display: flex;
     width: 279px;
     height: 27px;
     flex-shrink: 0;
@@ -816,7 +855,9 @@
     line-height: normal;
     margin-top: 21px;
     margin-left: 43px;
+    gap:20px;
 }
+
 
 
 .category-button-container {
@@ -922,3 +963,4 @@
     background-color: #0071E3;
     color: #fff;
 }
+
