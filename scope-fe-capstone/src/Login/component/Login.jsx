@@ -7,22 +7,41 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     // 관리자 계정 조건
+    //     if (email === "hansung1234" && password === "hansung1234!") {
+    //         navigate("/"); // ScopeMain.jsx로 이동
+    //     } else {
+    //         const storedPassword = localStorage.getItem(email);
+    //         if (storedPassword === password) {
+    //                    localStorage.setItem("user", JSON.stringify({ email }));
+    //         } else {
+    //             alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+    //         }
+    //     }
+    // };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         // 관리자 계정 조건
         if (email === "hansung1234" && password === "hansung1234!") {
-            navigate("/"); // ScopeMain.jsx로 이동
+            localStorage.setItem("user", JSON.stringify({ email, isAdmin: true })); // ✅ 관리자 표시
+            navigate("/");
         } else {
             const storedPassword = localStorage.getItem(email);
             if (storedPassword === password) {
-                navigate("/user"); // 일반 사용자
+                localStorage.setItem("user", JSON.stringify({ email, isAdmin: false })); // 일반 사용자
+                navigate("/user");
             } else {
                 alert("이메일 또는 비밀번호가 올바르지 않습니다.");
             }
         }
+        
     };
-
+    
     return (
         <div className="login-page-background">
             <div className="login-container">
