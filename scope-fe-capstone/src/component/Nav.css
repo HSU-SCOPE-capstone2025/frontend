@@ -92,3 +92,34 @@
 .contactButton:hover {
     background: #004a95;
 }
+
+/* .userProfileContainer {
+    margin-left: 20px;
+    margin-top: 8px;
+    cursor: pointer;
+
+}
+
+.userProfileImage {
+    height: 40px;
+    border-radius: 20%;
+    object-fit: cover;
+    background-color: #004a95;
+
+} */
+
+
+.userProfileContainer {
+    display: inline-block;
+    margin-left: 30px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.userProfileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+    object-fit: cover;
+    border: 3px solid #ccc;
+}
