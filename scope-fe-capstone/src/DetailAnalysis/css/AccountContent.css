@@ -295,3 +295,12 @@ html {
     padding: 8px 12px;
 
 }
+
+.influencer-emotion-text {
+    color: #2B2F33;
+    font-family: Paperlogy;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

@@ -15,6 +15,15 @@ import dwaekki_tiktok from "../../data/influencerEmotion/dwaekki_tiktok.js";
 import ralral_youtube from "../../data/influencerEmotion/ralral_youtube.js";
 import ralral_instagram from "../../data/influencerEmotion/ralral_instagram.js";
 import ralral_tiktok from "../../data/influencerEmotion/ralral_tiktok.js";
+import malwang_youtube from "../../data/influencerEmotion/malwang_youtube.js";
+import malwang_instagram from "../../data/influencerEmotion/malwang_instagram.js";
+import malwang_tiktok from "../../data/influencerEmotion/malwang_tiktok.js";
+import silverspoon_tiktok from "../../data/influencerEmotion/silverspoon_tiktok.js";
+import silverspoon_youtube from "../../data/influencerEmotion/silverspoon_youtube.js";
+import silverspoon_instagram from "../../data/influencerEmotion/silverspoon_instagram.js";
+import jyeon_instagram from "../../data/influencerEmotion/jyeon_instagram.js";
+import jyeon_tiktok from "../../data/influencerEmotion/jyeon_tiktok.js";
+import jyeon_youtube from "../../data/influencerEmotion/jyeon_youtube.js";
 
 //비교할 이름
 const specialNames = ["돼끼", "랄랄", "말왕", "은수저", "젼언니"];
@@ -172,6 +181,21 @@ const AccountContent = () => {
       instagram: ralral_instagram,
       tiktok: ralral_tiktok
     },
+    말왕: {
+      youtube: malwang_youtube,
+      instagram: malwang_instagram,
+      tiktok: malwang_tiktok
+    },
+    은수저: {
+      youtube: silverspoon_youtube,
+      instagram: silverspoon_instagram,
+      tiktok: silverspoon_tiktok
+    },
+    젼언니: {
+      youtube: jyeon_youtube,
+      instagram: jyeon_instagram,
+      tiktok: jyeon_tiktok
+    },
     // 나머지 3명도 똑같이 구성
   };
 
@@ -186,7 +210,8 @@ const AccountContent = () => {
     disgust: "혐오",
   };
 
-  const raw = emotionDataMap[accountData.name]?.[selectedEmotionPlatform] || [];
+  const selectedEmotionInfo = emotionDataMap[accountData.name]?.[selectedEmotionPlatform];
+  const raw = selectedEmotionInfo?.emotionTimeline || [];
 
   const chartData = raw.map((item) => {
     const time = `${item.start_sec.toFixed(1)}s`;
@@ -198,6 +223,7 @@ const AccountContent = () => {
       }, {}),
     };
   });
+
 
 
 
@@ -452,16 +478,32 @@ const AccountContent = () => {
         {["돼끼", "랄랄", "말왕", "은수저", "젼언니"].includes(accountData.name) && (
           <div>
             <p id="influencerEmotion" className="profile-analysis-title2">인플루언서 콘텐츠 감정 변화 그래프</p>
+
             <div className="profile-analysis-box-array">
               <div className="profile-analysis-box-big">
                 <div>
-                  <p className="profile-analysis-sub-title" style={{ fontSize: "22px", marginRight: "900px" }}>
-                    인플루언서 콘텐츠 감정 변화 그래프
-                  </p>
-                  <p className="profile-analysis-sub-title" style={{ fontSize: "18px" }}>
-                    인플루언서의 영상을 분석하여 시간대별로 인플루언서의 감정 변화를 나타낸 그래프입니다.<br></br>
-                    해당 인플루언서가 콘텐츠에서 나타내는 주요 감정을 알 수 있습니다.
-                  </p>
+                  <div style={{marginBottom: "50px"}}>
+                    <p className="profile-analysis-sub-title" style={{ fontSize: "22px",  }}>
+                      인플루언서 콘텐츠 감정 변화 그래프
+                    </p>
+                    <p className="profile-analysis-sub-title" style={{ fontSize: "18px" }}>
+                      인플루언서의 영상을 분석하여 시간대별로 인플루언서의 감정 변화를 나타낸 그래프입니다.<br></br>
+                      해당 인플루언서가 콘텐츠에서 나타내는 주요 감정을 알 수 있습니다.
+                    </p>
+                  </div>
+
+                  <div style={{ marginBottom: "-30px" }}>
+                    <p className="influencer-emotion-text">
+                      🎬 {selectedEmotionInfo?.title}
+                    </p>
+                    <p className="influencer-emotion-text" style={{fontSize: "16px"}}>
+                      영상 아이디: {selectedEmotionInfo?.videoId}
+                    </p>
+                    {/* <p>업로드일: {selectedEmotionInfo?.uploadedAt}</p> */}
+                    <a href={selectedEmotionInfo?.url} target="_blank" rel="noopener noreferrer" className="influencer-emotion-text" style={{ color: "#0071E3", fontSize: "16px" }}>
+                      🔗 영상 보러가기
+                    </a>
+                  </div>
 
                   <div style={{ marginLeft: "1100px", marginBottom: "20px" }}>
                     <select
@@ -475,7 +517,7 @@ const AccountContent = () => {
                     </select>
                   </div>
 
-                  <ResponsiveContainer width={1200} height={400} style={{fontFamily: "Paperlogy", fontSize: "16px", fontWeight: "500"}}>
+                  <ResponsiveContainer width={1200} height={400} style={{ fontFamily: "Paperlogy", fontSize: "16px", fontWeight: "500" }}>
                     <LineChart data={chartData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="time" />
@@ -494,12 +536,12 @@ const AccountContent = () => {
                       ))}
                     </LineChart>
                   </ResponsiveContainer>
-
                 </div>
               </div>
             </div>
           </div>
         )}
+
 
       </div>
     </div >
