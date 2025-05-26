@@ -127,6 +127,7 @@ const renderOutsideLabel = ({ name, percent, x, y, cx, cy }) => {
 
 // 시작시작시작작
 const AccountContent = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [accountData, setAccountData] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState("youtube");
@@ -290,7 +291,7 @@ const AccountContent = () => {
         <p id="scopeScore" className="profile-analysis-title2">SCOPE 점수</p>
         <p className="profile-analysis-title3">팔로워 댓글을 분석해 <span style={{ color: "#0071E3" }}>핵심 지지층의 규모를 점수로 환산</span>하고, 인플루언서의 <span style={{ color: "#0071E3" }}>핵심 지지층의 영향력과 정도를 분석</span>합니다.<br />
           <span style={{ color: "#0071E3" }}>핵심 지지층이면 인플루언서에게 충성도가 높고, 해당 인플루언서를 지지하는 경향이 높게 나타납</span>니다.<br></br><br></br>
-          SCOPE 점수에 더욱 자세히 알고싶다면<br /><br /><span style={{ color: "#0071E3" }}>이쪽을 클릭하세요</span></p>
+          SCOPE 점수에 더욱 자세히 알고싶다면<br /><br /><span style={{ color: "#0071E3", cursor: "pointer" }} onClick={() => navigate('/#scope-detail')}>이쪽을 클릭하세요</span></p>
 
         <div className="profile-analysis-box-array">
           <div className="profile-analysis-box-big">
@@ -482,8 +483,8 @@ const AccountContent = () => {
             <div className="profile-analysis-box-array">
               <div className="profile-analysis-box-big">
                 <div>
-                  <div style={{marginBottom: "50px"}}>
-                    <p className="profile-analysis-sub-title" style={{ fontSize: "22px",  }}>
+                  <div style={{ marginBottom: "50px" }}>
+                    <p className="profile-analysis-sub-title" style={{ fontSize: "22px", }}>
                       인플루언서 콘텐츠 감정 변화 그래프
                     </p>
                     <p className="profile-analysis-sub-title" style={{ fontSize: "18px" }}>
@@ -496,7 +497,7 @@ const AccountContent = () => {
                     <p className="influencer-emotion-text">
                       🎬 {selectedEmotionInfo?.title}
                     </p>
-                    <p className="influencer-emotion-text" style={{fontSize: "16px"}}>
+                    <p className="influencer-emotion-text" style={{ fontSize: "16px" }}>
                       영상 아이디: {selectedEmotionInfo?.videoId}
                     </p>
                     {/* <p>업로드일: {selectedEmotionInfo?.uploadedAt}</p> */}
