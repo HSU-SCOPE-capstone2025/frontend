@@ -123,3 +123,18 @@
     object-fit: cover;
     border: 3px solid #ccc;
 }
+
+.navUserInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+
+  .welcomeText {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+  }
+  

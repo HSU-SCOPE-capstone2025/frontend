@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { UserProvider } from './contexts/UserContext';
 import "./App.css";
 import Nav from './component/Nav';
 import ScopeMain from './ScopeMain/components/ScopeMain';
@@ -22,7 +22,8 @@ import AccountContent from './DetailAnalysis/components/AccountContent';
 // 전체 App 컴포넌트
 const App = () => {
   return (
-    <Router>
+    <UserProvider>
+       <Router>
       <Nav />
       <Routes>
         {/* Public Routes */}
@@ -43,6 +44,8 @@ const App = () => {
 
       </Routes>
     </Router>
+    </UserProvider>
+   
   );
 };
 

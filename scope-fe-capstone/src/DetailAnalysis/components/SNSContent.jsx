@@ -46,7 +46,7 @@ const SNSContent = () => {
     const [snsData, setSnsData] = useState(null); //연동 관련 변수 추가
     const [activeTab, setActiveTab] = useState("followers");
     const [activePage, setActivePage] = useState("analysis");
-    const [activeSNS, setActiveSNS] = useState("instagram");
+    const [activeSNS, setActiveSNS] = useState("youtube");
     const [currentPage, setCurrentPage] = useState(1);
     const instaId = snsData?.instaId || id;
 
@@ -386,6 +386,14 @@ console.log("✅ graphData.datasets[0].data:", graphData.datasets[0].data);
             <div>
                 <div>
                     <div className="sns-buttons">
+                    <button
+                            className={`youtube-btn ${activeSNS === "youtube" ? "active" : ""}`}
+                            onClick={() =>
+                                setActiveSNS(activeSNS === "youtube" ? null : "youtube")
+                            }
+                        >
+                            유튜브
+                        </button>
                         <button
                             className={`instagram-btn ${activeSNS === "instagram" ? "active" : ""}`}
                             onClick={() =>
@@ -394,14 +402,7 @@ console.log("✅ graphData.datasets[0].data:", graphData.datasets[0].data);
                         >
                             인스타그램
                         </button>
-                        <button
-                            className={`youtube-btn ${activeSNS === "youtube" ? "active" : ""}`}
-                            onClick={() =>
-                                setActiveSNS(activeSNS === "youtube" ? null : "youtube")
-                            }
-                        >
-                            유튜브
-                        </button>
+                       
                         <button
                             className={`tiktok-btn ${activeSNS === "tiktok" ? "active" : ""}`}
                             onClick={() =>
