@@ -5,8 +5,34 @@
     background: linear-gradient(180deg, #C3EBF9 0%, #FFF 104.03%);
 }
 
+.white-background {
+    background: white;
+    width: 100vw;
+    flex-shrink: 0;
+}
+
+.skyblue-background {
+    background: #E0F5FC;
+    width: 100vw;
+    flex-shrink: 0;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    /* 수평 정렬 */
+    align-items: center;
+    /* 수직 정렬 */
+}
+
+.inline-div {
+    display: inline-block;
+}
+
 .maingradText {
-    padding-top: 140px;
+    margin-top: 330px;
+    margin-bottom: 0px;
+
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -23,8 +49,6 @@
 }
 
 .grayText1 {
-    padding-top: 20px;
-
     color: #454545;
     text-align: center;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -35,10 +59,14 @@
     line-height: normal;
 }
 
-.mainpage-image {
-    margin-top: 60px;
-    width: 100vw;
+.title-text {
+    color: #2B2B2B;
     text-align: center;
-    display: flex;
-    justify-content: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Paperlogy;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 52px;
+    /* 144.444% */
 }
