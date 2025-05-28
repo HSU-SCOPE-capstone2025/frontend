@@ -38,7 +38,8 @@ const renderTendencyLabel = (props) => {
         </tspan>
       ))}
       <tspan x={x} dy={22}>
-        {` ${(percent * 100).toFixed(0)}%`}
+        {/* {` ${(percent * 100).toFixed(0)}%`} */}
+        {` ${props.payload.value.toFixed(0)}%`}
       </tspan>
     </text>
   );
