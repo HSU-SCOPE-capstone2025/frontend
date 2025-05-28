@@ -1,28 +1,29 @@
-#root{
-    width:100%;
+#root {
+    width: 100%;
     background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
 
 
 
 }
+
 .container {
-   
+
     /* width:1920px;
     height: 100%;
     background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%); */
 
 
     width: 100vw;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #E2F8FF 0%, #FFF 100%);
 
-  display: flex;
-  /* Flexbox 사용 */
-  justify-content: center;
-  /* 가로 중앙 정렬 */
+    display: flex;
+    /* Flexbox 사용 */
+    justify-content: center;
+    /* 가로 중앙 정렬 */
 }
 
-.analysis-container{
+.analysis-container {
     /* justify-content: center;
     width: 1775px;
     min-height: 1743px;
@@ -35,29 +36,32 @@
 
 
     margin-top: 140px;
+    margin-bottom: 100px;
 
-  width: 1600px;
-  height: 100%;
-  flex-shrink: 0;
+    width: 1600px;
+    height: 100%;
+    flex-shrink: 0;
 
-  border-radius: 20px;
-  background: #FFF;
-  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
 
 }
-    .title-container {
+
+.title-container {
     display: flex;
-    justify-content: flex-start; /* 왼쪽 정렬 */
-    margin-top:57px;
-    margin-left:69px;
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
+    margin-top: 57px;
+    margin-left: 69px;
     margin-bottom: 24px;
-    padding-top:57px;
+    padding-top: 30px;
     background-color: #ffffff;
 }
 
 
 .analysis-title {
-    
+
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
     font-size: 20px;
@@ -66,25 +70,29 @@
     line-height: normal;
 }
 
-hr{
+hr {
     width: 100%;
     border: 1px solid #DFDFDF;
 }
+
 /* SNS 버튼 스타일 */
 .sns-container {
     display: flex;
-    justify-content: flex-start; /* 왼쪽 정렬 */
-    gap: 20px; /* 버튼 간격 */
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
+    gap: 20px;
+    /* 버튼 간격 */
     margin-left: 69px;
 }
 
 .instagram-button {
-    width: 105px;
-    height: 35px;
+    gap: 10px;
     display: flex;
-    justify-content: space-between; /* 요소들을 가로 정렬 */
+    justify-content: space-between;
+    /* 요소들을 가로 정렬 */
+    align-items: center;
 
-    padding: 7px 10px;
+    padding: 10px;
     text-align: center;
     border: none;
     color: black;
@@ -100,11 +108,13 @@ hr{
     background-color: #fff;
 }
 
-.youtube-button, .tiktok-button {
+.youtube-button,
+.tiktok-button {
     width: 85px;
     height: 35px;
     display: flex;
-    justify-content: space-between; /* 요소들을 가로 정렬 */
+    justify-content: space-between;
+    /* 요소들을 가로 정렬 */
 
     padding: 10px 15px;
     text-align: center;
@@ -132,8 +142,8 @@ hr{
 .tiktok-button:hover,
 .tiktok-button:active,
 .tiktok-button.selected {
-  background-color: #F0F0F0; 
-  
+    background-color: #F0F0F0;
+
 }
 
 .sns-icon {
@@ -153,16 +163,19 @@ hr{
 /* 고급 필터 버튼 */
 .advanced-filter-settings-container {
     display: flex;
-    justify-content: flex-start; /* 왼쪽 정렬 */
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.advanced-filter-settings-contents{
+.advanced-filter-settings-contents {
     display: flex;
     justify-content: space-around;
     padding-bottom: 7px;
 }
 
-.advanced-filter-content{
+.advanced-filter-content {
     height: 15px;
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
@@ -172,8 +185,9 @@ hr{
     font-weight: 500;
     line-height: normal;
     margin-left: 31px;
-    margin-top:9px;
+    margin-top: 9px;
 }
+
 .advanced-filter-settings {
     width: 157px;
     height: 33px;
@@ -193,12 +207,12 @@ hr{
     font-weight: 500;
     line-height: normal;
     margin-left: 69px;
- 
+
 
 
 }
 
-.filter-icon{
+.filter-icon {
     width: 19px;
     height: 13px;
     flex-shrink: 0;
@@ -208,27 +222,29 @@ hr{
     background-color: #004a95;
 }
 
-.filter-arrow-icon{
-    width:18px;
+.filter-arrow-icon {
+    width: 18px;
     height: 18px;
 }
 
 /* 필터 창 스타일 */
 .filter-container {
-    display: none; /* 기본적으로 숨김 */
+    display: none;
+    /* 기본적으로 숨김 */
     flex-direction: column;
     gap: 15px;
     padding: 15px;
     border-radius: 10px;
     margin-top: 10px;
-    justify-content: flex-start; /* 왼쪽 정렬 */
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
     height: 341px;
-   
+
 }
 
 
 
-.tag1-category-title{
+.tag1-category-title {
     display: flex;
     width: 50px;
     flex-direction: column;
@@ -245,7 +261,7 @@ hr{
 }
 
 
-.category-title{
+.category-title {
     display: flex;
     width: 150px;
     flex-direction: column;
@@ -259,10 +275,12 @@ hr{
     line-height: normal;
     margin-right: 10px;
 }
+
 /* 카테고리 컨테이너 */
 .tag1 {
-   
-    flex-direction: column; /* 카테고리는 세로 정렬 */
+
+    flex-direction: column;
+    /* 카테고리는 세로 정렬 */
     gap: 10px;
     width: 425px;
     color: #2B2F33;
@@ -284,7 +302,8 @@ hr{
 /* 카테고리 버튼 그룹 */
 .filter-category-buttons {
     display: flex;
-    flex-wrap: wrap; /* 여러 줄로 배치 */
+    flex-wrap: wrap;
+    /* 여러 줄로 배치 */
     gap: 10px;
     justify-content: center;
     flex-shrink: 0;
@@ -301,15 +320,20 @@ hr{
 /* 팔로워 수, 좋아요 수, 조회 수 컨테이너 */
 .tag-group {
     display: flex;
-    justify-content: space-between; /* 요소들을 가로 정렬 */
-    width:1775px;
+    justify-content: space-between;
+    /* 요소들을 가로 정렬 */
+    width: 1775px;
 }
 
 
 /* 개별 필터 블록 (팔로워 수, 좋아요 수, 조회 수) */
-.tag2, .tag3, .tag4 {
-    flex: 1; /* 동일한 크기로 정렬 */
-    min-width: 250px; /* 최소 너비 설정 */
+.tag2,
+.tag3,
+.tag4 {
+    flex: 1;
+    /* 동일한 크기로 정렬 */
+    min-width: 250px;
+    /* 최소 너비 설정 */
 
 }
 
@@ -322,22 +346,22 @@ hr{
     border-radius: 20px;
     font-size: 14px;
     display: flex;
-flex-direction: column;
-justify-content: center;
-flex-shrink: 0;
-color: #2B2F33;
-text-align: center;
-font-family: Paperlogy;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-padding: 4px 10px;
-    
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B2F33;
+    text-align: center;
+    font-family: Paperlogy;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 4px 10px;
+
 }
 
 .filter-button.selected {
-    background-color:#F0F0F0;
+    background-color: #F0F0F0;
     color: white;
 }
 
@@ -370,7 +394,8 @@ padding: 4px 10px;
 
 
 .filter-container.active {
-    display: flex; /* 활성화되면 표시 */
+    display: flex;
+    /* 활성화되면 표시 */
 }
 
 /* 필터 버튼 스타일 */
@@ -379,8 +404,9 @@ padding: 4px 10px;
     width: 450px;
     flex-wrap: wrap;
     gap: 4px;
-    justify-content: flex-start; /* 왼쪽 정렬 */
-    
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
+
 }
 
 .filter-range-buttons {
@@ -411,8 +437,9 @@ padding: 4px 10px;
     font-weight: 400;
     line-height: normal;
     padding-top: 4px;
-    padding-bottom:4px;
+    padding-bottom: 4px;
 }
+
 .filter-button.selected {
     background-color: #F0F0F0;
     color: #111;
@@ -464,8 +491,8 @@ padding: 4px 10px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    border:none;
-    }
+    border: none;
+}
 
 
 
@@ -489,7 +516,8 @@ padding: 4px 10px;
 /* 총 인플루언서 수 */
 .total-influencer-container {
     display: flex;
-    justify-content: flex-start; /* 왼쪽 정렬 */
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
     color: #2B2F33;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -502,7 +530,7 @@ padding: 4px 10px;
     margin-left: 89px;
 }
 
-.total-number{
+.total-number {
     color: #0071E3;
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Paperlogy;
@@ -541,7 +569,8 @@ padding: 4px 10px;
 /* 테이블 헤더와 각 열의 너비 지정 */
 .influencer-table th:nth-child(1),
 .influencer-table td:nth-child(1) {
-    width: 320px; /* 계정 */
+    width: 320px;
+    /* 계정 */
     height: 40px;
     color: #2B2F33;
     font-family: Paperlogy;
@@ -551,26 +580,29 @@ padding: 4px 10px;
     line-height: normal;
     border-right: 2px solid #DEDEDE;
     text-align: start;
-padding-left: 89px;
+    padding-left: 89px;
 }
 
 /* 카테고리와 태그를 감싸는 컨테이너 */
-.category-container, .tag-container {
+.category-container,
+.tag-container {
     display: flex;
-    gap: 6px; /* 박스 사이 간격 */
-    justify-content: start; /* 왼쪽 정렬 */
+    gap: 6px;
+    /* 박스 사이 간격 */
+    justify-content: start;
+    /* 왼쪽 정렬 */
     flex-direction: row;
 
-    
+
 }
 
 /* 개별 카테고리 박스 스타일*/
-.category-box{
+.category-box {
     padding: auto;
     height: 18px;
     flex-shrink: 0;
     border-radius: 5px;
-    background-color: #E2F8FF;    
+    background-color: #E2F8FF;
     color: #2B2F33;
     text-align: center;
     font-family: Paperlogy;
@@ -578,17 +610,19 @@ padding-left: 89px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 3px 9px 3px 9px; /* 상, 우 , 하, 좌 */
+    padding: 3px 9px 3px 9px;
+    /* 상, 우 , 하, 좌 */
 
     justify-content: center;
 }
+
 /* 개별 태그 박스 스타일 */
 .tag-box {
     padding: auto;
     height: 18px;
     flex-shrink: 0;
     border-radius: 5px;
-    background-color: #DCEEFF;    
+    background-color: #DCEEFF;
     color: #0071E3;
     text-align: center;
     font-family: Paperlogy;
@@ -596,14 +630,16 @@ padding-left: 89px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 3px 9px 3px 9px; /* 상, 우 , 하, 좌 */
+    padding: 3px 9px 3px 9px;
+    /* 상, 우 , 하, 좌 */
 
     justify-content: center;
 }
 
 .influencer-table th:nth-child(2),
 .influencer-table td:nth-child(2) {
-    width: 120px; /* 카테고리 */
+    width: 120px;
+    /* 카테고리 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -616,7 +652,8 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(3),
 .influencer-table td:nth-child(3) {
-    width: 210px; /* 태그 */
+    width: 210px;
+    /* 태그 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -630,7 +667,8 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(4),
 .influencer-table td:nth-child(4) {
-    width: 160px; /* 팔로워 수 */
+    width: 160px;
+    /* 팔로워 수 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -643,7 +681,8 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(5),
 .influencer-table td:nth-child(5) {
-    width: 160px; /* 평균 조회수 */
+    width: 160px;
+    /* 평균 조회수 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -656,7 +695,8 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(6),
 .influencer-table td:nth-child(6) {
-    width: 160px; /* 평균 좋아요 수 */
+    width: 160px;
+    /* 평균 좋아요 수 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -669,7 +709,8 @@ padding-left: 89px;
 
 .influencer-table th:nth-child(7),
 .influencer-table td:nth-child(7) {
-    width: 160px; /* 평균 댓글 수 */
+    width: 160px;
+    /* 평균 댓글 수 */
     color: #2B2F33;
     font-family: Paperlogy;
     font-size: 16px;
@@ -682,12 +723,15 @@ padding-left: 89px;
 
 /* 홀수 번째 행 (회색 배경) */
 .influencer-table tbody tr:nth-child(odd) {
-    background-color: #FAFAFA; /* 연한 회색 */
+    background-color: #FAFAFA;
+    /* 연한 회색 */
 }
 
 /* 짝수 번째 행 (흰색 배경) */
 .influencer-table tbody tr:nth-child(even) {
-    background-color: #FFF;; /* 흰색 */
+    background-color: #FFF;
+    ;
+    /* 흰색 */
 }
 
 /* 프로필 스타일 */
@@ -738,8 +782,10 @@ padding-left: 89px;
 .analysis-second-filter-range-buttons {
     width: 345px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2개의 버튼씩 배치 */
-    gap: 7px; /* 버튼 간격 */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2개의 버튼씩 배치 */
+    gap: 7px;
+    /* 버튼 간격 */
     margin-bottom: 21px;
     margin-top: 16px;
-  }
+}

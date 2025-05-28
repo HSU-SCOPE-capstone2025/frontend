@@ -70,13 +70,15 @@ const ScopeMain = () => {
                     <p className="title-text">
                       당신이 궁금했던 그 숫자, 인플루언서의 영향력을 ‘SCOPE 점수’로 확인하세요
                     </p>
-                    <img src={ranking} alt="ranking" style={{ marginTop: "0px" }} />
+                    <img src={ranking} alt="ranking" style={{ marginTop: "0px", width: "1500px", height: "800px" }} />
                   </div>
-                  <div style={{ marginTop: "300px" }} data-aos="fade-up">
-                    <p className="title-text">
-                      구조는 다음과 같이 구성되어 있어요
-                    </p>
-                    <img src={struct} alt="struct" style={{ marginTop: "100px", marginBottom: "200px", width: "1400px", height: "900px" }} />
+                  <div className="flex-container">
+                    <div style={{ marginTop: "300px" }} data-aos="fade-up">
+                      <p className="title-text">
+                        구조는 다음과 같이 구성되어 있어요
+                      </p>
+                      <img src={struct} alt="struct" style={{ marginTop: "100px", marginBottom: "200px", width: "1400px", height: "900px" }} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -114,11 +116,13 @@ const ScopeMain = () => {
 
                   <div data-aos="fade-up">
                     <p className="description-title">감정/성향 군집화</p>
+                    <p className="description-text">팔로워들의 댓글을 분석해 팔로워들의 주 감정과 성향을 알 수 있습니다.</p>
                     <img src={emotionNtendency} alt="emotionNtendency" />
                   </div>
 
                   <div data-aos="fade-up">
                     <p className="description-title">팔로워들의 주요 관심사</p>
+                    <p className="description-text">댓글들이 주로 어떤 주제로 말하고 있는지, 주제 비율과 실제 댓글 데이터를 알 수 있습니다.</p>
                     <img src={topic} alt="topic" />
                   </div>
                 </div>

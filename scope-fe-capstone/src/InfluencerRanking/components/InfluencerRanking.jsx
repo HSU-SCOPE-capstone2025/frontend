@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import '../css/InfluencerRanking.css';
 //import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
@@ -7,6 +7,9 @@ import { fetchInfluencerData } from "../../api/influencersApi";
 import { getProfileImage } from "../../utils/getProfileImage";
 
 import rotatelogo from "../../assets/images/rotate.png";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const snsPrefixMapping = {
   instagram: "insta",
@@ -255,10 +258,29 @@ function InfluencerRanking() {
     }
   }, [selectedSNS]);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // 스크롤 이동은 AOS 초기화 이후에 약간 딜레이를 주고 실행
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 500); // AOS 초기화 시간 고려해서 500ms 정도 지연
+      }
+    }
+  }, [location]);
+
   return (
     <div>
       <div className="gradBackground">
-        <div className="whiteBox">
+        <div className="whiteBox" data-aos="fade-up">
           <div className="titleText">
             인플루언서 순위
           </div>

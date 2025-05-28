@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../css/recommedation.css";
 import influencers from "../../data/influencers";
 import snsIcons from "../../data/snsIcons";
 import BarGraph from "../../component/BarGraph";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 //image
 import rightSectionImage from "../../assets/images/recommand_right_section.png";
@@ -774,10 +777,27 @@ const Recommendation = () => {
     };
   };
 
+  const location = useLocation();
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // 스크롤 이동은 AOS 초기화 이후에 약간 딜레이를 주고 실행
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 500); // AOS 초기화 시간 고려해서 500ms 정도 지연
+      }
+    }
+  }, [location]);
 
 
   return (
-    <div className="recommendation-container">
+    <div className="recommendation-container" data-aos="fade-up">
       {/* 메인 컨텐츠 박스 */}
       <div className="recommendation-box">
         {/* 왼쪽 설명 영역 */}

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../css/analysis.css";
 import { getProfileImage } from "../../utils/getProfileImage";
-import instagramLogo from "../../assets/images/instagram_logo.png";
-import youtubeLogo from "../../assets/images/youtube_logo.png";
-import tiktokLogo from "../../assets/images/tiktok_logo.png";
+import instagramLogo from "../../assets/images/logo/instagram_logo.png";
+import youtubeLogo from "../../assets/images/logo/youtube_logo.png";
+import tiktokLogo from "../../assets/images/logo/tiktok_logo.png";
 import rotatelogo from "../../assets/images/rotate.png";
 import filter from "../../assets/images/filter.png";
 import under_arrow from "../../assets/images/under_arrow.png";
 import { fetchAnalysisData } from "../../api/analysisApi";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const snsOptions = [
   { name: "인스타그램", key: "instagram", logo: instagramLogo },
@@ -297,10 +300,29 @@ const Analysis = () => {
     setFilteredList(result);
   };
 
+  const location = useLocation();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // 스크롤 이동은 AOS 초기화 이후에 약간 딜레이를 주고 실행
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 500); // AOS 초기화 시간 고려해서 500ms 정도 지연
+      }
+    }
+  }, [location]);
+
 
   return (
     <div className="container">
-      <div className="analysis-container">
+      <div className="analysis-container" data-aos="fade-up">
         <div className="title-container">
           <div className="analysis-title">인플루언서 찾기</div>
         </div>
