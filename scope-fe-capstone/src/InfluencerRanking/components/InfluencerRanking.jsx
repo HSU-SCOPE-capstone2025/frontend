@@ -122,13 +122,13 @@ function InfluencerRanking() {
   const [selectedFeatures, setSelectedFeatures] = useState([]); //선택한 특징 태그
   const [selectedSNS, setSelectedSNS] = useState("youtube"); //선택한 sns 태그
 
-  const [selectedSort, setSelectedSort] = useState("followers"); // 정렬 기본선택
+  const [selectedSort, setSelectedSort] = useState("scope"); // 정렬 기본선택
   const [filteredInfluencers, setFilteredInfluencers] = useState([]); // 필터링된 리스트
 
   useEffect(() => {
     if (influencers.length > 0) {
       const sorted = [...influencers].sort(
-        (a, b) => getSNSValue(b, "followers") - getSNSValue(a, "followers")
+        (a, b) => getSNSValue(b, "scopeScore") - getSNSValue(a, "scopeScore")
       );
       setFilteredInfluencers(sorted);
     }
@@ -254,7 +254,7 @@ function InfluencerRanking() {
 
   useEffect(() => {
     if (!platformViewMode) {
-      sortByFollowers();
+      sortByScope();
     }
   }, [selectedSNS]);
 
@@ -365,8 +365,8 @@ function InfluencerRanking() {
                   onClick={() => {
                     setPlatformViewMode(false); // 플랫폼 모드 해제
                     setSelectedSNS(snsMapping[option]); // 선택한 SNS로 설정
-                    setSelectedSort("followers"); // 선택된 정렬 상태도 '팔로워'로 변경
-                    sortByFollowers(); // 필터링도 '팔로워 순'으로 정렬
+                    setSelectedSort("scope"); // 선택된 정렬 상태도 'scope점수순'로 변경
+                    sortByScope(); // 필터링도 'scope점수순'으로 정렬
                   }}
                 >
                   {option}
@@ -394,16 +394,16 @@ function InfluencerRanking() {
               <div className="standard-title" >기준</div>
               <div className="standard-button-group">
                 <button
-                  onClick={sortByFollowers}
-                  className={`ranking-standard-button ${selectedSort === 'followers' ? 'selected' : ''}`}
-                >
-                  팔로워 순
-                </button>
-                <button
                   onClick={sortByScope}
                   className={`ranking-standard-button ${selectedSort === 'scope' ? 'selected' : ''}`}
                 >
                   SCOPE 점수 순
+                </button>
+                <button
+                  onClick={sortByFollowers}
+                  className={`ranking-standard-button ${selectedSort === 'followers' ? 'selected' : ''}`}
+                >
+                  팔로워 순
                 </button>
                 <button
                   onClick={sortByLikes}
@@ -479,14 +479,22 @@ function InfluencerRanking() {
                                 </div>
                               </td>
                             </tr>
+
+                            {platform === "instagram" && selectedSort === "views" && (
+                              <tr>
+                                <td colSpan="9" style={{ textAlign: "center", padding: "10px", color: "#000", fontSize: "14px" }}>
+                                  인스타그램은 조회수가 제공되지 않습니다.
+                                </td>
+                              </tr>
+                            )}
+
                             {top3.map((influencer, index) => (
-                              <tr key={influencer.name + platform}>
+                              <tr key={influencer.name + platform}
+                                onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
+                                style={{ cursor: "pointer" }}>
                                 <td>{index + 1}</td>
                                 <td>
-                                  <div className="ranking-account-info-container"
-                                    onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
-                                    style={{ cursor: "pointer" }}
-                                  >
+                                  <div className="ranking-account-info-container">
                                     <img
                                       src={influencer.profileImage}
                                       alt={influencer.name}
@@ -581,14 +589,13 @@ function InfluencerRanking() {
                   <tbody>
                     {
                       filteredInfluencers.map((influencer, index) => (
-                        <tr key={index}>
+                        <tr key={index}
+                          onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
+                          style={{ cursor: "pointer" }}>
                           <td style={{ fontWeight: "600", fontSize: "14px" }}>{index + 1}</td> {/* 순위 */}
 
                           <td> {/* 채널명 (이미지+채널명) */}
-                            <div className="ranking-account-info-container"
-                              onClick={() => navigate(`/DetailAnalysis/${influencer.insta_id}`)}
-                              style={{ cursor: "pointer" }}
-                            >
+                            <div className="ranking-account-info-container">
                               <img
                                 src={influencer.profileImage}
                                 alt={influencer.name}
@@ -647,7 +654,17 @@ function InfluencerRanking() {
                           </td>
 
                           <td>
-                            {formatFollowers(getSNSValue(influencer, "averageViews"))}
+                            {selectedSNS === "instagram" && getSNSValue(influencer, "averageViews") === 0 ? (
+                              <span
+                                className="tooltip-view-warning"
+                                title="인스타그램은 평균 조회수가 집계되지 않습니다."
+                                style={{ color: "#888" }}
+                              >
+                                제공 안 됨
+                              </span>
+                            ) : (
+                              formatFollowers(getSNSValue(influencer, "averageViews"))
+                            )}
                           </td>
 
                         </tr>
