@@ -92,11 +92,13 @@ function InfluencerRanking() {
             you_averageLikes: item.youAverageLikes,
             you_averageViews: item.youAverageViews,
             you_scopeScore: item.youFss,
+            you_id: item.youName,
 
             tik_followers: item.tikFollowers,
             tik_averageLikes: item.tikAverageLikes,
             tik_averageViews: item.tikAverageViews,
             tik_scopeScore: item.tikFss,
+            tik_id: item.tikName,
           };
         });
 
@@ -505,7 +507,11 @@ function InfluencerRanking() {
                                         {influencer.name}
                                       </div>
                                       <div className="account-description" style={{ color: "#AFAFAF" }}>
-                                        {influencer.description}
+                                        {platform === "youtube"
+                                          ? influencer.you_id
+                                          : platform === "instagram"
+                                            ? influencer.insta_id
+                                            : influencer.tik_id}
                                       </div>
                                     </div>
                                   </div>
@@ -603,7 +609,15 @@ function InfluencerRanking() {
                               />
                               <div className="account-details">
                                 <div className="account-name" style={{ marginBottom: "5px" }}>{influencer.name}</div>
-                                <div className="account-description" style={{ color: "#AFAFAF" }}>{influencer.description}</div>
+                                <div className="account-description" style={{ color: "#AFAFAF" }}>
+                                  {platformViewMode
+                                    ? influencer.description
+                                    : selectedSNS === "youtube"
+                                      ? influencer.you_id
+                                      : selectedSNS === "instagram"
+                                        ? influencer.insta_id
+                                        : influencer.tik_id}
+                                </div>
                               </div>
                             </div>
                           </td>
