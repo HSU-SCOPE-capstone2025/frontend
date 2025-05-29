@@ -43,7 +43,8 @@ const categoryMap = {
   "Art": "그림",
   "Movie_Drama": "영화 / 드라마",
   "Cooking": "요리",
-  "Vehicle": "자동차 / 바이크"
+  "Vehicle": "자동차 / 바이크",
+  "Video_game_culture" : "게임"
 };
 
 const followerRanges = ["1천 ~ 1만", "1만 ~ 10만", "10만 ~ 100만", "100만 이상"];
