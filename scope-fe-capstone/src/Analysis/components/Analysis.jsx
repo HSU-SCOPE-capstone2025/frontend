@@ -14,8 +14,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const snsOptions = [
-  { name: "인스타그램", key: "instagram", logo: instagramLogo },
   { name: "유튜브", key: "youtube", logo: youtubeLogo },
+  { name: "인스타그램", key: "instagram", logo: instagramLogo },
   { name: "틱톡", key: "tiktok", logo: tiktokLogo },
 ];
 
@@ -110,7 +110,7 @@ const parseRange = (rangeStr) => {
 
 const Analysis = () => {
   const navigate = useNavigate();
-  const [selectedSNS, setSelectedSNS] = useState("instagram");
+  const [selectedSNS, setSelectedSNS] = useState("youtube");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedFollowers, setSelectedFollowers] = useState(["", ""]);
@@ -146,19 +146,19 @@ const Analysis = () => {
                 followers: item.instaFollowers,
                 avgViews: item.instaAverageViews || 0,
                 avgLikes: item.instaAverageLikes || 0,
-                avgComments: 0,
+                avgComments: item.instaAverageComments || 0,
               } : null,
               youtube: item.youFollowers ? {
                 followers: item.youFollowers,
                 avgViews: item.youAverageViews || 0,
                 avgLikes: item.youAverageLikes || 0,
-                avgComments: 0,
+                avgComments: item.youAverageComments || 0,
               } : null,
               tiktok: item.tikFollowers ? {
                 followers: item.tikFollowers,
                 avgViews: item.tikAverageViews || 0,
                 avgLikes: item.tikAverageLikes || 0,
-                avgComments: 0,
+                avgComments: item.tikAverageComments || 0,
               } : null,
             }
           };
@@ -456,7 +456,13 @@ const Analysis = () => {
                       </div>
                     </td>
                     <td>{snsData.followers.toLocaleString()}</td>
-                    <td>{snsData.avgViews.toLocaleString()}</td>
+                    {/* <td>{snsData.avgViews.toLocaleString()}</td> */}
+                    <td>
+                      {snsData.avgViews === 0
+                        ? (selectedSNS === "instagram" ? "제공 안 됨" : "0")
+                        : snsData.avgViews.toLocaleString()}
+                    </td>
+
                     <td>{snsData.avgLikes.toLocaleString()}</td>
                     <td>{snsData.avgComments}</td>
                   </tr>
