@@ -25,8 +25,8 @@ const categories = [
 ];
 
 const feature = [
-  "유머 / 예능", "감성 / 힐링", "강의 / 설명", "시네마틱 / 예술", "하이텐션 / 에너지넘침",
-  "카리스마 있음", "친근함", "소통 잘함", "전문가 느낌", "다양한 콘텐츠"
+  "유머 / 예능", "감성 / 힐링", "강의 / 설명", "시네마틱 / 예술", "하이텐션 / 에너지 넘침",
+  "카리스마 있음", "친근함", "소통 잘함", "전문가 느낌", "다양한 콘텐츠", "기타"
 ];
 
 const categoryMap = {
@@ -127,14 +127,14 @@ function InfluencerRanking() {
   const [selectedSort, setSelectedSort] = useState("scope"); // 정렬 기본선택
   const [filteredInfluencers, setFilteredInfluencers] = useState([]); // 필터링된 리스트
 
-  useEffect(() => {
-    if (influencers.length > 0) {
-      const sorted = [...influencers].sort(
-        (a, b) => getSNSValue(b, "scopeScore") - getSNSValue(a, "scopeScore")
-      );
-      setFilteredInfluencers(sorted);
-    }
-  }, [influencers]);
+  // useEffect(() => {
+  //   if (influencers.length > 0) {
+  //     const sorted = [...influencers].sort(
+  //       (a, b) => getSNSValue(b, "scopeScore") - getSNSValue(a, "scopeScore")
+  //     );
+  //     setFilteredInfluencers(sorted);
+  //   }
+  // }, [influencers]);
 
   const prefix = snsPrefixMapping[selectedSNS];
 
@@ -195,7 +195,13 @@ function InfluencerRanking() {
 
       const featureMatch =
         selectedFeatures.length === 0 ||
-        selectedFeatures.some((feat) => influencerTags.includes(feat));
+        selectedFeatures.some((feat) => {
+          if (feat === "기타") {
+            return influencerTags.some((tag) => !feature.includes(tag));
+          } else {
+            return influencerTags.includes(feat);
+          }
+        });
 
       return categoryMatch && featureMatch;
     });
@@ -260,14 +266,15 @@ function InfluencerRanking() {
 
   // 상태가 변경될 때마다 필터 적용
   useEffect(() => {
-    applyFilters(selectedSNS);
-  }, [selectedSNS]);
+    applyFilters();
+  }, [selectedSNS, influencers]);
 
-  useEffect(() => {
-    if (!platformViewMode) {
-      sortByScope();
-    }
-  }, [selectedSNS]);
+
+  // useEffect(() => {
+  //   if (!platformViewMode) {
+  //     sortByScope();
+  //   }
+  // }, [selectedSNS]);
 
   const location = useLocation();
 
@@ -376,8 +383,8 @@ function InfluencerRanking() {
                   onClick={() => {
                     setPlatformViewMode(false); // 플랫폼 모드 해제
                     setSelectedSNS(snsMapping[option]); // 선택한 SNS로 설정
-                    setSelectedSort("scope"); // 선택된 정렬 상태도 'scope점수순'로 변경
-                    sortByScope(); // 필터링도 'scope점수순'으로 정렬
+                    setSelectedSort(""); // 선택된 정렬 상태도 'scope점수순'로 변경
+                    //sortByScope(); // 필터링도 'scope점수순'으로 정렬
                   }}
                 >
                   {option}
@@ -391,8 +398,8 @@ function InfluencerRanking() {
                 onClick={() => {
                   setPlatformViewMode(true);     // 플랫폼 보기 모드 ON
                   setSelectedSNS("");            // SNS 필터 해제
-                  setSelectedSort("scope");      // 기본 정렬값 지정
-                  sortByScope();            // SNS 필터 해제
+                  setSelectedSort("");      // 기본 정렬값 지정
+                  //sortByScope();            // SNS 필터 해제
                 }}
               >
                 플랫폼 별로 보기
