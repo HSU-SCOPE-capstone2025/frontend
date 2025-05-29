@@ -173,6 +173,9 @@ function InfluencerRanking() {
 
   // 필터 적용 함수
   const applyFilters = () => {
+    setSelectedSort("");
+    setShowFilters(false);
+
     const filtered = influencers.filter((influencer) => {
       const rawCategories = Array.isArray(influencer.categories)
         ? influencer.categories
@@ -197,6 +200,24 @@ function InfluencerRanking() {
 
       return categoryMatch && featureMatch;
     });
+
+    // 정렬 기준 적용
+    let sorted = [...filtered];
+    switch (selectedSort) {
+      case "followers":
+        sorted.sort((a, b) => getSNSValue(b, "followers") - getSNSValue(a, "followers"));
+        break;
+      case "likes":
+        sorted.sort((a, b) => getSNSValue(b, "averageLikes") - getSNSValue(a, "averageLikes"));
+        break;
+      case "views":
+        sorted.sort((a, b) => getSNSValue(b, "averageViews") - getSNSValue(a, "averageViews"));
+        break;
+      case "scope":
+      default:
+        sorted.sort((a, b) => getSNSValue(b, "scopeScore") - getSNSValue(a, "scopeScore"));
+        break;
+    }
 
     setFilteredInfluencers(filtered);
     setShowFilters(false);
