@@ -515,3 +515,6 @@
   z-index: 1;
 }
 
+.tooltip-view-warning:hover {
+  cursor: help;
+}
