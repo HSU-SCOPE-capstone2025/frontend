@@ -173,8 +173,7 @@ function InfluencerRanking() {
 
   // 필터 적용 함수
   const applyFilters = () => {
-    setSelectedSort("");
-    setShowFilters(false);
+    setSelectedSort("scope"); // 항상 SCOPE 정렬 상태로 설정
 
     const filtered = influencers.filter((influencer) => {
       const rawCategories = Array.isArray(influencer.categories)
@@ -201,27 +200,16 @@ function InfluencerRanking() {
       return categoryMatch && featureMatch;
     });
 
-    // 정렬 기준 적용
-    let sorted = [...filtered];
-    switch (selectedSort) {
-      case "followers":
-        sorted.sort((a, b) => getSNSValue(b, "followers") - getSNSValue(a, "followers"));
-        break;
-      case "likes":
-        sorted.sort((a, b) => getSNSValue(b, "averageLikes") - getSNSValue(a, "averageLikes"));
-        break;
-      case "views":
-        sorted.sort((a, b) => getSNSValue(b, "averageViews") - getSNSValue(a, "averageViews"));
-        break;
-      case "scope":
-      default:
-        sorted.sort((a, b) => getSNSValue(b, "scopeScore") - getSNSValue(a, "scopeScore"));
-        break;
-    }
+    // 정렬까지 수행
+    const prefix = snsPrefixMapping[selectedSNS];
+    const sorted = [...filtered].sort(
+      (a, b) => (b[`${prefix}_scopeScore`] ?? 0) - (a[`${prefix}_scopeScore`] ?? 0)
+    );
 
-    setFilteredInfluencers(filtered);
+    setFilteredInfluencers(sorted);
     setShowFilters(false);
   };
+
 
   // 리셋 필터
   const resetFilters = () => {
@@ -403,6 +391,8 @@ function InfluencerRanking() {
                 onClick={() => {
                   setPlatformViewMode(true);     // 플랫폼 보기 모드 ON
                   setSelectedSNS("");            // SNS 필터 해제
+                  setSelectedSort("scope");      // 기본 정렬값 지정
+                  sortByScope();            // SNS 필터 해제
                 }}
               >
                 플랫폼 별로 보기
