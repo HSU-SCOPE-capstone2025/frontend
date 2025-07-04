@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchFilteredInfluencers = async (params) => {
   try {
-    const response = await axios.get("http://15.164.251.135:8080/api/influencers/search", {
+    const response = await axios.get("http://3.34.90.217:8080/api/influencers/search", {
       params: params,
     });
     return response.data; // { influencers: [...], total_influencer_num: N }
