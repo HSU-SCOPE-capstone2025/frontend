@@ -510,7 +510,7 @@ const Recommendation = () => {
     }
 
     try {
-      const response = await fetch("http://15.164.251.135:8080/api/influencers/recommend");
+      const response = await fetch("http://3.34.90.217:8080/api/influencers/recommend");
       const data = await response.json();
 
       const snsKey = selectedSns; // "instagram" | "youtube" | "tiktok"
