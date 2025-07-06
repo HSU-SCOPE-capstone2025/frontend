@@ -220,6 +220,7 @@ function Nav() {
                 <Link className="navbarMenu" to="/InfluencerRanking">인플루언서 순위</Link>
                 <Link className="navbarMenu" to="/Analysis">인플루언서 찾기</Link>
                 <Link className="navbarMenu" to="/Recommendation">맞춤 인플루언서 추천</Link>
+                <Link className="navbarMenu" to="/ScopeChatbotPage">SCOPE AI챗봇</Link>
             </div>
 
             <div className="navbarButtons">

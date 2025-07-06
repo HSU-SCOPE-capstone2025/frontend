@@ -16,7 +16,8 @@ import SponsorshipPage from './SponsorshipPage/components/SponsorshipPage';
 //임시 추가
 import DetailAnalysis from './DetailAnalysis/components/DetailAnalysis';
 import SNSContent from './DetailAnalysis/components/SNSContent';
-import AccountContent from './DetailAnalysis/components/AccountContent';
+//import AccountContent from './DetailAnalysis/components/AccountContent';
+import ScopeChatbotPage from './ScopeChatbotPage/components/ScopeChatbotPage';
 
 
 // 전체 App 컴포넌트
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/ProfileDetailAnalysis" element={<ProfileDetailAnalysis />} />
         <Route path="/SNSDetailAnalysis" element={<SNSDetailAnalysis />} />
         <Route path="/Recommendation" element={<Recommendation />} />
+        <Route path="/ScopeChatbotPage" element={<ScopeChatbotPage />} />
         {/* <Route path="/DetailAnalysis" element={<DetailAnalysis />} /> */}
         <Route path="/DetailAnalysis/:id" element={<DetailAnalysis />} />
         <Route path="/Register" element={<Register />} />  
