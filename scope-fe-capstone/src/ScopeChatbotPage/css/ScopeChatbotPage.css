@@ -1,0 +1,221 @@
+.ChatbotWhiteBox {
+  margin-top: 140px;
+  width: 1600px;
+  height: 900px;
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 70px 50px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.chatbotTitle {
+  margin-bottom: 30px;
+
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ChatbotMessageArea {
+  height: 600px;
+  overflow-y: auto;
+  padding: 10px 20px;
+  margin-bottom: 0px;
+}
+
+.ChatbotFixedFooter {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.chatbot-divider {
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
+.example-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.example-buttons button {
+  padding: 12px 17px;
+  font-size: 14px;
+  border-radius: 1000px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.example-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+
+.chatbot-input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-input-area input {
+  flex: 1;
+  padding: 20px 30px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+
+  font-family: Paperlogy;
+  font-weight: 400;
+
+  height: 30px;
+}
+
+.chatbot-input-area button {
+  background-color: #0071E3;
+  /* 기본 파란색 */
+  color: white;
+  border: none;
+  padding: 16px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 26px;
+  transition: background-color 0.3s ease;
+
+  font-family: Paperlogy;
+  font-weight: 400;
+}
+
+.chatbot-input-area button:disabled {
+  background-color: #ccc;
+  padding: 25px 22px;
+  /* 분석 중일 때 회색 */
+  cursor: not-allowed;
+}
+
+.loading-button {
+  font-size: 18px !important;
+  /* 기존보다 작게 또는 다르게 */
+}
+
+/* 사용자 질문 (오른쪽) */
+.user-message {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.user-bubble {
+  background-color: #f0f0f0;
+  padding: 20px 30px;
+  border-radius: 20px 0px 20px 20px;
+  max-width: 70%;
+
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  line-height: 1.5;
+}
+
+/* 챗봇 응답 (왼쪽) */
+.bot-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.bot-avatar {
+  width: 80px;
+  height: 80px;
+  margin-right: 12px;
+}
+
+.bot-bubble {
+  background-color: #e9f3ff;
+  /* background-color: #FFF; */
+  padding: 20px;
+  border-radius: 0px 20px 20px 20px;
+  max-width: 80%;
+  white-space: pre-wrap;
+  margin-top: 20px;
+
+  color: #2B2F33;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: Paperlogy;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  line-height: 1.5;
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #555;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.chatbot-empty-guide {
+  text-align: center;
+  margin-top: 150px;
+  /* opacity: 0.6; */
+  animation: fadeIn 0.3s ease-in;
+}
+
+.empty-guide-main {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: -20px;
+  font-family: Paperlogy;
+  color: #0071E3;
+}
+
+.empty-guide-sub {
+  font-size: 28px;
+  color: #555;
+  font-family: Paperlogy;
+  font-weight: 400;
+}
