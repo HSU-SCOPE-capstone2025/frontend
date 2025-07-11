@@ -47,12 +47,16 @@ const ScopeMain = () => {
           <div style={{ display: "flex", justifyContent: "center", gap: "70px" }}>
             <div>
               <p className="maingradText">
-                인플루언서 마케팅,
+                인플루언서를 위한,
                 <br></br>
-                데이터로 정교하게
+                데이터 기반 인식
+                <br></br>
+                회복 플랫폼
               </p>
               <p className="grayText1">
-                인플루언서 검색부터 맞춤 추천까지, 효과적인 인플루언서 마케팅을 경험하세요.
+                악성 댓글과 캔슬컬쳐의 시대,
+                SCOPE는 인플루언서가 자신을 돌아보고<br/>
+                더 건강한 커뮤니티를 만드는 데 도움을 줍니다.
               </p>
             </div>
             <div>

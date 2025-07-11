@@ -138,7 +138,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
 import { UserContext } from "../../contexts/UserContext";
-import { getProfileImage } from "../utils/getProfileImage";
+import { getProfileImage } from "../../utils/getProfileImage";
 
 function Login() {
     const [email, setEmail] = useState('');

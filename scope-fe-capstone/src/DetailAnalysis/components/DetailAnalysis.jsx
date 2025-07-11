@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SNSContent from "./SNSContent";
 import AccountContent from "./AccountContent";
+import DashboardPage from "./DashboardPage";
 import "../css/DetailAnalysis.css";
 // import { fetchInfluencerInfo, fetchSNSData, fetchAccountData } from "../../api/DetailApi";
 import { fetchInfluencerInfo } from "../../api/DetailApi";
@@ -130,6 +131,12 @@ const DetailAnalysis = () => {
                         >
                             계정 분석
                         </button>
+                        <button
+                            className={`snsdetail-accountanalysis-button ${activeTab === "dashboard" ? "active" : ""}`}
+                            onClick={() => setActiveTab("dashboard")}
+                        >
+                            대시보드
+                        </button>
                     </div>
                 </div>
 
@@ -139,6 +146,7 @@ const DetailAnalysis = () => {
                     {/* {activeTab === "analysis" && <AccountContent />} */}
                     {activeTab === "sns" && <SNSContent id={id} />}
                     {activeTab === "analysis" && <AccountContent id={id} />}
+                    {activeTab === "dashboard" && <DashboardPage id={id} />}
                 </div>
             </div>
         </div>
