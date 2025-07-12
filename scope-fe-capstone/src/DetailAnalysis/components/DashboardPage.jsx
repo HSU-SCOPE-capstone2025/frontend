@@ -294,7 +294,8 @@ const DashboardPage = ({ id }) => {
                                 {row.title}
                               </a>
                             </td>
-                            <td>{row.date}</td>
+                            {/* <td>{row.date}</td> */}
+                            <td>{new Date(row.date).toLocaleDateString('ko-KR')}</td>
                             <td>{row.cb_score}</td>
                             <td>{row.ec_score}</td>
                             <td>{row.video_url}</td>
