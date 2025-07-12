@@ -69,10 +69,16 @@ const DashboardPage = ({ id }) => {
 
   const [selectedRow, setSelectedRow] = useState(null); // 선택된 행 인덱스 저장
   const [chatResponse, setChatResponse] = useState(""); // 응답 텍스트용 state
+  const [isGenerating, setIsGenerating] = useState(false);
+
   useEffect(() => {
     fetchData();
   }, [selectedInfluencer]);
+
   const sendChatQuery = async (rowData, purpose) => {
+    setIsGenerating(true); // 시작 시 true
+    setChatResponse("");   // 이전 결과 초기화
+
     try {
       // v= 뒤 해시값만 추출
       const videoId = new URL(rowData.video_url).searchParams.get("v");
@@ -89,6 +95,8 @@ const DashboardPage = ({ id }) => {
     } catch (err) {
       console.error("POST 실패:", err);
       setChatResponse("❌ 요청 중 오류가 발생했습니다.");
+    } finally {
+      setIsGenerating(false); // 완료 시 false
     }
   };
 
@@ -156,11 +164,11 @@ const DashboardPage = ({ id }) => {
             </p>
 
             <p className="profile-analysis-title3" style={{ listStyle: "square", lineHeight: "1.0" }}>
-              <p><span style={{ color: "#2ecc71", fontWeight: "600" }}>● <span style={{marginLeft: "10px"}}>매우 낮음</span></span> (안전한 수준)</p>
-              <p><span style={{ color: "#f1c40f", fontWeight: "600" }}>● <span style={{marginLeft: "10px"}}>낮음</span></span> (주의 필요)</p>
-              <p><span style={{ color: "#e67e22", fontWeight: "600" }}>● <span style={{marginLeft: "10px"}}>보통</span></span> (부분 위험 존재)</p>
-              <p><span style={{ color: "#e74c3c", fontWeight: "600" }}>● <span style={{marginLeft: "10px"}}>높음</span></span> (경고 수준)</p>
-              <p><span style={{ color: "#8e44ad", fontWeight: "600" }}>● <span style={{marginLeft: "10px"}}>매우 높음</span></span> (심각한 리스크)</p>
+              <p><span style={{ color: "#2ecc71", fontWeight: "600" }}>● <span style={{ marginLeft: "10px" }}>매우 낮음</span></span> (안전한 수준)</p>
+              <p><span style={{ color: "#f1c40f", fontWeight: "600" }}>● <span style={{ marginLeft: "10px" }}>낮음</span></span> (주의 필요)</p>
+              <p><span style={{ color: "#e67e22", fontWeight: "600" }}>● <span style={{ marginLeft: "10px" }}>보통</span></span> (부분 위험 존재)</p>
+              <p><span style={{ color: "#e74c3c", fontWeight: "600" }}>● <span style={{ marginLeft: "10px" }}>높음</span></span> (경고 수준)</p>
+              <p><span style={{ color: "#8e44ad", fontWeight: "600" }}>● <span style={{ marginLeft: "10px" }}>매우 높음</span></span> (심각한 리스크)</p>
             </p>
 
             <p className="profile-analysis-title3">
@@ -343,20 +351,50 @@ const DashboardPage = ({ id }) => {
           </button>
         </div>
 
-        {chatResponse && (
+        <p className="profile-analysis-title2" style={{ fontFamily: "Paperlogy", fontWeight: "600", cursor: "pointer", marginLeft: "75px", marginTop: "30px" }} onClick={() => setShowTable(!showTable)}>
+          영상별 인사이트 리포트
+        </p>
+        <p className="profile-analysis-title3" style={{ marginLeft: "-105px", lineHeight: "1.6" }}>
+          표에서 영상을 선택후 버튼을 누르시면 실시간으로 SCOPE AI가 각 카테고리에 맞게 리포트를 생성합니다.
+        </p>
+
+        {isGenerating && (
           <div className="profile-analysis-box-array">
             <div
               style={{
                 width: "1520px",
-                marginTop: "1.5rem",
-                whiteSpace: "pre-wrap",
+                marginTop: "0.5rem",
                 backgroundColor: "#fff",
                 padding: "1rem",
                 borderRadius: "10px",
                 border: "1px solid #ccc",
                 fontFamily: "Paperlogy",
                 fontWeight: "500",
-                fontSize: "16px"
+                fontSize: "18px",
+                lineHeight: "1.6"
+              }}
+            >
+              <span>⏳ SCOPE AI가 리포트를 생성 중입니다...</span>
+              <span className="loading-spinner"></span>
+            </div>
+          </div>
+        )}
+
+        {chatResponse && !isGenerating && (
+          <div className="profile-analysis-box-array">
+            <div
+              style={{
+                width: "1520px",
+                marginTop: "0.5rem",
+                whiteSpace: "pre-wrap",
+                backgroundColor: "#fff",
+                padding: "1rem",
+                borderRadius: "10px",
+                border: "1px solid #ccc",
+                fontFamily: "Paperlogy",
+                fontWeight: "400",
+                fontSize: "18px",
+                lineHeight: "1.6"
               }}
             >
               {chatResponse}

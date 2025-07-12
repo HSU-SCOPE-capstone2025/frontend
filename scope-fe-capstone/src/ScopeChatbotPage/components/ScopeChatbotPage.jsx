@@ -21,7 +21,7 @@ const ScopeChatbotPage = () => {
     { label: "콘텐츠 방향 추천", command: "[특정 인플루언서]의 컨텐츠 방향성 제시해줘" },
     { label: "영상 목록 보기", command: "[특정 인플루언서]의 영상 URL 목록 보여줘" },
     { label: "SCOPE란?", command: "SCOPE 설명해줘" },
-    { label: "통계 가능한 날짜 보기", command: "[특정 인플루언서의] 통계자료 중 사용가능한 날짜 보여줘" },
+    { label: "통계 가능한 날짜 보기", command: "[특정 인플루언서]의 통계자료 중 사용가능한 날짜 보여줘" },
   ];
 
   const bottomRef = useRef(null);

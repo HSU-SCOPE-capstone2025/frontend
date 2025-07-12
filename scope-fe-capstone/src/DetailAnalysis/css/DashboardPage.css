@@ -1,21 +1,22 @@
 .riskButton {
-    padding: 13px 20px;
-    color: #fff;
-    border: none;
-    border-radius: 1000px;
-    cursor: pointer;
-    font-family: Paperlogy;
-    font-weight: 600;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+  padding: 13px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 1000px;
+  cursor: pointer;
+  font-family: Paperlogy;
+  font-weight: 600;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 /* 리포트 생성 - 파스텔 블루 */
 .riskButton.report {
   background-color: #3498db;
 }
+
 .riskButton.report:hover {
   background-color: #2980b9;
 }
@@ -24,6 +25,7 @@
 .riskButton.response {
   background-color: #27ae60;
 }
+
 .riskButton.response:hover {
   background-color: #1e8449;
 }
@@ -32,6 +34,30 @@
 .riskButton.opposite {
   background-color: #8e44ad;
 }
+
 .riskButton.opposite:hover {
   background-color: #6c3483;
+}
+
+/* DashboardPage.css 하단에 추가 */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
