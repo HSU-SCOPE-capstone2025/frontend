@@ -1,7 +1,8 @@
 .ChatbotWhiteBox {
-  margin-top: 140px;
+  margin-top: 110px;
+  margin-bottom: 80px;
   width: 1600px;
-  height: 900px;
+  height: 1000px;
   border-radius: 20px;
   background: #FFF;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
@@ -30,6 +31,7 @@
   overflow-y: auto;
   padding: 10px 20px;
   margin-bottom: 0px;
+  width: 1230px;
 }
 
 .ChatbotFixedFooter {
@@ -38,6 +40,7 @@
   background: white;
   padding-top: 20px;
   border-top: 1px solid #ddd;
+  padding: 20px 20px;
 }
 
 .chatbot-divider {
@@ -131,7 +134,7 @@
   background-color: #f0f0f0;
   padding: 20px 30px;
   border-radius: 20px 0px 20px 20px;
-  max-width: 70%;
+  max-width: 80%;
 
   color: #2B2F33;
   font-feature-settings: 'liga' off, 'clig' off;
@@ -219,3 +222,5 @@
   font-family: Paperlogy;
   font-weight: 400;
 }
+
+
