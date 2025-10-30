@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SNSContent from "./SNSContent";
 import AccountContent from "./AccountContent";
 import DashboardPage from "./DashboardPage";
+import RiskAnalysis from "./RiskAnalysis";
 import "../css/DetailAnalysis.css";
 // import { fetchInfluencerInfo, fetchSNSData, fetchAccountData } from "../../api/DetailApi";
 import { fetchInfluencerInfo } from "../../api/DetailApi";
@@ -137,6 +138,13 @@ const DetailAnalysis = () => {
                         >
                             대시보드
                         </button>
+
+                        <button
+                           className={`snsdetail-accountanalysis-button ${activeTab === "riskanalysis" ? "active" : ""}`}
+                           onClick={() => setActiveTab("riskanalysis")}
+                         >
+                           위험도 분석
+                         </button>
                     </div>
                 </div>
 
@@ -147,6 +155,7 @@ const DetailAnalysis = () => {
                     {activeTab === "sns" && <SNSContent id={id} />}
                     {activeTab === "analysis" && <AccountContent id={id} />}
                     {activeTab === "dashboard" && <DashboardPage id={id} />}
+                    {activeTab === "riskanalysis" && <RiskAnalysis id={id} />}
                 </div>
             </div>
         </div>

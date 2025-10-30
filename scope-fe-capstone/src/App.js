@@ -53,6 +53,63 @@
 
 // export default App;
 
+// import React from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import { UserProvider } from './contexts/UserContext';
+// import "./App.css";
+// import Nav from './component/Nav';
+// import ScopeMain from './ScopeMain/components/ScopeMain';
+// import InfluencerRanking from './InfluencerRanking/components/InfluencerRanking';
+// import ProfileDetailAnalysis from './ProfileDetailAnalysis/components/ProfileDetailAnalysis';
+// import SNSDetailAnalysis from './SNSDetailAnalysis/components/SNSDetailAnalysis';
+// import Analysis from './Analysis/components/Analysis';
+// import Recommendation from './Recommendation/components/Recommendation';
+// import Register from './Register/components/Register';
+// import Login from './Login/component/Login';
+// import SponsorshipPage from './SponsorshipPage/components/SponsorshipPage';
+// import DetailAnalysis from './DetailAnalysis/components/DetailAnalysis';
+// import SNSContent from './DetailAnalysis/components/SNSContent';
+// import ScopeChatbotPage from './ScopeChatbotPage/components/ScopeChatbotPage';
+// import RiskAnalysis from './DetailAnalysis/components/RiskAnalysis';
+// import RiskVideoDetail from './DetailAnalysis/components/RiskVideoDetail';
+
+// const App = () => {
+//   return (
+//     <UserProvider>
+//       <Router>
+//         <Nav />
+//         <Routes>
+//           {/* Public Routes */}
+//           <Route path="/" element={<ScopeMain />} />
+
+//           {/* 기능 페이지 라우팅 */}
+//           <Route path="/Analysis" element={<Analysis />} />
+//           <Route path="/InfluencerRanking" element={<InfluencerRanking />} />
+//           <Route path="/ProfileDetailAnalysis" element={<ProfileDetailAnalysis />} />
+//           <Route path="/SNSDetailAnalysis" element={<SNSDetailAnalysis />} />
+//           <Route path="/Recommendation" element={<Recommendation />} />
+//           <Route path="/ScopeChatbotPage" element={<ScopeChatbotPage />} />
+//           <Route path="/DetailAnalysis/:id" element={<DetailAnalysis />} />
+//           <Route path="/Register" element={<Register />} />
+//           <Route path="/Login" element={<Login />} />
+//           <Route path="/sponsorships/:id" element={<SponsorshipPage />} />
+//           <Route path="/influencer/:id" element={<SNSContent />} />
+
+//           {/* 위험도 분석 페이지 */}
+//           <Route path="/riskanalysis/:id" element={<RiskAnalysis />} /> 
+//           <Route path="/DetailAnalysis/:id/riskanalysis/:videoId" element={<RiskVideoDetail />}
+//           /*로그인 후 리다이렉션용 동적 URL */
+//           <Route path="/:influencerId" element={<ScopeMain />} />
+//         </Routes>
+//       </Router>
+//     </UserProvider>
+//   );
+// };
+
+// export default App;
+
+
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
@@ -70,6 +127,8 @@ import SponsorshipPage from './SponsorshipPage/components/SponsorshipPage';
 import DetailAnalysis from './DetailAnalysis/components/DetailAnalysis';
 import SNSContent from './DetailAnalysis/components/SNSContent';
 import ScopeChatbotPage from './ScopeChatbotPage/components/ScopeChatbotPage';
+import RiskAnalysis from './DetailAnalysis/components/RiskAnalysis';
+import RiskVideoDetail from './DetailAnalysis/components/RiskVideoDetail';
 
 const App = () => {
   return (
@@ -87,13 +146,19 @@ const App = () => {
           <Route path="/SNSDetailAnalysis" element={<SNSDetailAnalysis />} />
           <Route path="/Recommendation" element={<Recommendation />} />
           <Route path="/ScopeChatbotPage" element={<ScopeChatbotPage />} />
+
+          {/* 상세 분석 */}
           <Route path="/DetailAnalysis/:id" element={<DetailAnalysis />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/sponsorships/:id" element={<SponsorshipPage />} />
           <Route path="/influencer/:id" element={<SNSContent />} />
 
-          {/*로그인 후 리다이렉션용 동적 URL */}
+          {/* 위험도 분석 */}
+          <Route path="/riskanalysis/:id" element={<RiskAnalysis />} /> 
+          <Route path="/DetailAnalysis/:id/riskanalysis/:videoId" element={<RiskVideoDetail />} />
+
+          {/* 로그인 후 리다이렉션용 동적 URL */}
           <Route path="/:influencerId" element={<ScopeMain />} />
         </Routes>
       </Router>

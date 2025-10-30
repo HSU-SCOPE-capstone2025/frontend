@@ -1,0 +1,149 @@
+/* 전체 페이지 컨테이너 */
+.d-risk-detail-container {
+    background-color: #eaf6ff;
+    min-height: 100vh;
+    padding: 2rem 0;
+    font-family: "Paperlogy", "Pretendard", sans-serif;
+  }
+  
+  /* 제목 */
+  .d-risk-detail-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .d-risk-detail-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .d-risk-detail-period {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* 그래프 카드 영역 */
+  .d-risk-chart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin: 2rem auto;
+    width: 90%;
+  }
+  
+  /* 각 그래프 카드 */
+  .d-risk-chart-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.2rem;
+    width: 320px;
+    height: 260px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .d-risk-chart-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+  
+  .d-risk-chart-card h4 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  /* 주요 키워드 박스 */
+  .d-risk-keyword-box {
+    width: 85%;
+    margin: 1.5rem auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .d-risk-keyword-box h3 {
+    font-size: 1.1rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .d-risk-keyword-box p {
+    color: #333;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  
+  /* 분석 요약 박스 */
+  .d-risk-summary-box {
+    width: 85%;
+    margin: 1.5rem auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .d-risk-summary-box h3 {
+    font-size: 1.1rem;
+    color: #2a6ebb;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .d-risk-summary-box p {
+    line-height: 1.6;
+    color: #333;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* 댓글 리스트 */
+  .d-risk-comment-section {
+    width: 85%;
+    margin: 1.5rem auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .d-risk-comment-section h3 {
+    color: #e74c3c;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .d-risk-comment-item {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .d-risk-comment-item:last-child {
+    border-bottom: none;
+  }
+  
+  .d-risk-comment-item p {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+  
+  .d-risk-comment-item b {
+    color: #2a6ebb;
+  }
+  
