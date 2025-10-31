@@ -305,8 +305,8 @@ const RiskAnalysis = ({ id }) => {
         <div style={{ display: "flex", gap: "30px", flexWrap: "wrap" }}>
           {[
             { title: "감정 분포", data: video.emotion_ratio },
-            { title: "주제 분포", data: video.topic_ratio },
-            { title: "클러스터 분포", data: video.cluster_ratio },
+            { title: "관심사 분포", data: video.topic_ratio },
+            { title: "성향 분포", data: video.cluster_ratio },
           ].map((section, i) => (
             <div key={i} style={{ flex: 1 }}>
               <h4>📊 {section.title}</h4>
