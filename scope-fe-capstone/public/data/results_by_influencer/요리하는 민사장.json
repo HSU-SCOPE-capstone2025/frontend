@@ -1,0 +1,220 @@
+[
+  {
+    "title": "틈새라면 매장 죄송합니다",
+    "video_url": "https://www.youtube.com/watch?v=AlDa1u01XqI",
+    "avg_cb_score": 0.16,
+    "spike_dates": [
+      "2025-03-10T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-10T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-10T00:00:00",
+      "end_date": "2025-03-10T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-02-26T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-06T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-08T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-03-09T00:00:00",
+        "cb_score": 0.2
+      },
+      {
+        "date": "2025-03-10T00:00:00",
+        "cb_score": 0.5
+      }
+    ],
+    "emotion_ratio": {
+      "혐오": 1.0
+    },
+    "topic_ratio": {
+      "사건 / 논란": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "거짓이나",
+      "그냥",
+      "사람이었네",
+      "치는",
+      "툭하면"
+    ],
+    "freq_keywords": [
+      "그냥",
+      "툭하면",
+      "거짓이나",
+      "치는",
+      "사람이었네"
+    ],
+    "summary": "2025-03-10T00:00:00~2025-03-10T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '혐오', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-10",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "그냥 툭하면 거짓이나 치는 사람이었네"
+      }
+    ]
+  },
+  {
+    "title": "라면스프 연구원이 추천한 라면레시피",
+    "video_url": "https://www.youtube.com/watch?v=51VXhBqGnDA",
+    "avg_cb_score": 0.07,
+    "spike_dates": [
+      "2025-04-09T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-04-09T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-09T00:00:00",
+      "end_date": "2025-04-09T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-26T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-28T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-05T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-04-08T00:00:00",
+        "cb_score": 0.05
+      },
+      {
+        "date": "2025-04-09T00:00:00",
+        "cb_score": 0.2
+      }
+    ],
+    "emotion_ratio": {
+      "공포": 1.0
+    },
+    "topic_ratio": {
+      "기타 / 미분류": 1.0
+    },
+    "cluster_ratio": {
+      "Empathetic": 1.0
+    },
+    "tfidf_keywords": [
+      "가르쳐",
+      "검색만해봐도",
+      "나오는걸",
+      "정보를",
+      "제대로",
+      "줘야져"
+    ],
+    "freq_keywords": [
+      "제대로",
+      "정보를",
+      "가르쳐",
+      "줘야져",
+      "검색만해봐도",
+      "나오는걸"
+    ],
+    "summary": "2025-04-09T00:00:00~2025-04-09T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '공포', 주제는 '기타 / 미분류', 댓글 유형은 'Empathetic'가 많았습니다.",
+    "aggressive_comments": []
+  },
+  {
+    "title": "1000원이면 세끼 쌉가능!!",
+    "video_url": "https://www.youtube.com/watch?v=ccY-Er2a6cU",
+    "avg_cb_score": 0.025,
+    "spike_dates": [],
+    "high_risk_dates": [
+      "2025-04-24T00:00:00",
+      "2025-04-25T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-24T00:00:00",
+      "end_date": "2025-04-25T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-04-21T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-22T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-24T00:00:00",
+        "cb_score": 0.05
+      },
+      {
+        "date": "2025-04-25T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-05-01T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-05-05T00:00:00",
+        "cb_score": 0.0
+      }
+    ],
+    "emotion_ratio": {
+      "슬픔": 0.4,
+      "놀람": 0.2,
+      "혐오": 0.2,
+      "공포": 0.2
+    },
+    "topic_ratio": {
+      "공감 / 감정 공유": 0.4,
+      "기타 / 미분류": 0.4,
+      "사건 / 논란": 0.2
+    },
+    "cluster_ratio": {
+      "Empathetic": 0.4,
+      "Sarcastic/Playful": 0.4,
+      "Neutral Informative": 0.2
+    },
+    "tfidf_keywords": [
+      "고소한",
+      "나는듯",
+      "냄새가",
+      "당장이다",
+      "맛있다",
+      "식습관이",
+      "아니쥬",
+      "여기까지",
+      "은근",
+      "이런게",
+      "정도로"
+    ],
+    "freq_keywords": [
+      "이런게",
+      "은근",
+      "식습관이",
+      "정도로",
+      "맛있다",
+      "고소한",
+      "냄새가",
+      "여기까지",
+      "나는듯",
+      "당장이다",
+      "아니쥬"
+    ],
+    "summary": "2025-04-24T00:00:00~2025-04-25T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '슬픔', 주제는 '공감 / 감정 공유', 댓글 유형은 'Empathetic'가 많았습니다.",
+    "aggressive_comments": []
+  }
+]

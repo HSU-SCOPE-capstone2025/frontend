@@ -1,0 +1,371 @@
+[
+  {
+    "title": "입안에서 사르르 녹아버리는 양갈비 수육 #shorts",
+    "video_url": "https://www.youtube.com/watch?v=yrEFamAepkk",
+    "avg_cb_score": 0.172,
+    "spike_dates": [
+      "2025-03-25T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-25T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-25T00:00:00",
+      "end_date": "2025-03-25T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-20T00:00:00",
+        "cb_score": 0.07
+      },
+      {
+        "date": "2025-03-21T00:00:00",
+        "cb_score": 0.16
+      },
+      {
+        "date": "2025-03-23T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-25T00:00:00",
+        "cb_score": 0.5
+      },
+      {
+        "date": "2025-03-27T00:00:00",
+        "cb_score": 0.13
+      }
+    ],
+    "emotion_ratio": {
+      "혐오": 1.0
+    },
+    "topic_ratio": {
+      "사회 / 시사 이슈": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "고기",
+      "기본",
+      "년대",
+      "돼지",
+      "되며",
+      "되었다",
+      "들어왔고",
+      "떡잎마을",
+      "멤버가",
+      "멤버로",
+      "방범대가",
+      "번째",
+      "시장은",
+      "양이",
+      "오리"
+    ],
+    "freq_keywords": [
+      "년대",
+      "돼지",
+      "기본",
+      "이었는데",
+      "중반쯤",
+      "오리가",
+      "멤버로",
+      "들어왔고",
+      "후반",
+      "초반쯤에",
+      "양이",
+      "번째",
+      "멤버가",
+      "되며",
+      "한국"
+    ],
+    "summary": "2025-03-25T00:00:00~2025-03-25T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '혐오', 주제는 '사회 / 시사 이슈', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-20",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "본인이 도야지라서 잡았다는줄 알았어요"
+      },
+      {
+        "date": "2025-03-20",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "담주 운봉산장 예약해놨는데 타이밍 뭐냐고"
+      },
+      {
+        "date": "2025-03-20",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "어그로 끈 것 같네요~"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "공포",
+        "topic": "제품 / 아이템 리뷰",
+        "cluster": "Aggressive",
+        "text": "소스에 마늘은 안 들어 가나요~?<br>그리고 양고기라고 해도 2시간 이상 고기를 끓인 육수인데 전혀 쓰임새가 없나요?"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "양특유의 누린내가 감칠맛덩어리면서 또 계속 먹으면 물리고 ㅋㅋㅋ 맛은 ㅈㄴ있는데 연속해서 먹지는 못함"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "제품 / 아이템 리뷰",
+        "cluster": "Aggressive",
+        "text": "양은 잡내를 못 잡겠드라고요"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "양수육을 왜 양고기수육이 아니라 양고기탕수육으로 인식했지<br>부추 넣을 때까지도 언제 튀기지 이러고 있었네"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "양먹느니 딴거 먹지...<br>알라들 많이 먹으라 하자"
+      },
+      {
+        "date": "2025-03-25",
+        "emotion": "혐오",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "소 돼지 닭 이 기본 이었는데<br>2000년대 중반쯤 오리가 제 4의 멤버로 들어왔고 2010년대 후반 ~ 2020년대 초반쯤에 양이 5번째 멤버가 되며 한국 고기 시장은 소 돼지 닭 오리 양 이라는 떡잎마을 방범대가 되었다"
+      },
+      {
+        "date": "2025-03-27",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "소주10병각이다 저건"
+      }
+    ]
+  },
+  {
+    "title": "가장 완벽한 얼음을 만드는 방법",
+    "video_url": "https://www.youtube.com/watch?v=cazy822KA8g",
+    "avg_cb_score": 0.127,
+    "spike_dates": [
+      "2025-04-11T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-04-11T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-11T00:00:00",
+      "end_date": "2025-04-11T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-04-03T00:00:00",
+        "cb_score": 0.06
+      },
+      {
+        "date": "2025-04-04T00:00:00",
+        "cb_score": 0.03
+      },
+      {
+        "date": "2025-04-05T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-07T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-08T00:00:00",
+        "cb_score": 0.17
+      },
+      {
+        "date": "2025-04-11T00:00:00",
+        "cb_score": 0.5
+      }
+    ],
+    "emotion_ratio": {
+      "공포": 1.0
+    },
+    "topic_ratio": {
+      "질문 / 피드백": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "곳이",
+      "구글폼에",
+      "구매인증사진을",
+      "구매인증은",
+      "넣을수",
+      "도데체",
+      "어떻게",
+      "없습니다",
+      "있는",
+      "하는건가요"
+    ],
+    "freq_keywords": [
+      "구매인증은",
+      "도데체",
+      "어떻게",
+      "하는건가요",
+      "구글폼에",
+      "구매인증사진을",
+      "넣을수",
+      "있는",
+      "곳이",
+      "없습니다"
+    ],
+    "summary": "2025-04-11T00:00:00~2025-04-11T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '공포', 주제는 '질문 / 피드백', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-04-04",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "아 그 똥폼쟁이 걔 이름 뭐였지?"
+      },
+      {
+        "date": "2025-04-08",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "不쑈하네...."
+      },
+      {
+        "date": "2025-04-11",
+        "emotion": "공포",
+        "topic": "질문 / 피드백",
+        "cluster": "Aggressive",
+        "text": "구매인증은 도데체 어떻게 하는건가요?"
+      },
+      {
+        "date": "2025-04-11",
+        "emotion": "공포",
+        "topic": "질문 / 피드백",
+        "cluster": "Aggressive",
+        "text": "구글폼에 구매인증사진을 넣을수 있는 곳이 없습니다."
+      }
+    ]
+  },
+  {
+    "title": "우니로 만든 최고의 파스타 #shorts",
+    "video_url": "https://www.youtube.com/watch?v=GBxwzagUbEQ",
+    "avg_cb_score": 0.124,
+    "spike_dates": [
+      "2025-03-27T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-27T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-27T00:00:00",
+      "end_date": "2025-03-27T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-22T00:00:00",
+        "cb_score": 0.05
+      },
+      {
+        "date": "2025-03-23T00:00:00",
+        "cb_score": 0.09
+      },
+      {
+        "date": "2025-03-24T00:00:00",
+        "cb_score": 0.08
+      },
+      {
+        "date": "2025-03-25T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-03-27T00:00:00",
+        "cb_score": 0.3
+      }
+    ],
+    "emotion_ratio": {
+      "중립": 0.5,
+      "분노": 0.5
+    },
+    "topic_ratio": {
+      "사회 / 시사 이슈": 0.5,
+      "사건 / 논란": 0.5
+    },
+    "cluster_ratio": {
+      "Neutral Informative": 0.5,
+      "Aggressive": 0.5
+    },
+    "tfidf_keywords": [
+      "어케꼭한번해보라는소리가나와",
+      "어케함",
+      "저걸"
+    ],
+    "freq_keywords": [
+      "어케함",
+      "저걸",
+      "어케꼭한번해보라는소리가나와"
+    ],
+    "summary": "2025-03-27T00:00:00~2025-03-27T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '중립', 주제는 '사회 / 시사 이슈', 댓글 유형은 'Neutral Informative'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-22",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "얼마나 쳐먹은게야!"
+      },
+      {
+        "date": "2025-03-22",
+        "emotion": "공포",
+        "topic": "질문 / 피드백",
+        "cluster": "Aggressive",
+        "text": "면도 갈 수 있어요?"
+      },
+      {
+        "date": "2025-03-22",
+        "emotion": "공포",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "요즘 달걀값 상승으로 미국에서 이구아나알 먹는다는데<br>이구아나알로 까르보나라 만들면 알고리즘 탈거같아형"
+      },
+      {
+        "date": "2025-03-23",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "이걸 해 먹으란 거야 말란거야 ㅋㅋㅋ"
+      },
+      {
+        "date": "2025-03-23",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "꾸짖을 갈!!! 갈지마!!!"
+      },
+      {
+        "date": "2025-03-24",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "저걸갈어.. 통째로 먹고싶다"
+      },
+      {
+        "date": "2025-03-27",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "어케함 저걸 어케꼭한번해보라는소리가나와!!!!!!!!!!!!"
+      }
+    ]
+  }
+]

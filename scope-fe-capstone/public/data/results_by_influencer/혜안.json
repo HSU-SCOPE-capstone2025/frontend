@@ -1,0 +1,479 @@
+[
+  {
+    "title": "편의점에서 AI 진상손님 참교육하는 게임 (개웃깁니다)",
+    "video_url": "https://www.youtube.com/watch?v=LbC5G7E-xig",
+    "avg_cb_score": 0.133,
+    "spike_dates": [
+      "2025-03-06T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-06T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-06T00:00:00",
+      "end_date": "2025-03-06T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-02-23T00:00:00",
+        "cb_score": 0.07
+      },
+      {
+        "date": "2025-02-24T00:00:00",
+        "cb_score": 0.03
+      },
+      {
+        "date": "2025-02-25T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-02-26T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-03-06T00:00:00",
+        "cb_score": 0.6
+      },
+      {
+        "date": "2025-03-07T00:00:00",
+        "cb_score": 0.0
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 1.0
+    },
+    "topic_ratio": {
+      "사건 / 논란": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "니아빠",
+      "잡혀갔어",
+      "특권아"
+    ],
+    "freq_keywords": [
+      "특권아",
+      "니아빠",
+      "잡혀갔어"
+    ],
+    "summary": "2025-03-06T00:00:00~2025-03-06T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-02-23",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "눈치보지말고 땅파는거 빨리하셈"
+      },
+      {
+        "date": "2025-02-26",
+        "emotion": "분노",
+        "topic": "유머 / 드립",
+        "cluster": "Aggressive",
+        "text": "ㄷㅅㄷ"
+      },
+      {
+        "date": "2025-03-06",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "특권아 니아빠 잡혀갔어"
+      }
+    ]
+  },
+  {
+    "title": "쇼츠와 릴스에서 오지게 뜨는 \"트랄라레로 트랄랄라\" 이게 뭔데???????",
+    "video_url": "https://www.youtube.com/watch?v=utmuPIiN5l4",
+    "avg_cb_score": 0.092,
+    "spike_dates": [
+      "2025-04-30T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-04-30T00:00:00",
+      "2025-05-01T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-30T00:00:00",
+      "end_date": "2025-05-01T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-04-27T00:00:00",
+        "cb_score": 0.08
+      },
+      {
+        "date": "2025-04-28T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-04-29T00:00:00",
+        "cb_score": 0.01
+      },
+      {
+        "date": "2025-04-30T00:00:00",
+        "cb_score": 0.13
+      },
+      {
+        "date": "2025-05-01T00:00:00",
+        "cb_score": 0.14
+      }
+    ],
+    "emotion_ratio": {
+      "행복": 0.302,
+      "놀람": 0.222,
+      "슬픔": 0.143,
+      "공포": 0.095,
+      "혐오": 0.095,
+      "분노": 0.079,
+      "중립": 0.063
+    },
+    "topic_ratio": {
+      "기타 / 미분류": 0.492,
+      "공감 / 감정 공유": 0.206,
+      "사건 / 논란": 0.111,
+      "유머 / 드립": 0.063,
+      "정보 / 꿀팁": 0.048,
+      "유튜버 개인": 0.032,
+      "사회 / 시사 이슈": 0.016,
+      "콘텐츠 평가": 0.016,
+      "제품 / 아이템 리뷰": 0.016
+    },
+    "cluster_ratio": {
+      "Neutral Informative": 0.302,
+      "Aggressive": 0.254,
+      "Supportive": 0.175,
+      "Sarcastic/Playful": 0.159,
+      "Empathetic": 0.079,
+      "Analytical": 0.032
+    },
+    "tfidf_keywords": [
+      "ai밖에",
+      "a세대",
+      "x세대",
+      "가만히",
+      "같은거",
+      "공격당함",
+      "괜히",
+      "괴인",
+      "그냥",
+      "그래서",
+      "기분이",
+      "녀석",
+      "누가",
+      "도배되엇다",
+      "도파민을"
+    ],
+    "freq_keywords": [
+      "사후르",
+      "그냥",
+      "이게",
+      "이거",
+      "도파민을",
+      "볼때마다",
+      "이상하게",
+      "기분이",
+      "더러워져",
+      "가만히",
+      "보고있다가",
+      "괜히",
+      "공격당함",
+      "누가",
+      "파워레인저보고"
+    ],
+    "summary": "2025-04-30T00:00:00~2025-05-01T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '행복', 주제는 '기타 / 미분류', 댓글 유형은 'Neutral Informative'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-04-27",
+        "emotion": "분노",
+        "topic": "공감 / 감정 공유",
+        "cluster": "Aggressive",
+        "text": "걍 이유없이 ㅈㄴ열받음"
+      },
+      {
+        "date": "2025-04-27",
+        "emotion": "분노",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "ㅋㅋ진짜 500년뒤 역사가들 이번세대 건너뛸거다"
+      },
+      {
+        "date": "2025-04-27",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "사장님 또 어디서 이상한거 들고오셨네"
+      },
+      {
+        "date": "2025-04-27",
+        "emotion": "혐오",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "세계가 걍 ㅈㄴ 멍청해지는중."
+      },
+      {
+        "date": "2025-04-27",
+        "emotion": "분노",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "세상이 미쳐돌아가구나"
+      },
+      {
+        "date": "2025-04-28",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "ai이샛기는 인류를 개병신으로 만들기로 작정한듯"
+      },
+      {
+        "date": "2025-04-28",
+        "emotion": "공포",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "약간 늦은 밈박사 같아요.."
+      },
+      {
+        "date": "2025-04-28",
+        "emotion": "공포",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "<a href=\"https://www.youtube.com/watch?v=utmuPIiN5l4&amp;t=96\">1:36</a> ㅔ????"
+      },
+      {
+        "date": "2025-04-28",
+        "emotion": "혐오",
+        "topic": "콘텐츠 평가",
+        "cluster": "Aggressive",
+        "text": "혜안 58초에 블랙툰 뭐야 해명해"
+      },
+      {
+        "date": "2025-04-28",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "아진짜 ㅈ같은 밈이다"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "<a href=\"https://www.youtube.com/watch?v=utmuPIiN5l4&amp;t=561\">9:21</a> 가만히 보고있다가 괜히 공격당함"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "누가 파워레인저보고 괴인 만들어보고 싶은데 혼자 힘으로 만들수 있는게 ai밖에 없어서 저리 만들었나보네"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "퉁퉁퉁퉁퉁퉁퉁퉁퉁 사후르 이 발음이 통통통통통통통통통 사호르가 되냐고요ㅌㅋㅋㅋㅋㅋㅋ"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "퉁퉁퉁 사후르 징그러!"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "공포",
+        "topic": "콘텐츠 평가",
+        "cluster": "Aggressive",
+        "text": "어..좀 수치스럽네요.... <a href=\"https://www.youtube.com/watch?v=utmuPIiN5l4&amp;t=98\">1:38</a>"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "공포",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "그냥 어쩔티비 저쩔티비 같은거"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "공포",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "아직도 이게 왜 유행인지 이해가 안됨ㅜ.ㅜ"
+      },
+      {
+        "date": "2025-04-30",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "혜랄라레오혜랄라라"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "그래서 이게 뭔데 씹덕아 ㅋㅋㅋ 봐도 모르겠노"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "혜안님, 이 이탈리아밈은 종교를 모욕하고 인종차별적이에요. 조심하십시오."
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "트랄랄레로트랄랄라포르코딜로포르코알라"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "이걸봄으로써 내 알고리즘은 이것들로 도배되엇다"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "발음 ㄹㅈㄷ"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "X세대 이게 먼데<br>Y세대 먼진 알겠는데 왜 유행임?<br>Z-A세대 퉁 퉁 퉁 퉁 퉁 퉁 퉁 퉁 퉁 사후르-<br>트랄랄레로 트랄랄라~"
+      },
+      {
+        "date": "2025-05-01",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "이거..그냥 오로지 도파민을 위해 만들어진걸꺼요?상식적으로,말이 안되는거를 다 떠나서 그냥 도파민을 위해서 만들어진거임"
+      }
+    ]
+  },
+  {
+    "title": "⛔커피 손절하고, 다시 피자 굽습니다ㅋㅋㅋㅋ역시 피자가 체질",
+    "video_url": "https://www.youtube.com/watch?v=5bSAW1ZHKZQ",
+    "avg_cb_score": 0.084,
+    "spike_dates": [
+      "2025-04-11T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-04-11T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-11T00:00:00",
+      "end_date": "2025-04-11T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-04-01T00:00:00",
+        "cb_score": 0.03
+      },
+      {
+        "date": "2025-04-02T00:00:00",
+        "cb_score": 0.04
+      },
+      {
+        "date": "2025-04-03T00:00:00",
+        "cb_score": 0.02
+      },
+      {
+        "date": "2025-04-04T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-04-05T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-06T00:00:00",
+        "cb_score": 0.05
+      },
+      {
+        "date": "2025-04-11T00:00:00",
+        "cb_score": 0.35
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 0.5,
+      "행복": 0.5
+    },
+    "topic_ratio": {
+      "사건 / 논란": 0.5,
+      "콘텐츠 평가": 0.5
+    },
+    "cluster_ratio": {
+      "Aggressive": 0.5,
+      "Supportive": 0.5
+    },
+    "tfidf_keywords": [
+      "거지한테",
+      "게임",
+      "그리고",
+      "나중에",
+      "달러로",
+      "달러인가",
+      "달러주고",
+      "돈주면",
+      "돌아와요",
+      "또주게될때",
+      "뚱뚱한",
+      "빛져서",
+      "빛져서라도",
+      "제일처음으로나오는",
+      "준답니당"
+    ],
+    "freq_keywords": [
+      "거지한테",
+      "나중에",
+      "처음에",
+      "빛져서라도",
+      "달러주고",
+      "또주게될때",
+      "빛져서",
+      "돈주면",
+      "달러로",
+      "돌아와요",
+      "그리고",
+      "게임",
+      "초반에",
+      "제일처음으로나오는",
+      "뚱뚱한"
+    ],
+    "summary": "2025-04-11T00:00:00~2025-04-11T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-04-04",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "혜안님 저돌갑tv라는 곳에서 혜안님을 데놋코 비아하고 명예회손까지 헷어요"
+      },
+      {
+        "date": "2025-04-04",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "혀안님.. 이제 패평은 안하나유.."
+      },
+      {
+        "date": "2025-04-11",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "저 처음에 거지한테 빛져서라도 150달러주고 나중에 또주게될때?또 빛져서 돈주면 나중에 300달러로 돌아와요!!!그리고 그 게임 초반에 제일처음으로나오는 뚱뚱한?거지한테 피자계속줘도 150달러인가 준답니당.."
+      }
+    ]
+  }
+]

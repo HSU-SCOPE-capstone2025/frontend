@@ -1,0 +1,339 @@
+[
+  {
+    "title": "음식 기다리면서 이 동작 해보세요!",
+    "video_url": "https://www.youtube.com/watch?v=VeRSAwckWwg",
+    "avg_cb_score": 0.176,
+    "spike_dates": [
+      "2025-03-11T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-11T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-11T00:00:00",
+      "end_date": "2025-03-11T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-02-28T00:00:00",
+        "cb_score": 0.15
+      },
+      {
+        "date": "2025-03-01T00:00:00",
+        "cb_score": 0.13
+      },
+      {
+        "date": "2025-03-03T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-05T00:00:00",
+        "cb_score": 0.1
+      },
+      {
+        "date": "2025-03-11T00:00:00",
+        "cb_score": 0.5
+      }
+    ],
+    "emotion_ratio": {
+      "공포": 1.0
+    },
+    "topic_ratio": {
+      "기타 / 미분류": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "뭐라고",
+      "앞사람이",
+      "정신사납다고",
+      "하네요"
+    ],
+    "freq_keywords": [
+      "앞사람이",
+      "정신사납다고",
+      "뭐라고",
+      "하네요"
+    ],
+    "summary": "2025-03-11T00:00:00~2025-03-11T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '공포', 주제는 '기타 / 미분류', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-02-28",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "식당에서 웃통까면 신고  당하지 않나요?"
+      },
+      {
+        "date": "2025-02-28",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "이모한테 옷입으라고 등짝 맞는다"
+      },
+      {
+        "date": "2025-03-01",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "아니 머리가 염색되어있다가 안되어있다가 ㅋㅋㅋ 염색된걸로 최신꺼구나 하는 제가 웃기네요"
+      },
+      {
+        "date": "2025-03-01",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "벗고 주문하면 무서워서 가까이 오겠나<br>문신충보다도 무서운데요"
+      },
+      {
+        "date": "2025-03-01",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "그냥 가만히 좀 있자"
+      },
+      {
+        "date": "2025-03-01",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "손님 당장 내 식당에서 나가"
+      },
+      {
+        "date": "2025-03-11",
+        "emotion": "공포",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "앞사람이 정신사납다고 뭐라고 하네요."
+      }
+    ]
+  },
+  {
+    "title": "전신 운동 책상 하나로 끝내기",
+    "video_url": "https://www.youtube.com/watch?v=FCbBVAuGLeo",
+    "avg_cb_score": 0.137,
+    "spike_dates": [
+      "2025-03-11T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-11T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-11T00:00:00",
+      "end_date": "2025-03-11T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-01T00:00:00",
+        "cb_score": 0.07
+      },
+      {
+        "date": "2025-03-02T00:00:00",
+        "cb_score": 0.09
+      },
+      {
+        "date": "2025-03-03T00:00:00",
+        "cb_score": 0.16
+      },
+      {
+        "date": "2025-03-04T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-06T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-11T00:00:00",
+        "cb_score": 0.5
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 1.0
+    },
+    "topic_ratio": {
+      "기타 / 미분류": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "등짝",
+      "따라",
+      "맞았다",
+      "싸다귀",
+      "엄마한테",
+      "하다가"
+    ],
+    "freq_keywords": [
+      "따라",
+      "하다가",
+      "엄마한테",
+      "등짝",
+      "싸다귀",
+      "맞았다"
+    ],
+    "summary": "2025-03-11T00:00:00~2025-03-11T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '기타 / 미분류', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-01",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "사장: 나가."
+      },
+      {
+        "date": "2025-03-01",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "아니 로비에 책상이 어디갔대??!<br><br>오늘 밤톨이들 전신운동 하는 날이잖아"
+      },
+      {
+        "date": "2025-03-02",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "삐싹 골아가지고 책이나읽고 밥이나묵으라"
+      },
+      {
+        "date": "2025-03-03",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "엄마나 아내 몰래 하세요 등짝 다 털립니다"
+      },
+      {
+        "date": "2025-03-03",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "&quot;아!! 엄마!! 그냥 운동한거라고!! 밥상 엎은거 아니라고! 아빠한테 전화는 왜하는데!!&quot;"
+      },
+      {
+        "date": "2025-03-11",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "따라 하다가 엄마한테 등짝 풀 싸다귀 맞았다"
+      }
+    ]
+  },
+  {
+    "title": "복근 더 선명하게 만들기",
+    "video_url": "https://www.youtube.com/watch?v=rhsh7W6vK2c",
+    "avg_cb_score": 0.114,
+    "spike_dates": [
+      "2025-04-29T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-05-02T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-29T00:00:00",
+      "end_date": "2025-05-02T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-04-26T00:00:00",
+        "cb_score": 0.03
+      },
+      {
+        "date": "2025-04-29T00:00:00",
+        "cb_score": 0.13
+      },
+      {
+        "date": "2025-04-30T00:00:00",
+        "cb_score": 0.08
+      },
+      {
+        "date": "2025-05-01T00:00:00",
+        "cb_score": 0.13
+      },
+      {
+        "date": "2025-05-02T00:00:00",
+        "cb_score": 0.2
+      }
+    ],
+    "emotion_ratio": {
+      "공포": 0.318,
+      "행복": 0.273,
+      "슬픔": 0.227,
+      "놀람": 0.136,
+      "중립": 0.045
+    },
+    "topic_ratio": {
+      "정보 / 꿀팁": 0.318,
+      "공감 / 감정 공유": 0.273,
+      "질문 / 피드백": 0.227,
+      "사건 / 논란": 0.091,
+      "유튜버 개인": 0.045,
+      "기타 / 미분류": 0.045
+    },
+    "cluster_ratio": {
+      "Neutral Informative": 0.455,
+      "Supportive": 0.227,
+      "Empathetic": 0.182,
+      "Aggressive": 0.136
+    },
+    "tfidf_keywords": [
+      "kg인데",
+      "거예요",
+      "게임할때",
+      "겨울에도",
+      "골반",
+      "골반뒤로가",
+      "그러면",
+      "덮고",
+      "뒤로가",
+      "디스크",
+      "만드는",
+      "말아서",
+      "말인지",
+      "모르겠어요",
+      "몸무게"
+    ],
+    "freq_keywords": [
+      "골반",
+      "겨울에도",
+      "벗으실",
+      "거예요",
+      "디스크",
+      "아픈분",
+      "저거",
+      "하는순간",
+      "작살납니다",
+      "조심하세요",
+      "뱃살이",
+      "덮고",
+      "있어서",
+      "복근이",
+      "안보여요"
+    ],
+    "summary": "2025-04-29T00:00:00~2025-05-02T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '공포', 주제는 '정보 / 꿀팁', 댓글 유형은 'Neutral Informative'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-04-26",
+        "emotion": "분노",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "ㄳㄳ"
+      },
+      {
+        "date": "2025-04-29",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "디스크 아픈분 저거 하는순간 작살납니다 조심하세요"
+      },
+      {
+        "date": "2025-05-02",
+        "emotion": "공포",
+        "topic": "질문 / 피드백",
+        "cluster": "Aggressive",
+        "text": "몸무게 80kg인데 50으로 만드는 운동은 뭘까요"
+      }
+    ]
+  }
+]

@@ -1,0 +1,311 @@
+[
+  {
+    "title": "미슐랭받은 라멘 이 라멘이면 10그릇도 가능해요",
+    "video_url": "https://www.youtube.com/watch?v=nGqA8cRuSno",
+    "avg_cb_score": 0.18,
+    "spike_dates": [
+      "2025-02-26T00:00:00",
+      "2025-03-10T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-02-26T00:00:00",
+      "2025-03-10T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-02-26T00:00:00",
+      "end_date": "2025-03-10T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-02-23T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-02-24T00:00:00",
+        "cb_score": 0.06
+      },
+      {
+        "date": "2025-02-25T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-02-26T00:00:00",
+        "cb_score": 0.6
+      },
+      {
+        "date": "2025-02-28T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-02T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-10T00:00:00",
+        "cb_score": 0.6
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 0.25,
+      "중립": 0.25,
+      "행복": 0.25,
+      "공포": 0.25
+    },
+    "topic_ratio": {
+      "사건 / 논란": 0.5,
+      "정보 / 꿀팁": 0.5
+    },
+    "cluster_ratio": {
+      "Aggressive": 0.5,
+      "Neutral Informative": 0.5
+    },
+    "tfidf_keywords": [
+      "김기해여사가",
+      "라고",
+      "말하면",
+      "말했다",
+      "않돠나",
+      "어지간이",
+      "친일파일뽕아줌매"
+    ],
+    "freq_keywords": [
+      "라고",
+      "친일파일뽕아줌매",
+      "김기해여사가",
+      "말했다",
+      "어지간이",
+      "말하면",
+      "않돠나"
+    ],
+    "summary": "2025-02-26T00:00:00~2025-03-10T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-02-24",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "지랄하네일본음식그리좋어면일본살아라꼴도보기싢타"
+      },
+      {
+        "date": "2025-02-26",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "라고~ 친일파일뽕아줌매 김기해여사가 말했다."
+      },
+      {
+        "date": "2025-03-10",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "어지간이  말하면 않돠나"
+      }
+    ]
+  },
+  {
+    "title": "시골에 가서 아침 부터 맛집 초토화시키는 히밥 한적한 산골짜기에 위치한 간판이 허름해도 사람들이 찾아 간다는 원주 맛집 먹방",
+    "video_url": "https://www.youtube.com/watch?v=Xry6MAKYzhY",
+    "avg_cb_score": 0.14,
+    "spike_dates": [
+      "2025-03-27T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-03-27T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-03-27T00:00:00",
+      "end_date": "2025-03-27T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-19T00:00:00",
+        "cb_score": 0.01
+      },
+      {
+        "date": "2025-03-20T00:00:00",
+        "cb_score": 0.04
+      },
+      {
+        "date": "2025-03-21T00:00:00",
+        "cb_score": 0.17
+      },
+      {
+        "date": "2025-03-22T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-23T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-24T00:00:00",
+        "cb_score": 0.2
+      },
+      {
+        "date": "2025-03-25T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-03-27T00:00:00",
+        "cb_score": 0.7
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 1.0
+    },
+    "topic_ratio": {
+      "사건 / 논란": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "아주",
+      "지랄",
+      "해요"
+    ],
+    "freq_keywords": [
+      "지랄",
+      "해요",
+      "아주"
+    ],
+    "summary": "2025-03-27T00:00:00~2025-03-27T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-20",
+        "emotion": "혐오",
+        "topic": "사회 / 시사 이슈",
+        "cluster": "Aggressive",
+        "text": "우리나라사람은 왠만하면 화교 채널보지마라,,,  우리나라 저런 뒤에서 밀어주늠화교 때메 망한다"
+      },
+      {
+        "date": "2025-03-20",
+        "emotion": "공포",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "식당 이모님 싸인 받으셨나 모르것네 ㅜㅜ 누군지 모르는것 같던데...."
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "은퇴해요 먹방 한 물 갔네"
+      },
+      {
+        "date": "2025-03-21",
+        "emotion": "혐오",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "모든 음식을 초토화 시키는  히밥양"
+      },
+      {
+        "date": "2025-03-24",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "이게 ㅅㅅ지"
+      },
+      {
+        "date": "2025-03-27",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "지랄. 해요. 아주"
+      }
+    ]
+  },
+  {
+    "title": "히밥 영상보고 살찐 일반인들과의 식사 상다리 한번 부셔지도록 먹어보겠습니다.",
+    "video_url": "https://www.youtube.com/watch?v=2-nVvBMyGXM",
+    "avg_cb_score": 0.115,
+    "spike_dates": [
+      "2025-04-03T00:00:00"
+    ],
+    "high_risk_dates": [
+      "2025-04-03T00:00:00"
+    ],
+    "risk_zone": {
+      "start_date": "2025-04-03T00:00:00",
+      "end_date": "2025-04-03T00:00:00"
+    },
+    "cb_score_trend": [
+      {
+        "date": "2025-03-28T00:00:00",
+        "cb_score": 0.06
+      },
+      {
+        "date": "2025-03-29T00:00:00",
+        "cb_score": 0.03
+      },
+      {
+        "date": "2025-03-30T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-02T00:00:00",
+        "cb_score": 0.0
+      },
+      {
+        "date": "2025-04-03T00:00:00",
+        "cb_score": 0.6
+      },
+      {
+        "date": "2025-04-04T00:00:00",
+        "cb_score": 0.0
+      }
+    ],
+    "emotion_ratio": {
+      "분노": 1.0
+    },
+    "topic_ratio": {
+      "사건 / 논란": 1.0
+    },
+    "cluster_ratio": {
+      "Aggressive": 1.0
+    },
+    "tfidf_keywords": [
+      "밥맥이는거임",
+      "범죄자들",
+      "음성변조까지",
+      "해드리지"
+    ],
+    "freq_keywords": [
+      "범죄자들",
+      "밥맥이는거임",
+      "음성변조까지",
+      "해드리지"
+    ],
+    "summary": "2025-04-03T00:00:00~2025-04-03T00:00:00 동안 CB Score가 평균보다 높거나 급등했습니다. 주요 감정은 '분노', 주제는 '사건 / 논란', 댓글 유형은 'Aggressive'가 많았습니다.",
+    "aggressive_comments": [
+      {
+        "date": "2025-03-28",
+        "emotion": "공포",
+        "topic": "질문 / 피드백",
+        "cluster": "Aggressive",
+        "text": "골때녀 경기 언젠지 가르쳐 주면 안되나요? <a href=\"UCkszU2WH9gy1mb0dV-11UJg/KsIfY6LzFoLM6AKanYDQAg\"></a><a href=\"UCkszU2WH9gy1mb0dV-11UJg/KsIfY6LzFoLM6AKanYDQAg\"></a><a href=\"UCkszU2WH9gy1mb0dV-11UJg/KsIfY6LzFoLM6AKanYDQAg\"></a>"
+      },
+      {
+        "date": "2025-03-28",
+        "emotion": "분노",
+        "topic": "공감 / 감정 공유",
+        "cluster": "Aggressive",
+        "text": "불나서 울고불고난린데 여긴먹자판이네"
+      },
+      {
+        "date": "2025-03-29",
+        "emotion": "혐오",
+        "topic": "기타 / 미분류",
+        "cluster": "Aggressive",
+        "text": "다락터 모르면 말도 하지 마라 아는척 할때 어딘지 말하면 인정"
+      },
+      {
+        "date": "2025-04-03",
+        "emotion": "분노",
+        "topic": "사건 / 논란",
+        "cluster": "Aggressive",
+        "text": "범죄자들 밥맥이는거임? 음성변조까지 해드리지 ~"
+      }
+    ]
+  }
+]
