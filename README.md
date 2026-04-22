@@ -22,11 +22,14 @@
 **개발 언어**: Javascript, Java, Python, SQL<br>
 **주요 기술**: React, Spring Boot, Flask, GPT-4, FastText, KcBERT, KoBERT, HuBERT, ViT, Pyannote, MediaPipe, opencv haar cascade, STT, MultiModal Attention Fusion
 
+
 ## 👥 팀원 소개
 | 김정훈 | 성유빈 | 심규보 | 이주현 | 임예은 |
 |:------:|:------:|:------:|:------:|:------:|
-| <img src="https://github.com/thuygom.png" width="120"/> | <img src="https://github.com/mimolulu.png" width="120"/> | <img src="https://github.com/Qbooo.png" width="120"/> | <img src="https://github.com/hana03030.png" width="120"/> | <img src="https://github.com/ye-eun-min201.png" width="120"/> |
+| <img src="https://github.com/thuygom.png" width="100%"/> | <img src="https://github.com/mimolulu.png" width="100%"/> | <img src="https://github.com/Qbooo.png" width="100%"/> | <img src="https://github.com/hana03030.png" width="100%"/> | <img src="https://github.com/ye-eun-min201.png" width="100%"/> |
 | [@thuygom](https://github.com/thuygom) | [@mimolulu](https://github.com/mimolulu) | [@Kyubo Sim](https://github.com/Qbooo) | [@juhyun](https://github.com/hana03030) | [@yeeunmin](https://github.com/ye-eun-min201) |
+
+
 
 ## 📊 기능 및 화면 소개
 SCOPE는 인플루언서 콘텐츠를 다각도로 분석하고, 사용자의 목적에 맞는 인플루언서를 추천하는 서비스입니다.  
