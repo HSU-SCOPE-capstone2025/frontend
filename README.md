@@ -29,15 +29,15 @@
 | <img src="https://github.com/thuygom.png" width="100%"/> | <img src="https://github.com/mimolulu.png" width="100%"/> | <img src="https://github.com/Qbooo.png" width="100%"/> | <img src="https://github.com/hana03030.png" width="100%"/> | <img src="https://github.com/ye-eun-min201.png" width="100%"/> |
 | [@thuygom](https://github.com/thuygom) | [@mimolulu](https://github.com/mimolulu) | [@Kyubo Sim](https://github.com/Qbooo) | [@juhyun](https://github.com/hana03030) | [@yeeunmin](https://github.com/ye-eun-min201) |
 
-- 김정훈: 음성·표정 분석 AI모델 파인튜닝, 멀티모달리티 분석 모델 파인튜닝
+- 김정훈(AI 모듈): 음성·표정 분석 AI모델 파인튜닝, 멀티모달리티 분석 모델 파인튜닝
 
-- 성유빈: SNS 메타데이터 수집, KcBERT모델 파인튜닝 및 Text감성분석, MySQL DB 스키마 설계, DB 연동 및 데이터 적재 자동화 로직 설계·구현
+- 성유빈(백엔드): SNS 메타데이터 수집, KcBERT모델 파인튜닝 및 Text감성분석, MySQL DB 스키마 설계, DB 연동 및 데이터 적재 자동화 로직 설계·구현
 
-- 심규보: DB설계 및 구축, Rest-API 서버 개발, AWS Infrastructure 구축, Docker CI/CD 파이프라인 구축
+- 심규보(백엔드): DB설계 및 구축, Rest-API 서버 개발, AWS Infrastructure 구축, Docker CI/CD 파이프라인 구축
 
-- 임예은: UI/UX 설계 및 구현, 인플루언서 검색·분석·추천 기능 개발, API 기반 실시간 데이터 처리 및 클라이언트 데이터 바인딩 로직 구현
+- 임예은(프론트엔드): UI/UX 설계 및 구현, 인플루언서 검색·분석·추천 기능 개발, API 기반 실시간 데이터 처리 및 클라이언트 데이터 바인딩 로직 구현
 
-- 이주현: 화면 흐름 설계 및 UI/UX개발, 인플루언서 데이터 기반 소개·순위·분석·추천·챗봇·대시보드 구현, 데이터 가공 기반 REST API연동 및 인터페이스 구현
+- 이주현(프론트엔드): 화면 흐름 설계 및 UI/UX개발, 인플루언서 데이터 기반 소개·순위·분석·추천·챗봇·대시보드 구현, 데이터 가공 기반 REST API연동 및 인터페이스 구현
 
 
 ## 📊 기능 및 화면 소개
