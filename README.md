@@ -41,10 +41,49 @@
 
 
 ## 📊 기능 및 화면 소개
-> 🔗 **[프로젝트 상세 설명 및 개발 기록 (Notion)](https://www.notion.so/K-Route-34b31f3dc85d8028bc7ddd83d2df2489?source=copy_link)**
-> 
-> 💡 *프로젝트 설명과 개발 과정의 기록을 담고 있습니다.*
-> 
+
+### 인플루언서 순위
+<img width="2532" height="1317" alt="image" src="https://github.com/user-attachments/assets/d6c30392-5bdd-425e-ae9d-45e2f684db73" />
+
+인플루언서의 영향력 기반 랭킹을 제공한다.  
+SCOPE 점수, 팔로워 수, 좋아요 수 등 다양한 기준으로 정렬 가능하다.
+
+
+### SNS 상세 분석
+<img width="1057" height="887" alt="image" src="https://github.com/user-attachments/assets/1ca7a94d-1174-490c-94df-b056da9040cf" />
+
+YouTube, Instagram, TikTok 플랫폼별 콘텐츠 및 반응 분석을 제공하는 화면이다.  
+팔로워 수, 좋아요 수, 댓글 수의 시간 흐름에 따른 변화를 시각화 하였으며, 최근 활동 썸네일과 주요 콘텐츠를 확인할 수 있다.
+
+
+### 계정 상세 분석
+<img width="1053" height="993" alt="image" src="https://github.com/user-attachments/assets/0220688e-03ee-49b1-9a49-d842c3b2381c" />
+<img width="1053" height="1210" alt="image" src="https://github.com/user-attachments/assets/82179677-6ebe-4402-a3e8-3f7a6d71bb11" />
+
+플랫폼별 SCOPE 점수 변화 및 핵심 지지층 비율을 시각화하였다.  
+팔로워의 감정 및 성향 군집화 결과를 제공하며, 댓글 주제와 실제 댓글 데이터를 차트 형식으로 제공한다.
+
+
+### 대시보드
+<img width="696" height="540" alt="image" src="https://github.com/user-attachments/assets/5d1ee657-2640-42cf-8efc-d9a5744988a9" />
+
+인플루언서의 사이버불링, 에코체임버 점수 도출 및 평균 영상별 점수를 제공한다.  
+AI를 통해 리포트, 대처방안, 반대관점 콘텐츠를 생성할 수 있다.
+
+
+### 맞춤 인플루언서 추천
+<img width="1027" height="1343" alt="image" src="https://github.com/user-attachments/assets/23184da7-6105-4749-a0f4-a2d3177e6a5e" />
+
+이용자의 관심사 및 조건 입력 기반 추천 기능을 제공하고  
+팔로워 군집을 기반으로 한 필터 조합이 가능하다.
+
+
+### 챗봇
+<img width="834" height="555" alt="image" src="https://github.com/user-attachments/assets/43661f93-12ed-4c10-b6ea-822e8906e82c" />
+
+AI 챗봇을 이용할 수 있는 화면이다.  
+전체 인플루언서, 특정일자 통계, 콘텐츠 방향 추천 등을 제공한다.  
+
 
 ## 📄 논문 투고
 <img width="60%" alt="image" src="https://github.com/user-attachments/assets/b0db717c-b1bf-4015-a2ff-0f07feeabc62" />
