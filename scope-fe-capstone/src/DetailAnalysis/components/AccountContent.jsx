@@ -214,7 +214,8 @@ const AccountContent = () => {
   const selectedEmotionInfo = emotionDataMap[accountData.name]?.[selectedEmotionPlatform];
   const raw = selectedEmotionInfo?.emotionTimeline || [];
 
-  const chartData = raw.map((item) => {
+  const chartData = useMemo(() => {
+  return raw.map((item) => {
     const time = `${item.start_sec.toFixed(1)}s`;
     return {
       time,
@@ -224,6 +225,18 @@ const AccountContent = () => {
       }, {}),
     };
   });
+}, [raw]);
+
+  // const chartData = raw.map((item) => {
+  //   const time = `${item.start_sec.toFixed(1)}s`;
+  //   return {
+  //     time,
+  //     ...Object.entries(item.softmax).reduce((acc, [key, value]) => {
+  //       acc[emotionLabelMap[key] || key] = +(value * 100).toFixed(1);
+  //       return acc;
+  //     }, {}),
+  //   };
+  // });
 
 
 
